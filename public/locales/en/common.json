@@ -1,0 +1,15 @@
+{
+  "title": "hello world!",
+  "turkish": "Turkish",
+  "french": "French",
+  "german": "German",
+  "english": "English",
+  "spanish": "Spanish",
+  "pagenotfound": "Page not found",
+  "pagenotfoundtwo": "We couldn't find the page you are looking for",
+  "backtohome": "Back to home",
+  "admin": "Admin",
+  "profile": "Profile",
+  "settings": "Settings",
+  "logout": "Logout"
+}

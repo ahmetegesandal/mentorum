@@ -1,0 +1,15 @@
+{
+  "title": "merhaba dünya!",
+  "turkish": "Türkçe",
+  "french": "Fransızca",
+  "german": "Almanca",
+  "english": "İngilizce",
+  "spanish": "İspanyolca",
+  "pagenotfound": "Sayfa bulunamadı",
+  "pagenotfoundtwo": "Aradığınız sayfayı bulamadık",
+  "backtohome": "Anasayfa'ya dön",
+  "admin": "Yönetici",
+  "profile": "Profil",
+  "settings": "Ayarlar",
+  "logout": "Çıkış yap"
+}
