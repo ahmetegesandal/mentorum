@@ -24,7 +24,7 @@ const Main = () => {
                   </h5>
                   <div className="col-12 col-lg-5">
                     <p>
-                      Your progress this week is Awesome. let's keep it up and
+                      Your progress this week is Awesome. {"let's"} keep it up and
                       get a lot of points reward !
                     </p>
                   </div>
@@ -691,28 +691,30 @@ const Main = () => {
                       href="https://themeforest.net/licenses/standard"
                       className="footer-link me-4"
                       target="_blank"
+                      rel="noopener noreferrer"
                   >
                     License
                   </a>
                   <a
                       href="https://1.envato.market/pixinvent_portfolio"
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="footer-link me-4"
                   >
                     More Themes
                   </a>
-
                   <a
                       href="https://demos.pixinvent.com/vuexy-html-admin-template/documentation/"
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="footer-link me-4"
                   >
                     Documentation
                   </a>
-
                   <a
                       href="https://pixinvent.ticksy.com/"
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="footer-link d-none d-sm-inline-block"
                   >
                     Support
@@ -729,7 +731,7 @@ const Main = () => {
   );
 };
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps({locale}) {
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"])),
