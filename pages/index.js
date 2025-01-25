@@ -517,7 +517,7 @@ const Home = () => {
                                     </div>
                                     <div className="card-body border border-top-0 border-label-info text-center">
                                         <h5 className="card-title mb-0">Niyazi Emir Akdemir</h5>
-                                        <p className="text-muted mb-0">UI Designer</p>
+                                        <p className="text-muted mb-0">Developer</p>
                                     </div>
                                 </div>
                             </div>
@@ -532,7 +532,7 @@ const Home = () => {
                                     </div>
                                     <div className="card-body border border-top-0 border-label-danger text-center">
                                         <h5 className="card-title mb-0">Muhammed Ufuk Aslan</h5>
-                                        <p className="text-muted mb-0">Development Lead</p>
+                                        <p className="text-muted mb-0">Developer</p>
                                     </div>
                                 </div>
                             </div>
@@ -547,7 +547,7 @@ const Home = () => {
                                     </div>
                                     <div className="card-body border border-top-0 border-label-success text-center">
                                         <h5 className="card-title mb-0">Sena Ağaçyetiştiren</h5>
-                                        <p className="text-muted mb-0">Marketing Manager</p>
+                                        <p className="text-muted mb-0">Developer</p>
                                     </div>
                                 </div>
                             </div>
@@ -562,7 +562,7 @@ const Home = () => {
                                     </div>
                                     <div className="card-body border border-top-0 border-label-success text-center">
                                         <h5 className="card-title mb-0">Hatice Şerife Aladağlı</h5>
-                                        <p className="text-muted mb-0">Marketing Manager</p>
+                                        <p className="text-muted mb-0">Developer</p>
                                     </div>
                                 </div>
                             </div>
@@ -577,7 +577,7 @@ const Home = () => {
                                     </div>
                                     <div className="card-body border border-top-0 border-label-success text-center">
                                         <h5 className="card-title mb-0">Furkan Güven</h5>
-                                        <p className="text-muted mb-0">Marketing Manager</p>
+                                        <p className="text-muted mb-0">Developer</p>
                                     </div>
                                 </div>
                             </div>

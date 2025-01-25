@@ -27,6 +27,8 @@ const Datatable = () => {
             { id: 2, name: "Jane Smith", email: "jane.smith@example.com", role: "Editor", status: "Pending" },
             { id: 3, name: "Samuel Green", email: "samuel.green@example.com", role: "Subscriber", status: "Inactive" },
             { id: 4, name: "Alice Brown", email: "alice.brown@example.com", role: "Editor", status: "Active" },
+            { id: 5, name: "Alice Brown", email: "alice.brown@example.com", role: "Editor", status: "Active" },
+            { id: 6, name: "Alice Brown", email: "alice.brown@example.com", role: "Editor", status: "Active" },
         ];
         setData(result);
     };
@@ -99,12 +101,6 @@ const Datatable = () => {
                     <div className="col-md-10">
                         <div className="dt-action-buttons d-flex align-items-center justify-content-end">
                             <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
-                            <div className="dt-buttons btn-group flex-wrap ms-3">
-
-                                <button className="btn btn-primary ms-2">
-                                    <i className="ti ti-plus me-1 ti-xs"></i>Add New User
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>
