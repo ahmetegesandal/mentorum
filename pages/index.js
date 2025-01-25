@@ -270,7 +270,7 @@ const Home = () => {
                                                     <div className="card-body text-body d-flex flex-column justify-content-between h-100">
                                                         <div className="mb-4">
                                                             <img
-                                                                src="../../assets/img/front-pages/branding/logo-1.png"
+                                                                src="img/front-pages/branding/logo-1.png"
                                                                 alt="client logo"
                                                                 className="client-logo img-fluid" />
                                                         </div>
@@ -351,7 +351,7 @@ const Home = () => {
                                                         </div>
                                                         <div className="d-flex align-items-center">
                                                             <div className="avatar me-3 avatar-sm">
-                                                                <img src="assets/img/avatars/3.png" alt="Avatar" className="rounded-circle" />
+                                                                <img src="img/avatars/3.png" alt="Avatar" className="rounded-circle" />
                                                             </div>
                                                             <div>
                                                                 <h6 className="mb-0">Curtis Fletcher</h6>
@@ -366,7 +366,7 @@ const Home = () => {
                                                     <div className="card-body text-body d-flex flex-column justify-content-between h-100">
                                                         <div className="mb-4">
                                                             <img
-                                                                src="assets/img/front-pages/branding/logo-4.png"
+                                                                src="img/front-pages/branding/logo-4.png"
                                                                 alt="client logo"
                                                                 className="client-logo img-fluid" />
                                                         </div>
@@ -383,7 +383,7 @@ const Home = () => {
                                                         </div>
                                                         <div className="d-flex align-items-center">
                                                             <div className="avatar me-3 avatar-sm">
-                                                                <img src="assets/img/avatars/4.png" alt="Avatar" className="rounded-circle" />
+                                                                <img src="img/avatars/4.png" alt="Avatar" className="rounded-circle" />
                                                             </div>
                                                             <div>
                                                                 <h6 className="mb-0">Sara Smith</h6>
@@ -447,7 +447,7 @@ const Home = () => {
                                                         </div>
                                                         <div className="d-flex align-items-center">
                                                             <div className="avatar me-3 avatar-sm">
-                                                                <img src="assets/img/avatars/1.png" alt="Avatar" className="rounded-circle" />
+                                                                <img src="img/avatars/1.png" alt="Avatar" className="rounded-circle" />
                                                             </div>
                                                             <div>
                                                                 <h6 className="mb-0">Sara Smith</h6>
@@ -468,54 +468,7 @@ const Home = () => {
 
                     <hr className="m-0 mt-6 mt-md-12" />
 
-                    <div className="container">
-                        <div className="swiper-logo-carousel py-8">
-                            <div className="swiper" id="swiper-clients-logos">
-                                <div className="swiper-wrapper">
-                                    <div className="swiper-slide">
-                                        <img
-                                            src="assets/img/front-pages/branding/logo_1-light.png"
-                                            alt="client logo"
-                                            className="client-logo"
-                                            data-app-light-img="front-pages/branding/logo_1-light.png"
-                                            data-app-dark-img="front-pages/branding/logo_1-dark.png" />
-                                    </div>
-                                    <div className="swiper-slide">
-                                        <img
-                                            src="assets/img/front-pages/branding/logo_2-light.png"
-                                            alt="client logo"
-                                            className="client-logo"
-                                            data-app-light-img="front-pages/branding/logo_2-light.png"
-                                            data-app-dark-img="front-pages/branding/logo_2-dark.png" />
-                                    </div>
-                                    <div className="swiper-slide">
-                                        <img
-                                            src="assets/img/front-pages/branding/logo_3-light.png"
-                                            alt="client logo"
-                                            className="client-logo"
-                                            data-app-light-img="front-pages/branding/logo_3-light.png"
-                                            data-app-dark-img="front-pages/branding/logo_3-dark.png" />
-                                    </div>
-                                    <div className="swiper-slide">
-                                        <img
-                                            src="assets/img/front-pages/branding/logo_4-light.png"
-                                            alt="client logo"
-                                            className="client-logo"
-                                            data-app-light-img="front-pages/branding/logo_4-light.png"
-                                            data-app-dark-img="front-pages/branding/logo_4-dark.png" />
-                                    </div>
-                                    <div className="swiper-slide">
-                                        <img
-                                            src="assets/img/front-pages/branding/logo_5-light.png"
-                                            alt="client logo"
-                                            className="client-logo"
-                                            data-app-light-img="front-pages/branding/logo_5-light.png"
-                                            data-app-dark-img="front-pages/branding/logo_5-dark.png" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
 
                 </section>
 
@@ -537,7 +490,7 @@ const Home = () => {
                             by Real People
                         </h4>
                         <p className="text-center mb-md-11 pb-0 pb-xl-12">Who is behind these great-looking interfaces?</p>
-                        <div className="row gy-12 mt-2">
+                        <div className="row gy-12 mt-2 justify-content-center">
                             <div className="col-lg-3 col-sm-6">
                                 <div className="card mt-3 mt-lg-0 shadow-none">
                                     <div
@@ -545,24 +498,25 @@ const Home = () => {
                                         <img
                                             src="img/front-pages/landing-page/team-member-1.png"
                                             className="position-absolute card-img-position bottom-0 start-50 scaleX-n1-rtl"
-                                            alt="human image" />
+                                            alt="human image"/>
                                     </div>
                                     <div className="card-body border border-top-0 border-label-primary text-center">
-                                        <h5 className="card-title mb-0">Sophie Gilbert</h5>
+                                        <h5 className="card-title mb-0">Ahmet Ege Sandal</h5>
                                         <p className="text-muted mb-0">Project Manager</p>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-lg-3 col-sm-6">
                                 <div className="card mt-3 mt-lg-0 shadow-none">
-                                    <div className="bg-label-info border border-bottom-0 border-label-info position-relative team-image-box">
+                                    <div
+                                        className="bg-label-info border border-bottom-0 border-label-info position-relative team-image-box">
                                         <img
                                             src="img/front-pages/landing-page/team-member-2.png"
                                             className="position-absolute card-img-position bottom-0 start-50 scaleX-n1-rtl"
-                                            alt="human image" />
+                                            alt="human image"/>
                                     </div>
                                     <div className="card-body border border-top-0 border-label-info text-center">
-                                        <h5 className="card-title mb-0">Paul Miles</h5>
+                                        <h5 className="card-title mb-0">Niyazi Emir Akdemir</h5>
                                         <p className="text-muted mb-0">UI Designer</p>
                                     </div>
                                 </div>
@@ -574,10 +528,10 @@ const Home = () => {
                                         <img
                                             src="img/front-pages/landing-page/team-member-3.png"
                                             className="position-absolute card-img-position bottom-0 start-50 scaleX-n1-rtl"
-                                            alt="human image" />
+                                            alt="human image"/>
                                     </div>
                                     <div className="card-body border border-top-0 border-label-danger text-center">
-                                        <h5 className="card-title mb-0">Nannie Ford</h5>
+                                        <h5 className="card-title mb-0">Muhammed Ufuk Aslan</h5>
                                         <p className="text-muted mb-0">Development Lead</p>
                                     </div>
                                 </div>
@@ -589,10 +543,40 @@ const Home = () => {
                                         <img
                                             src="img/front-pages/landing-page/team-member-4.png"
                                             className="position-absolute card-img-position bottom-0 start-50 scaleX-n1-rtl"
-                                            alt="human image" />
+                                            alt="human image"/>
                                     </div>
                                     <div className="card-body border border-top-0 border-label-success text-center">
-                                        <h5 className="card-title mb-0">Chris Watkins</h5>
+                                        <h5 className="card-title mb-0">Sena Ağaçyetiştiren</h5>
+                                        <p className="text-muted mb-0">Marketing Manager</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-lg-3 col-sm-6">
+                                <div className="card mt-3 mt-lg-0 shadow-none">
+                                    <div
+                                        className="bg-label-success border border-bottom-0 border-label-success position-relative team-image-box">
+                                        <img
+                                            src="img/front-pages/landing-page/team-member-4.png"
+                                            className="position-absolute card-img-position bottom-0 start-50 scaleX-n1-rtl"
+                                            alt="human image"/>
+                                    </div>
+                                    <div className="card-body border border-top-0 border-label-success text-center">
+                                        <h5 className="card-title mb-0">Hatice Şerife Aladağlı</h5>
+                                        <p className="text-muted mb-0">Marketing Manager</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-lg-3 col-sm-6">
+                                <div className="card mt-3 mt-lg-0 shadow-none">
+                                    <div
+                                        className="bg-label-success border border-bottom-0 border-label-success position-relative team-image-box">
+                                        <img
+                                            src="img/front-pages/landing-page/team-member-4.png"
+                                            className="position-absolute card-img-position bottom-0 start-50 scaleX-n1-rtl"
+                                            alt="human image"/>
+                                    </div>
+                                    <div className="card-body border border-top-0 border-label-success text-center">
+                                        <h5 className="card-title mb-0">Furkan Güven</h5>
                                         <p className="text-muted mb-0">Marketing Manager</p>
                                     </div>
                                 </div>
@@ -612,12 +596,13 @@ const Home = () => {
               <img
                   src="img/front-pages/icons/section-title-icon.png"
                   alt="laptop charging"
-                  className="section-title-img position-absolute object-fit-contain bottom-0 z-n1" />
+                  className="section-title-img position-absolute object-fit-contain bottom-0 z-n1"/>
             </span>
                             designed for you
                         </h4>
                         <p className="text-center pb-2 mb-7">
-                            All plans include 40+ advanced tools and features to boost your product.<br />Choose the best plan to fit
+                            All plans include 40+ advanced tools and features to boost your product.<br/>Choose the best
+                            plan to fit
                             your needs.
                         </p>
                         <div className="text-center mb-12">
@@ -1134,103 +1119,7 @@ const Home = () => {
                     </div>
                 </section>
 
-                <section id="landingContact" className="section-py bg-body landing-contact">
-                    <div className="container">
-                        <div className="text-center mb-4">
-                            <span className="badge bg-label-primary">Contact US</span>
-                        </div>
-                        <h4 className="text-center mb-1">
-            <span className="position-relative fw-extrabold z-1"
-            >Let's work
-              <img
-                  src="img/front-pages/icons/section-title-icon.png"
-                  alt="laptop charging"
-                  className="section-title-img position-absolute object-fit-contain bottom-0 z-n1" />
-            </span>
-                            together
-                        </h4>
-                        <p className="text-center mb-12 pb-md-4">Any question or remark? just write us a message</p>
-                        <div className="row g-6">
-                            <div className="col-lg-5">
-                                <div className="contact-img-box position-relative border p-2 h-100">
-                                    <img
-                                        src="img/front-pages/icons/contact-border.png"
-                                        alt="contact border"
-                                        className="contact-border-img position-absolute d-none d-lg-block scaleX-n1-rtl" />
-                                    <img
-                                        src="img/front-pages/landing-page/contact-customer-service.png"
-                                        alt="contact customer service"
-                                        className="contact-img w-100 scaleX-n1-rtl" />
-                                    <div className="p-4 pb-2">
-                                        <div className="row g-4">
-                                            <div className="col-md-6 col-lg-12 col-xl-6">
-                                                <div className="d-flex align-items-center">
-                                                    <div className="badge bg-label-primary rounded p-1_5 me-3"><i className="ti ti-mail ti-lg"></i></div>
-                                                    <div>
-                                                        <p className="mb-0">Email</p>
-                                                        <h6 className="mb-0">
-                                                            <a href="mailto:example@gmail.com" className="text-heading">example@gmail.com</a>
-                                                        </h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6 col-lg-12 col-xl-6">
-                                                <div className="d-flex align-items-center">
-                                                    <div className="badge bg-label-success rounded p-1_5 me-3">
-                                                        <i className="ti ti-phone-call ti-lg"></i>
-                                                    </div>
-                                                    <div>
-                                                        <p className="mb-0">Phone</p>
-                                                        <h6 className="mb-0"><a href="tel:+1234-568-963" className="text-heading">+1234 568 963</a></h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-7">
-                                <div className="card h-100">
-                                    <div className="card-body">
-                                        <h4 className="mb-2">Send a message</h4>
-                                        <p className="mb-6">
-                                            If you would like to discuss anything related to payment, account, licensing,<br
-                                            className="d-none d-lg-block" />
-                                            partnerships, or have pre-sales questions, you’re at the right place.
-                                        </p>
-                                        <form>
-                                            <div className="row g-4">
-                                                <div className="col-md-6">
-                                                    <label className="form-label" form="contact-form-fullname">Full Name</label>
-                                                    <input type="text" className="form-control" id="contact-form-fullname" placeholder="john" />
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <label className="form-label" form="contact-form-email">Email</label>
-                                                    <input
-                                                        type="text"
-                                                        id="contact-form-email"
-                                                        className="form-control"
-                                                        placeholder="johndoe@gmail.com" />
-                                                </div>
-                                                <div className="col-12">
-                                                    <label className="form-label" form="contact-form-message">Message</label>
-                                                    <textarea
-                                                        id="contact-form-message"
-                                                        className="form-control"
-                                                        rows="7"
-                                                        placeholder="Write a message"></textarea>
-                                                </div>
-                                                <div className="col-12">
-                                                    <button type="submit" className="btn btn-primary">Send inquiry</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+
 
             </div>
 
@@ -1249,52 +1138,12 @@ const Home = () => {
                         <div className="row gx-0 gy-6 g-lg-10">
                             <div className="col-lg-5">
                                 <a href="landing-page.html" className="app-brand-link mb-6">
-                <span className="app-brand-logo demo">
-                  <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z"
-                        fill="#7367F0" />
-                    <path
-                        opacity="0.06"
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M7.69824 16.4364L12.5199 3.23696L16.5541 7.25596L7.69824 16.4364Z"
-                        fill="#161616" />
-                    <path
-                        opacity="0.06"
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M8.07751 15.9175L13.9419 4.63989L16.5849 7.28475L8.07751 15.9175Z"
-                        fill="#161616" />
-                    <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z"
-                        fill="#7367F0" />
-                  </svg>
-                </span>
-                                    <span className="app-brand-text demo footer-link fw-bold ms-2 ps-1">Vuexy</span>
+                                    <Logo/>
                                 </a>
                                 <p className="footer-text footer-logo-description mb-6">
                                     Most developer friendly & highly customisable Admin Dashboard Template.
                                 </p>
-                                <form className="footer-form">
-                                    <label form="footer-email" className="small">Subscribe to newsletter</label>
-                                    <div className="d-flex mt-1">
-                                        <input
-                                            type="email"
-                                            className="form-control rounded-0 rounded-start-bottom rounded-start-top"
-                                            id="footer-email"
-                                            placeholder="Your email" />
-                                        <button
-                                            type="submit"
-                                            className="btn btn-primary shadow-none rounded-0 rounded-end-bottom rounded-end-top">
-                                            Subscribe
-                                        </button>
-                                    </div>
-                                </form>
+
                             </div>
                             <div className="col-lg-2 col-md-4 col-sm-6">
                                 <h6 className="footer-title mb-6">Demos</h6>
@@ -1342,15 +1191,7 @@ const Home = () => {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="col-lg-3 col-md-4">
-                                <h6 className="footer-title mb-6">Download our app</h6>
-                                <a href="javascript:void(0);" className="d-block mb-4"
-                                ><img src="img/front-pages/landing-page/apple-icon.png" alt="apple icon"
-                                /></a>
-                                <a href="javascript:void(0);" className="d-block"
-                                ><img src="img/front-pages/landing-page/google-play-icon.png" alt="google play icon"
-                                /></a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -1358,12 +1199,8 @@ const Home = () => {
                     <div
                         className="container d-flex flex-wrap justify-content-between flex-md-row flex-column text-center text-md-start">
                         <div className="mb-2 mb-md-0">
-            <span className="footer-bottom-text"
-            >©
 
-            </span>
-                            <a href="https://pixinvent.com" target="_blank" className="fw-medium text-white text-white">Pixinvent,</a>
-                            <span className="footer-bottom-text"> Made with for a better web.</span>
+
                         </div>
                         <div>
                             <a href="https://github.com/pixinvent" className="me-3" target="_blank">
