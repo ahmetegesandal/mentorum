@@ -26,7 +26,8 @@ import "../styles/pages/page-profile.css";
 import "../styles/pages/page-misc.css";
 import "../styles/pages/app-academy.css";
 import "../styles/pages/app-chat.css";
-
+// import "../styles/pages/app-calendar.css";
+import "../styles/Calendar.css";
 
 
 

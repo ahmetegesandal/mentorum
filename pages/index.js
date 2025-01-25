@@ -477,19 +477,19 @@ const Home = () => {
                 <section id="landingTeam" className="section-py landing-team">
                     <div className="container">
                         <div className="text-center mb-4">
-                            <span className="badge bg-label-primary">Our Great Team</span>
+                            <span className="badge bg-label-primary">Ekip</span>
                         </div>
                         <h4 className="text-center mb-1">
-            <span className="position-relative fw-extrabold z-1"
-            >Supported
-              <img
-                  src="img/front-pages/icons/section-title-icon.png"
-                  alt="laptop charging"
-                  className="section-title-img position-absolute object-fit-contain bottom-0 z-n1" />
-            </span>
-                            by Real People
+                            <span className="position-relative fw-extrabold z-1"
+                            >Profesyonel
+                              <img
+                                  src="img/front-pages/icons/section-title-icon.png"
+                                  alt="laptop charging"
+                                  className="section-title-img position-absolute object-fit-contain bottom-0 z-n1" />
+                            </span>
+                             <span className="ms-1">Ekibimiz</span>
                         </h4>
-                        <p className="text-center mb-md-11 pb-0 pb-xl-12">Who is behind these great-looking interfaces?</p>
+                        <p className="text-center mb-md-11 pb-0 pb-xl-12">...</p>
                         <div className="row gy-12 mt-2 justify-content-center">
                             <div className="col-lg-3 col-sm-6">
                                 <div className="card mt-3 mt-lg-0 shadow-none">
@@ -502,7 +502,7 @@ const Home = () => {
                                     </div>
                                     <div className="card-body border border-top-0 border-label-primary text-center">
                                         <h5 className="card-title mb-0">Ahmet Ege Sandal</h5>
-                                        <p className="text-muted mb-0">Project Manager</p>
+                                        <p className="text-muted mb-0">Lead Developer</p>
                                     </div>
                                 </div>
                             </div>

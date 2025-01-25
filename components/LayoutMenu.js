@@ -16,6 +16,7 @@ const menuItems = [
             { path: "/blank", label: "Boş Sayfa" },
             { path: "/slessons", label: "Ders Ara" },
             { path: "/chat", label: "Sohbet" },
+            { path: "/calendar", label: "Takvim" },
         ],
     },
     {

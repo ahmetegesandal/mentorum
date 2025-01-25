@@ -8,7 +8,7 @@ const GlobalFilter = ({ filter, setFilter }) => {
                 <input
                     type="search"
                     className="form-control"
-                    placeholder="Search User"
+                    placeholder="Kullanıcı Ara"
                     aria-controls="DataTables_Table_0"
                     value={filter || ""}
                     onChange={(e) => setFilter(e.target.value || undefined)}
@@ -44,6 +44,30 @@ const Datatable = () => {
             { Header: "Plan", accessor: "email" },
             { Header: "Billing", accessor: "billing" },
             { Header: "Status", accessor: "status" },
+            {
+                Header: "Actions",
+                accessor: "actions",
+                Cell: () => (
+                    <div className="dropdown">
+                        <button
+                            type="button"
+                            className="btn p-0 dropdown-toggle hide-arrow"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+                            <i className="ti ti-dots-vertical"></i>
+                        </button>
+                        <div className="dropdown-menu">
+                            <a className="dropdown-item waves-effect" href="javascript:void(0);">
+                                <i className="ti ti-pencil me-1"></i> Edit
+                            </a>
+                            <a className="dropdown-item waves-effect" href="javascript:void(0);">
+                                <i className="ti ti-trash me-1"></i> Delete
+                            </a>
+                        </div>
+                    </div>
+                ),
+            },
         ],
         []
     );

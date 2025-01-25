@@ -18,54 +18,14 @@ const UsersList = () => {
 
                     <div className="container-xxl flex-grow-1 container-p-y">
                         <div className="row g-6 mb-6">
+
+
                             <div className="col-sm-6 col-xl-3">
                                 <div className="card">
                                     <div className="card-body">
                                         <div className="d-flex align-items-start justify-content-between">
                                             <div className="content-left">
-                                                <span className="text-heading">Session</span>
-                                                <div className="d-flex align-items-center my-1">
-                                                    <h4 className="mb-0 me-2">21,459</h4>
-                                                    <p className="text-success mb-0">(+29%)</p>
-                                                </div>
-                                                <small className="mb-0">Total Users</small>
-                                            </div>
-                                            <div className="avatar">
-                          <span className="avatar-initial rounded bg-label-primary">
-                            <i className="ti ti-users ti-26px"></i>
-                          </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-sm-6 col-xl-3">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <div className="d-flex align-items-start justify-content-between">
-                                            <div className="content-left">
-                                                <span className="text-heading">Paid Users</span>
-                                                <div className="d-flex align-items-center my-1">
-                                                    <h4 className="mb-0 me-2">4,567</h4>
-                                                    <p className="text-success mb-0">(+18%)</p>
-                                                </div>
-                                                <small className="mb-0">Last week analytics </small>
-                                            </div>
-                                            <div className="avatar">
-                          <span className="avatar-initial rounded bg-label-danger">
-                            <i className="ti ti-user-plus ti-26px"></i>
-                          </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-sm-6 col-xl-3">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <div className="d-flex align-items-start justify-content-between">
-                                            <div className="content-left">
-                                                <span className="text-heading">Active Users</span>
+                                                <span className="text-heading">Tüm Kullanıcılar</span>
                                                 <div className="d-flex align-items-center my-1">
                                                     <h4 className="mb-0 me-2">19,860</h4>
                                                     <p className="text-danger mb-0">(-14%)</p>
@@ -73,35 +33,15 @@ const UsersList = () => {
                                                 <small className="mb-0">Last week analytics</small>
                                             </div>
                                             <div className="avatar">
-                          <span className="avatar-initial rounded bg-label-success">
-                            <i className="ti ti-user-check ti-26px"></i>
-                          </span>
+                                                  <span className="avatar-initial rounded bg-label-success">
+                                                    <i className="ti ti-user-check ti-26px"></i>
+                                                  </span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-sm-6 col-xl-3">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <div className="d-flex align-items-start justify-content-between">
-                                            <div className="content-left">
-                                                <span className="text-heading">Pending Users</span>
-                                                <div className="d-flex align-items-center my-1">
-                                                    <h4 className="mb-0 me-2">237</h4>
-                                                    <p className="text-success mb-0">(+42%)</p>
-                                                </div>
-                                                <small className="mb-0">Last week analytics</small>
-                                            </div>
-                                            <div className="avatar">
-                          <span className="avatar-initial rounded bg-label-warning">
-                            <i className="ti ti-user-search ti-26px"></i>
-                          </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
 
                         <div className="card">

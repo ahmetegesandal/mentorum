@@ -1,9 +1,11 @@
 import LayoutMenu from "../components/LayoutMenu";
 import Navbar from "../components/Navbar";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import {useTranslation} from "next-i18next";
 
 
 const Slessons = () => {
-
+    const { t } = useTranslation("common");
 
     return (
         <>
@@ -28,24 +30,25 @@ const Slessons = () => {
                                     </div>
                                     <div
                                         className="app-academy-md-50 card-body d-flex align-items-md-center flex-column text-md-center mb-6 py-6">
-                      <span className="card-title mb-4 lh-lg px-md-12 h4 text-heading">
-                        Education, talents, and career<br/>
-                        opportunities. <span className="text-primary text-nowrap">All in one place</span>.
-                      </span>
+                                        <span className="card-title mb-4 lh-lg px-md-12 h4 text-heading">
+                                            Eğitim, yetenekler ve kariyer<br/>
+                                            fırsatları. <span className="text-primary text-nowrap">Hepsi tek bir yerde</span>.
+                                        </span>
                                         <p className="mb-4 px-0 px-md-2">
-                                            Grow your skill with the most reliable online courses and certifications
-                                            in<br/>
-                                            marketing, information technology, programming, and data science.
+                                            Pazarlama, bilişim teknolojileri, programlama ve veri bilimi
+                                            alanlarında<br/>
+                                            en güvenilir online kurslar ve sertifikalarla yeteneklerinizi geliştirin.
                                         </p>
                                         <div
                                             className="d-flex align-items-center justify-content-between app-academy-md-80">
-                                            <input type="search" placeholder="Find your course"
+                                            <input type="search" placeholder="Kursunuzu bulun"
                                                    className="form-control me-4"/>
                                             <button type="submit" className="btn btn-primary btn-icon">
                                                 <i className="ti ti-search ti-md"></i>
                                             </button>
                                         </div>
                                     </div>
+
                                     <div className="app-academy-md-25 d-flex align-items-end justify-content-end">
                                         <img
                                             src="img/illustrations/pencil-rocket.png"
@@ -59,29 +62,30 @@ const Slessons = () => {
                             <div className="card mb-6">
                                 <div className="card-header d-flex flex-wrap justify-content-between gap-4">
                                     <div className="card-title mb-0 me-1">
-                                        <h5 className="mb-0">My Courses</h5>
-                                        <p className="mb-0">Total 6 course you have purchased</p>
+                                        <h5 className="mb-0">Dersler</h5>
+                                        <p className="mb-0">...</p>
                                     </div>
                                     <div className="d-flex justify-content-md-end align-items-center column-gap-6">
                                         <select className="form-select">
-                                            <option value="">All Courses</option>
-                                            <option value="ui/ux">UI/UX</option>
-                                            <option value="seo">SEO</option>
-                                            <option value="web">Web</option>
-                                            <option value="music">Music</option>
-                                            <option value="painting">Painting</option>
+                                            <option value="">Tüm Dersler</option>
+                                            <option value="ui/ux">Matematik</option>
+                                            <option value="seo">Yabancı Dil</option>
+                                            <option value="web">Fizik</option>
+                                            <option value="music">Kimya</option>
+                                            <option value="painting">Biyoloji</option>
+                                            <option value="painting">Tarih</option>
+                                            <option value="painting">Edebiyat</option>
+                                            <option value="painting">Coğrafya</option>
+                                            <option value="painting">Felsefe</option>
+                                            <option value="painting">Bilgisayar Bilimleri</option>
                                         </select>
 
-                                        <div className="form-check form-switch my-2 ms-2">
-                                            <input type="checkbox" className="form-check-input" id="CourseSwitch"/>
-                                            <label className="form-check-label text-nowrap mb-0" htmlFor="CourseSwitch">Hide
-                                                completed</label>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div className="card-body">
                                     <div className="row gy-6 mb-6">
-                                        <div className="col-sm-6 col-lg-4">
+                                        <div className="col-sm-6 col-lg-3">
                                             <div className="card p-2 h-100 shadow-none border">
                                                 <div className="rounded-2 text-center mb-4">
                                                     <a href="app-academy-course-details.html"
@@ -94,292 +98,144 @@ const Slessons = () => {
                                                 <div className="card-body p-4 pt-2">
                                                     <div
                                                         className="d-flex justify-content-between align-items-center mb-4">
-                                                        <span className="badge bg-label-primary">Web</span>
+                                                        <span className="badge bg-label-primary">Matematik</span>
                                                         <p className="d-flex align-items-center justify-content-center fw-medium gap-1 mb-0">
                                                             4.4 <span className="text-warning"><i
                                                             className="ti ti-star-filled ti-lg me-1"></i></span
                                                         ><span className="fw-normal">(1.23k)</span>
                                                         </p>
                                                     </div>
-                                                    <a href="app-academy-course-details.html" className="h5">Basics of
-                                                        Angular</a>
+                                                    <a href="app-academy-course-details.html" className="h5">Ben,
+                                                        Trigonometri dersi verebilirim.</a>
                                                     <p className="mt-1">Introductory course for Angular and framework
                                                         basics in web development.</p>
-                                                    <p className="d-flex align-items-center mb-1"><i
-                                                        className="ti ti-clock me-1"></i>30 minutes</p>
-                                                    <div className="progress rounded-pill mb-4" style={{ height: "8px" }}>
-                                                        <div
-                                                            className="progress-bar w-75"
-                                                            role="progressbar"
-                                                            aria-valuenow="25"
-                                                            aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
+
+
                                                     <div
                                                         className="d-flex flex-column flex-md-row gap-4 text-nowrap flex-wrap flex-md-nowrap flex-lg-wrap flex-xxl-nowrap">
-                                                        <a
-                                                            className="w-100 btn btn-label-secondary d-flex align-items-center"
-                                                            href="app-academy-course-details.html">
-                                                            <i className="ti ti-rotate-clockwise-2 ti-xs align-middle scaleX-n1-rtl me-2"></i
-                                                            ><span>Start Over</span>
-                                                        </a>
+
                                                         <a
                                                             className="w-100 btn btn-label-primary d-flex align-items-center"
                                                             href="app-academy-course-details.html">
-                                <span className="me-2">Continue</span
-                                ><i className="ti ti-chevron-right ti-xs scaleX-n1-rtl"></i>
+                                                            <span className="me-2">Detayları Görüntüle</span>
+                                                            <i className="ti ti-chevron-right ti-xs scaleX-n1-rtl"></i>
                                                         </a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-sm-6 col-lg-4">
+                                        <div className="col-sm-6 col-lg-3">
                                             <div className="card p-2 h-100 shadow-none border">
                                                 <div className="rounded-2 text-center mb-4">
                                                     <a href="app-academy-course-details.html"
                                                     ><img
                                                         className="img-fluid"
-                                                        src="img/pages/app-academy-tutor-2.png"
-                                                        alt="tutor image 2"
+                                                        src="img/pages/app-academy-tutor-1.png"
+                                                        alt="tutor image 1"
                                                     /></a>
                                                 </div>
                                                 <div className="card-body p-4 pt-2">
                                                     <div
-                                                        className="d-flex justify-content-between align-items-center mb-4 pe-xl-4 pe-xxl-0">
-                                                        <span className="badge bg-label-danger">UI/UX</span>
+                                                        className="d-flex justify-content-between align-items-center mb-4">
+                                                        <span className="badge bg-label-primary">Matematik</span>
                                                         <p className="d-flex align-items-center justify-content-center fw-medium gap-1 mb-0">
-                                                            4.2 <span className="text-warning"><i
+                                                            4.4 <span className="text-warning"><i
                                                             className="ti ti-star-filled ti-lg me-1"></i></span
-                                                        ><span className="fw-normal"> (424)</span>
+                                                        ><span className="fw-normal">(1.23k)</span>
                                                         </p>
                                                     </div>
-                                                    <a className="h5" href="app-academy-course-details.html">Figma &
-                                                        More</a>
-                                                    <p className="mt-1">Introductory course for design and framework
+                                                    <a href="app-academy-course-details.html" className="h5">Ben,
+                                                        Trigonometri dersi verebilirim.</a>
+                                                    <p className="mt-1">Introductory course for Angular and framework
                                                         basics in web development.</p>
-                                                    <p className="d-flex align-items-center mb-1"><i
-                                                        className="ti ti-clock me-1"></i>16 hours</p>
-                                                    <div className="progress rounded-pill mb-4" style={{ height: "8px" }}>
-                                                        <div
-                                                            className="progress-bar w-25"
-                                                            role="progressbar"
-                                                            aria-valuenow="25"
-                                                            aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
+
+
                                                     <div
                                                         className="d-flex flex-column flex-md-row gap-4 text-nowrap flex-wrap flex-md-nowrap flex-lg-wrap flex-xxl-nowrap">
-                                                        <a
-                                                            className="w-100 btn btn-label-secondary d-flex align-items-center"
-                                                            href="app-academy-course-details.html">
-                                                            <i className="ti ti-rotate-clockwise-2 ti-xs align-middle me-2"></i><span>Start Over</span>
-                                                        </a>
+
                                                         <a
                                                             className="w-100 btn btn-label-primary d-flex align-items-center"
                                                             href="app-academy-course-details.html">
-                                <span className="me-2">Continue</span
-                                ><i className="ti ti-chevron-right ti-xs scaleX-n1-rtl"></i>
+                                                            <span className="me-2">Detayları Görüntüle</span>
+                                                            <i className="ti ti-chevron-right ti-xs scaleX-n1-rtl"></i>
                                                         </a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-sm-6 col-lg-4">
+                                        <div className="col-sm-6 col-lg-3">
                                             <div className="card p-2 h-100 shadow-none border">
                                                 <div className="rounded-2 text-center mb-4">
                                                     <a href="app-academy-course-details.html"
                                                     ><img
                                                         className="img-fluid"
-                                                        src="img/pages/app-academy-tutor-3.png"
-                                                        alt="tutor image 3"
+                                                        src="img/pages/app-academy-tutor-1.png"
+                                                        alt="tutor image 1"
                                                     /></a>
                                                 </div>
                                                 <div className="card-body p-4 pt-2">
                                                     <div
                                                         className="d-flex justify-content-between align-items-center mb-4">
-                                                        <span className="badge bg-label-success">SEO</span>
+                                                        <span className="badge bg-label-primary">Matematik</span>
                                                         <p className="d-flex align-items-center justify-content-center fw-medium gap-1 mb-0">
-                                                            5 <span className="text-warning"><i
+                                                            4.4 <span className="text-warning"><i
                                                             className="ti ti-star-filled ti-lg me-1"></i></span
-                                                        ><span className="fw-normal"> (12)</span>
+                                                        ><span className="fw-normal">(1.23k)</span>
                                                         </p>
                                                     </div>
-                                                    <a className="h5" href="app-academy-course-details.html">Keyword
-                                                        Research</a>
-                                                    <p className="mt-1">
-                                                        Keyword suggestion tool provides comprehensive details & keyword
-                                                        suggestions.
-                                                    </p>
-                                                    <p className="d-flex align-items-center mb-1"><i
-                                                        className="ti ti-clock me-1"></i>7 hours</p>
-                                                    <div className="progress rounded-pill mb-4" style={{ height: "8px" }}>
-                                                        <div
-                                                            className="progress-bar w-50"
-                                                            role="progressbar"
-                                                            aria-valuenow="25"
-                                                            aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
+                                                    <a href="app-academy-course-details.html" className="h5">Ben,
+                                                        Trigonometri dersi verebilirim.</a>
+                                                    <p className="mt-1">Introductory course for Angular and framework
+                                                        basics in web development.</p>
+
+
                                                     <div
                                                         className="d-flex flex-column flex-md-row gap-4 text-nowrap flex-wrap flex-md-nowrap flex-lg-wrap flex-xxl-nowrap">
-                                                        <a
-                                                            className="w-100 btn btn-label-secondary d-flex align-items-center"
-                                                            href="app-academy-course-details.html">
-                                                            <i className="ti ti-rotate-clockwise-2 ti-xs align-middle me-2"></i><span>Start Over</span>
-                                                        </a>
+
                                                         <a
                                                             className="w-100 btn btn-label-primary d-flex align-items-center"
                                                             href="app-academy-course-details.html">
-                                <span className="me-2">Continue</span
-                                ><i className="ti ti-chevron-right ti-xs scaleX-n1-rtl"></i>
+                                                            <span className="me-2">Detayları Görüntüle</span>
+                                                            <i className="ti ti-chevron-right ti-xs scaleX-n1-rtl"></i>
                                                         </a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-sm-6 col-lg-4">
+                                        <div className="col-sm-6 col-lg-3">
                                             <div className="card p-2 h-100 shadow-none border">
                                                 <div className="rounded-2 text-center mb-4">
                                                     <a href="app-academy-course-details.html"
                                                     ><img
                                                         className="img-fluid"
-                                                        src="img/pages/app-academy-tutor-4.png"
-                                                        alt="tutor image 4"
+                                                        src="img/pages/app-academy-tutor-1.png"
+                                                        alt="tutor image 1"
                                                     /></a>
                                                 </div>
                                                 <div className="card-body p-4 pt-2">
                                                     <div
                                                         className="d-flex justify-content-between align-items-center mb-4">
-                                                        <span className="badge bg-label-info">Music</span>
-                                                        <p className="d-flex align-items-center justify-content-center gap-1 mb-0">
-                                                            3.8 <span className="text-warning"><i
+                                                        <span className="badge bg-label-primary">Matematik</span>
+                                                        <p className="d-flex align-items-center justify-content-center fw-medium gap-1 mb-0">
+                                                            4.4 <span className="text-warning"><i
                                                             className="ti ti-star-filled ti-lg me-1"></i></span
-                                                        ><span className="fw-normal"> (634)</span>
+                                                        ><span className="fw-normal">(1.23k)</span>
                                                         </p>
                                                     </div>
-                                                    <a className="h5" href="app-academy-course-details.html">Basics to
-                                                        Advanced</a>
-                                                    <p className="mt-1">
-                                                        20 more lessons like this about music production, writing,
-                                                        mixing, mastering
-                                                    </p>
-                                                    <p className="d-flex align-items-center mb-1"><i
-                                                        className="ti ti-clock me-1"></i>30 minutes</p>
-                                                    <div className="progress rounded-pill mb-4" style={{ height: "8px" }}>
-                                                        <div
-                                                            className="progress-bar w-75"
-                                                            role="progressbar"
-                                                            aria-valuenow="25"
-                                                            aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
+                                                    <a href="app-academy-course-details.html" className="h5">Ben,
+                                                        Trigonometri dersi verebilirim.</a>
+                                                    <p className="mt-1">Introductory course for Angular and framework
+                                                        basics in web development.</p>
+
+
                                                     <div
                                                         className="d-flex flex-column flex-md-row gap-4 text-nowrap flex-wrap flex-md-nowrap flex-lg-wrap flex-xxl-nowrap">
-                                                        <a
-                                                            className="w-100 btn btn-label-secondary d-flex align-items-center"
-                                                            href="app-academy-course-details.html">
-                                                            <i className="ti ti-rotate-clockwise-2 ti-xs align-middle me-2"></i><span>Start Over</span>
-                                                        </a>
+
                                                         <a
                                                             className="w-100 btn btn-label-primary d-flex align-items-center"
                                                             href="app-academy-course-details.html">
-                                <span className="me-2">Continue</span
-                                ><i className="ti ti-chevron-right ti-xs scaleX-n1-rtl"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-sm-6 col-lg-4">
-                                            <div className="card p-2 h-100 shadow-none border">
-                                                <div className="rounded-2 text-center mb-4">
-                                                    <a href="app-academy-course-details.html"
-                                                    ><img
-                                                        className="img-fluid"
-                                                        src="img/pages/app-academy-tutor-5.png"
-                                                        alt="tutor image 5"
-                                                    /></a>
-                                                </div>
-                                                <div className="card-body p-4 pt-2">
-                                                    <div
-                                                        className="d-flex justify-content-between align-items-center mb-4">
-                                                        <span className="badge bg-label-warning">Painting</span>
-                                                        <p className="d-flex align-items-center justify-content-center gap-1 mb-0">
-                                                            4.7 <span className="text-warning"><i
-                                                            className="ti ti-star-filled ti-lg me-1"></i></span
-                                                        ><span className="fw-normal"> (34)</span>
-                                                        </p>
-                                                    </div>
-                                                    <a className="h5" href="app-academy-course-details.html">Art &
-                                                        Drawing</a>
-                                                    <p className="mt-1">
-                                                        Easy-to-follow video & guides show you how to draw animals,
-                                                        people & more.
-                                                    </p>
-                                                    <p className="d-flex align-items-center text-success mb-1">
-                                                        <i className="ti ti-check me-1"></i>Completed
-                                                    </p>
-                                                    <div className="progress rounded-pill mb-4" style={{ height: "8px" }}>
-                                                        <div
-                                                            className="progress-bar w-100"
-                                                            role="progressbar"
-                                                            aria-valuenow="25"
-                                                            aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                    <a className="w-100 btn btn-label-primary"
-                                                       href="app-academy-course-details.html"
-                                                    ><i className="ti ti-rotate-clockwise-2 ti-xs me-1_5"></i>Start Over</a
-                                                    >
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-sm-6 col-lg-4">
-                                            <div className="card p-2 h-100 shadow-none border">
-                                                <div className="rounded-2 text-center mb-4">
-                                                    <a href="app-academy-course-details.html"
-                                                    ><img
-                                                        className="img-fluid"
-                                                        src="img/pages/app-academy-tutor-6.png"
-                                                        alt="tutor image 6"
-                                                    /></a>
-                                                </div>
-                                                <div className="card-body p-4 pt-2">
-                                                    <div
-                                                        className="d-flex justify-content-between align-items-center mb-4">
-                                                        <span className="badge bg-label-danger">UI/UX</span>
-                                                        <p className="d-flex align-items-center justify-content-center gap-1 mb-0">
-                                                            3.6 <span className="text-warning"><i
-                                                            className="ti ti-star-filled ti-lg me-1"></i></span
-                                                        ><span className="fw-normal"> (2.5k)</span>
-                                                        </p>
-                                                    </div>
-                                                    <a className="h5" href="app-academy-course-details.html">Basics
-                                                        Fundamentals</a>
-                                                    <p className="mt-1">This guide will help you develop a systematic
-                                                        approach user interface.</p>
-                                                    <p className="d-flex align-items-center mb-1"><i
-                                                        className="ti ti-clock me-1"></i>16 hours</p>
-                                                    <div className="progress rounded-pill mb-4" style={{ height: "8px" }}>
-                                                        <div
-                                                            className="progress-bar w-25"
-                                                            role="progressbar"
-                                                            aria-valuenow="25"
-                                                            aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div
-                                                        className="d-flex flex-column flex-md-row gap-4 text-nowrap flex-wrap flex-md-nowrap flex-lg-wrap flex-xxl-nowrap">
-                                                        <a
-                                                            className="w-100 btn btn-label-secondary d-flex align-items-center"
-                                                            href="app-academy-course-details.html">
-                                                            <i className="ti ti-rotate-clockwise-2 ti-xs align-middle me-2"></i><span>Start Over</span>
-                                                        </a>
-                                                        <a
-                                                            className="w-100 btn btn-label-primary d-flex align-items-center"
-                                                            href="app-academy-course-details.html">
-                                <span className="me-2">Continue</span
-                                ><i className="ti ti-chevron-right ti-xs scaleX-n1-rtl"></i>
+                                                            <span className="me-2">Detayları Görüntüle</span>
+                                                            <i className="ti ti-chevron-right ti-xs scaleX-n1-rtl"></i>
                                                         </a>
                                                     </div>
                                                 </div>
@@ -432,59 +288,6 @@ const Slessons = () => {
                                 </div>
                             </div>
 
-                            <div className="row gy-6 mb-6">
-                                <div className="col-lg-6">
-                                    <div className="card shadow-none bg-label-primary h-100">
-                                        <div className="card-body d-flex justify-content-between flex-wrap-reverse">
-                                            <div
-                                                className="mb-0 w-100 app-academy-sm-60 d-flex flex-column justify-content-between text-center text-sm-start">
-                                                <div className="card-title">
-                                                    <h5 className="text-primary mb-2">Earn a Certificate</h5>
-                                                    <p className="text-body w-sm-80 app-academy-xl-100">
-                                                        Get the right professional certificate program for you.
-                                                    </p>
-                                                </div>
-                                                <div className="mb-0">
-                                                    <button className="btn btn-sm btn-primary">View Programs</button>
-                                                </div>
-                                            </div>
-                                            <div
-                                                className="w-100 app-academy-sm-40 d-flex justify-content-center justify-content-sm-end h-px-150 mb-4 mb-sm-0">
-                                                <img
-                                                    className="img-fluid scaleX-n1-rtl"
-                                                    src="img/illustrations/boy-app-academy.png"
-                                                    alt="boy illustration"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-lg-6">
-                                    <div className="card shadow-none bg-label-danger h-100">
-                                        <div className="card-body d-flex justify-content-between flex-wrap-reverse">
-                                            <div
-                                                className="mb-0 w-100 app-academy-sm-60 d-flex flex-column justify-content-between text-center text-sm-start">
-                                                <div className="card-title">
-                                                    <h5 className="text-danger mb-2">Best Rated Courses</h5>
-                                                    <p className="text-body app-academy-sm-60 app-academy-xl-100">
-                                                        Enroll now in the most popular and best rated courses.
-                                                    </p>
-                                                </div>
-                                                <div className="mb-0">
-                                                    <button className="btn btn-sm btn-danger">View Courses</button>
-                                                </div>
-                                            </div>
-                                            <div
-                                                className="w-100 app-academy-sm-40 d-flex justify-content-center justify-content-sm-end h-px-150 mb-4 mb-sm-0">
-                                                <img
-                                                    className="img-fluid scaleX-n1-rtl"
-                                                    src="img/illustrations/girl-app-academy.png"
-                                                    alt="girl illustration"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
 
                         </div>
                     </div>
@@ -495,5 +298,13 @@ const Slessons = () => {
         </>
     );
 };
+
+export async function getStaticProps({ locale }) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ["common"])),
+        },
+    };
+}
 
 export default Slessons;
