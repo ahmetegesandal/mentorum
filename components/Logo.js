@@ -30,7 +30,7 @@ const Logo = () => {
                             />
                         </svg>
                     </span>
-            <span className="app-brand-text demo menu-text fw-bold">Vuexy</span>
+            <span className="app-brand-text demo text-heading fw-bold">Vuexy</span>
 
         </>
     );

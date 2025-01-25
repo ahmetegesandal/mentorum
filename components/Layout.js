@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
     const { isMenuExpanded } = useLayout(); // LayoutContext'ten bilgi alın
     const router = useRouter(); // Router'ı kullanıyoruz
 
-    const noLayoutPaths = ["/sign-in", "/404", "/"];
+    const noLayoutPaths = ["/sign-in", "/register", "/404", "/"];
 
     if (noLayoutPaths.includes(router.pathname)) {
         return <>{children}</>;
