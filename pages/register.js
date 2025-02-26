@@ -2,6 +2,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useState } from "react";
 import Logo from "../components/Logo";
+// denemedir
 
 const Register = () => {
   const { t } = useTranslation("common");
