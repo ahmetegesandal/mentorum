@@ -1,12 +1,16 @@
-import { useEffect } from "react";
-/* import "bootstrap/dist/css/bootstrap.min.css"; */
+import { useEffect, useState } from "react";
+import { ThemeProvider } from "../contexts/ThemeContext";
+import Layout from "../components/Layout";
+import { LayoutProvider } from "../contexts/LayoutContext";
+import { appWithTranslation } from "next-i18next";
+import DatabaseStatus from "../components/DatabaseStatus";
+import Preloader from "../components/Preloader";
+import { useRouter } from "next/router";
 
 // Global CSS Dosyaları
 import "../styles/fonts/fontawesome.css";
 import "../styles/fonts/tabler-icons.css";
 import "../styles/fonts/flag-icons.css";
-import "../styles/rtl/core.css";
-import "../styles/rtl/theme-default.css";
 import "../styles/demo.css";
 
 // Kütüphane CSS Dosyaları
@@ -23,45 +27,65 @@ import "../styles/pages/page-profile.css";
 import "../styles/pages/page-misc.css";
 import "../styles/pages/app-academy.css";
 import "../styles/pages/app-chat.css";
-// import "../styles/pages/app-calendar.css";
 import "../styles/Calendar.css";
 
-// Layout ve Çeviri
-import Layout from "../components/Layout";
-import { LayoutProvider } from "../contexts/LayoutContext";
-import { appWithTranslation } from "next-i18next";
-import DatabaseStatus from "../components/DatabaseStatus";
-
-import { useRouter } from "next/router";
+import "../styles/rtl/preloader.css"; // Preloader stilini eklemeyi unutma
 
 function MyApp({ Component, pageProps }) {
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
+  // Sayfa yüklendiğinde preloader'ı kaldır
+  useEffect(() => {
+    // Sayfa yüklendiğinde belirli bir süre sonra Preloader'ı kaldır
+    const handleComplete = () => {
+      setTimeout(() => {
+        console.log("✅ Sayfa yüklendi, Preloader kaldırılıyor...");
+        setLoading(false);
+      }, 500); // Preloader minimum 2 saniye görünecek
+    };
+
+    if (document.readyState === "complete") {
+      handleComplete();
+    } else {
+      window.addEventListener("load", handleComplete);
+    }
+
+    return () => {
+      window.removeEventListener("load", handleComplete);
+    };
+  }, []);
+
+  // Bootstrap JS'i yalnızca tarayıcı ortamında yükle
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // Bootstrap JS'i yalnızca tarayıcı ortamında yükle
       import("bootstrap/dist/js/bootstrap.bundle.min.js").catch((err) =>
         console.error("Bootstrap JS yüklenirken hata oluştu:", err)
       );
     }
   }, []);
 
-  // Sayfaya özel CSS'leri dinamik olarak yükleme
+  // Dinamik CSS yükleme (Ana sayfa için özel CSS)
   useEffect(() => {
     if (router.pathname === "/") {
-      // Ana sayfa için özel CSS
       import("../styles/pages/front-page.css");
       import("../styles/pages/front-page-landing.css");
     }
   }, [router.pathname]);
 
   return (
-    <LayoutProvider>
-      <Layout>
-        <DatabaseStatus />
-        <Component {...pageProps} />
-      </Layout>
-    </LayoutProvider>
+    <ThemeProvider>
+      <LayoutProvider>
+        {loading ? (
+          <Preloader /> // Sayfa yüklenene kadar Preloader göster
+        ) : (
+          <Layout>
+            <DatabaseStatus />
+            <Component {...pageProps} />
+          </Layout>
+        )}
+      </LayoutProvider>
+    </ThemeProvider>
   );
 }
 
