@@ -3,6 +3,8 @@ import Image from "next/image";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {useTranslation} from "next-i18next";
 
+// emir güncelleme yaptı
+
 const ErrorPage = () => {
     const { t } = useTranslation("common");
     return (
