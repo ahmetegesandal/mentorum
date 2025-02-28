@@ -104,3 +104,17 @@ npm install
 ## **4. Sonuç**
 Bu döküman, projeyi sorunsuz bir şekilde yerel ortamda çalıştırmanız için gerekli tüm adımları içermektedir. Eğer sorun yaşarsanız, ekip üyelerinizden veya proje sahibiyle iletişime geçerek destek alabilirsiniz. 🚀
 
+## Kullanıcı Hesapları
+
+Aşağıdaki kullanıcı hesaplarını test amaçlı kullanabilirsiniz:
+
+| Kullanıcı Adı | Şifre  | Yetki  |
+|--------------|--------|--------|
+| ege         | ege123 | admin  |
+| sena        | ege123 | admin  |
+| emir        | ege123 | admin  |
+| ufuk        | ege123 | admin  |
+| hatice      | ege123 | admin  |
+| furkan      | ege123 | admin  |
+
+
