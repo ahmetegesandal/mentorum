@@ -32,6 +32,8 @@ import "../styles/Calendar.css";
 
 import "../styles/rtl/preloader.css"; // Preloader stilini eklemeyi unutma
 
+import "../styles/rtl/custom.css"; // Preloader stilini eklemeyi unutma
+
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
   const router = useRouter();

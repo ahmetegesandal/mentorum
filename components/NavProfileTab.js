@@ -51,7 +51,9 @@ const NavProfileTab = () => {
                 </div>
               </div>
               <div className="flex-grow-1">
-                <h6 className="mb-0">{userData?.username || "Guest"}</h6>
+                <h6 className="mb-0">
+                  {userData?.name + " " + userData?.surname || "Guest"}
+                </h6>
                 <small className="text-muted">{t("admin")}</small>
               </div>
             </div>

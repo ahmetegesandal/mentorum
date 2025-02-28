@@ -608,7 +608,7 @@ const Home = () => {
           <hr className="m-0 mt-6 mt-md-12" />
         </section>
 
-        <section id="landingTeam" className="section-py landing-team">
+        <section id="landingTeam" className="section-py ">
           <div className="container">
             <div className="text-center mb-4">
               <span className="badge bg-label-primary">Ekip</span>
@@ -624,98 +624,60 @@ const Home = () => {
               </span>
               <span className="ms-1">Ekibimiz</span>
             </h4>
-            <p className="text-center mb-md-11 pb-0 pb-xl-12">...</p>
-            <div className="row gy-12 mt-2 justify-content-center">
-              <div className="col-lg-3 col-sm-6">
-                <div className="card mt-3 mt-lg-0 shadow-none">
-                  <div className="bg-label-primary border border-bottom-0 border-label-primary position-relative team-image-box">
-                    <img
-                      src="img/front-pages/landing-page/team-member-1.png"
-                      className="position-absolute card-img-position bottom-0 start-50 scaleX-n1-rtl"
-                      alt="human image"
-                    />
-                  </div>
-                  <div className="card-body border border-top-0 border-label-primary text-center">
-                    <h5 className="card-title mb-0">Ahmet Ege Sandal</h5>
-                    <p className="text-muted mb-0">Lead Developer</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3 col-sm-6">
-                <div className="card mt-3 mt-lg-0 shadow-none">
-                  <div className="bg-label-info border border-bottom-0 border-label-info position-relative team-image-box">
-                    <img
-                      src="img/front-pages/landing-page/team-member-2.png"
-                      className="position-absolute card-img-position bottom-0 start-50 scaleX-n1-rtl"
-                      alt="human image"
-                    />
-                  </div>
-                  <div className="card-body border border-top-0 border-label-info text-center">
-                    <h5 className="card-title mb-0">Niyazi Emir Akdemir</h5>
-                    <p className="text-muted mb-0">Developer</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3 col-sm-6">
-                <div className="card mt-3 mt-lg-0 shadow-none">
-                  <div className="bg-label-danger border border-bottom-0 border-label-danger position-relative team-image-box">
-                    <img
-                      src="img/front-pages/landing-page/team-member-3.png"
-                      className="position-absolute card-img-position bottom-0 start-50 scaleX-n1-rtl"
-                      alt="human image"
-                    />
-                  </div>
-                  <div className="card-body border border-top-0 border-label-danger text-center">
-                    <h5 className="card-title mb-0">Muhammed Ufuk Aslan</h5>
-                    <p className="text-muted mb-0">Developer</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3 col-sm-6">
-                <div className="card mt-3 mt-lg-0 shadow-none">
-                  <div className="bg-label-success border border-bottom-0 border-label-success position-relative team-image-box">
-                    <img
-                      src="img/front-pages/landing-page/team-member-4.png"
-                      className="position-absolute card-img-position bottom-0 start-50 scaleX-n1-rtl"
-                      alt="human image"
-                    />
-                  </div>
-                  <div className="card-body border border-top-0 border-label-success text-center">
-                    <h5 className="card-title mb-0">Sena Ağaçyetiştiren</h5>
-                    <p className="text-muted mb-0">Developer</p>
+            <p className="text-center mb-md-11 pb-0 pb-xl-12">
+              Alanında uzman, yetenekli ve yaratıcı ekibimizle tanışın!
+            </p>
+
+            {/* Ekip Üyeleri */}
+            <div className="row g-4 justify-content-center">
+              {[
+                {
+                  name: "Ahmet Ege Sandal",
+                  role: "Lead Developer",
+                  image: "ege.jpg",
+                },
+                {
+                  name: "Niyazi Emir Akdemir",
+                  role: "Developer",
+                  image: "emir.jpg",
+                },
+                {
+                  name: "Muhammed Ufuk Aslan",
+                  role: "Developer",
+                  image: "ufuk.jpg",
+                },
+                {
+                  name: "Sena Ağaçyetiştiren",
+                  role: "Developer",
+                  image: "sena.jpg",
+                },
+                {
+                  name: "Hatice Şerife Aladağlı",
+                  role: "Developer",
+                  image: "hatice.jpg",
+                },
+                {
+                  name: "Furkan Güven",
+                  role: "Developer",
+                  image: "furkan.jpg",
+                },
+              ].map((member, index) => (
+                <div key={index} className="col-lg-4 col-md-6">
+                  <div className="card border-0 shadow-sm text-center p-3 team-card">
+                    <div className="position-relative mx-auto">
+                      <img
+                        src={`/img/avatars/${member.image}`}
+                        className="rounded-circle team-avatar img-fluid"
+                        alt={member.name}
+                      />
+                    </div>
+                    <div className="card-body">
+                      <h5 className="fw-bold mb-1">{member.name}</h5>
+                      <p className="text-muted mb-0">{member.role}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-lg-3 col-sm-6">
-                <div className="card mt-3 mt-lg-0 shadow-none">
-                  <div className="bg-label-success border border-bottom-0 border-label-success position-relative team-image-box">
-                    <img
-                      src="img/front-pages/landing-page/team-member-4.png"
-                      className="position-absolute card-img-position bottom-0 start-50 scaleX-n1-rtl"
-                      alt="human image"
-                    />
-                  </div>
-                  <div className="card-body border border-top-0 border-label-success text-center">
-                    <h5 className="card-title mb-0">Hatice Şerife Aladağlı</h5>
-                    <p className="text-muted mb-0">Developer</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3 col-sm-6">
-                <div className="card mt-3 mt-lg-0 shadow-none">
-                  <div className="bg-label-success border border-bottom-0 border-label-success position-relative team-image-box">
-                    <img
-                      src="img/front-pages/landing-page/team-member-4.png"
-                      className="position-absolute card-img-position bottom-0 start-50 scaleX-n1-rtl"
-                      alt="human image"
-                    />
-                  </div>
-                  <div className="card-body border border-top-0 border-label-success text-center">
-                    <h5 className="card-title mb-0">Furkan Güven</h5>
-                    <p className="text-muted mb-0">Developer</p>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
