@@ -6,6 +6,7 @@ import { appWithTranslation } from "next-i18next";
 import DatabaseStatus from "../components/DatabaseStatus";
 import Preloader from "../components/Preloader";
 import { useRouter } from "next/router";
+import { UserProvider } from "../contexts/UserContext";
 
 // Global CSS Dosyaları
 import "../styles/fonts/fontawesome.css";
@@ -74,18 +75,21 @@ function MyApp({ Component, pageProps }) {
   }, [router.pathname]);
 
   return (
-    <ThemeProvider>
-      <LayoutProvider>
-        {loading ? (
-          <Preloader /> // Sayfa yüklenene kadar Preloader göster
-        ) : (
-          <Layout>
-            <DatabaseStatus />
-            <Component {...pageProps} />
-          </Layout>
-        )}
-      </LayoutProvider>
-    </ThemeProvider>
+    <UserProvider>
+      {/* Kullanıcı bilgisini her yerden erişilebilir hale getiriyoruz */}
+      <ThemeProvider>
+        <LayoutProvider>
+          {loading ? (
+            <Preloader /> // Sayfa yüklenene kadar Preloader göster
+          ) : (
+            <Layout>
+              <DatabaseStatus />
+              <Component {...pageProps} />
+            </Layout>
+          )}
+        </LayoutProvider>
+      </ThemeProvider>
+    </UserProvider>
   );
 }
 
