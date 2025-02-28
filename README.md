@@ -61,7 +61,7 @@ Projede bir **.env** dosyası gereklidir. **Ana dizinde** `.env` dosyası oluşt
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=
-DB_NAME=my_database
+DB_NAME=my_auth_db
 PORT=3000
 ```
 
