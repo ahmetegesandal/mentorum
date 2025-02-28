@@ -1,8 +1,9 @@
 import LayoutMenu from "../components/LayoutMenu";
 import Navbar from "../components/Navbar";
+
 import {useTranslation} from "next-i18next";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
-
+// hATİCE DOSYA EKLENDİ
 
 const Blank = () => {
     const { t } = useTranslation("common")
@@ -15,6 +16,9 @@ const Blank = () => {
                 <div className="content-wrapper">
 
                     <h1 className="text-4xl font-bold mb-6">{t("title")}</h1>
+
+                  
+                   
 
                 </div>
             </div>
