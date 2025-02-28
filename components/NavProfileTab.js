@@ -23,7 +23,11 @@ const NavProfileTab = () => {
       >
         <div className="avatar avatar-online">
           <img
-            src="/img/avatars/1.png"
+            src={
+              userData?.photo
+                ? `/img/avatars/${userData.photo}`
+                : "/img/avatars/default.png"
+            }
             alt="Avatar"
             className="rounded-circle"
           />
@@ -36,7 +40,11 @@ const NavProfileTab = () => {
               <div className="flex-shrink-0 me-2">
                 <div className="avatar avatar-online">
                   <img
-                    src="/img/avatars/1.png"
+                    src={
+                      userData?.photo
+                        ? `/img/avatars/${userData.photo}`
+                        : "/img/avatars/default.png"
+                    }
                     alt="Avatar"
                     className="rounded-circle"
                   />
