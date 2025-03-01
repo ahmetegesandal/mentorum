@@ -1,14 +1,17 @@
 import Link from "next/link";
 import { useState } from "react";
-import { useRouter } from "next/router"; // Next.js yönlendirme için
+import { useRouter } from "next/router";
 import Logo from "../components/Logo";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const router = useRouter(); // Router kullanımı
+  const router = useRouter();
+  const { t } = useTranslation("common");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -135,5 +138,13 @@ const Login = () => {
     </div>
   );
 };
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}
 
 export default Login;
