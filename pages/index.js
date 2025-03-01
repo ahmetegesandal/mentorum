@@ -1,5 +1,5 @@
 import Logo from "../components/Logo";
-
+// deneme ege
 const Home = () => {
   return (
     <>
