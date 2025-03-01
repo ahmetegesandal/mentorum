@@ -37,8 +37,7 @@ const Main = () => {
                   </h5>
                   <div className="col-12 col-lg-5">
                     <p>
-                      Your progress this week is Awesome. {"let's"} keep it up
-                      and get a lot of points reward!
+                      {t("homepagecomment")}
                     </p>
                   </div>
                   <div className="d-flex justify-content-between flex-wrap gap-4 me-12">
