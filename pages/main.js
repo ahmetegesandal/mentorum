@@ -32,13 +32,13 @@ const Main = () => {
                   <h5 className="mb-2">
                     Welcome back,{" "}
                     <span className="h4">
-                      {userData.name + " " + userData.surname} 👋🏻
+                      {userData
+                        ? `${userData.name} ${userData.surname} 👋🏻`
+                        : "Guest 👋🏻"}
                     </span>
                   </h5>
                   <div className="col-12 col-lg-5">
-                    <p>
-                      {t("homepagecomment")}
-                    </p>
+                    <p>{t("homepagecomment")}</p>
                   </div>
                   <div className="d-flex justify-content-between flex-wrap gap-4 me-12">
                     {[
