@@ -1,5 +1,6 @@
 import Logo from "../components/Logo";
 // deneme ege
+// deneme ufuk
 const Home = () => {
   return (
     <>
