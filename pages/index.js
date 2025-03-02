@@ -2,6 +2,7 @@ import Logo from "../components/Logo";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+// furkan geldi
 
 const Home = () => {
   const { t } = useTranslation("common");
