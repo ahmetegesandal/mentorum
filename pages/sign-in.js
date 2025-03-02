@@ -2,12 +2,15 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router"; // Next.js yönlendirme için
 import Logo from "../components/Logo";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { t } = useTranslation("common");
   const router = useRouter(); // Router kullanımı
 
   const handleSubmit = async (e) => {
@@ -61,9 +64,9 @@ const Login = () => {
                   </Link>
                 </div>
                 {/* /Logo */}
-                <h4 className="mb-1">Welcome to Vuexy! 👋</h4>
+                <h4 className="mb-1">{t("welcomemessage")}</h4>
                 <p className="mb-6">
-                  Please sign-in to your account and start the adventure
+                  {t("signinmessage")}
                 </p>
 
                 <form
@@ -75,14 +78,14 @@ const Login = () => {
 
                   <div className="mb-6">
                     <label htmlFor="email" className="form-label">
-                      Email or Username
+                    {t("emailorusername")}
                     </label>
                     <input
                       type="text"
                       className="form-control"
                       id="email"
                       name="email"
-                      placeholder="Enter your email or username"
+                      placeholder= {t("email_placeholder")}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
@@ -92,7 +95,7 @@ const Login = () => {
 
                   <div className="mb-6 form-password-toggle">
                     <label className="form-label" htmlFor="password">
-                      Password
+                    {t("signpassword")}
                     </label>
                     <div className="input-group input-group-merge">
                       <input
@@ -117,14 +120,14 @@ const Login = () => {
                       type="submit"
                       disabled={loading}
                     >
-                      {loading ? "Logging in..." : "Login"}
+                      {loading ? "Logging in..." :  t("signinbutton")}
                     </button>
                   </div>
                 </form>
 
                 <p className="text-center">
-                  <span>New on our platform?</span>{" "}
-                  <Link href="/register">Create an account</Link>
+                  <span>{t("newusermessage")}</span>{" "}
+                  <Link href="/register">{t("create_account_link")}</Link>
                 </p>
               </div>
             </div>
@@ -135,5 +138,12 @@ const Login = () => {
     </div>
   );
 };
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}
 
 export default Login;

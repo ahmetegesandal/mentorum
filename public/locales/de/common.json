@@ -12,5 +12,14 @@
     "profile": "Profil",
     "settings": "Einstellungen",
     "logout": "Abmelden",
-    "homepagecomment": "Deine Fortschritte diese Woche sind großartig. Machen wir weiter so und holen uns jede Menge Punkte als Belohnung!"
+    "homepagecomment": "Deine Fortschritte diese Woche sind großartig. Machen wir weiter so und holen uns jede Menge Punkte als Belohnung!",
+    "welcomemessage" : "Willkommen bei Vuexy!👋",
+    "signinmessage" : "Bitte melden Sie sich bei Ihrem Konto an und beginnen Sie Ihr Abenteuer",
+    "emailorusername" : "E-Mail oder Benutzername", 
+    "email_placeholder" : "Geben Sie Ihre E-Mail oder Ihren Benutzernamen ein",
+    "signpassword" : "Passwort",
+    "signinbutton" : "Anmelden",
+    "newusermessage" :"Neu auf unserer Plattform?",
+    "create_account_link" :  "Ein Konto erstellen"
+   
 }

@@ -12,5 +12,14 @@
   "profile": "Profil",
   "settings": "Ayarlar",
   "logout": "Çıkış yap",
-  "homepagecomment": "Bu haftaki ilerlemeniz muhteşem. hadi devam edelim ve bir sürü puan ödülü alalım!"
+  "homepagecomment": "Bu haftaki ilerlemeniz muhteşem. hadi devam edelim ve bir sürü puan ödülü alalım!",
+  "welcomemessage" : "Vuexy'ye hoş geldiniz!👋",
+  "signinmessage" : "Lütfen hesabınızda oturum açın ve maceraya başlayın",
+  "emailorusername" : "E-posta veya Kullanıcı Adı",
+  "email_placeholder" :  "E-posta veya kullanıcı adı girin",
+  "signpassword" : "Şifre", 
+  "signinbutton" : "Giriş Yap",
+  "newusermessage" : "Platformda yeni misiniz?",
+  "create_account_link" : "Hesap oluştur"
+ 
 }
