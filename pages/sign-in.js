@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Logo from "../components/Logo";
 import { useTranslation } from "next-i18next";
@@ -11,7 +11,14 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { t } = useTranslation("common");
-  const router = useRouter(); // Router kullanımı
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      router.push("/main");
+    }
+  }, [router]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,12 +43,10 @@ const Login = () => {
         throw new Error(data.message || "Giriş başarısız!");
       }
 
-      // Token'i sakla
       localStorage.setItem("token", data.token);
       console.log("Giriş başarılı! Token:", data.token);
 
-      // Yönlendirme (Next.js Router ile)
-      router.replace("/main"); // replace kullanarak yönlendir
+      router.replace("/main");
     } catch (err) {
       setError(err.message);
     } finally {
