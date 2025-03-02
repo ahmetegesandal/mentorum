@@ -4,11 +4,11 @@ import Navbar from "../components/Navbar";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import { UserContext } from "../contexts/UserContext"; // Kullanıcı verisini almak için
+import { UserContext } from "../contexts/UserContext";
 
 const Profile = () => {
   const { t } = useTranslation("common");
-  const userData = useContext(UserContext); // Kullanıcı bilgilerini çek
+  const userData = useContext(UserContext);
 
   return (
     <>

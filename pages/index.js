@@ -1,7 +1,10 @@
 import Logo from "../components/Logo";
-// deneme ege
-// deneme ufuk
+import LanguageSwitcher from "../components/LanguageSwitcher";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
 const Home = () => {
+  const { t } = useTranslation("common");
   return (
     <>
       <nav className="layout-navbar shadow-none py-0 navbar-active">
@@ -130,6 +133,19 @@ const Home = () => {
                       </span>
                     </a>
                   </li>
+                </ul>
+              </li>
+
+              <li className="nav-item dropdown-language dropdown">
+                <a
+                  className="nav-link btn btn-text-secondary btn-icon rounded-pill dropdown-toggle hide-arrow"
+                  href=""
+                  data-bs-toggle="dropdown"
+                >
+                  <i className="ti ti-language rounded-circle ti-md"></i>
+                </a>
+                <ul className="dropdown-menu dropdown-menu-end">
+                  <LanguageSwitcher />
                 </ul>
               </li>
 
@@ -1474,5 +1490,13 @@ const Home = () => {
     </>
   );
 };
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}
 
 export default Home;
