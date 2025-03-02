@@ -10,13 +10,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-<<<<<<< HEAD
   const { t } = useTranslation("common");
   const router = useRouter(); // Router kullanımı
-=======
-  const router = useRouter();
-  const { t } = useTranslation("common");
->>>>>>> 44f1e1cbf60d40efbb50add1059e2577bc2f3eb5
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -70,9 +65,7 @@ const Login = () => {
                 </div>
                 {/* /Logo */}
                 <h4 className="mb-1">{t("welcomemessage")}</h4>
-                <p className="mb-6">
-                  {t("signinmessage")}
-                </p>
+                <p className="mb-6">{t("signinmessage")}</p>
 
                 <form
                   id="formAuthentication"
@@ -83,14 +76,14 @@ const Login = () => {
 
                   <div className="mb-6">
                     <label htmlFor="email" className="form-label">
-                    {t("emailorusername")}
+                      {t("emailorusername")}
                     </label>
                     <input
                       type="text"
                       className="form-control"
                       id="email"
                       name="email"
-                      placeholder= {t("email_placeholder")}
+                      placeholder={t("email_placeholder")}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
@@ -100,7 +93,7 @@ const Login = () => {
 
                   <div className="mb-6 form-password-toggle">
                     <label className="form-label" htmlFor="password">
-                    {t("signpassword")}
+                      {t("signpassword")}
                     </label>
                     <div className="input-group input-group-merge">
                       <input
@@ -125,7 +118,7 @@ const Login = () => {
                       type="submit"
                       disabled={loading}
                     >
-                      {loading ? "Logging in..." :  t("signinbutton")}
+                      {loading ? "Logging in..." : t("signinbutton")}
                     </button>
                   </div>
                 </form>
@@ -143,14 +136,6 @@ const Login = () => {
     </div>
   );
 };
-export async function getStaticProps({ locale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ["common"])),
-    },
-  };
-}
-
 export async function getStaticProps({ locale }) {
   return {
     props: {
