@@ -13,7 +13,11 @@ export const UserProvider = ({ children }) => {
     if (!router.isReady) return;
 
     // Eğer kullanıcı "/"" sayfasındaysa yetkilendirme kontrolünü atla
-    if (router.pathname === "/" || router.pathname === "/register") {
+    if (
+      router.pathname === "/" ||
+      router.pathname === "/register" ||
+      router.pathname === "/404"
+    ) {
       setLoading(false);
       return;
     }
