@@ -19,9 +19,11 @@
     "@tanstack/react-query": "^5.64.2",
     "@tanstack/react-table": "^8.20.6",
     "@tanstack/react-virtual": "^3.11.2",
-    "axios": "^1.7.9",
+    "axios": "^1.8.1",
     "bcryptjs": "^3.0.2",
     "bootstrap": "^5.3.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
     "font-awesome": "^4.7.0",
     "framer-motion": "^11.15.0",
     "jsonwebtoken": "^9.0.2",
@@ -33,10 +35,25 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-select": "^5.9.0",
-    "react-table": "^7.8.0"
+    "react-table": "^7.8.0",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
     "eslint": "8.17.0",
     "eslint-config-next": "12.1.6"
-  }
+  },
+  "description": "**Proje Kurulum Rehberi**",
+  "main": "next-i18next.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmetegesandal/my-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahmetegesandal/my-app/issues"
+  },
+  "homepage": "https://github.com/ahmetegesandal/my-app#readme"
 }

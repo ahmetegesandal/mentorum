@@ -143,7 +143,6 @@ const LayoutMenu = () => {
           className="layout-menu-toggle menu-link text-large ms-auto"
           onClick={toggleMenu}
         >
-          <i className="ti menu-toggle-icon d-none d-xl-block align-middle"></i>
           <i className="ti ti-x d-block d-xl-none ti-md align-middle"></i>
         </a>
       </div>
