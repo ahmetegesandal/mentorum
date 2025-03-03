@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Swal from "sweetalert2"; // npm install sweetalert2 
+// İconlar vs.https://sweetalert2.github.io/
 import { useTranslation } from "next-i18next";
 import { useContext } from "react";
 import { useRouter } from "next/router";
@@ -10,8 +12,23 @@ const NavProfileTab = () => {
   const router = useRouter();
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Token'i temizle
-    router.push("/sign-in"); // Kullanıcıyı giriş sayfasına yönlendir
+    Swal.fire({
+      title: "Emin misiniz?",
+      text: "Çıkış yapmak üzeresiniz!",
+      showCancelButton: true,
+      confirmButtonText: "Evet, çıkış yap!",
+      cancelButtonText: "Hayır, kal",
+      confirmButtonColor: "#3085d6",// SWEETALERT RENK
+      cancelButtonColor: "#d33",
+      icon: "warning",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem("token"); // Token'i temizler
+        Swal.fire("Çıkış Yapıldı!", "Başarıyla çıkış yaptınız.", "success").then(() => {
+          router.push("/sign-in"); // Çıkış sonrası Giriş ekranına yönlendiriyor
+        });
+      }
+    });
   };
 
   return (
