@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 28 Şub 2025, 16:26:02
+-- Üretim Zamanı: 03 Mar 2025, 19:39:33
 -- Sunucu sürümü: 10.4.28-MariaDB
 -- PHP Sürümü: 8.0.28
 
@@ -20,6 +20,35 @@ SET time_zone = "+00:00";
 --
 -- Veritabanı: `my_auth_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `messages`
+--
+
+CREATE TABLE `messages` (
+  `id` int(11) NOT NULL,
+  `sender_id` int(11) NOT NULL,
+  `receiver_id` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Tablo döküm verisi `messages`
+--
+
+INSERT INTO `messages` (`id`, `sender_id`, `receiver_id`, `message`, `created_at`) VALUES
+(120, 4, 2, 'sa', '2025-03-03 18:10:51'),
+(121, 2, 4, 'as', '2025-03-03 18:10:53'),
+(122, 2, 2, 'naber lo', '2025-03-03 18:15:34'),
+(123, 2, 2, 'iyidir aga senden nasıl gidiyooooo', '2025-03-03 18:15:42'),
+(124, 2, 4, 'ssssss', '2025-03-03 18:25:33'),
+(125, 2, 4, '12321321', '2025-03-03 18:25:53'),
+(126, 2, 4, 'ddd', '2025-03-03 18:26:20'),
+(127, 2, 5, 'niyazziii', '2025-03-03 18:27:03'),
+(128, 2, 2, 'sa', '2025-03-03 18:37:36');
 
 -- --------------------------------------------------------
 
@@ -54,6 +83,14 @@ INSERT INTO `users` (`id`, `username`, `password`, `name`, `surname`, `role`, `p
 --
 
 --
+-- Tablo için indeksler `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sender_id` (`sender_id`),
+  ADD KEY `receiver_id` (`receiver_id`);
+
+--
 -- Tablo için indeksler `users`
 --
 ALTER TABLE `users`
@@ -65,10 +102,27 @@ ALTER TABLE `users`
 --
 
 --
+-- Tablo için AUTO_INCREMENT değeri `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+
+--
 -- Tablo için AUTO_INCREMENT değeri `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- Dökümü yapılmış tablolar için kısıtlamalar
+--
+
+--
+-- Tablo kısıtlamaları `messages`
+--
+ALTER TABLE `messages`
+  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`sender_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
