@@ -1,5 +1,6 @@
 import Logo from "../components/Logo";
 import LanguageSwitcher from "../components/LanguageSwitcher";
+import ThemeSwitcher from "../components/ThemeSwitcher";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
@@ -146,6 +147,19 @@ const Home = () => {
                 </a>
                 <ul className="dropdown-menu dropdown-menu-end">
                   <LanguageSwitcher />
+                </ul>
+              </li>
+
+              <li className="nav-item dropdown-language dropdown">
+                <a
+                  className="nav-link btn btn-text-secondary btn-icon rounded-pill dropdown-toggle hide-arrow"
+                  href=""
+                  data-bs-toggle="dropdown"
+                >
+                  <i className="ti ti-sun ti-md rounded-circle ti-md"></i>
+                </a>
+                <ul className="dropdown-menu dropdown-menu-end">
+                  <ThemeSwitcher />
                 </ul>
               </li>
 
