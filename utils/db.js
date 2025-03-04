@@ -17,20 +17,14 @@ const pool = mysql.createPool(dbConfig);
 
 // Bağlantıyı al ve yönet
 export async function getConnection() {
-  let connection;
   try {
-    connection = await pool.getConnection();
+    const connection = await pool.getConnection();
     console.log("Veritabanı bağlantısı başarılı!");
 
-    // Bağlantıyı açık tut (Keep Alive)
-    connection.ping();
-
-    return connection;
+    return connection; // **Bağlantıyı çağıran fonksiyon serbest bırakacak!**
   } catch (error) {
     console.error("Veritabanı bağlantı hatası:", error.message);
     throw error;
-  } finally {
-    if (connection) connection.release(); // Bağlantıyı geri bırak
   }
 }
 
@@ -40,7 +34,7 @@ setInterval(async () => {
     const connection = await pool.getConnection();
     await connection.ping();
     connection.release();
-    console.log("Veritabanı bağlantısı aktif tutuldu (ping atıldı).");
+    //console.log("Veritabanı bağlantısı aktif tutuldu (ping atıldı).");
   } catch (error) {
     console.error("Veritabanı bağlantı hatası (ping):", error.message);
   }

@@ -43,7 +43,7 @@ function MyApp({ Component, pageProps }) {
     // Sayfa yüklendiğinde belirli bir süre sonra Preloader'ı kaldır
     const handleComplete = () => {
       setTimeout(() => {
-        console.log("✅ Sayfa yüklendi, Preloader kaldırılıyor...");
+        //console.log("✅ Sayfa yüklendi, Preloader kaldırılıyor...");
         setLoading(false);
       }, 500); // Preloader minimum 2 saniye görünecek
     };

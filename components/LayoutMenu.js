@@ -20,6 +20,7 @@ const menuItems = [
       { path: "/slessons", label: "Ders Ara", roles: ["user"] },
       { path: "/chat", label: "Sohbet", roles: ["admin", "user"] },
       { path: "/calendar", label: "Takvim", roles: ["admin", "user"] },
+      { path: "/slessons", label: "Dersler", roles: ["admin", "user"] },
     ],
   },
   {
