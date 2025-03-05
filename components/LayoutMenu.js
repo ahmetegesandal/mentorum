@@ -21,6 +21,11 @@ const menuItems = [
       { path: "/chat", label: "Sohbet", roles: ["admin", "user"] },
       { path: "/calendar", label: "Takvim", roles: ["admin", "user"] },
       { path: "/slessons", label: "Dersler", roles: ["admin", "user"] },
+      {
+        path: "/lesson-details",
+        label: "Ders Detayı",
+        roles: ["admin", "user"],
+      },
     ],
   },
   {
