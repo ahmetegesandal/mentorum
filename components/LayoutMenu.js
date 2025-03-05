@@ -11,23 +11,27 @@ const menuItems = [
     key: "dashboards",
     label: "Dashboards",
     icon: "ti ti-smart-home",
-    roles: ["admin", "parent", "teacher"],
+    roles: ["admin", "parent", "teacher", "student"],
     badge: { content: "5", className: "bg-danger rounded-pill" },
     subMenu: [
       {
         path: "/main",
         label: "Ana Sayfa",
-        roles: ["admin", "parent", "teacher"],
+        roles: ["admin", "parent", "teacher", "student"],
       },
       { path: "/deneme", label: "Deneme odası", roles: ["admin", "user"] },
       { path: "/blank", label: "Boş Sayfa", roles: ["admin", "user"] },
       { path: "/slessons", label: "Ders Ara", roles: ["user"] },
-      { path: "/chat", label: "Sohbet", roles: ["admin", "user", "teacher"] },
+      {
+        path: "/chat",
+        label: "Sohbet",
+        roles: ["admin", "parent", "teacher", "student"],
+      },
       { path: "/calendar", label: "Takvim", roles: ["admin", "user"] },
       {
         path: "/slessons",
         label: "Dersler",
-        roles: ["admin", "user", "teacher"],
+        roles: ["admin", "user", "teacher", "parent"],
       },
       {
         path: "/lessoncreate",

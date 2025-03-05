@@ -13,7 +13,7 @@ const Chat = () => {
   const userData = useContext(UserContext);
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
-  const [receiverId, setReceiverId] = useState(userData.id); // Alıcıyı buraya dinamik yapabilirsiniz
+  const [receiverId, setReceiverId] = useState(userData.id);
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const { t } = useTranslation("common");
@@ -25,6 +25,8 @@ const Chat = () => {
   );
 
   const chatEndRef = useRef(null);
+  const messageSound = useRef(new Audio("/sounds/message.mp3"));
+
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -68,6 +70,8 @@ const Chat = () => {
       ) {
         setMessages((prev) => {
           if (!prev.some((msg) => msg.id === message.id)) {
+            messageSound.current.play(); // Yeni mesaj geldiğinde ses çal
+
             return [...prev, message];
           }
           return prev;
@@ -227,7 +231,7 @@ const Chat = () => {
                     </div>
                   </div>
 
-                  <div className="sidebar-body">
+                  <div className="sidebar-body overflow-auto">
                     <ul
                       className="list-unstyled chat-contact-list py-2 mb-0"
                       id="chat-list"

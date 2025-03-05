@@ -32,7 +32,10 @@ const Blank = () => {
                   <div className="card shadow-sm p-3">
                     <div className="text-center">
                       <img
-                        src={student.photo || "/default-profile.png"}
+                        src={
+                          `/img/avatars/${student.photo}` ||
+                          "/default-profile.png"
+                        }
                         alt={student.name}
                         className="rounded-circle mb-3"
                         width="80"
