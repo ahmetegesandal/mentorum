@@ -7,6 +7,7 @@ import DatabaseStatus from "../components/DatabaseStatus";
 import Preloader from "../components/Preloader";
 import { useRouter } from "next/router";
 import { UserProvider } from "../contexts/UserContext";
+import GlobalLogoutHandler from "../components/GlobalLogoutHandler";
 
 // Global CSS Dosyaları
 import "../styles/fonts/fontawesome.css";
@@ -38,26 +39,44 @@ function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  // Sayfa yüklendiğinde preloader'ı kaldır
   useEffect(() => {
-    // Sayfa yüklendiğinde belirli bir süre sonra Preloader'ı kaldır
-    const handleComplete = () => {
+    const handleFirstLoad = () => {
       setTimeout(() => {
-        //console.log("✅ Sayfa yüklendi, Preloader kaldırılıyor...");
-        setLoading(false);
-      }, 500); // Preloader minimum 2 saniye görünecek
+        if (document.readyState === "complete") {
+          requestAnimationFrame(() => {
+            document.fonts.ready.then(() => {
+              setLoading(false);
+            });
+          });
+        }
+      }, 1000); // En az 1 saniye Preloader'ı göster
     };
 
     if (document.readyState === "complete") {
-      handleComplete();
+      handleFirstLoad();
     } else {
-      window.addEventListener("load", handleComplete);
+      window.addEventListener("load", handleFirstLoad);
     }
 
     return () => {
-      window.removeEventListener("load", handleComplete);
+      window.removeEventListener("load", handleFirstLoad);
     };
   }, []);
+
+  useEffect(() => {
+    const handleStart = () => setLoading(true);
+    const handleComplete = () => setLoading(false);
+
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleComplete);
+    router.events.on("routeChangeError", handleComplete);
+
+    return () => {
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleComplete);
+      router.events.off("routeChangeError", handleComplete);
+    };
+  }, [router]);
 
   // Bootstrap JS'i yalnızca tarayıcı ortamında yükle
   useEffect(() => {
@@ -86,6 +105,7 @@ function MyApp({ Component, pageProps }) {
           ) : (
             <Layout>
               <DatabaseStatus />
+              <GlobalLogoutHandler userId={pageProps.userId} />
               <Component {...pageProps} />
             </Layout>
           )}

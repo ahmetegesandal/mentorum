@@ -35,6 +35,11 @@ export default async function handler(req, res) {
       return res.status(401).json({ message: "Geçersiz şifre." });
     }
 
+    // Kullanıcıyı online yap
+    await connection.execute("UPDATE users SET is_online = 1 WHERE id = ?", [
+      user.id,
+    ]);
+
     // JWT Token oluştur
     const token = jwt.sign(
       { userId: user.id, role: user.role },
@@ -42,7 +47,9 @@ export default async function handler(req, res) {
       { expiresIn: "1h" }
     );
 
-    res.status(200).json({ message: "Giriş başarılı!", token });
+    res
+      .status(200)
+      .json({ message: "Giriş başarılı!", token, userId: user.id });
   } catch (error) {
     console.error("Veritabanı hatası:", error);
     res.status(500).json({ message: "Bir hata oluştu." });

@@ -1,8 +1,7 @@
 import Link from "next/link";
-import Swal from "sweetalert2"; // npm install sweetalert2 
-// İconlar vs.https://sweetalert2.github.io/
+import Swal from "sweetalert2"; // npm install sweetalert2
 import { useTranslation } from "next-i18next";
-import { useContext } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import { UserContext } from "../contexts/UserContext";
 
@@ -10,23 +9,74 @@ const NavProfileTab = () => {
   const { t } = useTranslation("common");
   const userData = useContext(UserContext);
   const router = useRouter();
+  const [isOnline, setIsOnline] = useState(false);
 
-  const handleLogout = () => {
+  // Kullanıcının online olup olmadığını kontrol et
+  useEffect(() => {
+    if (userData?.id) {
+      const checkOnlineStatus = async () => {
+        try {
+          const response = await fetch(`/api/users/${userData.id}/status`);
+          if (response.ok) {
+            const data = await response.json();
+            setIsOnline(data.is_online === 1); // is_online değeri 1 ise true yap
+          }
+        } catch (error) {
+          console.error("Online durumu alınamadı:", error);
+        }
+      };
+
+      checkOnlineStatus();
+      const interval = setInterval(checkOnlineStatus, 5000); // Her 5 saniyede bir güncelle
+
+      return () => clearInterval(interval); // Bellek sızıntısını önlemek için temizle
+    }
+  }, [userData]);
+
+  const socketRef = useRef(null);
+
+  const handleLogout = async () => {
     Swal.fire({
       title: "Emin misiniz?",
       text: "Çıkış yapmak üzeresiniz!",
       showCancelButton: true,
       confirmButtonText: "Evet, çıkış yap!",
       cancelButtonText: "Hayır, kal",
-      confirmButtonColor: "#3085d6",// SWEETALERT RENK
+      confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       icon: "warning",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        localStorage.removeItem("token"); // Token'i temizler
-        Swal.fire("Çıkış Yapıldı!", "Başarıyla çıkış yaptınız.", "success").then(() => {
-          router.push("/sign-in"); // Çıkış sonrası Giriş ekranına yönlendiriyor
-        });
+        try {
+          const response = await fetch("/api/logout", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ userId: userData?.id }),
+          });
+
+          if (!response.ok) {
+            throw new Error("Çıkış işlemi sırasında bir hata oluştu.");
+          }
+
+          // LocalStorage'dan token'ı kaldır
+          localStorage.removeItem("token");
+          localStorage.removeItem("userId");
+
+          if (socketRef.current) {
+            console.log("🔌 WebSocket bağlantısı kapatılıyor...");
+            socketRef.current.disconnect();
+          }
+
+          // Çıkış yaptıktan sonra login sayfasına yönlendir
+          router.push("/sign-in");
+        } catch (error) {
+          console.error("Logout error:", error);
+          Swal.fire(
+            "Hata!",
+            "Çıkış yaparken bir sorun oluştu. Lütfen tekrar deneyin.",
+            "error"
+          );
+        }
       }
     });
   };
@@ -38,7 +88,9 @@ const NavProfileTab = () => {
         href="#"
         data-bs-toggle="dropdown"
       >
-        <div className="avatar avatar-online">
+        <div
+          className={`avatar ${isOnline ? "avatar-online" : "avatar-offline"}`}
+        >
           <img
             src={
               userData?.photo
@@ -55,7 +107,11 @@ const NavProfileTab = () => {
           <Link href="/profile" className="dropdown-item mt-0">
             <div className="d-flex align-items-center">
               <div className="flex-shrink-0 me-2">
-                <div className="avatar avatar-online">
+                <div
+                  className={`avatar ${
+                    isOnline ? "avatar-online" : "avatar-offline"
+                  }`}
+                >
                   <img
                     src={
                       userData?.photo

@@ -12,39 +12,32 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     if (!router.isReady) return;
 
-    // Eğer kullanıcı "/"" sayfasındaysa yetkilendirme kontrolünü atla
-    if (
-      router.pathname === "/" ||
-      router.pathname === "/register" ||
-      router.pathname === "/404"
-    ) {
+    // Public routes where authentication isn't required
+    const publicRoutes = ["/", "/register", "/404"];
+    if (publicRoutes.includes(router.pathname)) {
       setLoading(false);
       return;
     }
 
     const token = localStorage.getItem("token");
-
     if (!token) {
-      router.replace("/sign-in");
-      setLoading(false);
+      redirectToSignIn();
       return;
     }
 
     try {
       const decoded = jwt.decode(token);
-      if (!decoded) {
-        localStorage.removeItem("token");
-        router.replace("/sign-in");
-        setLoading(false);
+
+      // Ensure the decoded token contains a valid userId
+      if (!decoded || !decoded.userId) {
+        handleInvalidToken();
         return;
       }
 
       const fetchUserData = async () => {
         try {
           const response = await fetch(`/api/users/${decoded.userId}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+            headers: { Authorization: `Bearer ${token}` },
           });
 
           if (!response.ok) {
@@ -52,10 +45,16 @@ export const UserProvider = ({ children }) => {
           }
 
           const data = await response.json();
+
+          // Ensure user data contains an ID before setting it
+          if (!data || !data.id) {
+            throw new Error("Geçersiz kullanıcı verisi.");
+          }
+
           setUserData(data);
+          localStorage.setItem("userId", data.id);
         } catch (error) {
-          localStorage.removeItem("token");
-          router.replace("/sign-in");
+          handleInvalidToken();
         } finally {
           setLoading(false);
         }
@@ -63,11 +62,22 @@ export const UserProvider = ({ children }) => {
 
       fetchUserData();
     } catch (err) {
-      localStorage.removeItem("token");
-      router.replace("/sign-in");
-      setLoading(false);
+      handleInvalidToken();
     }
-  }, [router.isReady, router.pathname]); // router.pathname eklendi
+  }, [router.isReady, router.pathname]);
+
+  // Function to handle invalid token scenarios
+  const handleInvalidToken = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    redirectToSignIn();
+  };
+
+  // Redirects to sign-in page securely
+  const redirectToSignIn = () => {
+    router.replace("/sign-in");
+    setLoading(false);
+  };
 
   return (
     <UserContext.Provider value={userData}>

@@ -1,53 +1,135 @@
 const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
+const mysql = require("mysql2");
 
 const app = express();
 const server = http.createServer(app);
-const io = require("socket.io")(server, {
+const io = new Server(server, {
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
   },
 });
 
+// ✅ MySQL bağlantısı
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "my_auth_db",
+});
+
+db.connect((err) => {
+  if (err) {
+    console.error("MySQL bağlantı hatası:", err);
+  } else {
+    console.log("✅ MySQL bağlantısı başarılı!");
+  }
+});
+
+// 📌 Kullanıcıları offline yapmak için fonksiyon
+function setUserOffline(userId) {
+  if (!userId) return;
+  db.query(
+    "UPDATE users SET is_online = 0 WHERE id = ?",
+    [userId],
+    (err, result) => {
+      if (err) {
+        console.error("🔴 Kullanıcı offline durumu güncellenemedi:", err);
+      } else {
+        console.log(`🔴 Kullanıcı ${userId} offline yapıldı.`);
+      }
+    }
+  );
+}
+
+// 📌 Kullanıcıları online yapmak için fonksiyon
+function setUserOnline(userId) {
+  if (!userId) return;
+  db.query(
+    "UPDATE users SET is_online = 1 WHERE id = ?",
+    [userId],
+    (err, result) => {
+      if (err) {
+        console.error("🔴 Kullanıcı online durumu güncellenemedi:", err);
+      } else {
+        console.log(`✅ Kullanıcı ${userId} online yapıldı.`);
+      }
+    }
+  );
+}
+
+// 📌 Socket.io ile bağlantıları dinle
 io.on("connection", (socket) => {
-  console.log("New client connected:", socket.id);
+  const userId = socket.handshake.query.userId; // Kullanıcı ID'yi doğrudan bağlantıdan al
+  console.log(`🟢 Yeni kullanıcı bağlandı: ${socket.id}, UserID: ${userId}`);
 
-  // Kullanıcı kaydını yap ve odasına katıl
-  socket.on("register", (userId) => {
-    console.log(`User ${userId} registered with socket ID ${socket.id}`);
-    socket.userId = userId; // Kullanıcı ID'sini sakla
-  });
+  if (userId) {
+    socket.userId = userId; // Kullanıcı ID'yi kaydet
+    setUserOnline(userId);
+  } else {
+    console.log("❌ Hata: WebSocket bağlantısında userId bulunamadı.");
+  }
 
-  // Mesaj göndermek için kullanıcının doğru odasına iletme
-  socket.on("sendMessage", (data) => {
-    const roomName = getRoomName(data.sender_id, data.receiver_id); // Oda ismini oluştur
-    console.log(`Sending message to room: ${roomName}`);
-    io.to(roomName).emit("receiveMessage", data); // Mesajı yalnızca doğru odadaki kullanıcılara gönder
-  });
-
-  // Room'a katılma: Her kullanıcı doğru odaya katılmalı
+  // Kullanıcı belirli bir sohbete katılır
   socket.on("joinRoom", (data) => {
     const roomName = getRoomName(data.sender_id, data.receiver_id);
-    socket.join(roomName); // Kullanıcıyı odaya kat
-    console.log(`User ${data.sender_id} joined room ${roomName}`);
+    socket.join(roomName);
+    console.log(
+      `📩 Kullanıcı ${data.sender_id}, oda ${roomName} içine katıldı`
+    );
   });
 
-  // Kullanıcı bağlantısı kesildiğinde room bilgilerini temizle
+  // Mesaj gönderme
+  socket.on("sendMessage", (data) => {
+    const roomName = getRoomName(data.sender_id, data.receiver_id);
+    console.log(`📤 Mesaj ${roomName} odasına gönderildi.`);
+    io.to(roomName).emit("receiveMessage", data);
+  });
+
+  // Kullanıcı çıkış yaptığında offline yap
   socket.on("disconnect", () => {
-    console.log(`User ${socket.userId} disconnected`);
+    console.log(`❌ Kullanıcı bağlantıyı kapattı: ${socket.id}`);
+
+    if (socket.userId) {
+      console.log(`🔴 Kullanıcı ${socket.userId} bağlantıyı kesti.`);
+      setUserOffline(socket.userId);
+
+      // Tüm kullanıcılara offline olduğunu bildir
+      io.emit("onlineStatus", { userId: socket.userId, isOnline: false });
+
+      // Kullanıcıyı çıkış yaptıktan sonra yeniden giriş yapmasını engelleyin
+      // Ekstra bir kontrol ile sadece geçerli bir oturumda kullanıcıyı online yapın
+      socket.userId = null; // Kullanıcıyı oturumdan çıkarıyoruz
+    } else {
+      console.log("❌ socket.userId tanımlı değil, offline yapılmadı.");
+    }
   });
 });
 
-// Sender ve Receiver'a göre benzersiz oda ismi oluştur
+// 📌 Kullanıcıların sohbette oluşturacağı benzersiz oda isimleri
 function getRoomName(senderId, receiverId) {
-  // Oda ismini sender_id ve receiver_id'yi sıralayarak oluşturuyoruz.
   return senderId < receiverId
     ? `${senderId}-${receiverId}`
     : `${receiverId}-${senderId}`;
 }
 
+// 📌 Tüm online kullanıcıları almak için API
+app.get("/online-users", (req, res) => {
+  db.query(
+    "SELECT id, username FROM users WHERE is_online = 1",
+    (err, results) => {
+      if (err) {
+        res.status(500).json({ error: "Veritabanı hatası" });
+      } else {
+        res.json(results);
+      }
+    }
+  );
+});
+
+// 📌 Sunucuyu başlat
 server.listen(3001, () => {
-  console.log("WebSocket Server running on port 3001");
+  console.log("🚀 WebSocket Sunucu 3001 portunda çalışıyor...");
 });

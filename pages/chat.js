@@ -107,7 +107,37 @@ const Chat = () => {
     }
   };
 
-  const selectedUser = users.find((user) => user.id === receiverId);
+  const [selectedUser, setSelectedUser] = useState(null);
+
+  // Kullanıcının online/offline durumunu periyodik olarak güncelle
+  useEffect(() => {
+    const fetchUserStatus = async () => {
+      if (!receiverId) return; // Eğer kullanıcı seçili değilse API çağrısı yapma
+
+      try {
+        const response = await fetch(`/api/users/${receiverId}/status`);
+        if (!response.ok) throw new Error("Kullanıcı durumu alınamadı");
+
+        const data = await response.json();
+        setSelectedUser((prev) => ({
+          ...prev,
+          is_online: data.is_online,
+        }));
+      } catch (error) {
+        console.error("Online durumu alınamadı:", error);
+      }
+    };
+
+    fetchUserStatus();
+    const interval = setInterval(fetchUserStatus, 5000); // Her 5 saniyede bir güncelle
+
+    return () => clearInterval(interval); // Bellek sızıntısını önlemek için temizle
+  }, [receiverId]);
+
+  useEffect(() => {
+    const foundUser = users.find((user) => user.id === receiverId);
+    setSelectedUser(foundUser);
+  }, [receiverId, users]);
 
   const formatDate = (timestamp) => {
     if (!timestamp) return "Just now";
@@ -119,6 +149,32 @@ const Chat = () => {
       hour12: false, // 24 saat formatında göster
     });
   };
+
+  const [onlineUsers, setOnlineUsers] = useState({});
+
+  useEffect(() => {
+    const fetchOnlineStatuses = async () => {
+      try {
+        const response = await fetch("/api/online-users");
+        if (!response.ok) throw new Error("Online kullanıcılar alınamadı");
+
+        const data = await response.json();
+        const onlineStatusMap = {};
+        data.forEach((user) => {
+          onlineStatusMap[user.id] = user.is_online === 1;
+        });
+
+        setOnlineUsers(onlineStatusMap);
+      } catch (error) {
+        console.error("Online durumları çekerken hata oluştu:", error);
+      }
+    };
+
+    fetchOnlineStatuses();
+    const interval = setInterval(fetchOnlineStatuses, 5000); // Her 5 saniyede bir güncelle
+
+    return () => clearInterval(interval); // Component unmount olursa temizle
+  }, []);
 
   return (
     <>
@@ -169,12 +225,6 @@ const Chat = () => {
                         />
                       </div>
                     </div>
-                    <i
-                      className="ti ti-x ti-lg cursor-pointer position-absolute top-50 end-0 translate-middle d-lg-none d-block"
-                      data-overlay
-                      data-bs-toggle="sidebar"
-                      data-target="#app-chat-contacts"
-                    ></i>
                   </div>
 
                   <div className="sidebar-body">
@@ -197,11 +247,18 @@ const Chat = () => {
                           onClick={() => setReceiverId(user.id)}
                         >
                           <a className="d-flex align-items-center">
-                            <div className="flex-shrink-0 avatar avatar-online">
+                            <div
+                              className={`flex-shrink-0 avatar ${
+                                onlineUsers[user.id]
+                                  ? "avatar-online"
+                                  : "avatar-offline"
+                              }`}
+                            >
                               <img
                                 src={
-                                  `/img/avatars/${user.photo}` ||
-                                  "img/avatars/default.png"
+                                  user.photo
+                                    ? `/img/avatars/${user.photo}`
+                                    : "/img/avatars/default.png"
                                 }
                                 alt="Avatar"
                                 className="rounded-circle"
@@ -217,7 +274,9 @@ const Chat = () => {
                                 </small>
                               </div>
                               <small className="chat-contact-status text-truncate">
-                                {user.status || "Online"}
+                                {onlineUsers[user.id]
+                                  ? "Çevrimiçi"
+                                  : "Çevrimdışı"}
                               </small>
                             </div>
                           </a>
@@ -238,7 +297,13 @@ const Chat = () => {
                             data-overlay
                             data-target="#app-chat-contacts"
                           ></i>
-                          <div className="flex-shrink-0 avatar avatar-online">
+                          <div
+                            className={`flex-shrink-0 avatar ${
+                              selectedUser?.is_online === 1
+                                ? "avatar-online"
+                                : "avatar-offline"
+                            }`}
+                          >
                             <img
                               src={
                                 `/img/avatars/${selectedUser?.photo}` ||
@@ -258,7 +323,9 @@ const Chat = () => {
                                 selectedUser?.surname || "Select a user"}
                             </h6>
                             <small className="user-status text-body">
-                              {selectedUser?.status || "Offline"}
+                              {selectedUser?.is_online == 1
+                                ? "Çevrimiçi"
+                                : "Çevrimdışı"}
                             </small>
                           </div>
                         </div>

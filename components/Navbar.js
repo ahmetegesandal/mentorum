@@ -4,7 +4,6 @@ import ThemeSwitcher from "./ThemeSwitcher";
 import NavProfileTab from "./NavProfileTab";
 import NavNotificationsTab from "./NavNotificationsTab";
 
-
 const Navbar = () => {
   const { isMenuExpanded, toggleMenu } = useLayout();
 
@@ -29,7 +28,6 @@ const Navbar = () => {
         className="navbar-nav-right d-flex align-items-center"
         id="navbar-collapse"
       >
-
         <ul className="navbar-nav flex-row align-items-center ms-auto">
           <li className="nav-item dropdown-language dropdown">
             <a
@@ -40,31 +38,27 @@ const Navbar = () => {
               <i className="ti ti-language rounded-circle ti-md"></i>
             </a>
             <ul className="dropdown-menu dropdown-menu-end">
-              <LanguageSwitcher/>
+              <LanguageSwitcher />
             </ul>
           </li>
 
           <li className="nav-item dropdown-style-switcher dropdown">
             <a
               className="nav-link btn btn-text-secondary btn-icon rounded-pill dropdown-toggle hide-arrow"
-
               data-bs-toggle="dropdown"
             >
               <i className="ti ti-sun ti-md"></i>
             </a>
             <ul className="dropdown-menu dropdown-menu-end dropdown-styles">
-              <ThemeSwitcher/>
+              <ThemeSwitcher />
             </ul>
           </li>
 
+          <NavNotificationsTab />
 
-          <NavNotificationsTab/>
-
-          <NavProfileTab/>
+          <NavProfileTab />
         </ul>
       </div>
-
-
     </nav>
   );
 };
