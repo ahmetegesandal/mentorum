@@ -6,6 +6,49 @@ import Logo from "../components/Logo";
 const Register = () => {
   const { t } = useTranslation("common");
   const [role, setRole] = useState("student");
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    expertise: "",
+  });
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+
+    const { username, email, password, expertise } = formData;
+
+    const response = await fetch("/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username,
+        email,
+        password,
+        role,
+        expertise: role === "teacher" ? expertise : null,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      setError(data.error || "An error occurred");
+    } else {
+      setSuccess("Registration successful! Redirecting...");
+      setTimeout(() => {
+        window.location.href = "/sign-in"; // Redirect to login page
+      }, 2000);
+    }
+  };
 
   return (
     <>
@@ -15,7 +58,7 @@ const Register = () => {
             <div className="card">
               <div className="card-body">
                 <div className="app-brand justify-content-center mb-6">
-                  <a href="index.html" className="app-brand-link">
+                  <a href="/" className="app-brand-link">
                     <Logo />
                   </a>
                 </div>
@@ -23,11 +66,13 @@ const Register = () => {
                 <h4 className="mb-1">Adventure starts here 🚀</h4>
                 <p className="mb-6">Make your app management easy and fun!</p>
 
+                {error && <p className="alert alert-danger">{error}</p>}
+                {success && <p className="alert alert-success">{success}</p>}
+
                 <form
                   id="formAuthentication"
                   className="mb-6"
-                  action="index.html"
-                  method="GET"
+                  onSubmit={handleSubmit}
                 >
                   <div className="mb-6">
                     <label htmlFor="role" className="form-label">
@@ -57,6 +102,7 @@ const Register = () => {
                       name="username"
                       placeholder="Enter your username"
                       autoFocus
+                      onChange={handleChange}
                     />
                   </div>
 
@@ -70,6 +116,7 @@ const Register = () => {
                       id="email"
                       name="email"
                       placeholder="Enter your email"
+                      onChange={handleChange}
                     />
                   </div>
 
@@ -84,7 +131,7 @@ const Register = () => {
                         className="form-control"
                         name="password"
                         placeholder="••••••••"
-                        aria-describedby="password"
+                        onChange={handleChange}
                       />
                       <span className="input-group-text cursor-pointer">
                         <i className="ti ti-eye-off"></i>
@@ -103,6 +150,7 @@ const Register = () => {
                         id="expertise"
                         name="expertise"
                         placeholder="Enter your expertise area"
+                        onChange={handleChange}
                       />
                     </div>
                   )}
@@ -114,25 +162,28 @@ const Register = () => {
                         type="checkbox"
                         id="terms-conditions"
                         name="terms"
+                        required
                       />
                       <label
                         className="form-check-label"
                         htmlFor="terms-conditions"
                       >
-                        I agree to{" "}
-                        <a href="javascript:void(0);">privacy policy & terms</a>
+                        I agree to <a href="#">privacy policy & terms</a>
                       </label>
                     </div>
                   </div>
 
-                  <button className="btn btn-primary d-grid w-100">
+                  <button
+                    type="submit"
+                    className="btn btn-primary d-grid w-100"
+                  >
                     Sign up
                   </button>
                 </form>
 
                 <p className="text-center">
                   <span>Already have an account?</span>
-                  <a href="auth-login-basic.html">
+                  <a href="/sign-in">
                     <span>Sign in instead</span>
                   </a>
                 </p>
@@ -146,11 +197,7 @@ const Register = () => {
 };
 
 export async function getStaticProps({ locale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ["common"])),
-    },
-  };
+  return { props: { ...(await serverSideTranslations(locale, ["common"])) } };
 }
 
 export default Register;

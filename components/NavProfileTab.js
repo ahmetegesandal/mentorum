@@ -81,6 +81,18 @@ const NavProfileTab = () => {
     });
   };
 
+  const getRandomColorClass = () => {
+    const colors = [
+      "bg-label-warning",
+      "bg-label-danger",
+      "bg-label-info",
+      "bg-label-primary",
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
+  };
+
+  const randomColorClass = getRandomColorClass();
+
   return (
     <li className="nav-item navbar-dropdown dropdown-user dropdown">
       <a
@@ -91,15 +103,20 @@ const NavProfileTab = () => {
         <div
           className={`avatar ${isOnline ? "avatar-online" : "avatar-offline"}`}
         >
-          <img
-            src={
-              userData?.photo
-                ? `/img/avatars/${userData.photo}`
-                : "/img/avatars/default.png"
-            }
-            alt="Avatar"
-            className="rounded-circle"
-          />
+          {userData?.photo ? (
+            <img
+              src={`/img/avatars/${userData.photo}`}
+              alt="Avatar"
+              className="rounded-circle"
+            />
+          ) : (
+            <span
+              className={`avatar-initial rounded-circle ${randomColorClass}`}
+            >
+              {userData?.name?.[0].toLowerCase()}
+              {userData?.surname?.[0].toLowerCase()}
+            </span>
+          )}
         </div>
       </a>
       <ul className="dropdown-menu dropdown-menu-end">
@@ -112,22 +129,27 @@ const NavProfileTab = () => {
                     isOnline ? "avatar-online" : "avatar-offline"
                   }`}
                 >
-                  <img
-                    src={
-                      userData?.photo
-                        ? `/img/avatars/${userData.photo}`
-                        : "/img/avatars/default.png"
-                    }
-                    alt="Avatar"
-                    className="rounded-circle"
-                  />
+                  {userData?.photo ? (
+                    <img
+                      src={`/img/avatars/${userData.photo}`}
+                      alt="Avatar"
+                      className="rounded-circle"
+                    />
+                  ) : (
+                    <span
+                      className={`avatar-initial rounded-circle ${randomColorClass}`}
+                    >
+                      {userData?.name?.[0].toLowerCase()}
+                      {userData?.surname?.[0].toLowerCase()}
+                    </span>
+                  )}
                 </div>
               </div>
               <div className="flex-grow-1">
                 <h6 className="mb-0">
                   {userData?.name + " " + userData?.surname || "Guest"}
                 </h6>
-                <small className="text-muted">{t("admin")}</small>
+                <small className="text-muted">{userData?.role}</small>
               </div>
             </div>
           </Link>

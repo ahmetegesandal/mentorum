@@ -129,11 +129,14 @@ Bu döküman, projeyi sorunsuz bir şekilde yerel ortamda çalıştırmanız iç
 
 Aşağıdaki kullanıcı hesaplarını test amaçlı kullanabilirsiniz:
 
-| Kullanıcı Adı | Şifre  | Yetki |
-| ------------- | ------ | ----- |
-| ege           | ege123 | admin |
-| sena          | ege123 | admin |
-| emir          | ege123 | admin |
-| ufuk          | ege123 | admin |
-| hatice        | ege123 | admin |
-| furkan        | ege123 | admin |
+| Kullanıcı Adı | Şifre  | Yetki   |
+| ------------- | ------ | ------- |
+| ege           | ege123 | admin   |
+| sena          | ege123 | admin   |
+| emir          | ege123 | admin   |
+| ufuk          | ege123 | admin   |
+| hatice        | ege123 | admin   |
+| furkan        | ege123 | admin   |
+| sibel         | ege123 | teacher |
+| cicek         | ege123 | student |
+| akgun         | ege123 | parent  |
