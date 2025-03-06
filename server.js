@@ -1,7 +1,7 @@
 const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
-const mysql = require("mysql2");
+const mysql = require("mysql2/promise"); // ✅ Promise tabanlı MySQL kullan
 
 const app = express();
 const server = http.createServer(app);
@@ -12,67 +12,65 @@ const io = new Server(server, {
   },
 });
 
-// ✅ MySQL bağlantısı
-const db = mysql.createConnection({
+// ✅ MySQL Bağlantı Havuzu
+const pool = mysql.createPool({
   host: "localhost",
   user: "root",
   password: "",
   database: "my_auth_db",
+  waitForConnections: true,
+  connectionLimit: 10, // Maksimum 10 bağlantı kullan
+  queueLimit: 0,
 });
 
-db.connect((err) => {
-  if (err) {
-    console.error("MySQL bağlantı hatası:", err);
-  } else {
-    console.log("✅ MySQL bağlantısı başarılı!");
+// ✅ Havuzdan bağlantı almak için yardımcı fonksiyon
+async function getConnection() {
+  return await pool.getConnection();
+}
+
+// 📌 Kullanıcıyı offline yap
+async function setUserOffline(userId) {
+  if (!userId) return;
+  let db;
+  try {
+    db = await getConnection();
+    await db.execute("UPDATE users SET is_online = 0 WHERE id = ?", [userId]);
+    console.log(`🟡 Kullanıcı offline yapıldı: ${userId}`);
+  } catch (error) {
+    console.error("❌ Kullanıcı offline durumu güncellenemedi:", error);
+  } finally {
+    if (db) db.release();
   }
-});
-
-// 📌 Kullanıcıları offline yapmak için fonksiyon
-function setUserOffline(userId) {
-  if (!userId) return;
-  db.query(
-    "UPDATE users SET is_online = 0 WHERE id = ?",
-    [userId],
-    (err, result) => {
-      if (err) {
-        console.error("🔴 Kullanıcı offline durumu güncellenemedi:", err);
-      } else {
-        console.log(`🔴 Kullanıcı ${userId} offline yapıldı.`);
-      }
-    }
-  );
 }
 
-// 📌 Kullanıcıları online yapmak için fonksiyon
-function setUserOnline(userId) {
+// 📌 Kullanıcıyı online yap
+async function setUserOnline(userId) {
   if (!userId) return;
-  db.query(
-    "UPDATE users SET is_online = 1 WHERE id = ?",
-    [userId],
-    (err, result) => {
-      if (err) {
-        console.error("🔴 Kullanıcı online durumu güncellenemedi:", err);
-      } else {
-        console.log(`✅ Kullanıcı ${userId} online yapıldı.`);
-      }
-    }
-  );
+  let db;
+  try {
+    db = await getConnection();
+    await db.execute("UPDATE users SET is_online = 1 WHERE id = ?", [userId]);
+    console.log(`✅ Kullanıcı ${userId} online yapıldı.`);
+  } catch (error) {
+    console.error("🔴 Kullanıcı online durumu güncellenemedi:", error);
+  } finally {
+    if (db) db.release();
+  }
 }
 
-// 📌 Socket.io ile bağlantıları dinle
+// 📌 Socket.io Bağlantı Yönetimi
 io.on("connection", (socket) => {
   const userId = socket.handshake.query.userId; // Kullanıcı ID'yi doğrudan bağlantıdan al
   console.log(`🟢 Yeni kullanıcı bağlandı: ${socket.id}, UserID: ${userId}`);
 
   if (userId) {
-    socket.userId = userId; // Kullanıcı ID'yi kaydet
+    socket.userId = userId;
     setUserOnline(userId);
   } else {
     console.log("❌ Hata: WebSocket bağlantısında userId bulunamadı.");
   }
 
-  // Kullanıcı belirli bir sohbete katılır
+  // Kullanıcı bir odaya katılır
   socket.on("joinRoom", (data) => {
     const roomName = getRoomName(data.sender_id, data.receiver_id);
     socket.join(roomName);
@@ -95,13 +93,8 @@ io.on("connection", (socket) => {
     if (socket.userId) {
       console.log(`🔴 Kullanıcı ${socket.userId} bağlantıyı kesti.`);
       setUserOffline(socket.userId);
-
-      // Tüm kullanıcılara offline olduğunu bildir
       io.emit("onlineStatus", { userId: socket.userId, isOnline: false });
-
-      // Kullanıcıyı çıkış yaptıktan sonra yeniden giriş yapmasını engelleyin
-      // Ekstra bir kontrol ile sadece geçerli bir oturumda kullanıcıyı online yapın
-      socket.userId = null; // Kullanıcıyı oturumdan çıkarıyoruz
+      socket.userId = null; // Kullanıcıyı temizle
     } else {
       console.log("❌ socket.userId tanımlı değil, offline yapılmadı.");
     }
@@ -115,21 +108,26 @@ function getRoomName(senderId, receiverId) {
     : `${receiverId}-${senderId}`;
 }
 
-// 📌 Tüm online kullanıcıları almak için API
-app.get("/online-users", (req, res) => {
-  db.query(
-    "SELECT id, username FROM users WHERE is_online = 1",
-    (err, results) => {
-      if (err) {
-        res.status(500).json({ error: "Veritabanı hatası" });
-      } else {
-        res.json(results);
-      }
-    }
-  );
+// 📌 Online Kullanıcıları Getir API
+app.get("/online-users", async (req, res) => {
+  let db;
+  try {
+    db = await getConnection();
+    const [results] = await db.execute(
+      "SELECT id, username FROM users WHERE is_online = 1"
+    );
+    res.json(results);
+  } catch (error) {
+    console.error("❌ Online kullanıcıları çekerken hata oluştu:", error);
+    res.status(500).json({ error: "Veritabanı hatası" });
+  } finally {
+    if (db) db.release();
+  }
 });
 
 // 📌 Sunucuyu başlat
 server.listen(3001, () => {
   console.log("🚀 WebSocket Sunucu 3001 portunda çalışıyor...");
 });
+
+module.exports = { getConnection, setUserOffline, setUserOnline };
