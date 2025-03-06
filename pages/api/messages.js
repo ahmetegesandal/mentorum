@@ -1,4 +1,4 @@
-import { getConnection } from "../../utils/db"; // Make sure this is properly implemented.
+import { getConnection } from "../../utils/db";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {

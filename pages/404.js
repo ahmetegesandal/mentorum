@@ -1,10 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const ErrorPage = () => {
   const { t } = useTranslation("common");
+  const router = useRouter();
+
+  const handleRedirect = () => {
+    router.push("/main"); // Ana sayfaya yönlendir
+  };
+
   return (
     <>
       <div className="container-xxl container-p-y">
@@ -17,10 +24,12 @@ const ErrorPage = () => {
           </h1>
           <h4 className="mb-2 mx-2">{t("pagenotfound")} ⚠</h4>
           <p className="mb-6 mx-2">{t("pagenotfoundtwo")}</p>
-          {/* Link kullanımı düzeltilmiştir */}
-          <Link href="/main" className="btn btn-primary mb-10">
+
+          {/* Link yerine button ile yönlendirme */}
+          <button onClick={handleRedirect} className="btn btn-primary mb-10">
             {t("backtohome")}
-          </Link>
+          </button>
+
           <div className="mt-4">
             <Image
               src="/img/illustrations/page-misc-error.png"

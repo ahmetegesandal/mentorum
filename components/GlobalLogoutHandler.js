@@ -10,7 +10,11 @@ const GlobalLogoutHandler = () => {
   const router = useRouter(); // Geçerli sayfa yolunu almak için useRouter'ı kullanıyoruz
 
   // Eğer sayfa '/sign-in' ise, WebSocket bağlantısını kurma
-  if (router.pathname === "/sign-in" || router.pathname === "/") {
+  if (
+    router.pathname === "/sign-in" ||
+    router.pathname === "/" ||
+    router.pathname === "/404"
+  ) {
     return null; // '/sign-in' sayfasında WebSocket bağlantısı yapılmayacak
   }
 
