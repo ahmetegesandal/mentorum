@@ -32,7 +32,7 @@ export default async function handler(req, res) {
         res.status(404).json({ message: "Kullanıcı bulunamadı." });
       }
 
-      connection.end(); // Bağlantıyı kapat
+      connection.release(); // Bağlantıyı kapat
     } else {
       res.setHeader("Allow", ["GET"]);
       res.status(405).end(`Method ${req.method} not allowed`);

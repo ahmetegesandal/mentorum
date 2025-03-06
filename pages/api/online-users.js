@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     res.status(500).json({ error: "Internal Server Error" });
   } finally {
     if (connection) {
-      connection.release(); // Bağlantıyı havuza geri veriyoruz
+      connection.release();
     }
   }
 }

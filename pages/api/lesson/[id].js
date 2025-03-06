@@ -6,12 +6,25 @@ export default async function handler(req, res) {
   }
 
   const { id } = req.query;
+  let db;
 
   try {
-    const db = await getConnection();
-    const [lesson] = await db.execute("SELECT * FROM lessons WHERE id = ?", [
-      id,
-    ]);
+    db = await getConnection();
+    const query = `
+  SELECT 
+    lessons.*, 
+    users.id AS teacher_user_id, 
+    users.name AS teacher_name, 
+    users.surname AS teacher_surname, 
+    users.email AS teacher_email, 
+    users.photo AS teacher_photo
+  FROM lessons
+  JOIN teachers ON lessons.teacher_id = teachers.user_id
+  JOIN users ON teachers.user_id = users.id
+  WHERE lessons.id = ?;
+`;
+
+    const [lesson] = await db.execute(query, [id]);
 
     if (lesson.length === 0) {
       return res.status(404).json({ error: "Ders bulunamadı" });
@@ -19,8 +32,11 @@ export default async function handler(req, res) {
 
     res.status(200).json(lesson[0]);
   } catch (error) {
+    console.error("❌ [HATA] Ders getirme hatası:", error);
     res
       .status(500)
       .json({ error: "Ders getirilirken hata oluştu: " + error.message });
+  } finally {
+    if (db) db.release();
   }
 }

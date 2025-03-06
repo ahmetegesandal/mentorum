@@ -25,6 +25,6 @@ export default async function handler(req, res) {
     console.error("Database error:", error);
     res.status(500).json({ error: "Internal Server Error" });
   } finally {
-    await connection.end();
+    await connection.release();
   }
 }

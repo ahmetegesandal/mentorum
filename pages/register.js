@@ -10,6 +10,8 @@ const Register = () => {
     username: "",
     email: "",
     password: "",
+    name: "",
+    surname: "",
     expertise: "",
   });
   const [error, setError] = useState("");
@@ -24,7 +26,12 @@ const Register = () => {
     setError("");
     setSuccess("");
 
-    const { username, email, password, expertise } = formData;
+    const { username, email, password, name, surname, expertise } = formData;
+
+    if (!username || !name || !surname || !email || !password) {
+      setError("All fields are required!");
+      return;
+    }
 
     const response = await fetch("/api/register", {
       method: "POST",
@@ -33,6 +40,8 @@ const Register = () => {
         username,
         email,
         password,
+        name,
+        surname,
         role,
         expertise: role === "teacher" ? expertise : null,
       }),
@@ -45,7 +54,7 @@ const Register = () => {
     } else {
       setSuccess("Registration successful! Redirecting...");
       setTimeout(() => {
-        window.location.href = "/sign-in"; // Redirect to login page
+        window.location.href = "/sign-in";
       }, 2000);
     }
   };
@@ -85,9 +94,9 @@ const Register = () => {
                       value={role}
                       onChange={(e) => setRole(e.target.value)}
                     >
-                      <option value="student">Student</option>
-                      <option value="parent">Parent</option>
-                      <option value="teacher">Teacher</option>
+                      <option value="student">Öğrenci</option>
+                      <option value="parent">Veli</option>
+                      <option value="teacher">Öğretmen</option>
                     </select>
                   </div>
 
@@ -102,6 +111,37 @@ const Register = () => {
                       name="username"
                       placeholder="Enter your username"
                       autoFocus
+                      required
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className="mb-6">
+                    <label htmlFor="name" className="form-label">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="name"
+                      name="name"
+                      placeholder="Enter your name"
+                      required
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className="mb-6">
+                    <label htmlFor="surname" className="form-label">
+                      Surname
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="surname"
+                      name="surname"
+                      placeholder="Enter your surname"
+                      required
                       onChange={handleChange}
                     />
                   </div>
@@ -111,11 +151,12 @@ const Register = () => {
                       Email
                     </label>
                     <input
-                      type="text"
+                      type="email"
                       className="form-control"
                       id="email"
                       name="email"
                       placeholder="Enter your email"
+                      required
                       onChange={handleChange}
                     />
                   </div>
@@ -131,6 +172,7 @@ const Register = () => {
                         className="form-control"
                         name="password"
                         placeholder="••••••••"
+                        required
                         onChange={handleChange}
                       />
                       <span className="input-group-text cursor-pointer">
@@ -154,24 +196,6 @@ const Register = () => {
                       />
                     </div>
                   )}
-
-                  <div className="my-8">
-                    <div className="form-check mb-0 ms-2">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="terms-conditions"
-                        name="terms"
-                        required
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="terms-conditions"
-                      >
-                        I agree to <a href="#">privacy policy & terms</a>
-                      </label>
-                    </div>
-                  </div>
 
                   <button
                     type="submit"

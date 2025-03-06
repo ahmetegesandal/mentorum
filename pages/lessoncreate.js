@@ -4,41 +4,61 @@ import { useState, useEffect, useContext } from "react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import axios from "axios";
+import Swal from "sweetalert2";
 import { UserContext } from "../contexts/UserContext";
+import { useRouter } from "next/router";
 
-const Blank = ({ categories }) => {
+const AddLesson = ({ categories }) => {
   const { t } = useTranslation("common");
   const userData = useContext(UserContext);
+  const router = useRouter();
 
-  const [teacherId, setTeacherId] = useState("");
+  if (!userData || userData.role !== "teacher") {
+    return <p>Erişim Yetkiniz Yok!</p>;
+  }
+
+  const [teacherId, setTeacherId] = useState(userData.id);
   const [categoryId, setCategoryId] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [language, setLanguage] = useState("");
+  const [lessonPhoto, setLessonPhoto] = useState(null);
 
-  useEffect(() => {
-    if (userData?.id) {
-      setTeacherId(userData.id);
-    }
-  }, [userData]);
+  const handleFileChange = (e) => {
+    setLessonPhoto(e.target.files[0]);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const formData = new FormData();
+    formData.append("teacher_id", teacherId);
+    formData.append("category_id", categoryId);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append("language", language);
+    if (lessonPhoto) {
+      formData.append("lesson_photo", lessonPhoto);
+    }
+
     try {
-      const response = await axios.post("/api/addlesson", {
-        teacher_id: teacherId,
-        category_id: categoryId,
-        title,
-        description,
-        price,
-        language,
+      const response = await axios.post("/api/addlesson", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
-      alert("Lesson added successfully");
+
+      Swal.fire({
+        title: "Başarılı!",
+        text: "Ders başarıyla eklendi.",
+        icon: "success",
+        confirmButtonText: "Tamam",
+      }).then(() => {
+        router.push("/slessons"); // Yönlendirme işlemi
+      });
     } catch (error) {
       console.error(error);
-      alert("Error adding lesson");
+      Swal.fire("Hata!", "Ders eklenirken hata oluştu.", "error");
     }
   };
 
@@ -49,14 +69,13 @@ const Blank = ({ categories }) => {
         <Navbar />
         <div className="content-wrapper">
           <div className="container mt-5">
-            <h3>Add New Lesson</h3>
+            <h3>Ders Ekle</h3>
             <form onSubmit={handleSubmit}>
-              {/* Teacher ID is now hidden but automatically set */}
               <input type="hidden" value={teacherId} />
 
               <div className="mb-3">
                 <label htmlFor="category_id" className="form-label">
-                  Category
+                  Kategori
                 </label>
                 <select
                   className="form-select"
@@ -65,7 +84,7 @@ const Blank = ({ categories }) => {
                   onChange={(e) => setCategoryId(e.target.value)}
                   required
                 >
-                  <option value="">Select Category</option>
+                  <option value="">Kategori Seç</option>
                   {categories.map((category) => (
                     <option key={category.id} value={category.id}>
                       {category.name}
@@ -76,7 +95,7 @@ const Blank = ({ categories }) => {
 
               <div className="mb-3">
                 <label htmlFor="title" className="form-label">
-                  Title
+                  Başlık
                 </label>
                 <input
                   type="text"
@@ -90,7 +109,7 @@ const Blank = ({ categories }) => {
 
               <div className="mb-3">
                 <label htmlFor="description" className="form-label">
-                  Description
+                  Açıklama
                 </label>
                 <textarea
                   className="form-control"
@@ -104,7 +123,7 @@ const Blank = ({ categories }) => {
 
               <div className="mb-3">
                 <label htmlFor="price" className="form-label">
-                  Price
+                  Fiyat
                 </label>
                 <input
                   type="number"
@@ -118,7 +137,7 @@ const Blank = ({ categories }) => {
 
               <div className="mb-3">
                 <label htmlFor="language" className="form-label">
-                  Language
+                  Dil
                 </label>
                 <input
                   type="text"
@@ -130,8 +149,21 @@ const Blank = ({ categories }) => {
                 />
               </div>
 
+              <div className="mb-3">
+                <label htmlFor="lesson_photo" className="form-label">
+                  Ders Fotoğrafı
+                </label>
+                <input
+                  type="file"
+                  className="form-control"
+                  id="lesson_photo"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                />
+              </div>
+
               <button type="submit" className="btn btn-primary">
-                Add Lesson
+                Ders Ekle
               </button>
             </form>
           </div>
@@ -153,4 +185,4 @@ export async function getStaticProps({ locale }) {
   };
 }
 
-export default Blank;
+export default AddLesson;

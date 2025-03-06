@@ -70,7 +70,7 @@ export default async function handler(req, res) {
         .json({ error: "Database error: " + error.message });
     } finally {
       if (connection) {
-        connection.release(); // Ensure that connection is released
+        connection.release();
       }
     }
   }

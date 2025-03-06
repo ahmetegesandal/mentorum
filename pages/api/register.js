@@ -9,9 +9,10 @@ export default async function handler(req, res) {
   const db = await getConnection();
 
   try {
-    const { username, email, password, role, expertise } = req.body;
+    const { username, name, surname, email, password, role, expertise } =
+      req.body;
 
-    if (!username || !email || !password || !role) {
+    if (!username || !name || !surname || !email || !password || !role) {
       return res.status(400).json({ error: "All fields are required" });
     }
 
@@ -30,8 +31,8 @@ export default async function handler(req, res) {
 
     // Insert user into the users table
     const [userResult] = await db.execute(
-      "INSERT INTO users (username, email, password, role, created_at) VALUES (?, ?, ?, ?, NOW())",
-      [username, email, hashedPassword, role]
+      "INSERT INTO users (username, name, surname, email, password, role, created_at) VALUES (?, ?, ?, ?, ?, ?, NOW())",
+      [username, name, surname, email, hashedPassword, role]
     );
 
     const userId = userResult.insertId; // Get newly inserted user ID
@@ -56,6 +57,6 @@ export default async function handler(req, res) {
     console.error("Registration Error:", error);
     res.status(500).json({ error: "Internal Server Error" });
   } finally {
-    db.end();
+    db.release();
   }
 }

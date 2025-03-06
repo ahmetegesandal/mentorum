@@ -24,6 +24,6 @@ export default async function handler(req, res) {
     console.error("Çıkış hatası:", error);
     res.status(500).json({ message: "Bir hata oluştu." });
   } finally {
-    await connection.end();
+    await connection.release();
   }
 }

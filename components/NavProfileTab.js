@@ -91,7 +91,11 @@ const NavProfileTab = () => {
     return colors[Math.floor(Math.random() * colors.length)];
   };
 
-  const randomColorClass = getRandomColorClass();
+  const [avatarColor, setAvatarColor] = useState("");
+
+  useEffect(() => {
+    setAvatarColor(getRandomColorClass());
+  }, []); // ✅ Sadece ilk render'da çalışır!
 
   return (
     <li className="nav-item navbar-dropdown dropdown-user dropdown">
@@ -110,9 +114,7 @@ const NavProfileTab = () => {
               className="rounded-circle"
             />
           ) : (
-            <span
-              className={`avatar-initial rounded-circle ${randomColorClass}`}
-            >
+            <span className={`avatar-initial rounded-circle ${avatarColor}`}>
               {userData?.name?.[0].toLowerCase()}
               {userData?.surname?.[0].toLowerCase()}
             </span>
@@ -137,7 +139,7 @@ const NavProfileTab = () => {
                     />
                   ) : (
                     <span
-                      className={`avatar-initial rounded-circle ${randomColorClass}`}
+                      className={`avatar-initial rounded-circle ${avatarColor}`}
                     >
                       {userData?.name?.[0].toLowerCase()}
                       {userData?.surname?.[0].toLowerCase()}

@@ -4,9 +4,11 @@ import Navbar from "../../components/Navbar";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const LessonDetails = ({ lesson }) => {
   const { t } = useTranslation("common");
+  const router = useRouter();
 
   return (
     <>
@@ -21,13 +23,14 @@ const LessonDetails = ({ lesson }) => {
                   <div className="card-body">
                     <div className="d-flex justify-content-between align-items-center flex-wrap mb-6 gap-2">
                       <div className="me-1">
-                        <h5 className="mb-0">{lesson.title}</h5>
-                        <p className="mb-0">
-                          Prof.{" "}
-                          <span className="fw-medium text-heading">
-                            {lesson.teacher_id}
-                          </span>
-                        </p>
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => router.push("/slessons")}
+                        >
+                          Geri Dön
+                        </button>
+                        <h5 className="mb-0 mt-3">{lesson.title}</h5>
+                        <p className="mb-0"></p>
                       </div>
                       <div className="d-flex align-items-center">
                         <span className="badge bg-label-danger">
@@ -67,7 +70,7 @@ const LessonDetails = ({ lesson }) => {
                           <div className="avatar-wrapper">
                             <div className="avatar me-4">
                               <img
-                                src="../../assets/img/avatars/11.png"
+                                src={`/img/avatars/${lesson.teacher_photo}`}
                                 alt="Avatar"
                                 className="rounded-circle"
                               />

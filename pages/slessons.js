@@ -9,6 +9,7 @@ const ITEMS_PER_PAGE = 8;
 const Slessons = () => {
   const { t } = useTranslation("common");
   const [lessons, setLessons] = useState([]);
+
   const [categories, setCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -18,8 +19,11 @@ const Slessons = () => {
   useEffect(() => {
     fetch("/api/lessons")
       .then((res) => res.json())
-      .then((data) => setLessons(data))
-      .catch((err) => console.error("Error fetching lessons:", err));
+      .then((data) => setLessons(Array.isArray(data) ? data : [])) // Dizi olup olmadığını kontrol et
+      .catch((err) => {
+        console.error("Error fetching lessons:", err);
+        setLessons([]); // Eğer hata olursa boş dizi set et
+      });
   }, []);
 
   // Fetch categories dynamically
@@ -138,7 +142,7 @@ const Slessons = () => {
                               <a href={`/lessons/${lesson.id}`}>
                                 <img
                                   className="img-fluid"
-                                  src="img/pages/app-academy-tutor-1.png"
+                                  src={`${lesson.lesson_photo}`}
                                   alt={lesson.title}
                                 />
                               </a>
