@@ -135,7 +135,7 @@ export default async function handler(req, res) {
     if (role === "student") {
       console.log("🟢 Öğrenci tespit edildi, silme işlemi başlatılıyor...");
 
-      // **1️⃣ Önce `student_parents` tablosundaki ilişkileri kaldır**
+      // **1️⃣ Öğrenciye bağlı `student_parents` ilişkilerini sil**
       console.log(
         "🟢 Öğrenciye bağlı `student_parents` ilişkileri siliniyor..."
       );
@@ -143,28 +143,28 @@ export default async function handler(req, res) {
         id,
       ]);
 
-      // **2️⃣ Öğrenciye bağlı `reviews` verilerini sil**
+      // **2️⃣ Öğrenciye bağlı diğer bağımlı verileri sil**
       console.log("🟢 Öğrenciye bağlı `reviews` verileri siliniyor...");
       await db.execute("DELETE FROM reviews WHERE student_id = ?", [id]);
 
-      // **3️⃣ Öğrenciye bağlı `messages` verilerini sil**
       console.log("🟢 Öğrenciye bağlı `messages` verileri siliniyor...");
       await db.execute(
         "DELETE FROM messages WHERE sender_id = ? OR receiver_id = ?",
         [id, id]
       );
 
-      // **4️⃣ Öğrenciye bağlı `notifications` verilerini sil**
       console.log("🟢 Öğrenciye bağlı `notifications` verileri siliniyor...");
       await db.execute("DELETE FROM notifications WHERE user_id = ?", [id]);
 
-      // **5️⃣ Öğrencinin `students` tablosundan kaydını kaldır**
+      // **3️⃣ Önce `students` tablosundan kaydı kaldır**
       console.log("🟢 Öğrenci `students` tablosundan siliniyor...");
-      await db.execute("DELETE FROM students WHERE user_id = ?", [id]);
+      await db.execute("DELETE FROM students WHERE user_id = ?", [id]); // **Önemli düzeltme burada!**
 
-      // **6️⃣ En son olarak `users` tablosundan öğrenciyi kaldır**
+      // **4️⃣ En son `users` tablosundan öğrenciyi kaldır**
       console.log("🟢 Öğrenci `users` tablosundan siliniyor...");
       await db.execute("DELETE FROM users WHERE id = ?", [id]);
+
+      console.log("✅ Öğrenci başarıyla silindi.");
     }
 
     // **✅ Eğer kullanıcı bir öğretmense**

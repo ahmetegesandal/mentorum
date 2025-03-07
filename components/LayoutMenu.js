@@ -37,6 +37,11 @@ const menuItems = [
         roles: ["teacher"],
       },
       {
+        path: "/manage-lessons",
+        label: "Ders İlanları Yönet",
+        roles: ["teacher"],
+      },
+      {
         path: "/my-students",
         label: "Öğrencilerim",
         roles: ["parent"],

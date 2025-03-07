@@ -135,7 +135,7 @@ const Slessons = () => {
                 <div className="card-body">
                   <div className="row gy-6 mb-6">
                     {paginatedLessons.length > 0 ? (
-                      paginatedLessons.map((lesson) => (
+                      paginatedLessons.toReversed().map((lesson) => (
                         <div className="col-sm-6 col-lg-3" key={lesson.id}>
                           <div className="card p-2 h-100 shadow-none border">
                             <div className="rounded-2 text-center mb-4">
@@ -175,7 +175,11 @@ const Slessons = () => {
                               <a href={`/lessons/${lesson.id}`} className="h5">
                                 {lesson.title}
                               </a>
-                              <p className="mt-1">{lesson.description}</p>
+                              <p className="mt-1">
+                                {lesson.description.length > 100
+                                  ? lesson.description.substring(0, 100) + "..."
+                                  : lesson.description}
+                              </p>
                               <p>
                                 <strong>Fiyat:</strong> {lesson.price}₺
                               </p>
