@@ -33,6 +33,7 @@ const Chat = () => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // Kullanıcıların listesi (Kendi kullanıcılarınızı alın)
   useEffect(() => {
     axios
       .get("/api/users")

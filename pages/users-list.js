@@ -9,7 +9,8 @@ class UsersList extends Component {
     super(props);
 
     this.state = {
-      users: [],
+      users: [], // ✅ Kullanıcı listesi
+      onlineUsers: {}, // ✅ Online kullanıcı bilgileri
       searchQuery: "",
       currentPage: 1,
       usersPerPage: 5,
@@ -17,19 +18,20 @@ class UsersList extends Component {
     };
   }
 
-  handleEdit = (id) => {
-    this.props.router.push(`/edit-user/${id}`);
-  };
-
-  handleProfile = (username) => {
-    this.props.router.push(`/profile/${username}`);
-  };
-
   componentDidMount() {
     this.fetchUsers();
+    this.fetchOnlineUsers(); // ✅ İlk çalıştırma
+
+    // ✅ Online kullanıcı durumlarını her 5 saniyede bir güncelle
+    this.onlineCheckInterval = setInterval(this.fetchOnlineUsers, 5000);
   }
 
-  async fetchUsers() {
+  componentWillUnmount() {
+    clearInterval(this.onlineCheckInterval); // ✅ Component kaldırıldığında temizle
+  }
+
+  // 📌 Kullanıcıları API'den çek
+  fetchUsers = async () => {
     try {
       const response = await fetch("/api/users-list");
       const data = await response.json();
@@ -38,10 +40,36 @@ class UsersList extends Component {
       console.error("Kullanıcıları çekerken hata oluştu:", error);
       this.setState({ loading: false });
     }
-  }
+  };
+
+  // 📌 Online kullanıcı bilgilerini API'den çek
+  fetchOnlineUsers = async () => {
+    try {
+      const response = await fetch("/api/online-users");
+      if (!response.ok) throw new Error("Online kullanıcı bilgisi alınamadı");
+
+      const data = await response.json();
+      const onlineStatusMap = {};
+      data.forEach((user) => {
+        onlineStatusMap[user.id] = user.is_online === 1;
+      });
+
+      this.setState({ onlineUsers: onlineStatusMap }); // ✅ Online kullanıcı bilgilerini güncelle
+    } catch (error) {
+      console.error("Online kullanıcı bilgisi alınırken hata oluştu:", error);
+    }
+  };
 
   handleSearch = (event) => {
     this.setState({ searchQuery: event.target.value, currentPage: 1 });
+  };
+
+  handleEdit = (id) => {
+    this.props.router.push(`/edit-user/${id}`);
+  };
+
+  handleProfile = (username) => {
+    this.props.router.push(`/profile/${username}`);
   };
 
   handleDelete = async (id) => {
@@ -81,24 +109,32 @@ class UsersList extends Component {
   };
 
   render() {
-    const { users, searchQuery, currentPage, usersPerPage, loading } =
-      this.state;
+    const {
+      users,
+      searchQuery,
+      currentPage,
+      usersPerPage,
+      loading,
+      onlineUsers,
+    } = this.state;
 
     if (loading) {
       return <p className="text-center mt-5">Yükleniyor...</p>;
     }
 
-    const filteredUsers = (users || []).filter(
+    // 📌 Kullanıcıları filtrele (arama kutusuna göre)
+    const filteredUsers = users.filter(
       (user) =>
         user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         user.surname.toLowerCase().includes(searchQuery.toLowerCase()) ||
         user.email.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+    // 📌 Pagination hesaplamaları
+    const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
     const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
-    const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
 
     return (
       <>
@@ -145,16 +181,25 @@ class UsersList extends Component {
                                 }
                                 className="cursor-pointer"
                               >
-                                <img
-                                  src={
-                                    `/img/avatars/${user.photo}` ||
-                                    "/img/default-avatar.png"
-                                  }
-                                  alt="User Avatar"
-                                  className="rounded-circle"
-                                  width="40"
-                                  height="40"
-                                />
+                                <div
+                                  className={`avatar ${
+                                    onlineUsers[user.id]
+                                      ? "avatar-online"
+                                      : "avatar-offline"
+                                  }`}
+                                >
+                                  <img
+                                    src={
+                                      user.photo
+                                        ? `/img/avatars/${user.photo}`
+                                        : "/img/avatars/default.png"
+                                    }
+                                    alt="User Avatar"
+                                    className="rounded-circle"
+                                    width="40"
+                                    height="40"
+                                  />
+                                </div>
                               </a>
                             </td>
 
@@ -162,7 +207,13 @@ class UsersList extends Component {
                             <td>{user.surname}</td>
                             <td>{user.email}</td>
                             <td>{user.role}</td>
-                            <td>{user.is_online ? "Online" : "Offline"}</td>
+                            <td>
+                              {onlineUsers[user.id] ? (
+                                <span className="text-success">🟢 Online</span>
+                              ) : (
+                                <span className="text-danger">🔴 Offline</span>
+                              )}
+                            </td>
                             <td>
                               <button
                                 className="btn btn-warning btn-sm me-2"
