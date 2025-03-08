@@ -21,6 +21,10 @@ class UsersList extends Component {
     this.props.router.push(`/edit-user/${id}`);
   };
 
+  handleProfile = (username) => {
+    this.props.router.push(`/profile/${username}`); // Profil sayfasına yönlendirme
+  };
+
   componentDidMount() {
     this.fetchUsers();
   }
@@ -152,6 +156,12 @@ class UsersList extends Component {
                             <td>{user.role}</td>
                             <td>{user.is_online ? "Online" : "Offline"}</td>
                             <td>
+                              <button
+                                className="btn btn-primary btn-sm me-2"
+                                onClick={() => this.handleProfile(user.username)} // Profil butonuna tıklayınca yönlendirme
+                              >
+                                Profil
+                              </button>
                               <button
                                 className="btn btn-warning btn-sm me-2"
                                 onClick={() => this.handleEdit(user.id)}
