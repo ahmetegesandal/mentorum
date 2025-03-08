@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     db = await getConnection();
 
     const [users] = await db.execute(
-      "SELECT id, name, surname, email, role, photo, is_online FROM users"
+      "SELECT id, username, name, surname, email, role, photo, is_online FROM users"
     );
 
     res.status(200).json({ users: users || [] });
