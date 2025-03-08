@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import LayoutMenu from "../components/LayoutMenu";
 import Navbar from "../components/Navbar";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -9,6 +9,36 @@ import { UserContext } from "../contexts/UserContext";
 const Profile = () => {
   const { t } = useTranslation("common");
   const userData = useContext(UserContext);
+  const [isOnline, setIsOnline] = useState(false);
+
+  useEffect(() => {
+    if (userData?.id) {
+      const checkOnlineStatus = async () => {
+        try {
+          const response = await fetch(`/api/users/${userData.id}/status`);
+          if (response.ok) {
+            const data = await response.json();
+            setIsOnline(data.is_online === 1);
+          }
+        } catch (error) {
+          console.error("Online durumu alınamadı:", error);
+        }
+      };
+
+      checkOnlineStatus();
+      const interval = setInterval(checkOnlineStatus, 5000);
+
+      return () => clearInterval(interval);
+    }
+  }, [userData]);
+
+  const formatDate = (isoDate) => {
+    if (!isoDate) return "Tarih bilgisi yok";
+    const date = new Date(isoDate);
+    return `${date.getDate()}.${
+      date.getMonth() + 1
+    }.${date.getFullYear()} tarihinde katıldı`;
+  };
 
   return (
     <>
@@ -20,18 +50,9 @@ const Profile = () => {
             <div className="row">
               <div className="col-12">
                 <div className="card mb-6">
-                  <div className="user-profile-header-banner">
-                    <Image
-                      src="/img/pages/profile-banner.png"
-                      alt="Profile Banner"
-                      className="rounded-top"
-                      layout="responsive"
-                      width={1200}
-                      height={300}
-                    />
-                  </div>
+                  <div className="user-profile-header-banner"></div>
                   <div className="user-profile-header d-flex flex-column flex-lg-row text-sm-start text-center mb-5">
-                    <div className="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
+                    <div className="flex-shrink-0 mt-5 mx-sm-0 mx-auto">
                       <Image
                         src={
                           userData?.photo
@@ -54,16 +75,12 @@ const Profile = () => {
                           <ul className="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-4 my-2">
                             <li className="list-inline-item d-flex gap-2 align-items-center">
                               <i className="ti ti-palette ti-lg"></i>
-                              <span className="fw-medium">UX Designer</span>
-                            </li>
-                            <li className="list-inline-item d-flex gap-2 align-items-center">
-                              <i className="ti ti-map-pin ti-lg"></i>
-                              <span className="fw-medium">Vatican City</span>
+                              <span className="fw-medium">{userData.role}</span>
                             </li>
                             <li className="list-inline-item d-flex gap-2 align-items-center">
                               <i className="ti ti-calendar ti-lg"></i>
                               <span className="fw-medium">
-                                Joined April 2021
+                                {formatDate(userData?.created_at)}
                               </span>
                             </li>
                           </ul>
@@ -80,30 +97,24 @@ const Profile = () => {
                 <div className="nav-align-top">
                   <ul className="nav nav-pills flex-column flex-sm-row mb-6 gap-2 gap-lg-0">
                     <li className="nav-item">
-                      <a className="nav-link active" href="javascript:void(0);">
-                        <i className="ti-sm ti ti-user-check me-1_5"></i>{" "}
-                        Profile
+                      <a className="nav-link active" href="">
+                        <i className="ti-sm ti ti-user-check me-1_5"></i> Profil
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="pages-profile-teams.html">
-                        <i className="ti-sm ti ti-users me-1_5"></i> Teams
+                      <a className="nav-link" href="">
+                        <i className="ti-sm ti ti-users me-1_5"></i> Ders
+                        İlanları
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a
-                        className="nav-link"
-                        href="pages-profile-projects.html"
-                      >
+                      <a className="nav-link" href="">
                         <i className="ti-sm ti ti-layout-grid me-1_5"></i>{" "}
                         Projects
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a
-                        className="nav-link"
-                        href="pages-profile-connections.html"
-                      >
+                      <a className="nav-link" href="">
                         <i className="ti-sm ti ti-link me-1_5"></i> Connections
                       </a>
                     </li>
@@ -117,29 +128,34 @@ const Profile = () => {
                 <div className="card mb-6">
                   <div className="card-body">
                     <small className="card-text text-uppercase text-muted small">
-                      About
+                      Hakkında
                     </small>
                     <ul className="list-unstyled my-3 py-1">
                       <li className="d-flex align-items-center mb-4">
                         <i className="ti ti-user ti-lg"></i>
-                        <span className="fw-medium mx-2">Full Name:</span>
-                        <span>John Doe</span>
+                        <span className="fw-medium mx-2">username:</span>
+                        <span>{userData.username}</span>
                       </li>
                       <li className="d-flex align-items-center mb-4">
-                        <i className="ti ti-check ti-lg"></i>
-                        <span className="fw-medium mx-2">Status:</span>
-                        <span>Active</span>
+                        <i className="ti ti-user ti-lg"></i>
+                        <span className="fw-medium mx-2">Full Name:</span>
+                        <span>
+                          {userData.name} {userData.surname}
+                        </span>
                       </li>
+
                       <li className="d-flex align-items-center mb-4">
                         <i className="ti ti-crown ti-lg"></i>
                         <span className="fw-medium mx-2">Role:</span>
-                        <span>Developer</span>
+                        <span>{userData.role}</span>
                       </li>
+
                       <li className="d-flex align-items-center mb-4">
-                        <i className="ti ti-flag ti-lg"></i>
-                        <span className="fw-medium mx-2">Country:</span>
-                        <span>USA</span>
+                        <i className="ti ti-crown ti-lg"></i>
+                        <span className="fw-medium mx-2">Mail:</span>
+                        <span>{userData.email}</span>
                       </li>
+
                       <li className="d-flex align-items-center mb-2">
                         <i className="ti ti-language ti-lg"></i>
                         <span className="fw-medium mx-2">Languages:</span>

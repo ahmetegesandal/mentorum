@@ -20,7 +20,7 @@ export default async function handler(req, res) {
     const query = `
       SELECT 
         reviews.id, reviews.student_id, reviews.rating, reviews.comment, reviews.created_at,
-        users.id AS user_id, users.name AS user_name, users.surname AS user_surname, users.photo AS user_photo, 
+        users.id AS user_id, users.username AS user_username, users.name AS user_name, users.surname AS user_surname, users.photo AS user_photo, 
         CASE 
           WHEN students.user_id IS NOT NULL THEN 'student' 
           WHEN parents.parent_id IS NOT NULL THEN 'parent' 

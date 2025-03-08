@@ -14,6 +14,38 @@ const LessonDetails = ({ lesson }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const userData = useContext(UserContext);
+  const [isTeacherOnline, setIsTeacherOnline] = useState(false);
+
+  useEffect(() => {
+    if (lesson?.teacher_user_id) {
+      const checkTeacherOnlineStatus = async () => {
+        try {
+          const response = await fetch(
+            `/api/users/${lesson.teacher_user_id}/status`
+          );
+          if (response.ok) {
+            const data = await response.json();
+            setIsTeacherOnline(data.is_online === 1);
+          }
+        } catch (error) {
+          console.error("❌ Eğitmenin online durumu alınamadı:", error);
+        }
+      };
+
+      checkTeacherOnlineStatus();
+      const interval = setInterval(checkTeacherOnlineStatus, 5000);
+
+      return () => clearInterval(interval);
+    }
+  }, [lesson?.teacher_user_id]);
+
+  const handleProfile = (username) => {
+    if (!username) {
+      console.error("Hata: teacher_username değeri tanımsız!");
+      return;
+    }
+    router.push(`/profile/${username}`);
+  };
 
   return (
     <>
@@ -66,11 +98,30 @@ const LessonDetails = ({ lesson }) => {
                         <div className="d-flex justify-content-start align-items-center user-name">
                           <div className="avatar-wrapper">
                             <div className="avatar me-4">
-                              <img
-                                src={`/img/avatars/${lesson.teacher_photo}`}
-                                alt="Avatar"
-                                className="rounded-circle"
-                              />
+                              <a
+                                target="__blank"
+                                onClick={() =>
+                                  handleProfile(lesson?.teacher_username)
+                                }
+                              >
+                                <div
+                                  className={`avatar ${
+                                    isTeacherOnline
+                                      ? "avatar-online"
+                                      : "avatar-offline"
+                                  }`}
+                                >
+                                  <img
+                                    src={
+                                      lesson?.teacher_photo
+                                        ? `/img/avatars/${lesson.teacher_photo}`
+                                        : "/img/avatars/default.png"
+                                    }
+                                    alt="Avatar"
+                                    className="rounded-circle"
+                                  />
+                                </div>
+                              </a>
                             </div>
                           </div>
                           <div className="d-flex flex-column">

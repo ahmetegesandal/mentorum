@@ -2,12 +2,16 @@ import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { UserContext } from "../contexts/UserContext";
+import { useRouter } from "next/router";
 
 const CommentsSection = ({ lessonId }) => {
   const userData = useContext(UserContext);
+  const router = useRouter();
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [rating, setRating] = useState(5);
+  const [isOnline, setIsOnline] = useState(false);
+  const [onlineUsers, setOnlineUsers] = useState({});
 
   useEffect(() => {
     fetchComments();
@@ -19,9 +23,40 @@ const CommentsSection = ({ lessonId }) => {
         `/api/lesson-comments?lesson_id=${lessonId}`
       );
       setComments(response.data);
+
+      checkOnlineStatuses(response.data);
     } catch (error) {
       console.error("Yorumları çekerken hata oluştu:", error);
     }
+  };
+
+  const checkOnlineStatuses = async (comments) => {
+    if (!comments.length) return;
+
+    const onlineStatusMap = {};
+    await Promise.all(
+      comments.map(async (comment) => {
+        if (comment.user_id) {
+          try {
+            const response = await fetch(
+              `/api/users/${comment.user_id}/status`
+            );
+            if (response.ok) {
+              const data = await response.json();
+              onlineStatusMap[comment.user_id] = data.is_online === 1;
+            }
+          } catch (error) {
+            console.error(
+              `❌ Kullanıcı ID: ${comment.user_id} online durumu alınamadı:`,
+              error
+            );
+            onlineStatusMap[comment.user_id] = false; // Hata durumunda offline kabul et
+          }
+        }
+      })
+    );
+
+    setOnlineUsers(onlineStatusMap);
   };
 
   const handleCommentSubmit = async (e) => {
@@ -46,6 +81,14 @@ const CommentsSection = ({ lessonId }) => {
       console.error("Yorum ekleme hatası:", error);
       Swal.fire("Hata!", "Yorum eklenirken hata oluştu.", "error");
     }
+  };
+
+  const handleProfile = (username) => {
+    if (!username) {
+      console.error("Hata: username değeri tanımsız!");
+      return;
+    }
+    router.push(`/profile/${username}`);
   };
 
   return (
@@ -95,14 +138,27 @@ const CommentsSection = ({ lessonId }) => {
         {comments.length > 0 ? (
           comments.map((comment) => (
             <div key={comment.id} className="list-group-item p-3 mb-3">
-              <div className="d-flex align-items-start">
-                <img
-                  src={`/img/avatars/${comment.user_photo}`}
-                  alt={comment.user_name}
-                  className="rounded-circle me-3"
-                  width="50"
-                  height="50"
-                />
+              <div className="d-flex align-items-start gap-3">
+                <a
+                  target="__blank"
+                  onClick={() => handleProfile(comment.user_username)}
+                  className=" cursor-pointer"
+                >
+                  <div
+                    className={`avatar ${
+                      onlineUsers[comment.user_id]
+                        ? "avatar-online"
+                        : "avatar-offline"
+                    }`}
+                  >
+                    <img
+                      src={`/img/avatars/${comment.user_photo}`}
+                      alt="Avatar"
+                      className="rounded-circle"
+                    />
+                  </div>
+                </a>
+
                 <div className="w-100">
                   <h6 className="mb-1">
                     {comment.user_name} {comment.user_surname}

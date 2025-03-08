@@ -15,6 +15,7 @@ export default async function handler(req, res) {
       SELECT 
         lessons.*, 
         users.id AS teacher_user_id, 
+        users.username AS teacher_username, 
         users.name AS teacher_name, 
         users.surname AS teacher_surname, 
         users.email AS teacher_email, 
