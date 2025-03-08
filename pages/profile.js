@@ -74,8 +74,20 @@ const Profile = () => {
                           </h4>
                           <ul className="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-4 my-2">
                             <li className="list-inline-item d-flex gap-2 align-items-center">
-                              <i className="ti ti-palette ti-lg"></i>
-                              <span className="fw-medium">{userData.role}</span>
+                              <span className="fw-medium">
+                                {userData.role === "admin" && (
+                                  <span className="badge bg-label-danger">
+                                    {"Admin"}
+                                  </span>
+                                )}
+                                {userData.role === "parent" && <>{"Veli"}</>}
+                                {userData.role === "student" && (
+                                  <>{"Öğrenci"}</>
+                                )}
+                                {userData.role === "teacher" && (
+                                  <>{"Öğretmen"}</>
+                                )}
+                              </span>
                             </li>
                             <li className="list-inline-item d-flex gap-2 align-items-center">
                               <i className="ti ti-calendar ti-lg"></i>
