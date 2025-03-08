@@ -124,16 +124,26 @@ const Profile = () => {
             </div>
 
             <div className="row">
-              <div className="col-xl-4 col-lg-5 col-md-5">
+              <div className="col-xl-12 col-lg-12 col-md-12">
                 <div className="card mb-6">
                   <div className="card-body">
                     <small className="card-text text-uppercase text-muted small">
                       Hakkında
                     </small>
+                    {userData.role === "teacher" && (
+                      <div>
+                        <p>{userData.teacher_info?.bio}</p>
+                      </div>
+                    )}
+                    {userData.role === "student" && (
+                      <div>
+                        <p>Sınıf: {userData.student_info?.grade}</p>
+                      </div>
+                    )}
                     <ul className="list-unstyled my-3 py-1">
                       <li className="d-flex align-items-center mb-4">
                         <i className="ti ti-user ti-lg"></i>
-                        <span className="fw-medium mx-2">username:</span>
+                        <span className="fw-medium mx-2">Username:</span>
                         <span>{userData.username}</span>
                       </li>
                       <li className="d-flex align-items-center mb-4">
@@ -161,47 +171,6 @@ const Profile = () => {
                         <span className="fw-medium mx-2">Languages:</span>
                         <span>English</span>
                       </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div className="col-xl-8 col-lg-7 col-md-7">
-                <div className="card card-action mb-6">
-                  <div className="card-header align-items-center">
-                    <h5 className="card-action-title mb-0">
-                      <i className="ti ti-chart-bar ti-lg text-body me-4"></i>
-                      Activity Timeline
-                    </h5>
-                  </div>
-                  <div className="card-body pt-3">
-                    <ul className="timeline mb-0">
-                      <li className="timeline-item timeline-item-transparent">
-                        <span className="timeline-point timeline-point-primary"></span>
-                        <div className="timeline-event">
-                          <div className="timeline-header mb-3">
-                            <h6 className="mb-0">12 Invoices have been paid</h6>
-                            <small className="text-muted">12 min ago</small>
-                          </div>
-                          <p className="mb-2">
-                            Invoices have been paid to the company
-                          </p>
-                          <div className="d-flex align-items-center mb-2">
-                            <div className="badge bg-lighter rounded d-flex align-items-center">
-                              <Image
-                                src="/img/icons/misc/pdf.png"
-                                alt="PDF Icon"
-                                width={15}
-                                height={15}
-                                className="me-2"
-                              />
-                              <span className="h6 mb-0 text-body">
-                                invoices.pdf
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      {/* Add more timeline events here */}
                     </ul>
                   </div>
                 </div>
