@@ -15,20 +15,31 @@ export default async function handler(req, res) {
   try {
     db = await getConnection();
 
-    const [reviews] = await db.execute(
-      `SELECT reviews.id, reviews.student_id, reviews.rating, reviews.comment, reviews.created_at, 
-              users.name AS student_name, users.surname AS student_surname, users.photo AS student_photo 
-       FROM reviews
-       JOIN students ON reviews.student_id = students.user_id
-       JOIN users ON students.user_id = users.id
-       WHERE reviews.lesson_id = ?
-       ORDER BY reviews.created_at DESC`,
-      [lesson_id]
-    );
+    console.log(`🔍 [DEBUG] lesson_id: ${lesson_id}`);
+
+    const query = `
+      SELECT 
+        reviews.id, reviews.student_id, reviews.rating, reviews.comment, reviews.created_at,
+        users.id AS user_id, users.name AS user_name, users.surname AS user_surname, users.photo AS user_photo, 
+        CASE 
+          WHEN students.user_id IS NOT NULL THEN 'student' 
+          WHEN parents.parent_id IS NOT NULL THEN 'parent' 
+          ELSE 'unknown' 
+        END AS role
+      FROM reviews
+      LEFT JOIN students ON reviews.student_id = students.user_id
+      LEFT JOIN parents ON reviews.student_id = parents.parent_id
+      JOIN users ON reviews.student_id = users.id
+      WHERE reviews.lesson_id = ?
+      ORDER BY reviews.created_at DESC`;
+
+    const [reviews] = await db.execute(query, [lesson_id]);
+
+    console.log(`✅ [DEBUG] Toplam yorum sayısı: ${reviews.length}`);
 
     res.status(200).json(reviews);
   } catch (error) {
-    console.error("Yorumları getirirken hata oluştu:", error);
+    console.error("❌ [HATA] Yorumları getirirken hata oluştu:", error);
     res.status(500).json({ error: "Yorumları çekerken hata oluştu." });
   } finally {
     if (db) db.release();

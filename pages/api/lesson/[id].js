@@ -10,19 +10,23 @@ export default async function handler(req, res) {
 
   try {
     db = await getConnection();
+
     const query = `
-  SELECT 
-    lessons.*, 
-    users.id AS teacher_user_id, 
-    users.name AS teacher_name, 
-    users.surname AS teacher_surname, 
-    users.email AS teacher_email, 
-    users.photo AS teacher_photo
-  FROM lessons
-  JOIN teachers ON lessons.teacher_id = teachers.user_id
-  JOIN users ON teachers.user_id = users.id
-  WHERE lessons.id = ?;
-`;
+      SELECT 
+        lessons.*, 
+        users.id AS teacher_user_id, 
+        users.name AS teacher_name, 
+        users.surname AS teacher_surname, 
+        users.email AS teacher_email, 
+        users.photo AS teacher_photo,
+        categories.id AS category_id, 
+        categories.name AS category_name
+      FROM lessons
+      JOIN teachers ON lessons.teacher_id = teachers.user_id
+      JOIN users ON teachers.user_id = users.id
+      JOIN categories ON lessons.category_id = categories.id
+      WHERE lessons.id = ?;
+    `;
 
     const [lesson] = await db.execute(query, [id]);
 

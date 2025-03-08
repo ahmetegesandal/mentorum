@@ -7,54 +7,13 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { UserContext } from "../../contexts/UserContext";
 import Swal from "sweetalert2";
+import ReservationForm from "../../components/ReservationForm";
+import CommentsSection from "../../components/CommentsSection";
 
 const LessonDetails = ({ lesson }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const userData = useContext(UserContext);
-
-  const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState("");
-  const [rating, setRating] = useState(5); // Varsayılan olarak 5 yıldız
-
-  useEffect(() => {
-    fetchComments();
-  }, []);
-
-  const fetchComments = async () => {
-    try {
-      const response = await axios.get(
-        `/api/lesson-comments?lesson_id=${lesson.id}`
-      );
-      setComments(response.data);
-    } catch (error) {
-      console.error("Yorumları çekerken hata oluştu:", error);
-    }
-  };
-
-  const handleCommentSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!newComment.trim()) {
-      return Swal.fire("Hata!", "Yorum alanı boş bırakılamaz!", "error");
-    }
-
-    try {
-      await axios.post("/api/add-comment", {
-        student_id: userData.id,
-        lesson_id: lesson.id,
-        rating,
-        comment: newComment,
-      });
-
-      setNewComment(""); // Yorumu temizle
-      fetchComments(); // Yorumları tekrar getir
-      Swal.fire("Başarılı!", "Yorumunuz eklendi!", "success");
-    } catch (error) {
-      console.error("Yorum ekleme hatası:", error);
-      Swal.fire("Hata!", "Yorum eklenirken hata oluştu.", "error");
-    }
-  };
 
   return (
     <>
@@ -79,7 +38,7 @@ const LessonDetails = ({ lesson }) => {
                       </div>
                       <div className="d-flex align-items-center">
                         <span className="badge bg-label-danger">
-                          {lesson.category_id}
+                          {lesson.category_name}
                         </span>
                       </div>
                     </div>
@@ -98,6 +57,7 @@ const LessonDetails = ({ lesson }) => {
                         <h5>Fiyat</h5>
                         <p>{lesson.price} $</p>
                         <hr className="my-6" />
+                        <ReservationForm lesson={lesson} />
 
                         <h5>Dil</h5>
                         <p>{lesson.language}</p>
@@ -123,87 +83,7 @@ const LessonDetails = ({ lesson }) => {
                       </div>
                     </div>
 
-                    {/* Yorum Bölümü */}
-                    <div className="mt-5">
-                      <h5>Yorumlar</h5>
-
-                      {/* Yorum Ekleme Formu */}
-                      {userData?.role === "student" && (
-                        <div className="card p-3 mb-4">
-                          <h6>Yorum Yap</h6>
-                          <form onSubmit={handleCommentSubmit}>
-                            <div className="mb-3">
-                              <textarea
-                                className="form-control"
-                                rows="3"
-                                placeholder="Yorumunuzu yazın..."
-                                value={newComment}
-                                onChange={(e) => setNewComment(e.target.value)}
-                                required
-                              ></textarea>
-                            </div>
-                            <div className="mb-3">
-                              <label className="form-label">Puanınız</label>
-                              <select
-                                className="form-select"
-                                value={rating}
-                                onChange={(e) => setRating(e.target.value)}
-                              >
-                                {[1, 2, 3, 4, 5].map((star) => (
-                                  <option key={star} value={star}>
-                                    {star} Yıldız
-                                  </option>
-                                ))}
-                              </select>
-                            </div>
-                            <button type="submit" className="btn btn-primary">
-                              Gönder
-                            </button>
-                          </form>
-                        </div>
-                      )}
-
-                      {/* Yorum Listesi */}
-                      <div className="list-group">
-                        {comments.length > 0 ? (
-                          comments.map((comment) => (
-                            <div
-                              key={comment.id}
-                              className="list-group-item p-3 mb-3"
-                            >
-                              <div className="d-flex align-items-start">
-                                <img
-                                  src={`/img/avatars/${comment.student_photo}`}
-                                  alt={comment.student_name}
-                                  className="rounded-circle me-3"
-                                  width="50"
-                                  height="50"
-                                />
-                                <div className="w-100">
-                                  <h6 className="mb-1">
-                                    {comment.student_name}{" "}
-                                    {comment.student_surname}{" "}
-                                  </h6>
-                                  <div className="text-warning mb-1">
-                                    {"★".repeat(comment.rating)}
-                                    {"☆".repeat(5 - comment.rating)}
-                                  </div>
-                                  <p className="mb-1">{comment.comment}</p>
-                                  <small className="text-muted">
-                                    {new Date(
-                                      comment.created_at
-                                    ).toLocaleDateString()}
-                                  </small>
-                                </div>
-                              </div>
-                            </div>
-                          ))
-                        ) : (
-                          <p className="text-muted">Henüz yorum yapılmamış.</p>
-                        )}
-                      </div>
-                    </div>
-                    {/* Yorum Bölümü Sonu */}
+                    <CommentsSection lessonId={lesson.id} />
                   </div>
                 </div>
               </div>
