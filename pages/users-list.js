@@ -22,7 +22,7 @@ class UsersList extends Component {
   };
 
   handleProfile = (username) => {
-    this.props.router.push(`/profile/${username}`); // Profil sayfasına yönlendirme
+    this.props.router.push(`/profile/${username}`);
   };
 
   componentDidMount() {
@@ -138,16 +138,24 @@ class UsersList extends Component {
                           <tr key={user.id}>
                             <td>{user.id}</td>
                             <td>
-                              <img
-                                src={
-                                  `/img/avatars/${user.photo}` ||
-                                  "/img/default-avatar.png"
+                              <a
+                                target="__blank"
+                                onClick={() =>
+                                  this.handleProfile(user.username)
                                 }
-                                alt="User Avatar"
-                                className="rounded-circle"
-                                width="40"
-                                height="40"
-                              />
+                                className="cursor-pointer"
+                              >
+                                <img
+                                  src={
+                                    `/img/avatars/${user.photo}` ||
+                                    "/img/default-avatar.png"
+                                  }
+                                  alt="User Avatar"
+                                  className="rounded-circle"
+                                  width="40"
+                                  height="40"
+                                />
+                              </a>
                             </td>
 
                             <td>{user.name}</td>
@@ -156,12 +164,6 @@ class UsersList extends Component {
                             <td>{user.role}</td>
                             <td>{user.is_online ? "Online" : "Offline"}</td>
                             <td>
-                              <button
-                                className="btn btn-primary btn-sm me-2"
-                                onClick={() => this.handleProfile(user.username)} // Profil butonuna tıklayınca yönlendirme
-                              >
-                                Profil
-                              </button>
                               <button
                                 className="btn btn-warning btn-sm me-2"
                                 onClick={() => this.handleEdit(user.id)}

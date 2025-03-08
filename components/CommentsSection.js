@@ -50,7 +50,7 @@ const CommentsSection = ({ lessonId }) => {
               `❌ Kullanıcı ID: ${comment.user_id} online durumu alınamadı:`,
               error
             );
-            onlineStatusMap[comment.user_id] = false; // Hata durumunda offline kabul et
+            onlineStatusMap[comment.user_id] = false;
           }
         }
       })

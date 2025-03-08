@@ -3,28 +3,73 @@ import LayoutMenu from "../components/LayoutMenu";
 import Navbar from "../components/Navbar";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
 const ITEMS_PER_PAGE = 8;
 
 const Slessons = () => {
   const { t } = useTranslation("common");
   const [lessons, setLessons] = useState([]);
+  const router = useRouter();
 
   const [categories, setCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [onlineTeachers, setOnlineTeachers] = useState({}); // ✅ Tüm öğretmenlerin online bilgisini tutacak
 
   // Fetch lessons
   useEffect(() => {
     fetch("/api/lessons")
       .then((res) => res.json())
-      .then((data) => setLessons(Array.isArray(data) ? data : [])) // Dizi olup olmadığını kontrol et
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setLessons(data);
+          checkTeachersOnlineStatus(data); // ✅ Öğretmenlerin online durumunu kontrol et
+        }
+      })
       .catch((err) => {
         console.error("Error fetching lessons:", err);
-        setLessons([]); // Eğer hata olursa boş dizi set et
+        setLessons([]);
       });
   }, []);
+
+  const checkTeachersOnlineStatus = async (lessons) => {
+    if (!lessons.length) return;
+
+    const teacherIds = [...new Set(lessons.map((lesson) => lesson.teacher_id))]; // ✅ Tekrar eden teacher_id'leri kaldır
+
+    const onlineStatusMap = {};
+    await Promise.all(
+      teacherIds.map(async (teacherId) => {
+        if (teacherId) {
+          try {
+            const response = await fetch(`/api/users/${teacherId}/status`);
+            if (response.ok) {
+              const data = await response.json();
+              onlineStatusMap[teacherId] = data.is_online === 1;
+            }
+          } catch (error) {
+            console.error(
+              `❌ Eğitmen ID: ${teacherId} online durumu alınamadı:`,
+              error
+            );
+            onlineStatusMap[teacherId] = false;
+          }
+        }
+      })
+    );
+
+    setOnlineTeachers(onlineStatusMap); // ✅ Öğretmenlerin online durumlarını güncelle
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      checkTeachersOnlineStatus(lessons);
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, [lessons]);
 
   // Fetch categories dynamically
   useEffect(() => {
@@ -49,6 +94,14 @@ const Slessons = () => {
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
+
+  const handleProfile = (username) => {
+    if (!username) {
+      console.error("Hata: teacher_username değeri tanımsız!");
+      return;
+    }
+    router.push(`/profile/${username}`);
+  };
 
   return (
     <>
@@ -148,7 +201,31 @@ const Slessons = () => {
                               </a>
                             </div>
                             <div className="card-body p-4 pt-2">
-                              <div class="d-flex justify-content-between align-items-center mb-4">
+                              <div class="d-flex align-items-center mb-4 gap-3">
+                                <a
+                                  target="__blank"
+                                  onClick={() =>
+                                    handleProfile(lesson?.teacher_username)
+                                  }
+                                >
+                                  <div
+                                    className={`avatar ${
+                                      onlineTeachers[lesson.teacher_id]
+                                        ? "avatar-online"
+                                        : "avatar-offline"
+                                    }`}
+                                  >
+                                    <img
+                                      src={
+                                        lesson?.teacher_profile
+                                          ? `/img/avatars/${lesson.teacher_profile}`
+                                          : "/img/avatars/default.png"
+                                      }
+                                      alt="Avatar"
+                                      className="rounded-circle"
+                                    />
+                                  </div>
+                                </a>
                                 <span>
                                   {lesson.teacher_name} {lesson.teacher_surname}{" "}
                                 </span>

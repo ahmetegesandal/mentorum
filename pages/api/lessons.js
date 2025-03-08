@@ -9,6 +9,8 @@ export default async function handler(req, res) {
       SELECT 
         lessons.id, 
         lessons.teacher_id, 
+        users.id AS teacher_id,
+        users.username AS teacher_username,
         users.name AS teacher_name,
         users.surname AS teacher_surname,  
         users.email AS teacher_email, 
@@ -27,7 +29,7 @@ export default async function handler(req, res) {
       JOIN teachers ON lessons.teacher_id = teachers.user_id
       JOIN users ON teachers.user_id = users.id
       LEFT JOIN reviews ON lessons.id = reviews.lesson_id
-      GROUP BY lessons.id, lessons.teacher_id, users.name, users.surname, users.email, 
+      GROUP BY lessons.id, lessons.teacher_id, users.id, users.username, users.name, users.surname, users.email, 
                users.photo, lessons.title, lessons.description, 
                lessons.category_id, categories.name, lessons.price, lessons.language,lessons.lesson_photo;
     `;

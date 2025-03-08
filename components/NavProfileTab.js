@@ -152,10 +152,25 @@ const NavProfileTab = () => {
                   {userData?.name + " " + userData?.surname || "Guest"}
                 </h6>
                 <small className="text-muted">
-                  {userData.role === "admin" && <>{"Admin"}</>}
-                  {userData.role === "parent" && <>{"Veli"}</>}
-                  {userData.role === "student" && <>{"Öğrenci"}</>}
-                  {userData.role === "teacher" && <>{"Öğretmen"}</>}
+                  {userData?.role ? (
+                    <>
+                      {userData.role === "admin" && <>{"Admin"}</>}
+                      {userData.role === "parent" && <>{"Veli"}</>}
+                      {userData.role === "student" && <>{"Öğrenci"}</>}
+                      {userData.role === "teacher" && <>{"Öğretmen"}</>}
+                      {!["admin", "parent", "student", "teacher"].includes(
+                        userData.role
+                      ) && (
+                        <span className="text-warning">
+                          Bilinmeyen Rol: {userData.role}
+                        </span>
+                      )}
+                    </>
+                  ) : (
+                    <span className="text-danger">
+                      ⚠ Rol Bilgisi Yüklenemedi!
+                    </span>
+                  )}
                 </small>
               </div>
             </div>
