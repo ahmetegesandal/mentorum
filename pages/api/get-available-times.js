@@ -21,12 +21,23 @@ export default async function handler(req, res) {
       [teacher_id]
     );
 
-    // 📌 Günlere göre saatleri gruplayalım
+    // 📌 Günlere göre saatleri gruplayalım ve bitiş saatini hesaplayalım
     const formattedSlots = availableSlots.reduce((acc, slot) => {
+      const startTime = slot.time;
+
+      // 🕒 1 saat ekleyerek bitiş saatini hesapla
+      const [hours, minutes] = startTime.split(":");
+      const endTime = new Date();
+      endTime.setHours(parseInt(hours) + 1, parseInt(minutes));
+
+      const formattedEndTime = endTime.toTimeString().slice(0, 5); // HH:MM formatında al
+
+      const timeRange = `${startTime} - ${formattedEndTime}`;
+
       if (!acc[slot.date]) {
         acc[slot.date] = [];
       }
-      acc[slot.date].push(slot.time);
+      acc[slot.date].push(timeRange);
       return acc;
     }, {});
 

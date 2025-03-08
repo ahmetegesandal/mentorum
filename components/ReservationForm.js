@@ -8,21 +8,84 @@ const ReservationForm = ({ lesson }) => {
 
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
-  const [availableSlots, setAvailableSlots] = useState({}); // { "2024-03-10": ["10:00", "14:00"], "2024-03-11": ["09:00", "13:00"] }
+  const [availableSlots, setAvailableSlots] = useState({});
+  const [students, setStudents] = useState([]);
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [disabledTimes, setDisabledTimes] = useState(new Set()); // ✅ Eklenen kod
 
   useEffect(() => {
     fetchAvailableSlots();
+    if (userData?.role === "parent") {
+      fetchStudents();
+    }
   }, []);
 
-  // 📌 Öğretmenin tüm uygun gün ve saatlerini tek seferde al
+  // 📌 Öğretmenin uygun saatlerini al
   const fetchAvailableSlots = async () => {
     try {
       const response = await axios.get(
         `/api/get-available-times?teacher_id=${lesson.teacher_user_id}`
       );
-      setAvailableSlots(response.data.availableSlots);
+
+      const formattedSlots = {};
+      const disabledTimeSet = new Set(); // ✅ Geçici olarak Set oluşturduk
+
+      // 📌 Onaylanmış veya bekleyen rezervasyonları çek
+      const reservationsResponse = await axios.get(
+        `/api/get-reservations?teacher_id=${lesson.teacher_user_id}`
+      );
+
+      console.log(
+        "📌 API'den dönen rezervasyonlar:",
+        reservationsResponse.data
+      ); // ✅ Rezervasyonlar geliyor mu?
+
+      reservationsResponse.data.forEach((res) => {
+        const formattedDate = new Date(res.date).toISOString().split("T")[0]; // 🔥 API tarih formatını düzeltiyoruz!
+        console.log(`🛑 Disabled Time Ekleniyor: ${formattedDate}_${res.time}`);
+        if (res.status === "pending" || res.status === "approved") {
+          disabledTimeSet.add(`${formattedDate}_${res.time}`);
+        }
+      });
+
+      console.log("📌 İşlenen disabledTimeSet:", disabledTimeSet); // ✅ Disabled saatler burada olmalı
+
+      Object.keys(response.data.availableSlots).forEach((isoDate) => {
+        const dateObj = new Date(isoDate);
+        const formattedDate = dateObj.toLocaleDateString("tr-TR", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        });
+
+        formattedSlots[formattedDate] = response.data.availableSlots[isoDate]
+          .map((timeRange) => {
+            const times = timeRange.split(" - ");
+            const startTime = times[0].slice(0, 5);
+            const endTime = times[1]?.slice(0, 5) || "";
+            return `${startTime} - ${endTime}`;
+          })
+          .filter((time) => !disabledTimeSet.has(`${isoDate}_${time}`)); // ✅ Disabled saatleri filtreledik
+      });
+
+      console.log("📌 Final Available Slots:", formattedSlots); // ✅ Güncellenen saatler doğru geliyor mu?
+
+      setDisabledTimes(disabledTimeSet); // ✅ State'e atandı
+      setAvailableSlots(formattedSlots);
     } catch (error) {
       console.error("❌ Müsait günler ve saatler alınamadı:", error);
+    }
+  };
+
+  // 📌 Veliye bağlı öğrencileri getir
+  const fetchStudents = async () => {
+    try {
+      const response = await axios.get(
+        `/api/get-parent-students?parent_id=${userData.id}`
+      );
+      setStudents(response.data);
+    } catch (error) {
+      console.error("❌ Öğrenci bilgileri alınamadı:", error);
     }
   };
 
@@ -31,7 +94,7 @@ const ReservationForm = ({ lesson }) => {
     if (!userData) {
       return Swal.fire(
         "Hata!",
-        "Rezervasyon yapmak için giriş yapmalısınız!",
+        "Rezervasyon için giriş yapmalısınız!",
         "error"
       );
     }
@@ -39,11 +102,20 @@ const ReservationForm = ({ lesson }) => {
       return Swal.fire("Hata!", "Lütfen bir tarih ve saat seçin!", "error");
     }
 
-    // 📌 Tarihi düzgün formatla (YYYY-MM-DD)
-    const formattedDate = new Date(selectedDate).toISOString().split("T")[0];
+    // 📌 Seçilen tarihi formatla
+    const originalDate = Object.keys(availableSlots).find(
+      (isoDate) => availableSlots[isoDate] === availableSlots[selectedDate]
+    );
+    const formattedDate = new Date(originalDate).toISOString().split("T")[0];
+
+    // 📌 Eğer veli ise ve öğrenci seçildiyse, öğrencinin `user_id` kullanılmalı
+    const studentUserId =
+      userData.role === "parent" && selectedStudent
+        ? Number(selectedStudent) // ✅ Seçilen öğrencinin `user_id`si kullanılmalı
+        : userData.id; // ✅ Veli kendi adına işlem yapıyorsa kendi `user_id`si
 
     console.log("📌 Gönderilen Veri:", {
-      student_id: userData.id,
+      student_id: studentUserId, // ✅ Artık doğru `user_id` gidiyor
       lesson_id: lesson.id,
       teacher_id: lesson.teacher_user_id,
       date: formattedDate,
@@ -52,7 +124,7 @@ const ReservationForm = ({ lesson }) => {
 
     try {
       const response = await axios.post("/api/add-reservation", {
-        student_id: userData.id,
+        student_id: studentUserId, // ✅ `user_id` kullanılıyor
         lesson_id: lesson.id,
         teacher_id: lesson.teacher_user_id,
         date: formattedDate,
@@ -74,6 +146,26 @@ const ReservationForm = ({ lesson }) => {
     <div className="card p-4 mt-4">
       <h5>Ders Rezervasyonu</h5>
 
+      {/* 📌 Veli için öğrenci seçimi */}
+      {userData?.role === "parent" && students.length > 0 && (
+        <div className="mb-3">
+          <label className="form-label">Rezervasyon Kimin Adına?</label>
+          <select
+            className="form-select"
+            value={selectedStudent}
+            onChange={(e) => setSelectedStudent(e.target.value)}
+          >
+            <option value="">Kendi Adıma</option>{" "}
+            {/* ✅ Veli kendi adına işlem yapabilir */}
+            {students.map((student) => (
+              <option key={student.user_id} value={student.user_id}>
+                {student.name} {student.surname}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
       {/* 📅 Tarih Seçimi */}
       <div className="mb-3">
         <label className="form-label">Müsait Günler</label>
@@ -83,9 +175,9 @@ const ReservationForm = ({ lesson }) => {
           onChange={(e) => setSelectedDate(e.target.value)}
         >
           <option value="">Gün Seçin</option>
-          {Object.keys(availableSlots).map((date) => (
-            <option key={date} value={date}>
-              {date}
+          {Object.keys(availableSlots).map((formattedDate) => (
+            <option key={formattedDate} value={formattedDate}>
+              {formattedDate}
             </option>
           ))}
         </select>
@@ -102,11 +194,22 @@ const ReservationForm = ({ lesson }) => {
         >
           <option value="">Saat Seçin</option>
           {selectedDate && availableSlots[selectedDate]?.length > 0 ? (
-            availableSlots[selectedDate].map((time) => (
-              <option key={time} value={time}>
-                {time}
-              </option>
-            ))
+            availableSlots[selectedDate].map((time) => {
+              const formattedDate = new Date(selectedDate)
+                .toISOString()
+                .split("T")[0]; // ✅ Tarihi `disabledTimes` ile aynı formata getiriyoruz.
+              const isDisabled = disabledTimes.has(`${formattedDate}_${time}`);
+
+              console.log(
+                `🔍 Kontrol: ${formattedDate}_${time}, Disabled: ${isDisabled}`
+              ); // ✅ Test için ekleme
+
+              return (
+                <option key={time} value={time} disabled={isDisabled}>
+                  {time} {isDisabled ? "(Dolu)" : ""}
+                </option>
+              );
+            })
           ) : (
             <option disabled>Müsait saat yok</option>
           )}

@@ -1,17 +1,19 @@
-// pages/meeting.js
 import { useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-import LayoutMenu from "../components/LayoutMenu";
-import Navbar from "../components/Navbar";
+import LayoutMenu from "../../components/LayoutMenu";
+import Navbar from "../../components/Navbar";
 
 const MeetingPage = () => {
+  const router = useRouter();
+  const { room } = router.query;
   const jitsiContainerRef = useRef(null);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.JitsiMeetExternalAPI) {
+    if (typeof window !== "undefined" && window.JitsiMeetExternalAPI && room) {
       const domain = "meet.jit.si";
       const options = {
-        roomName: "TestRoom",
+        roomName: room, // 📌 Dinamik olarak URL'den gelen oda ismi kullanılıyor!
         width: "100%",
         height: "600px",
         parentNode: jitsiContainerRef.current,
@@ -40,28 +42,18 @@ const MeetingPage = () => {
       try {
         const api = new window.JitsiMeetExternalAPI(domain, options);
 
-        // Event listeners for better user interaction
         api.addEventListener("videoConferenceJoined", () => {
           console.log("You have joined the conference.");
         });
 
-        api.addEventListener("videoConferenceLeft", () => {
-          console.log("You have left the conference.");
-        });
-
-        // Cleanup function to remove Jitsi instance on unmount
         return () => {
           api.dispose();
         };
       } catch (error) {
         console.error("Failed to initialize JitsiMeetExternalAPI:", error);
       }
-    } else {
-      console.warn(
-        "JitsiMeetExternalAPI is not available or not supported by the browser."
-      );
     }
-  }, []); // Empty dependency array ensures this runs only once
+  }, [room]);
 
   return (
     <>
@@ -81,10 +73,10 @@ const MeetingPage = () => {
             <div
               ref={jitsiContainerRef}
               style={{
-                width: "80%", // Genişlik %80, tasarıma göre özelleştirilebilir
-                height: "600px", // Yükseklik sabit
-                borderRadius: "8px", // Kenarları yuvarlatılmış
-                boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)", // Hafif gölge
+                width: "80%",
+                height: "600px",
+                borderRadius: "8px",
+                boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
               }}
             ></div>
           </div>

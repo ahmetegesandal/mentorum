@@ -18,7 +18,6 @@ const menuItems = [
         label: "Ana Sayfa",
         roles: ["admin", "parent", "teacher", "student"],
       },
-      { path: "/deneme", label: "Deneme odası", roles: ["admin"] },
 
       {
         path: "/chat",
@@ -30,6 +29,16 @@ const menuItems = [
         path: "/slessons",
         label: "Dersler",
         roles: ["admin", "teacher", "parent", "student"],
+      },
+      {
+        path: "/TeacherReservations",
+        label: "Rezervasyonlar",
+        roles: ["teacher"],
+      },
+      {
+        path: "/TeacherLiveClasses",
+        label: "Canlı Ders Yönetimi",
+        roles: ["teacher"],
       },
       {
         path: "/lessoncreate",
