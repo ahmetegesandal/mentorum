@@ -151,7 +151,12 @@ const NavProfileTab = () => {
                 <h6 className="mb-0">
                   {userData?.name + " " + userData?.surname || "Guest"}
                 </h6>
-                <small className="text-muted">{userData?.role}</small>
+                <small className="text-muted">
+                  {userData.role === "admin" && <>{"Admin"}</>}
+                  {userData.role === "parent" && <>{"Veli"}</>}
+                  {userData.role === "student" && <>{"Öğrenci"}</>}
+                  {userData.role === "teacher" && <>{"Öğretmen"}</>}
+                </small>
               </div>
             </div>
           </Link>
