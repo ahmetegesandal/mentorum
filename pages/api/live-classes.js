@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
   let db;
   try {
-    console.log(`🔍 API İsteği Alındı: teacher_id=${teacher_id}`);
+    //console.log(`🔍 API İsteği Alındı: teacher_id=${teacher_id}`);
 
     db = await getConnection();
 
@@ -34,7 +34,7 @@ ORDER BY lc.start_time DESC;
       [teacher_id]
     );
 
-    console.log(`✅ ${liveClasses.length} ders bulundu.`);
+    //console.log(`✅ ${liveClasses.length} ders bulundu.`);
     res.status(200).json({ liveClasses });
   } catch (error) {
     console.error("❌ API Hatası:", error.message, error.stack);
@@ -44,7 +44,7 @@ ORDER BY lc.start_time DESC;
     });
   } finally {
     if (db) {
-      console.log("🛑 Database bağlantısı kapatılıyor...");
+      //console.log("🛑 Database bağlantısı kapatılıyor...");
       db.release();
     }
   }

@@ -18,7 +18,7 @@ const upload = multer({
       cb(null, `${Date.now()}${ext}`);
     },
   }),
-  limits: { fileSize: 2 * 1024 * 1024 }, // Maksimum 2MB dosya boyutu
+  limits: { fileSize: 2 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
     if (!file.mimetype.startsWith("image/")) {
       return cb(new Error("Sadece resim dosyaları yüklenebilir!"), false);
@@ -45,10 +45,10 @@ export default async function handler(req, res) {
     }
 
     const db = await getConnection();
-    const { id, username, name, surname, email } = req.body;
+    const { id, username, name, surname, email, credit } = req.body;
     let photo = req.file ? req.file.filename : null;
 
-    if (!id || !username || !name || !surname || !email) {
+    if (!id || !username || !name || !surname || !email || !credit) {
       return res.status(400).json({ error: "Tüm alanlar zorunludur!" });
     }
 
@@ -81,7 +81,7 @@ export default async function handler(req, res) {
       // Kullanıcıyı güncelleme sorgusu
       const query = `
         UPDATE users 
-        SET username = ?, name = ?, surname = ?, email = ?, photo = ?
+        SET username = ?, name = ?, surname = ?, email = ?, photo = ?, credit = ?
         WHERE id = ?
       `;
 
@@ -91,6 +91,7 @@ export default async function handler(req, res) {
         surname,
         email,
         photo,
+        credit,
         id,
       ]);
 

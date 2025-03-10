@@ -14,6 +14,7 @@ const EditUser = () => {
     surname: "",
     email: "",
     photo: "",
+    credit: "",
   });
 
   const [selectedFile, setSelectedFile] = useState(null);
@@ -60,6 +61,7 @@ const EditUser = () => {
     if (selectedFile) {
       formData.append("photo", selectedFile);
     }
+    formData.append("credit", user.credit);
 
     try {
       const response = await fetch("/api/updateUser", {
@@ -138,6 +140,17 @@ const EditUser = () => {
                     className="form-control"
                     name="email"
                     value={user.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label className="form-label">Kredi</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    name="credit"
+                    value={user.credit}
                     onChange={handleChange}
                     required
                   />

@@ -12,12 +12,12 @@ export default async function handler(req, res) {
   let connection;
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log(
+    /*console.log(
       "📌 Gelen Token Kullanıcı ID:",
       decoded.id,
       "| API'ye Gelen ID:",
       id
-    );
+    );*/
 
     connection = await getConnection();
 
@@ -33,7 +33,7 @@ export default async function handler(req, res) {
         [id]
       );
 
-      console.log("📌 SQL'den Dönen Kullanıcı Verisi:", user);
+      //console.log("📌 SQL'den Dönen Kullanıcı Verisi:", user);
 
       if (user.length === 0) {
         return res.status(404).json({ message: "Kullanıcı bulunamadı." });

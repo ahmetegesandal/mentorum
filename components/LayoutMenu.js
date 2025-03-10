@@ -8,27 +8,43 @@ import Logo from "./Logo";
 const menuItems = [
   {
     key: "dashboards",
-    label: "Dashboards",
+    label: "Genel",
     icon: "ti ti-smart-home",
     roles: ["admin", "parent", "teacher", "student"],
-    badge: { content: "5", className: "bg-danger rounded-pill" },
+    badge: { content: "2", className: "bg-danger rounded-pill" },
     subMenu: [
       {
         path: "/main",
         label: "Ana Sayfa",
         roles: ["admin", "parent", "teacher", "student"],
       },
-
       {
         path: "/chat",
         label: "Sohbet",
         roles: ["admin", "parent", "teacher", "student"],
       },
-      { path: "/calendar", label: "Takvim", roles: ["admin"] },
       {
         path: "/slessons",
         label: "Dersler",
         roles: ["admin", "teacher", "parent", "student"],
+      },
+    ],
+  },
+  {
+    key: "teachers",
+    label: "Öğretmen",
+    icon: "ti ti-users",
+    roles: ["admin", "teacher"],
+    subMenu: [
+      {
+        path: "/lessoncreate",
+        label: "Ders İlanı Oluştur",
+        roles: ["teacher"],
+      },
+      {
+        path: "/manage-lessons",
+        label: "Ders İlanları Yönet",
+        roles: ["teacher"],
       },
       {
         path: "/TeacherReservations",
@@ -40,16 +56,14 @@ const menuItems = [
         label: "Canlı Ders Yönetimi",
         roles: ["teacher"],
       },
-      {
-        path: "/lessoncreate",
-        label: "Ders İlanı Oluştur",
-        roles: ["teacher"],
-      },
-      {
-        path: "/manage-lessons",
-        label: "Ders İlanları Yönet",
-        roles: ["teacher"],
-      },
+    ],
+  },
+  {
+    key: "parents",
+    label: "Veli",
+    icon: "ti ti-users",
+    roles: ["parent"],
+    subMenu: [
       {
         path: "/my-students",
         label: "Öğrencilerim",
