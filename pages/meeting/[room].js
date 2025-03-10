@@ -13,7 +13,7 @@ const MeetingPage = () => {
     if (typeof window !== "undefined" && window.JitsiMeetExternalAPI && room) {
       const domain = "meet.jit.si";
       const options = {
-        roomName: room, // 📌 Dinamik olarak URL'den gelen oda ismi kullanılıyor!
+        roomName: room,
         width: "100%",
         height: "600px",
         parentNode: jitsiContainerRef.current,
@@ -60,25 +60,28 @@ const MeetingPage = () => {
       <LayoutMenu />
       <div className="layout-page">
         <Navbar />
-        <div className="content-wrapper">
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              padding: "20px",
-              backgroundColor: "#f5f5f5",
-            }}
-          >
-            <div
-              ref={jitsiContainerRef}
-              style={{
-                width: "80%",
-                height: "600px",
-                borderRadius: "8px",
-                boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
-              }}
-            ></div>
+        <div className="content-wrapper justify-content-center">
+          <div className="container">
+            <div className="row">
+              <div className="col">
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    padding: "20px",
+                  }}
+                >
+                  <div
+                    ref={jitsiContainerRef}
+                    style={{
+                      width: "100%",
+                      borderRadius: "8px",
+                    }}
+                  ></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
