@@ -14,7 +14,8 @@ const GlobalLogoutHandler = () => {
     router.pathname === "/sign-in" ||
     router.pathname === "/" ||
     router.pathname === "/404" ||
-    router.pathname === "/register"
+    router.pathname === "/register" ||
+    router.pathname === "/contact"
   ) {
     return null; // '/sign-in' sayfasında WebSocket bağlantısı yapılmayacak
   }
