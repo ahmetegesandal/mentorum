@@ -24,7 +24,7 @@ const Home = () => {
                 <i className="ti ti-menu-2 ti-lg align-middle text-heading fw-medium"></i>
               </button>
 
-              <a href="landing-page.html" className="app-brand-link">
+              <a href="/" className="app-brand-link">
                 <Logo />
               </a>
             </div>
@@ -79,11 +79,8 @@ const Home = () => {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a
-                    className="nav-link fw-medium"
-                    href="landing-page.html#landingContact"
-                  >
-                    Contact us
+                  <a className="nav-link fw-medium" href="/contact">
+                    İletişim
                   </a>
                 </li>
               </ul>

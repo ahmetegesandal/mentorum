@@ -44,7 +44,10 @@ function MyApp({ Component, pageProps }) {
       setTimeout(() => {
         if (document.readyState === "complete") {
           requestAnimationFrame(() => {
-            document.fonts.ready.then(() => {
+            Promise.all([
+              document.fonts.ready,
+              new Promise((resolve) => setTimeout(resolve, 500)), // CSS yüklenmesini beklemek için ekstra süre
+            ]).then(() => {
               setLoading(false);
             });
           });
