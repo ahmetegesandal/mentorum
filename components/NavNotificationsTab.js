@@ -38,95 +38,15 @@ const NavNotificationsTab = () => {
                 <div className="d-flex">
                   <div className="flex-shrink-0 me-3">
                     <div className="avatar">
-                      <img
-                        src="/img/avatars/1.png"
-                        className="rounded-circle"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex-grow-1">
-                    <h6 className="small mb-1">Congratulation Lettie 🎉</h6>
-                    <small className="mb-1 d-block text-body">
-                      Won the monthly best seller gold badge
-                    </small>
-                    <small className="text-muted">1h ago</small>
-                  </div>
-                  <div className="flex-shrink-0 dropdown-notifications-actions">
-                    <a href="" className="dropdown-notifications-read">
-                      <span className="badge badge-dot"></span>
-                    </a>
-                    <a href="" className="dropdown-notifications-archive">
-                      <span className="ti ti-x"></span>
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li className="list-group-item list-group-item-action dropdown-notifications-item">
-                <div className="d-flex">
-                  <div className="flex-shrink-0 me-3">
-                    <div className="avatar">
                       <span className="avatar-initial rounded-circle bg-label-danger">
-                        CF
+                        <i className="ti ti-settings"></i>
                       </span>
                     </div>
                   </div>
                   <div className="flex-grow-1">
-                    <h6 className="mb-1 small">Charles Franklin</h6>
+                    <h6 className="mb-1 small">System</h6>
                     <small className="mb-1 d-block text-body">
-                      Accepted your connection
-                    </small>
-                    <small className="text-muted">12hr ago</small>
-                  </div>
-                  <div className="flex-shrink-0 dropdown-notifications-actions">
-                    <a href="" className="dropdown-notifications-read">
-                      <span className="badge badge-dot"></span>
-                    </a>
-                    <a href="" className="dropdown-notifications-archive">
-                      <span className="ti ti-x"></span>
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li className="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
-                <div className="d-flex">
-                  <div className="flex-shrink-0 me-3">
-                    <div className="avatar">
-                      <img
-                        src="/img/avatars/2.png"
-                        className="rounded-circle"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex-grow-1">
-                    <h6 className="mb-1 small">New Message ✉️</h6>
-                    <small className="mb-1 d-block text-body">
-                      You have new message from Natalie
-                    </small>
-                    <small className="text-muted">1h ago</small>
-                  </div>
-                  <div className="flex-shrink-0 dropdown-notifications-actions">
-                    <a href="" className="dropdown-notifications-read">
-                      <span className="badge badge-dot"></span>
-                    </a>
-                    <a href="" className="dropdown-notifications-archive">
-                      <span className="ti ti-x"></span>
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li className="list-group-item list-group-item-action dropdown-notifications-item">
-                <div className="d-flex">
-                  <div className="flex-shrink-0 me-3">
-                    <div className="avatar">
-                      <span className="avatar-initial rounded-circle bg-label-success">
-                        <i className="ti ti-shopping-cart"></i>
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex-grow-1">
-                    <h6 className="mb-1 small">Whoo! You have new order 🛒</h6>
-                    <small className="mb-1 d-block text-body">
-                      ACME Inc. made new order $1,154
+                      Adınıza ders rezervasyonu oluşturuldu
                     </small>
                     <small className="text-muted">1 day ago</small>
                   </div>
