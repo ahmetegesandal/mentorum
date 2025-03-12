@@ -47,6 +47,11 @@ const menuItems = [
         roles: ["teacher"],
       },
       {
+        path: "/Calendar",
+        label: "Takvim Yönetimi",
+        roles: ["teacher"],
+      },
+      {
         path: "/TeacherReservations",
         label: "Rezervasyonlar",
         roles: ["teacher"],

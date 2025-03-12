@@ -1,11 +1,13 @@
 import LayoutMenu from "../components/LayoutMenu";
 import Navbar from "../components/Navbar";
-
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { UserContext } from "../contexts/UserContext";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Blank = () => {
   const { t } = useTranslation("common");
+  const userData = useContext(UserContext);
 
   return (
     <>
