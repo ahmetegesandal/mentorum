@@ -19,6 +19,11 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
       </Head>
       <body>
         <Main />
