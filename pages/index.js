@@ -4,9 +4,13 @@ import ThemeSwitcher from "../components/ThemeSwitcher";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import SwiperComponent from "../components/SwiperComponent";
+import { useRouter } from "next/router";
+
 
 const Home = () => {
   const { t } = useTranslation("common");
+    const router = useRouter();
+  
   return (
     <>
       <nav className="layout-navbar shadow-none py-0 navbar-active">
@@ -835,13 +839,13 @@ const Home = () => {
 
         <section id="landingFAQ" className="section-py bg-body landing-faq">
           <div className="container">
+            {/*  
             <div className="text-center mb-4">
               <span className="badge bg-label-primary">FAQ</span>
-            </div>
+            </div>*/}
             <h4 className="text-center mb-1">
-              Frequently asked
-              <span className="position-relative fw-extrabold z-1">
-                questions
+            {t("askedQuestions")}  
+              <span>
                 <img
                   src="img/front-pages/icons/section-title-icon.png"
                   alt="laptop charging"
@@ -850,8 +854,7 @@ const Home = () => {
               </span>
             </h4>
             <p className="text-center mb-12 pb-md-4">
-              Browse through these FAQs to find answers to commonly asked
-              questions.
+            {t("askedQuestionsDesc")}  
             </p>
             <div className="row gy-12 align-items-center">
               <div className="col-lg-5">
@@ -875,8 +878,8 @@ const Home = () => {
                         aria-expanded="true"
                         aria-controls="accordionOne"
                       >
-                        Do you charge for each upgrade?
-                      </button>
+                         {t("vxy_what1")}          
+                     </button>
                     </h2>
 
                     <div
@@ -885,11 +888,7 @@ const Home = () => {
                       data-bs-parent="#accordionExample"
                     >
                       <div className="accordion-body">
-                        Lemon drops chocolate cake gummies carrot cake chupa
-                        chups muffin topping. Sesame snaps icing marzipan gummi
-                        bears macaroon dragée danish caramels powder. Bear claw
-                        dragée pastry topping soufflé. Wafer gummi bears
-                        marshmallow pastry pie.
+                      {t("vxy_what")}  
                       </div>
                     </div>
                   </div>
@@ -903,7 +902,7 @@ const Home = () => {
                         aria-expanded="false"
                         aria-controls="accordionTwo"
                       >
-                        Do I need to purchase a license for each website?
+                        {t("offer_for")}
                       </button>
                     </h2>
                     <div
@@ -913,11 +912,7 @@ const Home = () => {
                       data-bs-parent="#accordionExample"
                     >
                       <div className="accordion-body">
-                        Dessert ice cream donut oat cake jelly-o pie sugar plum
-                        cheesecake. Bear claw dragée oat cake dragée ice cream
-                        halvah tootsie roll. Danish cake oat cake pie macaroon
-                        tart donut gummies. Jelly beans candy canes carrot cake.
-                        Fruitcake chocolate chupa chups.
+                      {t("offer_description")}  
                       </div>
                     </div>
                   </div>
@@ -931,7 +926,7 @@ const Home = () => {
                         aria-expanded="false"
                         aria-controls="accordionThree"
                       >
-                        What is regular license?
+                        {t("eduSupport")}  
                       </button>
                     </h2>
                     <div
@@ -941,16 +936,7 @@ const Home = () => {
                       data-bs-parent="#accordionExample"
                     >
                       <div className="accordion-body">
-                        Regular license can be used for end products that do not
-                        charge users for access or service(access is free and
-                        there will be no monthly subscription fee). Single
-                        regular license can be used for single end product and
-                        end product can be used by you or your client. If you
-                        want to sell end product to multiple clients then you
-                        will need to purchase separate license for each client.
-                        The same rule applies if you want to use the same end
-                        product on multiple domains(unique setup). For more info
-                        on regular license you can check official description.
+                      {t("eduSupportDesc")}  
                       </div>
                     </div>
                   </div>
@@ -964,8 +950,8 @@ const Home = () => {
                         aria-expanded="false"
                         aria-controls="accordionFour"
                       >
-                        What is extended license?
-                      </button>
+                      {t("OnLessonBenefits")}  
+                       </button>
                     </h2>
                     <div
                       id="accordionFour"
@@ -974,11 +960,7 @@ const Home = () => {
                       data-bs-parent="#accordionExample"
                     >
                       <div className="accordion-body">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Nobis et aliquid quaerat possimus maxime! Mollitia
-                        reprehenderit neque repellat deleniti delectus
-                        architecto dolorum maxime, blanditiis earum ea, incidunt
-                        quam possimus cumque.
+                      {t("OnLessonDesc")}
                       </div>
                     </div>
                   </div>
@@ -992,8 +974,8 @@ const Home = () => {
                         aria-expanded="false"
                         aria-controls="accordionFive"
                       >
-                        Which license is applicable for SASS application?
-                      </button>
+                      {t("TeacherBooking")}  
+                       </button>
                     </h2>
                     <div
                       id="accordionFive"
@@ -1002,11 +984,7 @@ const Home = () => {
                       data-bs-parent="#accordionExample"
                     >
                       <div className="accordion-body">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Sequi molestias exercitationem ab cum nemo facere
-                        voluptates veritatis quia, eveniet veniam at et
-                        repudiandae mollitia ipsam quasi labore enim architecto
-                        non!
+                      {t("TeacherBookingDesc")}  
                       </div>
                     </div>
                   </div>

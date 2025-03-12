@@ -20,6 +20,18 @@
     "signpassword" : "Passwort",
     "signinbutton" : "Anmelden",
     "newusermessage" :"Neu auf unserer Plattform?",
-    "create_account_link" :  "Ein Konto erstellen"
+    "create_account_link" :  "Ein Konto erstellen",
+    "vxy_what1": "Was ist Vuexy?",
+    "vxy_what": "Vuexy ist eine innovative Online-Lernplattform, die die Zukunft des privaten Unterrichts gestaltet. Unsere Vision ist es, den Schülern zu helfen, ihr volles Potenzial zu entfalten, indem wir personalisierte und interaktive Lektionen anbieten.",
+    "offer_for":"Für wen ist dieses Angebot?",
+    "offer_description":"Dieses Angebot gilt für Schüler jeden Alters und Niveaus, die während ihres Lernprozesses Unterstützung benötigen oder Hilfe suchen, um ihr volles Potenzial zu entfalten.",
+    "eduSupport": " Unsere Bildungsunterstützungsdienste",
+    "eduSupportDesc": "Wir bieten Bildungsunterstützung in einer Vielzahl von Fächern, hauptsächlich in Mathematik, Türkisch und Englisch. Darüber hinaus erweitern wir derzeit unser Angebot für Universitätskurse, das wir bald bekannt geben werden.",
+    "OnLessonBenefits": "Vorteile von Online-Videounterricht",
+    "OnLessonDesc" : "Online-Videounterricht spart Ihnen Zeit und Transportkosten. Dank der Aufzeichnungsfunktion können Sie die Lektionen jederzeit erneut ansehen. Außerdem ermöglicht das breite Lehrernetzwerk eine schnelle Terminbuchung und einen flexiblen Lehrerwechsel nach Bedarf.",
+    "TeacherBooking" : "Wie kann ich einen Termin bei einem Lehrer buchen?",
+    "TeacherBookingDesc" : "Wie kann ich einen Termin bei einem Lehrer buchen? Melden Sie sich bei Vuexy mit Ihrer Telefonnummer oder E-Mail-Adresse an. Klicken Sie dann im Menü auf 'Lehrer auswählen'. Eine Liste der Lehrer wird angezeigt, sodass Sie Ihren bevorzugten Lehrer und einen passenden Termin auswählen können.",
+    "askedQuestions": "Häufig gestellte Fragen",
+    "askedQuestionsDesc": "Erstellen Sie Ihr Vuexy-Mitgliedskonto einfach, wählen Sie den am besten geeigneten Lehrer für Ihr Kind aus, vereinbaren Sie einen Termin und beginnen Sie sofort mit dem Unterricht."
    
 }

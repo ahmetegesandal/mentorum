@@ -3,6 +3,19 @@
     "french": "Français",
     "german": "Allemand",
     "english": "Anglais",
-    "spanish": "Espagnol"
+    "spanish": "Espagnol", 
+    "vxy_what1": "Qu'est-ce que Vuexy ?",
+    "vxy_what": "Vuexy est une plateforme d'apprentissage en ligne innovante qui façonne l'avenir des cours particuliers. Notre vision est d'aider les étudiants à atteindre leur plein potentiel en proposant des leçons personnalisées et interactives.",
+    "offer_for":"À qui s'adresse cette offre ?",
+    "offer_description":"Cette offre est valable pour les étudiants de tous âges et niveaux qui ont besoin de soutien pendant leur apprentissage ou qui cherchent de l'aide pour réaliser pleinement leur potentiel.",
+    "eduSupport": "Nos Services de Soutien Éducatif",
+    "eduSupportDesc": "Nous offrons un soutien éducatif dans une large gamme de matières, principalement en mathématiques, turc et anglais. Nous élargissons également nos offres pour les cours universitaires, que nous annoncerons bientôt.",
+    "OnLessonBenefits": "Avantages des Cours en Vidéo en Ligne",
+    "OnLessonDesc" : "Les cours en vidéo en ligne vous permettent d’économiser du temps et des frais de transport. Grâce à la fonction d’enregistrement, vous pouvez revoir les leçons à tout moment. De plus, le vaste réseau d’enseignants facilite la prise de rendez-vous rapide et le changement de professeur en fonction de vos besoins.",
+    "TeacherBooking" : "Comment puis-je prendre rendez-vous avec un enseignant ?",
+    "TeacherBookingDesc" : "Inscrivez-vous sur Vuexy avec votre numéro de téléphone ou votre adresse e-mail. Ensuite, cliquez sur 'Choisir un Enseignant' dans le menu. Une liste d'enseignants apparaîtra, vous permettant de sélectionner votre enseignant préféré et de choisir une date et une heure qui vous conviennent.",
+    "askedQuestions": "Foires aux questions",
+    "askedQuestionsDesc": "Créez facilement votre adhésion Vuexy, choisissez le professeur le plus adapté pour votre enfant, prenez un rendez-vous et commencez immédiatement les cours."
+  
   }
   

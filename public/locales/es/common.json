@@ -3,5 +3,18 @@
   "french": "Francés",
   "german": "Alemán",
   "english": "Inglés",
-  "spanish": "Español"
+  "spanish": "Español",
+  "vxy_what1": "¿Qué es Vuexy?",
+  "vxy_what": "Vuexy es una plataforma de aprendizaje en línea innovadora que está modelando el futuro de las clases particulares. Nuestra visión es ayudar a los estudiantes a alcanzar su máximo potencial al ofrecer lecciones personalizadas e interactivas.",
+  "offer_for":"¿Para quién es esta oferta?",
+  "offer_description":"Esta oferta es válida para estudiantes de todas las edades y niveles que necesiten apoyo durante su proceso de aprendizaje o busquen ayuda para realizar su potencial por completo.",
+  "eduSupport": "Nuestros Servicios de Apoyo Educativo",
+  "eduSupportDesc": "Ofrecemos apoyo educativo en una amplia variedad de materias, principalmente en Matemáticas, Turco e Inglés. También estamos ampliando nuestras ofertas para cursos universitarios, que anunciaremos pronto.",
+  "OnLessonBenefits": "Ventajas de las Clases en Video Online",
+  "OnLessonDesc" : "Las clases en video online te ayudan a ahorrar tiempo y costos de transporte. Con la función de grabación, puedes volver a ver las lecciones cuando quieras. Además, la amplia red de profesores te permite reservar clases rápidamente y cambiar de profesor según tus necesidades.",
+  "TeacherBooking" : "¿Cómo puedo reservar una clase con un profesor?",
+  "TeacherBookingDesc" : "Regístrate en Vuexy con tu número de teléfono o dirección de correo electrónico. Luego, haz clic en 'Seleccionar Profesor' en el menú. Aparecerá una lista de profesores, donde podrás elegir el que prefieras y seleccionar una fecha y hora adecuadas.",
+  "askedQuestions": "Preguntas Frecuentes",
+  "askedQuestionsDesc": "Crea fácilmente tu membresía en Vuexy, elige el profesor más adecuado para tu hijo, programa una cita y comienza las clases de inmediato."
+ 
 }

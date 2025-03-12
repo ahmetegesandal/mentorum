@@ -20,6 +20,19 @@
   "signpassword" : "Şifre", 
   "signinbutton" : "Giriş Yap",
   "newusermessage" : "Platformda yeni misiniz?",
-  "create_account_link" : "Hesap oluştur"
+  "create_account_link" : "Hesap oluştur",
+  "vxy_what1": "Vuexy Nedir?",
+  "vxy_what": "Vuexy, özel dersin geleceğini şekillendiren yenilikçi bir online öğrenme platformudur. Hayalimiz, öğrencilere özelleştirilmiş ve interaktif dersler sunarak, onların potansiyellerini en üst seviyeye çıkarmalarına yardımcı olmaktır.",
+  "offer_for":"Bu Teklif Kimlere Yöneliktir?",
+  "offer_description":"Bu teklif, öğrenim sürecinde desteğe ihtiyaç duyan veya potansiyelini tam olarak ortaya koyabilmek için yardım isteyen her yaş ve seviyedeki öğrenci için geçerlidir.",
+  "eduSupport": "Eğitim Destek Hizmetlerimiz",
+  "eduSupportDesc": "Matematik, Türkçe ve İngilizce başta olmak üzere geniş bir yelpazede eğitim desteği sunuyoruz. Ayrıca, üniversite dersleri için de yeni tekliflerimizi yakın zamanda duyuruyoruz.",
+  "OnLessonBenefits": "Online video derslerin avantajları neler?",
+  "OnLessonDesc" : "Online video dersler, zamandan ve ulaşım masraflarından tasarruf etmenizi sağlar. Kayıt özelliği sayesinde dersleri dilediğiniz zaman tekrar izleyebilirsiniz. Ayrıca, geniş öğretmen ağı sayesinde hızlıca randevu alabilir ve ihtiyacınıza göre öğretmen değişikliği yapabilirsiniz.",
+  "TeacherBooking" : "Bir öğretmenden nasıl randevu alabilirim?",
+  "TeacherBookingDesc" : "Bir öğretmenden randevu almak için telefon numaranız veya e-posta adresiniz ile Vuexy'e kaydolun. Ardından, menüdeki 'Öğretmen Seçimi' bölümüne tıklayın. Karşınıza çıkan öğretmen listesinden dilediğiniz öğretmeni seçin ve uygun tarih ile saati belirleyin.",
+  "askedQuestions": "Sıkça sorulan sorular",
+  "askedQuestionsDesc": "Vuexy üyeliğinizi kolayca oluşturun, çocuğunuz için en uygun öğretmeni seçin, randevu oluşturun ve hemen derslere başlayın."
+
  
 }

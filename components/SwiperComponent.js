@@ -6,8 +6,9 @@ const SwiperComponent = () => {
     // Swiper'ı başlatma
     const swiper = new Swiper("#swiper-reviews", {
       loop: true,
-      slidesPerView: 1,
+      slidesPerView: "1",
       spaceBetween: 10,
+ 
       navigation: {
         nextEl: "#reviews-next-btn",
         prevEl: "#reviews-previous-btn",
@@ -17,6 +18,7 @@ const SwiperComponent = () => {
         clickable: true,
       },
     });
+    
 
     return () => {
       swiper.destroy(); // Temizleme işlemi
@@ -83,22 +85,10 @@ const SwiperComponent = () => {
                             className="client-logo img-fluid"
                           />
                         </div>
-                        <p>
-                          “Vuexy is hands down the most useful front end
-                          Bootstrap theme I've ever used. I can't wait to use it
-                          again for my next project.”
-                        </p>
-                        <div className="text-warning mb-4">
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                        </div>
                         <div className="d-flex align-items-center">
                           <div className="avatar me-3 avatar-sm">
                             <img
-                              src="img/avatars/1.png"
+                              src="/img/avatars/ege1.jpg"
                               alt="Avatar"
                               className="rounded-circle"
                             />
@@ -110,6 +100,18 @@ const SwiperComponent = () => {
                             </p>
                           </div>
                         </div>
+                        <br></br>
+                        <p>
+                          “çalışın boş oturmayın!!”
+                        </p>
+                        <div className="text-warning mb-4">
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                        </div>
+                    
                       </div>
                     </div>
                   </div>
@@ -123,22 +125,10 @@ const SwiperComponent = () => {
                             className="client-logo img-fluid"
                           />
                         </div>
-                        <p>
-                          “Vuexy is hands down the most useful front end
-                          Bootstrap theme I've ever used. I can't wait to use it
-                          again for my next project.”
-                        </p>
-                        <div className="text-warning mb-4">
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                        </div>
                         <div className="d-flex align-items-center">
                           <div className="avatar me-3 avatar-sm">
                             <img
-                              src="img/avatars/1.png"
+                              src="/img/avatars/ufuk.jpeg"
                               alt="Avatar"
                               className="rounded-circle"
                             />
@@ -150,6 +140,18 @@ const SwiperComponent = () => {
                             </p>
                           </div>
                         </div>
+                        <br></br>
+                        <p>
+                          “bu hocalar süpermiş”
+                        </p>
+                        <div className="text-warning mb-4">
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                        </div>
+                 
                       </div>
                     </div>
                   </div>
@@ -163,22 +165,10 @@ const SwiperComponent = () => {
                             className="client-logo img-fluid"
                           />
                         </div>
-                        <p>
-                          “Vuexy is hands down the most useful front end
-                          Bootstrap theme I've ever used. I can't wait to use it
-                          again for my next project.”
-                        </p>
-                        <div className="text-warning mb-4">
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                        </div>
                         <div className="d-flex align-items-center">
                           <div className="avatar me-3 avatar-sm">
                             <img
-                              src="img/avatars/1.png"
+                              src="/img/avatars/senak.jpeg"
                               alt="Avatar"
                               className="rounded-circle"
                             />
@@ -190,6 +180,18 @@ const SwiperComponent = () => {
                             </p>
                           </div>
                         </div>
+                        <br></br>
+                        <p>
+                          “very very good!!”
+                        </p>
+                        <div className="text-warning mb-4">
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                        </div>
+                  
                       </div>
                     </div>
                   </div>
@@ -203,22 +205,10 @@ const SwiperComponent = () => {
                             className="client-logo img-fluid"
                           />
                         </div>
-                        <p>
-                          “Vuexy is hands down the most useful front end
-                          Bootstrap theme I've ever used. I can't wait to use it
-                          again for my next project.”
-                        </p>
-                        <div className="text-warning mb-4">
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                        </div>
                         <div className="d-flex align-items-center">
                           <div className="avatar me-3 avatar-sm">
                             <img
-                              src="img/avatars/1.png"
+                              src="/img/avatars/hatçe.jpeg"
                               alt="Avatar"
                               className="rounded-circle"
                             />
@@ -230,6 +220,56 @@ const SwiperComponent = () => {
                             </p>
                           </div>
                         </div>
+                        <br></br>
+                        <p>
+                          “keyiflii”
+                        </p>
+                        <div className="text-warning mb-4">
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                        </div>             
+                      </div>
+                    </div>
+                  </div>
+                  <div className="swiper-slide">
+                    <div className="card h-100">
+                      <div className="card-body text-body d-flex flex-column justify-content-between h-100">
+                        <div className="mb-4">
+                          <img
+                            src="img/front-pages/branding/logo-1.png"
+                            alt="client logo"
+                            className="client-logo img-fluid"
+                          />
+                        </div>
+                        <div className="d-flex align-items-center">
+                          <div className="avatar me-3 avatar-sm">
+                            <img
+                              src="/img/avatars/emr.jpeg"
+                              alt="Avatar"
+                              className="rounded-circle"
+                            />
+                          </div>
+                          <div>
+                            <h6 className="mb-0">Cecilia Payne</h6>
+                            <p className="small text-muted mb-0">
+                              CEO of Airbnb
+                            </p>
+                          </div>
+                        </div>
+                        <br></br>
+                        <p>
+                          “çalışın ..”
+                        </p>
+                        <div className="text-warning mb-4">
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                        </div>                      
                       </div>
                     </div>
                   </div>

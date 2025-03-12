@@ -20,7 +20,20 @@
   "signpassword" : "Password",
   "signinbutton" : "Sign In",
   "newusermessage" :"New on our platform?",
-  "create_account_link" : "Create an account"
+  "create_account_link" : "Create an account",
+  "vxy_what1": "What is Vuexy?",
+  "vxy_what": "Vuexy is an innovative online learning platform that is shaping the future of private tutoring. Our vision is to help students reach their full potential by offering personalized and interactive lessons.",
+  "offer_for":"What is this offer for?",
+  "offer_description":"This offer is valid for students of all ages and levels who need support during their learning process or seek help to fully realize their potential.",
+  "eduSupport": "Our Educational Support Services",
+  "eduSupportDesc": " We offer educational support in a wide range of subjects, primarily in Mathematics, Turkish, and English. We are also expanding our offerings for university courses, which we will announce soon.",
+  "OnLessonBenefits": "Advantages of Online Video Lessons",
+  "OnLessonDesc" : "Online video lessons help you save time and transportation costs. With the recording feature, you can rewatch lessons whenever you want. Additionally, the wide network of teachers allows you to book sessions quickly and switch teachers based on your needs.",
+  "TeacherBooking" : "How Can I Book a Lesson with a Teacher?",
+  "TeacherBookingDesc" : "Sign up for Vuexy using your phone number or email address. Then, click on 'Select a Teacher' in the menu. A list of teachers will appear, allowing you to choose your preferred teacher and select a suitable date and time.",
+  "askedQuestions": "Frequently Asked Questions",
+  "askedQuestionsDesc": "Create your Vuexy membership easily, choose the most suitable teacher for your child, schedule an appointment, and start lessons immediately."
+ 
  
  
 
