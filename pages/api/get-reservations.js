@@ -8,6 +8,7 @@ export default async function handler(req, res) {
   const { teacher_id } = req.query;
 
   if (!teacher_id) {
+    console.log("❌ Öğretmen ID eksik!");
     return res.status(400).json({ error: "Öğretmen ID eksik!" });
   }
 
@@ -15,11 +16,17 @@ export default async function handler(req, res) {
   try {
     db = await getConnection();
 
+    console.log(
+      `📌 Teacher ID: ${teacher_id} için rezervasyonlar sorgulanıyor...`
+    );
+
     // 📌 Bekleyen veya onaylanmış rezervasyonları getir
     const [reservations] = await db.execute(
       "SELECT date, time, status FROM reservations WHERE teacher_id = ? AND status IN ('pending', 'approved')",
       [teacher_id]
     );
+
+    console.log("📌 Getirilen Rezervasyonlar:", reservations);
 
     res.status(200).json(reservations);
   } catch (error) {

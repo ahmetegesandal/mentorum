@@ -31,6 +31,21 @@ export default async function handler(req, res) {
       .json({ error: "Geçersiz tarih formatı! YYYY-MM-DD olmalı." });
   }
 
+  // 📌 Seçilen tarihi UTC formatına dönüştür
+  const formattedDate = new Date(date);
+  const utcDate = new Date(
+    Date.UTC(
+      formattedDate.getFullYear(),
+      formattedDate.getMonth(),
+      formattedDate.getDate(),
+      0,
+      0,
+      0
+    )
+  )
+    .toISOString()
+    .split("T")[0]; // UTC formatında tarih
+
   let db;
   try {
     db = await getConnection();
@@ -38,7 +53,7 @@ export default async function handler(req, res) {
     // 📌 Aynı saatte rezervasyon var mı?
     const [existing] = await db.execute(
       "SELECT id FROM reservations WHERE teacher_id = ? AND date = ? AND time = ?",
-      [teacher_id, date, time]
+      [teacher_id, utcDate, time]
     );
 
     if (existing.length > 0) {
@@ -50,7 +65,7 @@ export default async function handler(req, res) {
     // 📌 Yeni rezervasyonu ekle
     await db.execute(
       "INSERT INTO reservations (student_id, lesson_id, teacher_id, date, time, status, created_at) VALUES (?, ?, ?, ?, ?, 'pending', NOW())",
-      [student_id, lesson_id, teacher_id, date, time]
+      [student_id, lesson_id, teacher_id, utcDate, time]
     );
 
     res
