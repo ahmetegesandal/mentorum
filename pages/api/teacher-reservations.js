@@ -17,10 +17,13 @@ export default async function handler(req, res) {
 
     const [reservations] = await db.execute(
       `SELECT r.id, r.date, r.time, r.status, 
-              u.name AS student_name, u.surname AS student_surname
+              u.name AS student_name, u.surname AS student_surname, 
+              l.title AS lesson_title  -- 📌 Ders adını ekledik!
        FROM reservations r
        JOIN users u ON r.student_id = u.id
-       WHERE r.teacher_id = ? ORDER BY r.date ASC`,
+       JOIN lessons l ON r.lesson_id = l.id  -- 📌 Ders ile ilişkili tabloyu ekledik!
+       WHERE r.teacher_id = ? 
+       ORDER BY r.date ASC`,
       [teacher_id]
     );
 

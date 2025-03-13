@@ -194,12 +194,18 @@ const Slessons = () => {
                             <div className="rounded-2 text-center mb-4">
                               <a href={`/lessons/${lesson.id}`}>
                                 <img
-                                  className="img-fluid"
+                                  className=""
                                   src={`${lesson.lesson_photo}`}
                                   alt={lesson.title}
+                                  width={"300"}
+                                  height={"180"}
+                                  style={{
+                                    objectFit: "cover",
+                                  }}
                                 />
                               </a>
                             </div>
+
                             <div className="card-body p-4 pt-2">
                               <div class="d-flex align-items-center mb-4 gap-3">
                                 <a
@@ -252,11 +258,24 @@ const Slessons = () => {
                               <a href={`/lessons/${lesson.id}`} className="h5">
                                 {lesson.title}
                               </a>
-                              <p className="mt-1">
-                                {lesson.description.length > 100
-                                  ? lesson.description.substring(0, 100) + "..."
-                                  : lesson.description}
-                              </p>
+                              <p
+                                className="mt-1"
+                                dangerouslySetInnerHTML={{
+                                  __html:
+                                    lesson.description.replace(
+                                      /<\/?[^>]+(>|$)/g,
+                                      ""
+                                    ).length > 100
+                                      ? lesson.description
+                                          .replace(/<\/?[^>]+(>|$)/g, "")
+                                          .substring(0, 100) + "..."
+                                      : lesson.description.replace(
+                                          /<\/?[^>]+(>|$)/g,
+                                          ""
+                                        ),
+                                }}
+                              />
+
                               <p>
                                 <strong>Fiyat:</strong> {lesson.price}₺
                               </p>

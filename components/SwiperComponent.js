@@ -8,7 +8,7 @@ const SwiperComponent = () => {
       loop: true,
       slidesPerView: "1",
       spaceBetween: 10,
- 
+
       navigation: {
         nextEl: "#reviews-next-btn",
         prevEl: "#reviews-previous-btn",
@@ -18,7 +18,6 @@ const SwiperComponent = () => {
         clickable: true,
       },
     });
-    
 
     return () => {
       swiper.destroy(); // Temizleme işlemi
@@ -101,9 +100,7 @@ const SwiperComponent = () => {
                           </div>
                         </div>
                         <br></br>
-                        <p>
-                          “çalışın boş oturmayın!!”
-                        </p>
+                        <p>“çalışın boş oturmayın!!”</p>
                         <div className="text-warning mb-4">
                           <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
@@ -111,7 +108,6 @@ const SwiperComponent = () => {
                           <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
                         </div>
-                    
                       </div>
                     </div>
                   </div>
@@ -141,9 +137,7 @@ const SwiperComponent = () => {
                           </div>
                         </div>
                         <br></br>
-                        <p>
-                          “bu hocalar süpermiş”
-                        </p>
+                        <p>“bu hocalar süpermiş”</p>
                         <div className="text-warning mb-4">
                           <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
@@ -151,7 +145,6 @@ const SwiperComponent = () => {
                           <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
                         </div>
-                 
                       </div>
                     </div>
                   </div>
@@ -181,9 +174,7 @@ const SwiperComponent = () => {
                           </div>
                         </div>
                         <br></br>
-                        <p>
-                          “very very good!!”
-                        </p>
+                        <p>“very very good!!”</p>
                         <div className="text-warning mb-4">
                           <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
@@ -191,7 +182,6 @@ const SwiperComponent = () => {
                           <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
                         </div>
-                  
                       </div>
                     </div>
                   </div>
@@ -221,16 +211,14 @@ const SwiperComponent = () => {
                           </div>
                         </div>
                         <br></br>
-                        <p>
-                          “keyiflii”
-                        </p>
+                        <p>“keyiflii”</p>
                         <div className="text-warning mb-4">
                           <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
-                        </div>             
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -260,16 +248,14 @@ const SwiperComponent = () => {
                           </div>
                         </div>
                         <br></br>
-                        <p>
-                          “çalışın ..”
-                        </p>
+                        <p>“çalışın ..”</p>
                         <div className="text-warning mb-4">
                           <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
-                        </div>                      
+                        </div>
                       </div>
                     </div>
                   </div>

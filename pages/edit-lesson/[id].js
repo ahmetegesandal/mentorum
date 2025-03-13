@@ -5,6 +5,7 @@ import Navbar from "../../components/Navbar";
 import { UserContext } from "../../contexts/UserContext";
 import axios from "axios";
 import Swal from "sweetalert2";
+import RichTextEditor from "../../components/RichTextEditor";
 
 const EditLesson = () => {
   const router = useRouter();
@@ -23,7 +24,6 @@ const EditLesson = () => {
   useEffect(() => {
     if (!id || !userData) return;
 
-    // **Mevcut ders bilgilerini getir**
     axios
       .get(`/api/get-lesson?id=${id}`)
       .then((res) => {
@@ -36,7 +36,6 @@ const EditLesson = () => {
       })
       .catch((err) => console.error("Ders bilgisi alınamadı:", err));
 
-    // **Kategorileri getir**
     axios
       .get("/api/categories")
       .then((res) => setCategories(res.data))
@@ -111,14 +110,7 @@ const EditLesson = () => {
                 <label htmlFor="description" className="form-label">
                   Açıklama
                 </label>
-                <textarea
-                  className="form-control"
-                  id="description"
-                  rows="3"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  required
-                ></textarea>
+                <RichTextEditor value={description} onChange={setDescription} />
               </div>
 
               <div className="mb-3">

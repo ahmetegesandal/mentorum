@@ -77,14 +77,25 @@ const LessonDetails = ({ lesson }) => {
                     <div className="card academy-content shadow-none border">
                       <div className="p-2">
                         <img
-                          src={lesson.lesson_photo}
-                          alt="Ders Fotoğrafı"
-                          className="w-full h-auto rounded-lg"
+                          className=""
+                          src={`${lesson.lesson_photo}`}
+                          alt={lesson.title}
+                          width={"800"}
+                          height={"450"}
+                          style={{
+                            objectFit: "cover",
+                          }}
                         />
                       </div>
                       <div className="card-body pt-4">
                         <h5>Bu kurs hakkında</h5>
-                        <p className="mb-0">{lesson.description}</p>
+                        <p
+                          className="mb-0"
+                          dangerouslySetInnerHTML={{
+                            __html: lesson.description,
+                          }}
+                        />
+
                         <hr className="my-6" />
                         <h5>Fiyat</h5>
                         <p>{lesson.price} $</p>
@@ -128,7 +139,11 @@ const LessonDetails = ({ lesson }) => {
                             <h6 className="mb-1">
                               {lesson.teacher_name} {lesson.teacher_surname}
                             </h6>
-                            <small>...</small>
+                            <small>
+                              {lesson.teacher_role === "teacher"
+                                ? "Öğretmen"
+                                : ""}
+                            </small>
                           </div>
                         </div>
                       </div>

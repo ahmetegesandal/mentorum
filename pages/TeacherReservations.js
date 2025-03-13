@@ -5,7 +5,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { UserContext } from "../contexts/UserContext";
 
-const ITEMS_PER_PAGE = 8; // ✅ Sayfalama için her sayfadaki rezervasyon sayısı
+const ITEMS_PER_PAGE = 8;
 
 const TeacherReservations = () => {
   const userData = useContext(UserContext);
@@ -14,6 +14,10 @@ const TeacherReservations = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState(""); // 🔍 Arama çubuğu için state
   const [currentPage, setCurrentPage] = useState(1); // 📌 Mevcut sayfa
+
+  if (!userData || userData.role !== "teacher") {
+    return <p className="text-danger text-center mt-4">Erişim Yetkiniz Yok!</p>;
+  }
 
   useEffect(() => {
     if (userData?.role === "teacher") {
@@ -152,6 +156,7 @@ const TeacherReservations = () => {
                 <thead>
                   <tr>
                     <th>Öğrenci</th>
+                    <th>Ders</th>
                     <th>Tarih</th>
                     <th>Saat</th>
                     <th>Durum</th>
@@ -164,6 +169,7 @@ const TeacherReservations = () => {
                       <td>
                         {res.student_name} {res.student_surname}
                       </td>
+                      <td>{res.lesson_title}</td>
                       <td>{res.date}</td>
                       <td>{res.time}</td>
                       <td>

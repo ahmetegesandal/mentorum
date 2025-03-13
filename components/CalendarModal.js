@@ -76,6 +76,13 @@ const CalendarModal = ({ onUpdate }) => {
                 aria-label="Close"
               ></button>
             </div>
+            <div className="modal-header">
+              <p>
+                Dikkat yeni takvim kaydı eklerken müsait olduğunuz bir saati
+                seçmelisiniz, sistem üstüne otomatik olarak +1 saat eklemekte
+                buna göre kayıtlarınızı yapmanızı tavsiye ederiz.
+              </p>
+            </div>
 
             <form onSubmit={handleSubmit}>
               <div className="modal-body">
