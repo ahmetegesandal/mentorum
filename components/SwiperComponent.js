@@ -1,7 +1,10 @@
 // components/SwiperComponent.js
 import { useEffect } from "react";
+import { useTranslation } from "next-i18next";
 
 const SwiperComponent = () => {
+  const { t } = useTranslation();
+  
   useEffect(() => {
     // Swiper'ı başlatma
     const swiper = new Swiper("#swiper-reviews", {
@@ -21,7 +24,9 @@ const SwiperComponent = () => {
     
 
     return () => {
-      swiper.destroy(); // Temizleme işlemi
+      if (swiper && typeof swiper.destroy === 'function') {
+        swiper.destroy(true, true); 
+      }
     };
   }, []);
 
@@ -35,12 +40,12 @@ const SwiperComponent = () => {
           <div className="col-md-6 col-lg-5 col-xl-3">
             <div className="mb-4">
               <span className="badge bg-label-primary">
-                Real Customers Reviews
+              {t("custReviews")}  
               </span>
             </div>
             <h4 className="mb-1">
               <span className="position-relative fw-extrabold z-1">
-                What people say
+              {t("peopleSay")}
                 <img
                   src="img/front-pages/icons/section-title-icon.png"
                   alt="laptop charging"
@@ -48,11 +53,9 @@ const SwiperComponent = () => {
                 />
               </span>
             </h4>
-            <p className="mb-5 mb-md-12">
-              See what our customers have to
-              <br className="d-none d-xl-block" />
-              say about their experience.
-            </p>
+            <p className="mb-5 mb-md-12" 
+            dangerouslySetInnerHTML={{ __html: t("peopleSay2") }} />
+
             <div className="landing-reviews-btns">
               <button
                 id="reviews-previous-btn"
@@ -79,11 +82,12 @@ const SwiperComponent = () => {
                     <div className="card h-100">
                       <div className="card-body text-body d-flex flex-column justify-content-between h-100">
                         <div className="mb-4">
+                          {/* Swiper Slide 1 
                           <img
                             src="img/front-pages/branding/logo-1.png"
                             alt="client logo"
                             className="client-logo img-fluid"
-                          />
+                          />*/}
                         </div>
                         <div className="d-flex align-items-center">
                           <div className="avatar me-3 avatar-sm">
@@ -94,9 +98,9 @@ const SwiperComponent = () => {
                             />
                           </div>
                           <div>
-                            <h6 className="mb-0">Cecilia Payne</h6>
+                            <h6 className="mb-0">Ege</h6>
                             <p className="small text-muted mb-0">
-                              CEO of Airbnb
+                              Developer
                             </p>
                           </div>
                         </div>
@@ -119,11 +123,12 @@ const SwiperComponent = () => {
                     <div className="card h-100">
                       <div className="card-body text-body d-flex flex-column justify-content-between h-100">
                         <div className="mb-4">
+                     {/* Swiper Slide 1 
                           <img
                             src="img/front-pages/branding/logo-1.png"
                             alt="client logo"
                             className="client-logo img-fluid"
-                          />
+                          />*/}
                         </div>
                         <div className="d-flex align-items-center">
                           <div className="avatar me-3 avatar-sm">
@@ -134,9 +139,9 @@ const SwiperComponent = () => {
                             />
                           </div>
                           <div>
-                            <h6 className="mb-0">Cecilia Payne</h6>
+                            <h6 className="mb-0">Ufuk</h6>
                             <p className="small text-muted mb-0">
-                              CEO of Airbnb
+                              Developer
                             </p>
                           </div>
                         </div>
@@ -159,11 +164,12 @@ const SwiperComponent = () => {
                     <div className="card h-100">
                       <div className="card-body text-body d-flex flex-column justify-content-between h-100">
                         <div className="mb-4">
+                        {/* Swiper Slide 1 
                           <img
                             src="img/front-pages/branding/logo-1.png"
                             alt="client logo"
                             className="client-logo img-fluid"
-                          />
+                          />*/}
                         </div>
                         <div className="d-flex align-items-center">
                           <div className="avatar me-3 avatar-sm">
@@ -174,9 +180,9 @@ const SwiperComponent = () => {
                             />
                           </div>
                           <div>
-                            <h6 className="mb-0">Cecilia Payne</h6>
+                            <h6 className="mb-0">sena</h6>
                             <p className="small text-muted mb-0">
-                              CEO of Airbnb
+                              Developer
                             </p>
                           </div>
                         </div>
@@ -199,11 +205,12 @@ const SwiperComponent = () => {
                     <div className="card h-100">
                       <div className="card-body text-body d-flex flex-column justify-content-between h-100">
                         <div className="mb-4">
+                          {/* Swiper Slide 1 
                           <img
                             src="img/front-pages/branding/logo-1.png"
                             alt="client logo"
                             className="client-logo img-fluid"
-                          />
+                          />*/}
                         </div>
                         <div className="d-flex align-items-center">
                           <div className="avatar me-3 avatar-sm">
@@ -214,9 +221,9 @@ const SwiperComponent = () => {
                             />
                           </div>
                           <div>
-                            <h6 className="mb-0">Cecilia Payne</h6>
+                            <h6 className="mb-0">Hatice</h6>
                             <p className="small text-muted mb-0">
-                              CEO of Airbnb
+                             Developer
                             </p>
                           </div>
                         </div>
@@ -238,11 +245,12 @@ const SwiperComponent = () => {
                     <div className="card h-100">
                       <div className="card-body text-body d-flex flex-column justify-content-between h-100">
                         <div className="mb-4">
+                        {/* Swiper Slide 1 
                           <img
                             src="img/front-pages/branding/logo-1.png"
                             alt="client logo"
                             className="client-logo img-fluid"
-                          />
+                          />*/}
                         </div>
                         <div className="d-flex align-items-center">
                           <div className="avatar me-3 avatar-sm">
@@ -253,9 +261,9 @@ const SwiperComponent = () => {
                             />
                           </div>
                           <div>
-                            <h6 className="mb-0">Cecilia Payne</h6>
+                            <h6 className="mb-0">Emir</h6>
                             <p className="small text-muted mb-0">
-                              CEO of Airbnb
+                               Developer
                             </p>
                           </div>
                         </div>
@@ -289,5 +297,6 @@ const SwiperComponent = () => {
     </section>
   );
 };
+
 
 export default SwiperComponent;

@@ -5,6 +5,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import SwiperComponent from "../components/SwiperComponent";
 import { useRouter } from "next/router";
+import HeroSection from "../components/HeroSection"; // HeroSection bileşenini içeri aktar
 
 
 const Home = () => {
@@ -176,73 +177,16 @@ const Home = () => {
         </div>
       </nav>
 
-      <div data-bs-spy="scroll" className="scrollspy-example">
-        <section id="hero-animation">
-          <div
-            id="landingHero"
-            className="section-py landing-hero position-relative"
-          >
-            <img
-              src="img/front-pages/backgrounds/hero-bg.png"
-              alt="hero background"
-              className="position-absolute top-0 start-50 translate-middle-x object-fit-cover w-100 h-100"
-              data-speed="1"
-            />
-            <div className="container">
-              <div className="hero-text-box text-center position-relative">
-                <h1 className="text-primary hero-title display-6 fw-extrabold">
-                  One dashboard to manage all your businesses
-                </h1>
-                <h2 className="hero-sub-title h6 mb-6">
-                  Production-ready & easy to use Admin Template
-                  <br className="d-none d-lg-block" />
-                  for Reliability and Customizability.
-                </h2>
-                <div className="landing-hero-btn d-inline-block position-relative">
-                  <span className="hero-btn-item position-absolute d-none d-md-flex fw-medium">
-                    Join community
-                    <img
-                      src="img/front-pages/icons/Join-community-arrow.png"
-                      alt="Join community arrow"
-                      className="scaleX-n1-rtl"
-                    />
-                  </span>
-                  <a href="#landingPricing" className="btn btn-primary btn-lg">
-                    Get early access
-                  </a>
-                </div>
-              </div>
-              <div id="heroDashboardAnimation" className="hero-animation-img">
-                <a
-                  href="../vertical-menu-template/app-ecommerce-dashboard.html"
-                  target="_blank"
-                >
-                  <div
-                    id="heroAnimationImg"
-                    className="position-relative hero-dashboard-img"
-                  >
-                    <img
-                      src="/img/front-pages/landing-page/hero-dashboard-light.png"
-                      alt="hero dashboard"
-                      className="animation-img"
-                      data-app-light-img="front-pages/landing-page/hero-dashboard-light.png"
-                      data-app-dark-img="front-pages/landing-page/hero-dashboard-dark.png"
-                    />
-                    <img
-                      src="img/front-pages/landing-page/hero-elements-light.png"
-                      alt="hero elements"
-                      className="position-absolute hero-elements-img animation-img top-0 start-0"
-                      data-app-light-img="front-pages/landing-page/hero-elements-light.png"
-                      data-app-dark-img="front-pages/landing-page/hero-elements-dark.png"
-                    />
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="landing-hero-blank"></div>
-        </section>
+          {/* Hero Bölümünü Buraya Ekliyoruz */}
+          <HeroSection />  {/* HeroSection bileşenini buraya ekledik */}
 
+          {/* Diğer sayfa içeriği 
+        <SwiperComponent /> SwiperComponent bileşeni aşağıda 
+*/}
+      <div data-bs-spy="scroll" className="scrollspy-example">            
+<br></br>
+<br></br>
+<br></br>
         <section id="landingFeatures" className="section-py landing-features">
           <div className="container">
             <div className="text-center mb-4">
@@ -1059,7 +1003,7 @@ const Home = () => {
                       target="_blank"
                       className="footer-link"
                     >
-                      Vertical Layout
+                      {t("WhoWeAre")}  
                     </a>
                   </li>
                   <li className="mb-4">
@@ -1068,7 +1012,7 @@ const Home = () => {
                       target="_blank"
                       className="footer-link"
                     >
-                      Horizontal Layout
+                      {t("Career")}  
                     </a>
                   </li>
                   <li className="mb-4">
@@ -1077,7 +1021,7 @@ const Home = () => {
                       target="_blank"
                       className="footer-link"
                     >
-                      Bordered Layout
+                      {t("NewsCenter")}
                     </a>
                   </li>
                   <li className="mb-4">
@@ -1086,7 +1030,7 @@ const Home = () => {
                       target="_blank"
                       className="footer-link"
                     >
-                      Semi Dark Layout
+                      {t("Prices")}  
                     </a>
                   </li>
                   <li className="mb-4">
@@ -1095,7 +1039,7 @@ const Home = () => {
                       target="_blank"
                       className="footer-link"
                     >
-                      Dark Layout
+                      {t("StudentRules")} 
                     </a>
                   </li>
                 </ul>
@@ -1105,22 +1049,22 @@ const Home = () => {
                 <ul className="list-unstyled">
                   <li className="mb-4">
                     <a href="pricing-page.html" className="footer-link">
-                      Pricing
+                    {t("Reviews")}
                     </a>
                   </li>
                   <li className="mb-4">
                     <a href="payment-page.html" className="footer-link">
-                      Payment<span className="badge bg-primary ms-2">New</span>
+                    {t("CustomerService")}<span className="badge bg-primary ms-2">New</span>
                     </a>
                   </li>
                   <li className="mb-4">
                     <a href="checkout-page.html" className="footer-link">
-                      Checkout
+                    {t("FAQ")} 
                     </a>
                   </li>
                   <li className="mb-4">
                     <a href="help-center-landing.html" className="footer-link">
-                      Help Center
+                    {t("Contact")}
                     </a>
                   </li>
                   <li className="mb-4">
@@ -1129,7 +1073,7 @@ const Home = () => {
                       target="_blank"
                       className="footer-link"
                     >
-                      Login/Register
+                      {t("freeLesson")} 
                     </a>
                   </li>
                 </ul>

@@ -20,3 +20,101 @@
   position: inherit;
 }
 
+
+/* ek kısım */
+
+.hero-image {
+  position: relative;
+  width: 50%;
+  height: 50%;
+}
+
+.hero-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70%;
+  height: 70%;
+}
+
+#hero-section .swiper-button-prev, #hero-section .swiper-button-next {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#hero-section .swiper-button-prev:hover, #hero-section .swiper-button-next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.hero-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%; /* Resmin boyutunu küçültüyoruz */
+  height: 100%;
+  object-fit: cover;
+  object-position: left center; /* Resmi sola yaslıyoruz */
+}
+.hero-content {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  text-align: right;
+  padding-right: 30px;
+}
+/* Eğer text-left class varsa sola yaslar */
+.hero-content.text-left {
+  left: 10%;
+  right: auto;
+  text-align: left;
+  padding-left: 30px;
+  padding-right: 0;
+}
+
+/* Eğer text-center class varsa ortaya alır */
+.hero-content.text-center {
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+.hero-navigation button {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.hero-navigation button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.hero-content h1, .hero-content p {
+  background: linear-gradient(90deg, rgb(230, 236, 191), hwb(66 37% 4%)); /* Geçiş renkleri */
+  -webkit-background-clip: text;  /* Metne geçişli arka plan ekler */
+  color: transparent;  /* Arka planı metnin rengi olarak uygular */
+}
+.hero-content p {
+
+  background: linear-gradient(90deg, rgb(249, 249, 249), rgb(234, 200, 228)); /* Geçiş renkleri */
+  -webkit-background-clip: text;  /* Metne geçişli arka plan ekler */
+  color: transparent;  /* Arka planı metnin rengi olarak uygular */
+}
+
+.hero-content h1 {
+  font-size: 3rem; /* Örnek büyüklük, ihtiyaca göre değiştirebilirsin */
+}
+
+.hero-content p {
+  font-size: 1.25rem; /* Örnek açıklama metni büyüklüğü */
+}
+
+

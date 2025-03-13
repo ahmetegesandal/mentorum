@@ -15,6 +15,7 @@ import "../styles/fonts/tabler-icons.css";
 import "../styles/fonts/flag-icons.css";
 import "../styles/demo.css";
 
+
 // Kütüphane CSS Dosyaları
 import "../styles/libs/perfect-scrollbar/perfect-scrollbar.css";
 import "../styles/libs/typeahead-js/typeahead.css";
@@ -116,6 +117,8 @@ function MyApp({ Component, pageProps }) {
       </ThemeProvider>
     </UserProvider>
   );
+
+
 }
 
 export default appWithTranslation(MyApp);

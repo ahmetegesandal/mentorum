@@ -15,6 +15,31 @@
   "TeacherBooking" : "¿Cómo puedo reservar una clase con un profesor?",
   "TeacherBookingDesc" : "Regístrate en Vuexy con tu número de teléfono o dirección de correo electrónico. Luego, haz clic en 'Seleccionar Profesor' en el menú. Aparecerá una lista de profesores, donde podrás elegir el que prefieras y seleccionar una fecha y hora adecuadas.",
   "askedQuestions": "Preguntas Frecuentes",
-  "askedQuestionsDesc": "Crea fácilmente tu membresía en Vuexy, elige el profesor más adecuado para tu hijo, programa una cita y comienza las clases de inmediato."
+  "askedQuestionsDesc": "Crea fácilmente tu membresía en Vuexy, elige el profesor más adecuado para tu hijo, programa una cita y comienza las clases de inmediato.",
+  "WhoWeAre": "Quiénes Somos",
+  "Career": "Carrera",
+  "NewsCenter": "Centro de Noticias",
+  "Prices": "Precios de Membresía",
+  "StudentRules": "Reglas de Comportamiento Estudiantil",
+  "Reviews": "Reseñas de Vuexy",
+  "CustomerService": "Servicio al Cliente",
+  "FAQ": "Preguntas Frecuentes (FAQ)",
+  "Contact Us": "Contáctanos",
+  "freeLesson": "Reserva tu clase de prueba gratuita",
+  "custReviews": "Reseñas Reales de Clientes",
+  "peopleSay": "¿Qué Piensan los Usuarios?",
+  "peopleSay2": "Eche un vistazo a lo que han dicho los usuarios de <br /> Vuexy sobre sus experiencias.",
+  "imgTitle1": "95% de éxito en las lecciones con Vuexy",
+  "imgDesc1": "Con nuestras clases en vivo únicas, preparamos a nuestros estudiantes para los exámenes con los conocimientos que nuestros profesores les brindan.",
+  "imgButton1": "Haz clic para obtener información ahora",
+  "imgTitle2":  "Una plataforma educativa para tu éxito en las clases",
+  "imgDesc2": "Una de las claves para el éxito académico es el acceso a los recursos adecuados y a un entorno de aprendizaje eficaz. Vuexy ofrece a los estudiantes una experiencia de aprendizaje completa para ayudarlos a avanzar de manera más eficiente y efectiva en sus estudios.",
+  "imgButton2":"Haz clic para explorar",
+  "imgTitle3": "Profesores expertos para cada estilo de aprendizaje",
+  "imgDesc3": "Alcanza el éxito con nuestros profesores experimentados y expertos, que imparten educación utilizando los métodos más adecuados para tu estilo de aprendizaje. Ofrecemos clases personalizadas adaptadas a diferentes estilos de aprendizaje, ayudando a cada estudiante a alcanzar su máximo potencial.",
+  "imgButton3":"Haz clic para obtener información",
+  "imgTitle4": "Clases particulares personalizadas",
+  "imgDesc4": "Cada estudiante tiene un estilo de aprendizaje, un ritmo y necesidades únicas. 'Clases particulares personalizadas' ofrece lecciones diseñadas específicamente para cada persona, proporcionando una experiencia de aprendizaje más eficiente y efectiva. Estas clases refuerzan los puntos fuertes del estudiante y brindan orientación y apoyo personalizados en las áreas que necesitan mejorar."
+
  
 }
