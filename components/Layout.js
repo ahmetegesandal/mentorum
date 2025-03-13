@@ -1,26 +1,26 @@
 import React from "react";
 import { useLayout } from "../contexts/LayoutContext";
-import { useRouter } from "next/router"; // useRouter'ı ekliyoruz
+import { useRouter } from "next/router";
 
 const Layout = ({ children }) => {
-    const { isMenuExpanded } = useLayout(); // LayoutContext'ten bilgi alın
-    const router = useRouter(); // Router'ı kullanıyoruz
+  const { isMenuExpanded } = useLayout();
+  const router = useRouter();
 
-    const noLayoutPaths = ["/sign-in", "/register", "/404", "/"];
+  const noLayoutPaths = ["/sign-in", "/register", "/404", "/", "/contact"];
 
-    if (noLayoutPaths.includes(router.pathname)) {
-        return <>{children}</>;
-    }
+  if (noLayoutPaths.includes(router.pathname)) {
+    return <>{children}</>;
+  }
 
-    return (
-        <div
-            className={`layout-wrapper layout-content-navbar ${
-                isMenuExpanded ? "layout-menu-expanded" : "layout-compact"
-            }`}
-        >
-            <div className="layout-container">{children}</div>
-        </div>
-    );
+  return (
+    <div
+      className={`layout-wrapper layout-content-navbar ${
+        isMenuExpanded ? "layout-menu-expanded" : "layout-compact"
+      }`}
+    >
+      <div className="layout-container">{children}</div>
+    </div>
+  );
 };
 
 export default Layout;

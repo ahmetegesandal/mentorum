@@ -7,6 +7,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { UserContext } from "../contexts/UserContext";
 import { useRouter } from "next/router";
+import RichTextEditor from "../components/RichTextEditor"; // RichTextEditor bileşenini içe aktarıyoruz
 
 const AddLesson = ({ categories }) => {
   const { t } = useTranslation("common");
@@ -36,7 +37,7 @@ const AddLesson = ({ categories }) => {
     formData.append("teacher_id", teacherId);
     formData.append("category_id", categoryId);
     formData.append("title", title);
-    formData.append("description", description);
+    formData.append("description", description); // RichTextEditor'dan gelen veri
     formData.append("price", price);
     formData.append("language", language);
     if (lessonPhoto) {
@@ -54,7 +55,7 @@ const AddLesson = ({ categories }) => {
         icon: "success",
         confirmButtonText: "Tamam",
       }).then(() => {
-        router.push("/slessons"); // Yönlendirme işlemi
+        router.push("/slessons");
       });
     } catch (error) {
       console.error(error);
@@ -108,17 +109,8 @@ const AddLesson = ({ categories }) => {
               </div>
 
               <div className="mb-3">
-                <label htmlFor="description" className="form-label">
-                  Açıklama
-                </label>
-                <textarea
-                  className="form-control"
-                  id="description"
-                  rows="3"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  required
-                ></textarea>
+                <label className="form-label">Açıklama</label>
+                <RichTextEditor value={description} onChange={setDescription} />
               </div>
 
               <div className="mb-3">

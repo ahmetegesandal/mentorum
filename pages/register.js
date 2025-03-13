@@ -2,6 +2,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useState } from "react";
 import Logo from "../components/Logo";
+import Link from "next/link";
 
 const Register = () => {
   const { t } = useTranslation("common");
@@ -66,24 +67,24 @@ const Register = () => {
           <div className="authentication-inner py-6">
             <div className="card">
               <div className="card-body">
-                <div className="app-brand justify-content-center mb-6">
-                  <a href="/" className="app-brand-link">
+                <div className="app-brand justify-content-center mb-3">
+                  <Link href="/" className="app-brand-link">
                     <Logo />
-                  </a>
+                  </Link>
                 </div>
 
                 <h4 className="mb-1">Adventure starts here 🚀</h4>
-                <p className="mb-6">Make your app management easy and fun!</p>
+                <p className="mb-3">Make your app management easy and fun!</p>
 
                 {error && <p className="alert alert-danger">{error}</p>}
                 {success && <p className="alert alert-success">{success}</p>}
 
                 <form
                   id="formAuthentication"
-                  className="mb-6"
+                  className="mb-3"
                   onSubmit={handleSubmit}
                 >
-                  <div className="mb-6">
+                  <div className="mb-3">
                     <label htmlFor="role" className="form-label">
                       Select Role
                     </label>
@@ -100,7 +101,7 @@ const Register = () => {
                     </select>
                   </div>
 
-                  <div className="mb-6">
+                  <div className="mb-3">
                     <label htmlFor="username" className="form-label">
                       Username
                     </label>
@@ -116,7 +117,7 @@ const Register = () => {
                     />
                   </div>
 
-                  <div className="mb-6">
+                  <div className="mb-3">
                     <label htmlFor="name" className="form-label">
                       Name
                     </label>
@@ -131,7 +132,7 @@ const Register = () => {
                     />
                   </div>
 
-                  <div className="mb-6">
+                  <div className="mb-3">
                     <label htmlFor="surname" className="form-label">
                       Surname
                     </label>
@@ -146,7 +147,7 @@ const Register = () => {
                     />
                   </div>
 
-                  <div className="mb-6">
+                  <div className="mb-3">
                     <label htmlFor="email" className="form-label">
                       Email
                     </label>
@@ -161,7 +162,7 @@ const Register = () => {
                     />
                   </div>
 
-                  <div className="mb-6 form-password-toggle">
+                  <div className="mb-3 form-password-toggle">
                     <label className="form-label" htmlFor="password">
                       Password
                     </label>
@@ -182,7 +183,7 @@ const Register = () => {
                   </div>
 
                   {role === "teacher" && (
-                    <div className="mb-6">
+                    <div className="mb-3">
                       <label htmlFor="expertise" className="form-label">
                         Expertise Area
                       </label>

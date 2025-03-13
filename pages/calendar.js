@@ -6,14 +6,18 @@ import { UserContext } from "../contexts/UserContext";
 import { useTranslation } from "next-i18next";
 import CalendarModal from "../components/CalendarModal";
 
-const Blank = () => {
+const Calendar = () => {
   const { t } = useTranslation("common");
   const userData = useContext(UserContext);
   const [calendarEntries, setCalendarEntries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
+
+  if (!userData || userData.role !== "teacher") {
+    return <p className="text-danger text-center mt-4">Erişim Yetkiniz Yok!</p>;
+  }
 
   useEffect(() => {
     if (userData?.id) {
@@ -30,7 +34,11 @@ const Blank = () => {
       const response = await fetch(
         `/api/getUserCalendar?userId=${userData.id}`
       );
-      const data = await response.json();
+      let data = await response.json();
+
+      // Tarihleri en yeni tarihten en eskiye sıralama
+      data.sort((a, b) => new Date(b.date) - new Date(a.date));
+
       setCalendarEntries(data);
     } catch (error) {
       console.error("Takvim verisi alınırken hata oluştu:", error);
@@ -84,16 +92,19 @@ const Blank = () => {
   // Saat formatını (HH:mm → HH:mm - HH+1:mm) çevirme
   const formatTime = (timeString) => {
     const [hours, minutes] = timeString.split(":").map(Number);
-    const nextHour = (hours + 1) % 24; // 24 saat formatında döngü
-    return `${timeString} - ${nextHour.toString().padStart(2, "0")}:${minutes
+    const nextHour = hours + 1; // Tam 1 saat ekliyoruz
+    return `${hours.toString().padStart(2, "0")}:${minutes
+      .toString()
+      .padStart(2, "0")} - ${nextHour.toString().padStart(2, "0")}:${minutes
       .toString()
       .padStart(2, "0")}`;
   };
 
   // Arama ve sayfalama için filtreleme
-  const filteredEntries = calendarEntries.filter((entry) =>
-    entry.date.includes(searchTerm)
-  );
+  const filteredEntries = calendarEntries.filter((entry) => {
+    const formattedDate = formatDate(entry.date); // Tarihi "DD.MM.YYYY" formatına çevir
+    return formattedDate.includes(searchTerm);
+  });
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -176,4 +187,4 @@ const Blank = () => {
   );
 };
 
-export default Blank;
+export default Calendar;

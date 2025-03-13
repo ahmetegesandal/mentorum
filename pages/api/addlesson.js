@@ -1,24 +1,27 @@
 import { getConnection } from "../../utils/db";
 import multer from "multer";
 import path from "path";
-import fs from "fs/promises";
+import fs from "fs";
 
 export const config = {
-  api: {
-    bodyParser: false, // Multer ile dosya yüklemek için bodyParser'ı kapat
-  },
+  api: { bodyParser: false }, // Multer için bodyParser kapalı
 };
 
-// Multer ile dosya yükleme ayarları
+// Klasör var mı kontrol et, yoksa oluştur
+const uploadPath = path.join(process.cwd(), "public/uploads/lessons");
+if (!fs.existsSync(uploadPath)) {
+  fs.mkdirSync(uploadPath, { recursive: true });
+}
+
 const upload = multer({
   storage: multer.diskStorage({
-    destination: "./public/uploads/lessons",
+    destination: uploadPath,
     filename: (req, file, cb) => {
       cb(null, `${Date.now()}-${file.originalname}`);
     },
   }),
   limits: { fileSize: 2 * 1024 * 1024 }, // Max 2MB
-});
+}).single("lesson_photo");
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -26,13 +29,16 @@ export default async function handler(req, res) {
   }
 
   return new Promise((resolve, reject) => {
-    upload.single("lesson_photo")(req, res, async (err) => {
+    upload(req, res, async (err) => {
       if (err) {
         return res.status(400).json({ error: "Fotoğraf yükleme hatası." });
       }
 
+      console.log("Gelen Body:", req.body);
+      console.log("Yüklenen Dosya:", req.file);
+
       const { teacher_id, category_id, title, description, price, language } =
-        req.body;
+        JSON.parse(JSON.stringify(req.body));
 
       if (
         !teacher_id ||
@@ -52,12 +58,14 @@ export default async function handler(req, res) {
       let db;
       try {
         db = await getConnection();
+        console.log("✅ Veritabanına bağlandı!");
+
         const query = `
           INSERT INTO lessons (teacher_id, category_id, title, description, price, language, lesson_photo)
           VALUES (?, ?, ?, ?, ?, ?, ?)
         `;
 
-        await db.execute(query, [
+        const result = await db.execute(query, [
           teacher_id,
           category_id,
           title,
@@ -67,6 +75,7 @@ export default async function handler(req, res) {
           lessonPhoto,
         ]);
 
+        console.log("✅ Sorgu başarılı:", result);
         res.status(200).json({ message: "Ders başarıyla eklendi" });
       } catch (error) {
         console.error("❌ [HATA] Veritabanı hatası:", error);

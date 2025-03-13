@@ -10,11 +10,8 @@ import { UserProvider } from "../contexts/UserContext";
 import GlobalLogoutHandler from "../components/GlobalLogoutHandler";
 
 // Global CSS Dosyaları
-import "../styles/fonts/fontawesome.css";
-import "../styles/fonts/tabler-icons.css";
-import "../styles/fonts/flag-icons.css";
-import "../styles/demo.css";
 
+<<<<<<< HEAD
 
 // Kütüphane CSS Dosyaları
 import "../styles/libs/perfect-scrollbar/perfect-scrollbar.css";
@@ -23,6 +20,10 @@ import "../styles/libs/datatables-bs5/datatables.bootstrap5.css";
 import "../styles/libs/datatables-responsive-bs5/responsive.bootstrap5.css";
 import "../styles/libs/datatables-buttons-bs5/buttons.bootstrap5.css";
 import "../styles/libs/apex-charts/apex-charts.css";
+=======
+import "../styles/fonts/tabler-icons.css";
+import "../styles/demo.css";
+>>>>>>> 11b4d21 (takvim fixleri)
 
 // Sayfa Bazlı CSS
 import "../styles/pages/page-auth.css";
@@ -32,9 +33,9 @@ import "../styles/pages/app-academy.css";
 import "../styles/pages/app-chat.css";
 import "../styles/Calendar.css";
 
-import "../styles/rtl/preloader.css"; // Preloader stilini eklemeyi unutma
+import "../styles/rtl/preloader.css";
 
-import "../styles/rtl/custom.css"; // Preloader stilini eklemeyi unutma
+import "../styles/rtl/custom.css";
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
@@ -93,7 +94,7 @@ function MyApp({ Component, pageProps }) {
 
   // Dinamik CSS yükleme (Ana sayfa için özel CSS)
   useEffect(() => {
-    if (router.pathname === "/") {
+    if (router.pathname === "/" || router.pathname === "/contact") {
       import("../styles/pages/front-page.css");
       import("../styles/pages/front-page-landing.css");
     }

@@ -41,14 +41,7 @@ const ReservationForm = ({ lesson }) => {
           year: "numeric",
         });
 
-        formattedSlots[formattedDate] = response.data.availableSlots[
-          isoDate
-        ].map((timeRange) => {
-          const times = timeRange.split(" - ");
-          const startTime = times[0].slice(0, 5);
-          const endTime = times[1]?.slice(0, 5) || "";
-          return `${startTime} - ${endTime}`;
-        });
+        formattedSlots[formattedDate] = response.data.availableSlots[isoDate];
       });
 
       setAvailableSlots(formattedSlots);
@@ -78,32 +71,25 @@ const ReservationForm = ({ lesson }) => {
 
       response.data.forEach((reservation) => {
         const reservationDate = new Date(reservation.date);
-        const localDate = reservationDate.toLocaleDateString("tr-TR"); // Yerel tarih
-        const localTime = reservationDate.toLocaleTimeString("tr-TR", {
-          hour: "2-digit",
-          minute: "2-digit",
-        });
+        const localDate = reservationDate.toLocaleDateString("tr-TR");
+        const localTime = formatTime(reservation.time);
 
-        // API'den gelen saat formatını 'HH:00 - HH:00' formatına çevir
-        const startTime = localTime;
-        const endTime = `${parseInt(localTime.split(":")[0]) + 1}:00`; // 1 saat ekle
-        const timeRange = `${startTime} - ${endTime}`;
+        const endTime = calculateEndTime(reservation.time); // ✅ Fix: Restore `+1 hour` logic
 
         console.log(
-          `📌 API'den gelen rezervasyon saati: ${localDate} ${timeRange}`
+          `📌 API'den gelen rezervasyon: ${localDate} ${localTime} - ${endTime}`
         );
 
         if (
           reservation.status === "pending" ||
           reservation.status === "approved"
         ) {
-          // Rezervasyonun tarih ve saati, availableSlots formatı ile uyumlu olacak şekilde disabledTimeSet'e ekleyin
-          disabledTimeSet.add(`${localDate}_${startTime} - ${endTime}`);
+          disabledTimeSet.add(`${localDate}_${localTime} - ${endTime}`);
         }
       });
 
       setDisabledTimes(disabledTimeSet);
-      console.log("📌 Disabled saatler:", disabledTimeSet);
+      console.log("📌 Engellenmiş saatler:", disabledTimeSet);
     } catch (error) {
       console.error("❌ Rezervasyonlar alınamadı:", error);
     }
@@ -125,19 +111,15 @@ const ReservationForm = ({ lesson }) => {
       `📌 Rezervasyon yapılacak tarih: ${selectedDate}, saat: ${selectedTime}`
     );
 
-    const formattedDate = new Date(selectedDate);
-    const utcDate = new Date(
-      Date.UTC(
-        formattedDate.getFullYear(),
-        formattedDate.getMonth(),
-        formattedDate.getDate(),
-        0,
-        0,
-        0
-      )
-    )
-      .toISOString()
-      .split("T")[0];
+    const parsedDate = parseDateString(selectedDate);
+    if (!parsedDate) {
+      return Swal.fire("Hata!", "Geçersiz tarih formatı!", "error");
+    }
+
+    // ✅ Fix: Save the date correctly (No UTC conversion)
+    const localDate = `${parsedDate.getFullYear()}-${String(
+      parsedDate.getMonth() + 1
+    ).padStart(2, "0")}-${String(parsedDate.getDate()).padStart(2, "0")}`;
 
     const studentUserId =
       userData.role === "parent" && selectedStudent
@@ -149,7 +131,7 @@ const ReservationForm = ({ lesson }) => {
         student_id: studentUserId,
         lesson_id: lesson.id,
         teacher_id: lesson.teacher_user_id,
-        date: utcDate,
+        date: localDate, // ✅ Fix: Save correct local date
         time: selectedTime,
       });
 
@@ -213,18 +195,15 @@ const ReservationForm = ({ lesson }) => {
           <option value="">Saat Seçin</option>
           {selectedDate && availableSlots[selectedDate]?.length > 0 ? (
             availableSlots[selectedDate].map((time) => {
-              const formattedDate = new Date(selectedDate)
-                .toISOString()
-                .split("T")[0];
-              const isDisabled = disabledTimes.has(`${formattedDate}_${time}`);
-
-              console.log(
-                `📌 Kontrol edilen saat: ${formattedDate}_${time}, Disabled: ${isDisabled}`
+              const formattedTime = formatTime(time);
+              const endTime = calculateEndTime(formattedTime); // ✅ Fix: Show `endTime`
+              const isDisabled = disabledTimes.has(
+                `${selectedDate}_${formattedTime} - ${endTime}`
               );
 
               return (
-                <option key={time} value={time} disabled={isDisabled}>
-                  {time} {isDisabled ? "(Dolu)" : ""}
+                <option key={time} value={formattedTime} disabled={isDisabled}>
+                  {formattedTime} - {endTime} {isDisabled ? "(Dolu)" : ""}
                 </option>
               );
             })
@@ -234,21 +213,53 @@ const ReservationForm = ({ lesson }) => {
         </select>
       </div>
 
-      {userData?.role === "student" || userData?.role === "parent" ? (
-        <button
-          className="btn btn-success w-100"
-          onClick={handleReservation}
-          disabled={!selectedTime}
-        >
-          📅 Rezervasyon Yap
-        </button>
-      ) : (
-        <p className="text-muted">
-          Sadece öğrenciler ve veliler rezervasyon yapabilir.
-        </p>
-      )}
+      <button
+        className="btn btn-success w-100"
+        onClick={handleReservation}
+        disabled={!selectedTime}
+      >
+        📅 Rezervasyon Yap
+      </button>
     </div>
   );
+};
+
+// 📌 Helper Function: Parse Turkish date format
+const parseDateString = (dateStr) => {
+  const parts = dateStr.split(" ");
+  if (parts.length !== 3) return null;
+
+  const [day, monthName, year] = parts;
+  const months = [
+    "Ocak",
+    "Şubat",
+    "Mart",
+    "Nisan",
+    "Mayıs",
+    "Haziran",
+    "Temmuz",
+    "Ağustos",
+    "Eylül",
+    "Ekim",
+    "Kasım",
+    "Aralık",
+  ];
+
+  const month = months.indexOf(monthName);
+  if (month === -1) return null;
+
+  return new Date(year, month, day);
+};
+
+// 📌 Helper Function: Format time (remove seconds)
+const formatTime = (time) => time.split(":").slice(0, 2).join(":");
+
+// 📌 Helper Function: Add +1 hour to time
+const calculateEndTime = (time) => {
+  const [hours, minutes] = time.split(":").map(Number);
+  return `${String((hours + 1) % 24).padStart(2, "0")}:${String(
+    minutes
+  ).padStart(2, "0")}`;
 };
 
 export default ReservationForm;

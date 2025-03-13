@@ -18,6 +18,7 @@ export default async function handler(req, res) {
         users.username AS teacher_username, 
         users.name AS teacher_name, 
         users.surname AS teacher_surname, 
+        users.role AS teacher_role,
         users.email AS teacher_email, 
         users.photo AS teacher_photo,
         categories.id AS category_id, 

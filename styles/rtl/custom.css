@@ -20,6 +20,7 @@
   position: inherit;
 }
 
+<<<<<<< HEAD
 
 /* ek kısım */
 
@@ -118,3 +119,110 @@
 }
 
 
+=======
+/* styles/RichTextEditor.css */
+
+/* Genel Stil */
+.richtext-editor {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 10px;
+  min-height: 200px;
+}
+
+/* ProseMirror Editör Alanı */
+.richtext-editor .ProseMirror {
+  min-height: 150px;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* Editör İçindeki Seçili Alan */
+.richtext-editor .ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: #aaa;
+  font-style: italic;
+  pointer-events: none;
+}
+
+/* Toolbar (Araç Çubuğu) */
+.richtext-editor .toolbar {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+  background: #f8f9fa;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+/* Toolbar Butonları */
+.richtext-editor .toolbar button {
+  padding: 6px 12px;
+  border: none;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  border-radius: 3px;
+}
+
+.richtext-editor .toolbar button:hover {
+  background-color: #ddd;
+  transform: scale(1.05);
+}
+
+/* Aktif Butonlar */
+.richtext-editor .toolbar button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Listeler */
+.richtext-editor .ProseMirror ul,
+.richtext-editor .ProseMirror ol {
+  padding-left: 20px;
+}
+
+/* Blockquote */
+.richtext-editor .ProseMirror blockquote {
+  border-left: 3px solid #007bff;
+  padding-left: 10px;
+  color: #555;
+  font-style: italic;
+}
+
+/* Kod Bloğu */
+.richtext-editor .ProseMirror pre {
+  background: #282c34;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+/* Başlıklar */
+.richtext-editor .ProseMirror h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.richtext-editor .ProseMirror h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.richtext-editor .ProseMirror h3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Bağlantılar */
+.richtext-editor .ProseMirror a {
+  color: #007bff;
+  text-decoration: underline;
+}
+>>>>>>> 11b4d21 (takvim fixleri)

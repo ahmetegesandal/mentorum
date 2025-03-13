@@ -20,17 +20,17 @@ export default async function handler(req, res) {
     db = await getConnection();
 
     const [liveClasses] = await db.execute(
-      `SELECT lc.id, r.lesson_id, r.student_id, r.date, r.time, 
-       lc.start_time, lc.end_time, lc.meeting_link, lc.status,
+      `SELECT lc.id, r.lesson_id, r.student_id, 
+       lc.date, lc.time, lc.meeting_link, lc.status,
        l.title AS lesson_title,
        u.name AS student_name, u.surname AS student_surname
-FROM live_classes lc
-JOIN reservations r ON lc.reservation_id = r.id  -- ✅ Canlı ders, rezervasyona bağlı
-JOIN lessons l ON r.lesson_id = l.id  -- ✅ Ders bilgisi çekildi
-JOIN users u ON r.student_id = u.id  -- ✅ Öğrenci bilgisi kullanıcı tablosundan alındı
-WHERE lc.teacher_id = ?
-ORDER BY lc.start_time DESC;
-`,
+      FROM live_classes lc
+      JOIN reservations r ON lc.reservation_id = r.id 
+      JOIN lessons l ON r.lesson_id = l.id  
+      JOIN users u ON r.student_id = u.id  
+      WHERE lc.teacher_id = ?
+      ORDER BY lc.time DESC;
+      `,
       [teacher_id]
     );
 
