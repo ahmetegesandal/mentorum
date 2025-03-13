@@ -11,19 +11,8 @@ import GlobalLogoutHandler from "../components/GlobalLogoutHandler";
 
 // Global CSS Dosyaları
 
-<<<<<<< HEAD
-
-// Kütüphane CSS Dosyaları
-import "../styles/libs/perfect-scrollbar/perfect-scrollbar.css";
-import "../styles/libs/typeahead-js/typeahead.css";
-import "../styles/libs/datatables-bs5/datatables.bootstrap5.css";
-import "../styles/libs/datatables-responsive-bs5/responsive.bootstrap5.css";
-import "../styles/libs/datatables-buttons-bs5/buttons.bootstrap5.css";
-import "../styles/libs/apex-charts/apex-charts.css";
-=======
 import "../styles/fonts/tabler-icons.css";
 import "../styles/demo.css";
->>>>>>> 11b4d21 (takvim fixleri)
 
 // Sayfa Bazlı CSS
 import "../styles/pages/page-auth.css";
@@ -118,8 +107,6 @@ function MyApp({ Component, pageProps }) {
       </ThemeProvider>
     </UserProvider>
   );
-
-
 }
 
 export default appWithTranslation(MyApp);
