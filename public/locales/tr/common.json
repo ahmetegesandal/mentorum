@@ -32,7 +32,32 @@
   "TeacherBooking" : "Bir öğretmenden nasıl randevu alabilirim?",
   "TeacherBookingDesc" : "Bir öğretmenden randevu almak için telefon numaranız veya e-posta adresiniz ile Vuexy'e kaydolun. Ardından, menüdeki 'Öğretmen Seçimi' bölümüne tıklayın. Karşınıza çıkan öğretmen listesinden dilediğiniz öğretmeni seçin ve uygun tarih ile saati belirleyin.",
   "askedQuestions": "Sıkça sorulan sorular",
-  "askedQuestionsDesc": "Vuexy üyeliğinizi kolayca oluşturun, çocuğunuz için en uygun öğretmeni seçin, randevu oluşturun ve hemen derslere başlayın."
+  "askedQuestionsDesc": "Vuexy üyeliğinizi kolayca oluşturun, çocuğunuz için en uygun öğretmeni seçin, randevu oluşturun ve hemen derslere başlayın.",
+  "WhoWeAre": "Biz kimiz",
+  "Career": "Kariyer",
+  "NewsCenter": "Haber merkezi",
+  "Prices": "Üyelik fiyatları",
+  "StudentRules": "Öğrenci Davranış Kuralları",
+  "Reviews": "Vuexy Değerlendirmeler",
+  "CustomerService": "Müşteri hizmetleri",
+  "FAQ": "SSS",
+  "Contact Us": "Bize ulaşın",
+  "freeLesson": "Ücretsiz deneme dersinizi ayırtın",
+  "custReviews": "Gerçek Müşteri Yorumları",
+  "peopleSay": "Kullanıcılar Ne Düşünüyor?",
+  "peopleSay2": "Vuexy kullanıcılarının deneyimleri hakkında <br /> neler söylediklerine göz atın.",
+  "imgTitle1": "Vuexy İle Derslerde %95 Başarı",
+  "imgDesc1": "Sunduğumuz Eşsiz Canlı Derslerle, öğretmenlerimiz sayesinde öğrencilerimize katacakları bilgilerle öğrencilerimizi sınavlara hazırlıyoruz.",
+  "imgButton1": "Hemen Bilgi Almak İçin Tıklayın",
+  "imgTitle2": "Derslerde Başarılı Olacağınız Eğitim Platformu" ,
+  "imgDesc2": "Eğitim hayatında başarılı olmanın anahtarlarından biri, doğru kaynaklara ve etkili bir öğrenme ortamına erişimdir. Vuexy öğrencilere derslerinde daha verimli ve etkin bir şekilde ilerlemeleri için kapsamlı bir öğrenme deneyimi sunar.",
+  "imgButton2":"İncelemek İçin Tıklayın",
+  "imgTitle3": "Her öğrenim stiline uygun, alanında uzman öğretmenler",
+  "imgDesc3": "Öğrenme tarzınıza en uygun yöntemlerle eğitim veren, deneyimli ve alanında uzman öğretmenlerimizle başarıya ulaşın. Farklı öğrenim stillerine uygun kişiselleştirilmiş dersler sunarak, her öğrencinin potansiyelini en üst seviyeye çıkarıyoruz.",
+  "imgButton3":"Bilgi Almak İçin Tıklayın",
+  "imgTitle4": "Kişiye Uyarlı Özel Dersler",
+  "imgDesc4": "Her öğrencinin öğrenme tarzı, hız ve ihtiyaçları farklıdır. 'Kişiye Uyarlı Özel Dersler', her bireyin özel gereksinimlerine göre tasarlanmış dersler sunarak, daha verimli ve etkili bir öğrenme deneyimi sağlar. Bu dersler, öğrencinin güçlü yönlerini pekiştirirken, zayıf olduğu alanlarda kişiye özel rehberlik ve destek sunar."
+
 
  
 }

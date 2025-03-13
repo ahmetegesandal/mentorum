@@ -32,6 +32,32 @@
     "TeacherBooking" : "Wie kann ich einen Termin bei einem Lehrer buchen?",
     "TeacherBookingDesc" : "Wie kann ich einen Termin bei einem Lehrer buchen? Melden Sie sich bei Vuexy mit Ihrer Telefonnummer oder E-Mail-Adresse an. Klicken Sie dann im Menü auf 'Lehrer auswählen'. Eine Liste der Lehrer wird angezeigt, sodass Sie Ihren bevorzugten Lehrer und einen passenden Termin auswählen können.",
     "askedQuestions": "Häufig gestellte Fragen",
-    "askedQuestionsDesc": "Erstellen Sie Ihr Vuexy-Mitgliedskonto einfach, wählen Sie den am besten geeigneten Lehrer für Ihr Kind aus, vereinbaren Sie einen Termin und beginnen Sie sofort mit dem Unterricht."
+    "askedQuestionsDesc": "Erstellen Sie Ihr Vuexy-Mitgliedskonto einfach, wählen Sie den am besten geeigneten Lehrer für Ihr Kind aus, vereinbaren Sie einen Termin und beginnen Sie sofort mit dem Unterricht.",
+    "WhoWeAre": "Wer wir sind",
+    "Career": "Karriere",
+    "NewsCenter": "Nachrichtenzentrum",
+    "Prices": "Mitgliedschaftspreise",
+    "StudentRules": "Verhaltensregeln für Schüler",
+    "Reviews": "Vuexy Bewertungen",
+    "CustomerService": "Kundenservice",
+    "FAQ": "Häufig gestellte Fragen (FAQ)",
+    "Contact Us": "Kontaktieren Sie uns",
+    "freeLesson": "Buchen Sie Ihre kostenlose Probestunde",
+    "custReviews": "Echte Kundenbewertungen",
+    "peopleSay": "Was Denken die Benutzer?",
+    "peopleSay2": "Werfen Sie einen Blick darauf, was die <br />Vuexy-Benutzer über ihre <br /> Erfahrungen gesagt haben.",
+    "imgTitle1": "95% Erfolg im Unterricht mit Vuexy",
+    "imgDesc1": "Mit unseren einzigartigen Live-Unterrichtsstunden bereiten wir unsere Schüler auf Prüfungen vor, indem wir ihnen das Wissen unserer Lehrer vermitteln",
+    "imgButton1": "Klicken Sie hier, um jetzt Informationen zu erhalten",
+    "imgTitle2": "Eine Bildungsplattform für Ihren Erfolg im Unterricht",
+    "imgDesc2":  "Einer der Schlüssel zum Erfolg im Bildungsleben ist der Zugang zu den richtigen Ressourcen und einer effektiven Lernumgebung. Vuexy bietet den Schülern eine umfassende Lernerfahrung, damit sie im Unterricht effizienter und effektiver vorankommen.",
+    "imgButton2":"Klicken Sie hier, um es zu erkunden",
+    "imgTitle3": "Fachkundige Lehrer für jeden Lernstil",
+    "imgDesc3": "Erreichen Sie Erfolg mit unseren erfahrenen und fachkundigen Lehrern, die mit den für Ihren Lernstil am besten geeigneten Methoden unterrichten. Wir bieten personalisierten Unterricht, der auf verschiedene Lernstile zugeschnitten ist, und helfen jedem Schüler, sein volles Potenzial auszuschöpfen.",
+    "imgButton3":"Klicken Sie hier, um Informationen zu erhalten",
+    "imgTitle4": "Individuell angepasster Privatunterricht",
+    "imgDesc4": "Jeder Schüler hat einen individuellen Lernstil, ein eigenes Tempo und spezifische Bedürfnisse. 'Individuell angepasster Privatunterricht' bietet maßgeschneiderte Lektionen, die auf die besonderen Anforderungen jedes Einzelnen abgestimmt sind und so ein effizienteres und effektiveres Lernen ermöglichen. Diese Lektionen stärken die Stärken der Schüler und bieten individuelle Unterstützung in Bereichen, in denen sie Verbesserungen benötigen."
+  
+  
    
 }
