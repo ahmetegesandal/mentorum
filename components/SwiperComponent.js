@@ -1,4 +1,3 @@
-// components/SwiperComponent.js
 import { useEffect } from "react";
 import { useTranslation } from "next-i18next";
 
@@ -6,7 +5,6 @@ const SwiperComponent = () => {
   const { t } = useTranslation();
   
   useEffect(() => {
-    // Swiper'ı başlatma
     const swiper = new Swiper("#swiper-reviews", {
       loop: true,
       slidesPerView: "1",

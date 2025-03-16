@@ -32,14 +32,22 @@
   "imgTitle1": "95% de éxito en las lecciones con Vuexy",
   "imgDesc1": "Con nuestras clases en vivo únicas, preparamos a nuestros estudiantes para los exámenes con los conocimientos que nuestros profesores les brindan.",
   "imgButton1": "Haz clic para obtener información ahora",
-  "imgTitle2":  "Una plataforma educativa para tu éxito en las clases",
+  "imgTitle2":  "Tasa de éxito del 96% con clases personalizadas uno a un",
+  "TitleDes1": "Clases privadas personalizadas para ti",
+  "TitleDes2": "Aumenta la confianza y el éxito visible",
+  "TitleDes3": "Más de 30 asignaturas para todos los niveles",
+  "TitleDes4": "Horario de clases flexible que se adapta a ti",
   "imgDesc2": "Una de las claves para el éxito académico es el acceso a los recursos adecuados y a un entorno de aprendizaje eficaz. Vuexy ofrece a los estudiantes una experiencia de aprendizaje completa para ayudarlos a avanzar de manera más eficiente y efectiva en sus estudios.",
-  "imgButton2":"Haz clic para explorar",
+  "imgButton2":"Reserva tu clase de prueba gratuita",
   "imgTitle3": "Profesores expertos para cada estilo de aprendizaje",
   "imgDesc3": "Alcanza el éxito con nuestros profesores experimentados y expertos, que imparten educación utilizando los métodos más adecuados para tu estilo de aprendizaje. Ofrecemos clases personalizadas adaptadas a diferentes estilos de aprendizaje, ayudando a cada estudiante a alcanzar su máximo potencial.",
   "imgButton3":"Haz clic para obtener información",
   "imgTitle4": "Clases particulares personalizadas",
-  "imgDesc4": "Cada estudiante tiene un estilo de aprendizaje, un ritmo y necesidades únicas. 'Clases particulares personalizadas' ofrece lecciones diseñadas específicamente para cada persona, proporcionando una experiencia de aprendizaje más eficiente y efectiva. Estas clases refuerzan los puntos fuertes del estudiante y brindan orientación y apoyo personalizados en las áreas que necesitan mejorar."
+  "imgDesc4": "Cada estudiante tiene un estilo de aprendizaje, un ritmo y necesidades únicas. 'Clases particulares personalizadas' ofrece lecciones diseñadas específicamente para cada persona, proporcionando una experiencia de aprendizaje más eficiente y efectiva. Estas clases refuerzan los puntos fuertes del estudiante y brindan orientación y apoyo personalizados en las áreas que necesitan mejorar.",
+  "statisticlabel1": "Profesores",
+  "statisticlabel2": "Materias",
+  "statisticlabel3": "Reseñas de 4 y 5 estrellas",
+  "statisticlabel4": "Tasa de éxito"
 
  
 }

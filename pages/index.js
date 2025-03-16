@@ -1,12 +1,13 @@
 import Logo from "../components/Logo";
-import LanguageSwitcher from "../components/LanguageSwitcher";
-import ThemeSwitcher from "../components/ThemeSwitcher";
+{/**import LanguageSwitcher from "../components/LanguageSwitcher";
+import ThemeSwitcher from "../components/ThemeSwitcher"; */}
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import SwiperComponent from "../components/SwiperComponent";
 import { useRouter } from "next/router";
 import HeroSection from "../components/HeroSection"; // HeroSection bileşenini içeri aktar
-
+import Statistics from "../components/Statistics"; // Statistics bileşenini ekliyoruz.
+import MainNavbar from "../components/MainNavbar"; // Yeni Navbar dosyasını dahil et
 
 const Home = () => {
   const { t } = useTranslation("common");
@@ -15,6 +16,7 @@ const Home = () => {
   return (
     <>
       <nav className="layout-navbar shadow-none py-0 navbar-active">
+        {/** 
         <div className="container">
           <div className="navbar navbar-expand-lg landing-navbar px-3 px-md-8">
             <div className="navbar-brand app-brand demo d-flex py-0 py-lg-2 me-4 me-xl-8">
@@ -60,7 +62,23 @@ const Home = () => {
                     Home
                   </a>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item dropdown">
+                <a
+                         className="nav-link dropdown-toggle fw-medium"
+                       href="#"
+                     id="featuresDropdown"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                     aria-expanded="false"
+                         >
+                         Features
+                           </a>
+                          <ul className="dropdown-menu" aria-labelledby="featuresDropdown">
+                         <li><a className="dropdown-item" href="#feature1">Feature 1</a></li>
+                  <li><a className="dropdown-item" href="#feature2">Feature 2</a></li>
+                      <li><a className="dropdown-item" href="#feature3">Feature 3</a></li>
+                  </ul>
+                              </li>       <li className="nav-item">
                   <a
                     className="nav-link fw-medium"
                     href="landing-page.html#landingFeatures"
@@ -175,18 +193,18 @@ const Home = () => {
             </ul>
           </div>
         </div>
+        */}
       </nav>
 
-          {/* Hero Bölümünü Buraya Ekliyoruz */}
-          <HeroSection />  {/* HeroSection bileşenini buraya ekledik */}
+        <MainNavbar /> {/* Yeni Navbar bileşeni burada kullanılıyor */}
+        {/* Hero Bölümünü Buraya Ekliyoruz */}
+        <HeroSection />  
+        <Statistics /> {/* İstatistik bileşenini burada çağır */}
 
-          {/* Diğer sayfa içeriği 
-        <SwiperComponent /> SwiperComponent bileşeni aşağıda 
-*/}
-      <div data-bs-spy="scroll" className="scrollspy-example">            
-<br></br>
-<br></br>
-<br></br>
+       <div data-bs-spy="scroll" className="scrollspy-example">            
+       <br></br>
+       <br></br>
+
         <section id="landingFeatures" className="section-py landing-features">
           <div className="container">
             <div className="text-center mb-4">
