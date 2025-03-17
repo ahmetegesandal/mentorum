@@ -1,7 +1,7 @@
 import { useTranslation } from "next-i18next";
 
 const Statistics = () => {
-    const { t } = useTranslation("common");
+  const { t } = useTranslation("common");
 
   const stats = [
     { value: "23.000+", label: t("statisticlabel1") },
@@ -9,21 +9,29 @@ const Statistics = () => {
     { value: "96%", label: t("statisticlabel3") },
     { value: "93%", label: t("statisticlabel4") },
   ];
-    return (
-      <div className="flex justify-center px-4 py-8 sm:px-6 sm:py-12 lg:px-10 lg:py-16">
-        <div className="w-full max-w-5xl bg-white rounded-lg shadow-lg border border-gray-200 p-6 sm:p-10">
-          <div className="statistics-container">
-            {stats.map((stat, index) => (
-              <div key={index} className="statistics-item">
-                <div className="statistics-value">{stat.value}</div>
-                <div className="statistics-label">{stat.label}</div>
-              </div>
-            ))}
+
+  return (
+    <div className="container py-5">
+      <div className="row justify-content-center">
+        <div className="col-lg-12">
+          <div className="rounded shadow-sm border p-4 p-md-5 text-center">
+            <div className="row gy-4">
+              {stats.map((stat, index) => (
+                <div key={index} className="col-6 col-md-3">
+                  <div className="d-flex flex-column align-items-center">
+                    <div className="fs-2 fw-bold text-primary">
+                      {stat.value}
+                    </div>
+                    <div className="fs-6 text-muted">{stat.label}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    );
-  };
-  
-  export default Statistics;
-  
+    </div>
+  );
+};
+
+export default Statistics;

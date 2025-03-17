@@ -28896,7 +28896,7 @@ html:not([dir=rtl]) .menu-toggle::after {
     float: left;
   }
   .layout-navbar .navbar-nav .nav-item.dropdown .dropdown-menu {
-    position: absolute;
+    position: relative;
     left: 0.9rem;
     min-width: auto;
     width: 92%;

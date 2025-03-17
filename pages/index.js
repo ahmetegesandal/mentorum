@@ -1,6 +1,4 @@
 import Logo from "../components/Logo";
-{/**import LanguageSwitcher from "../components/LanguageSwitcher";
-import ThemeSwitcher from "../components/ThemeSwitcher"; */}
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import SwiperComponent from "../components/SwiperComponent";
@@ -8,203 +6,19 @@ import { useRouter } from "next/router";
 import HeroSection from "../components/HeroSection"; // HeroSection bileşenini içeri aktar
 import Statistics from "../components/Statistics"; // Statistics bileşenini ekliyoruz.
 import MainNavbar from "../components/MainNavbar"; // Yeni Navbar dosyasını dahil et
+import Footer from "../components/Footer"; // yeni footer kısmı
 
 const Home = () => {
   const { t } = useTranslation("common");
-    const router = useRouter();
-  
+  const router = useRouter();
+
   return (
     <>
-      <nav className="layout-navbar shadow-none py-0 navbar-active">
-        {/** 
-        <div className="container">
-          <div className="navbar navbar-expand-lg landing-navbar px-3 px-md-8">
-            <div className="navbar-brand app-brand demo d-flex py-0 py-lg-2 me-4 me-xl-8">
-              <button
-                className="navbar-toggler border-0 px-0 me-4"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <i className="ti ti-menu-2 ti-lg align-middle text-heading fw-medium"></i>
-              </button>
-
-              <a href="/" className="app-brand-link">
-                <Logo />
-              </a>
-            </div>
-
-            <div
-              className="collapse navbar-collapse landing-nav-menu"
-              id="navbarSupportedContent"
-            >
-              <button
-                className="navbar-toggler border-0 text-heading position-absolute end-0 top-0 scaleX-n1-rtl"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <i className="ti ti-x ti-lg"></i>
-              </button>
-              <ul className="navbar-nav me-auto">
-                <li className="nav-item">
-                  <a
-                    className="nav-link fw-medium"
-                    aria-current="page"
-                    href="landing-page.html#landingHero"
-                  >
-                    Home
-                  </a>
-                </li>
-                <li className="nav-item dropdown">
-                <a
-                         className="nav-link dropdown-toggle fw-medium"
-                       href="#"
-                     id="featuresDropdown"
-                       role="button"
-                       data-bs-toggle="dropdown"
-                     aria-expanded="false"
-                         >
-                         Features
-                           </a>
-                          <ul className="dropdown-menu" aria-labelledby="featuresDropdown">
-                         <li><a className="dropdown-item" href="#feature1">Feature 1</a></li>
-                  <li><a className="dropdown-item" href="#feature2">Feature 2</a></li>
-                      <li><a className="dropdown-item" href="#feature3">Feature 3</a></li>
-                  </ul>
-                              </li>       <li className="nav-item">
-                  <a
-                    className="nav-link fw-medium"
-                    href="landing-page.html#landingFeatures"
-                  >
-                    Features
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link fw-medium"
-                    href="landing-page.html#landingTeam"
-                  >
-                    Team
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link fw-medium"
-                    href="landing-page.html#landingFAQ"
-                  >
-                    FAQ
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link fw-medium" href="/contact">
-                    İletişim
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="landing-menu-overlay d-lg-none"></div>
-
-            <ul className="navbar-nav flex-row align-items-center ms-auto">
-              <li className="nav-item dropdown-style-switcher dropdown me-2 me-xl-1">
-                <a
-                  className="nav-link dropdown-toggle hide-arrow"
-                  href="javascript:void(0);"
-                  data-bs-toggle="dropdown"
-                >
-                  <i className="ti ti-lg"></i>
-                </a>
-                <ul className="dropdown-menu dropdown-menu-end dropdown-styles">
-                  <li>
-                    <a
-                      className="dropdown-item"
-                      href="javascript:void(0);"
-                      data-theme="light"
-                    >
-                      <span className="align-middle">
-                        <i className="ti ti-sun me-3"></i>Light
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="dropdown-item"
-                      href="javascript:void(0);"
-                      data-theme="dark"
-                    >
-                      <span className="align-middle">
-                        <i className="ti ti-moon-stars me-3"></i>Dark
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="dropdown-item"
-                      href="javascript:void(0);"
-                      data-theme="system"
-                    >
-                      <span className="align-middle">
-                        <i className="ti ti-device-desktop-analytics me-3"></i>
-                        System
-                      </span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-
-              <li className="nav-item dropdown-language dropdown">
-                <a
-                  className="nav-link btn btn-text-secondary btn-icon rounded-pill dropdown-toggle hide-arrow"
-                  href=""
-                  data-bs-toggle="dropdown"
-                >
-                  <i className="ti ti-language rounded-circle ti-md"></i>
-                </a>
-                <ul className="dropdown-menu dropdown-menu-end">
-                  <LanguageSwitcher />
-                </ul>
-              </li>
-
-              <li className="nav-item dropdown-language dropdown">
-                <a
-                  className="nav-link btn btn-text-secondary btn-icon rounded-pill dropdown-toggle hide-arrow"
-                  href=""
-                  data-bs-toggle="dropdown"
-                >
-                  <i className="ti ti-sun ti-md rounded-circle ti-md"></i>
-                </a>
-                <ul className="dropdown-menu dropdown-menu-end">
-                  <ThemeSwitcher />
-                </ul>
-              </li>
-
-              <li>
-                <a href="/sign-in" className="btn btn-primary" target="_blank">
-                  <span className="tf-icons ti ti-login scaleX-n1-rtl me-md-1"></span>
-                  <span className="d-none d-md-block">Login/Register</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        */}
-      </nav>
-
-        <MainNavbar /> {/* Yeni Navbar bileşeni burada kullanılıyor */}
-        {/* Hero Bölümünü Buraya Ekliyoruz */}
-        <HeroSection />  
-        <Statistics /> {/* İstatistik bileşenini burada çağır */}
-
-       <div data-bs-spy="scroll" className="scrollspy-example">            
-       <br></br>
-       <br></br>
-
+      <MainNavbar /> {/* Yeni Navbar bileşeni burada kullanılıyor */}
+      {/* Hero Bölümünü Buraya Ekliyoruz */}
+      <HeroSection />
+      <Statistics /> {/* İstatistik bileşenini burada çağır */}
+      <div data-bs-spy="scroll" className="scrollspy-example">
         <section id="landingFeatures" className="section-py landing-features">
           <div className="container">
             <div className="text-center mb-4">
@@ -799,66 +613,67 @@ const Home = () => {
           </div>
         </section>
 
-        <section id="landingFAQ" className="section-py bg-body landing-faq">
+        <section id="landingFAQ" className="py-5 bg-body landing-faq">
           <div className="container">
-            {/*  
             <div className="text-center mb-4">
-              <span className="badge bg-label-primary">FAQ</span>
-            </div>*/}
-            <h4 className="text-center mb-1">
-            {t("askedQuestions")}  
+              <span className="badge bg-primary">FAQ</span>
+            </div>
+            <h4 className="text-center mb-3 position-relative">
+              {t("askedQuestions")}
               <span>
                 <img
                   src="img/front-pages/icons/section-title-icon.png"
                   alt="laptop charging"
                   className="section-title-img position-absolute object-fit-contain bottom-0 z-n1"
+                  style={{ maxWidth: "50px" }}
                 />
               </span>
             </h4>
-            <p className="text-center mb-12 pb-md-4">
-            {t("askedQuestionsDesc")}  
+            <p className="text-center mb-4 pb-md-3">
+              {t("askedQuestionsDesc")}
             </p>
-            <div className="row gy-12 align-items-center">
-              <div className="col-lg-5">
-                <div className="text-center">
-                  <img
-                    src="img/front-pages/landing-page/faq-boy-with-logos.png"
-                    alt="faq boy with logos"
-                    className="faq-image"
-                  />
-                </div>
+
+            <div className="row gy-4 align-items-center">
+              <div className="col-lg-5 text-center">
+                <img
+                  src="img/front-pages/landing-page/faq-boy-with-logos.png"
+                  alt="faq boy with logos"
+                  className="img-fluid"
+                  width={"400"}
+                />
               </div>
+
               <div className="col-lg-7">
                 <div className="accordion" id="accordionExample">
-                  <div className="card accordion-item">
+                  {/* First FAQ Item */}
+                  <div className="accordion-item">
                     <h2 className="accordion-header" id="headingOne">
                       <button
-                        type="button"
                         className="accordion-button"
+                        type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#accordionOne"
                         aria-expanded="true"
                         aria-controls="accordionOne"
                       >
-                         {t("vxy_what1")}          
-                     </button>
+                        {t("vxy_what1")}
+                      </button>
                     </h2>
-
                     <div
                       id="accordionOne"
                       className="accordion-collapse collapse"
                       data-bs-parent="#accordionExample"
                     >
-                      <div className="accordion-body">
-                      {t("vxy_what")}  
-                      </div>
+                      <div className="accordion-body">{t("vxy_what")}</div>
                     </div>
                   </div>
-                  <div className="card accordion-item">
+
+                  {/* Second FAQ Item */}
+                  <div className="accordion-item">
                     <h2 className="accordion-header" id="headingTwo">
                       <button
-                        type="button"
                         className="accordion-button collapsed"
+                        type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#accordionTwo"
                         aria-expanded="false"
@@ -870,83 +685,83 @@ const Home = () => {
                     <div
                       id="accordionTwo"
                       className="accordion-collapse collapse"
-                      aria-labelledby="headingTwo"
                       data-bs-parent="#accordionExample"
                     >
                       <div className="accordion-body">
-                      {t("offer_description")}  
+                        {t("offer_description")}
                       </div>
                     </div>
                   </div>
-                  <div className="card accordion-item active">
+
+                  {/* Third FAQ Item (Active by Default) */}
+                  <div className="accordion-item">
                     <h2 className="accordion-header" id="headingThree">
                       <button
-                        type="button"
                         className="accordion-button"
+                        type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#accordionThree"
-                        aria-expanded="false"
+                        aria-expanded="true"
                         aria-controls="accordionThree"
                       >
-                        {t("eduSupport")}  
+                        {t("eduSupport")}
                       </button>
                     </h2>
                     <div
                       id="accordionThree"
                       className="accordion-collapse collapse show"
-                      aria-labelledby="headingThree"
                       data-bs-parent="#accordionExample"
                     >
                       <div className="accordion-body">
-                      {t("eduSupportDesc")}  
+                        {t("eduSupportDesc")}
                       </div>
                     </div>
                   </div>
-                  <div className="card accordion-item">
+
+                  {/* Fourth FAQ Item */}
+                  <div className="accordion-item">
                     <h2 className="accordion-header" id="headingFour">
                       <button
-                        type="button"
                         className="accordion-button collapsed"
+                        type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#accordionFour"
                         aria-expanded="false"
                         aria-controls="accordionFour"
                       >
-                      {t("OnLessonBenefits")}  
-                       </button>
+                        {t("OnLessonBenefits")}
+                      </button>
                     </h2>
                     <div
                       id="accordionFour"
                       className="accordion-collapse collapse"
-                      aria-labelledby="headingFour"
                       data-bs-parent="#accordionExample"
                     >
-                      <div className="accordion-body">
-                      {t("OnLessonDesc")}
-                      </div>
+                      <div className="accordion-body">{t("OnLessonDesc")}</div>
                     </div>
                   </div>
-                  <div className="card accordion-item">
+
+                  {/* Fifth FAQ Item */}
+                  <div className="accordion-item">
                     <h2 className="accordion-header" id="headingFive">
                       <button
-                        type="button"
                         className="accordion-button collapsed"
+                        type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#accordionFive"
                         aria-expanded="false"
                         aria-controls="accordionFive"
                       >
-                      {t("TeacherBooking")}  
-                       </button>
+                        {t("TeacherBooking")}
+                      </button>
                     </h2>
                     <div
                       id="accordionFive"
                       className="accordion-collapse collapse"
-                      aria-labelledby="headingFive"
                       data-bs-parent="#accordionExample"
                     >
                       <div className="accordion-body">
-                      {t("TeacherBookingDesc")}  
+                        {t("TeacherBookingDesc")}
                       </div>
                     </div>
                   </div>
@@ -991,155 +806,7 @@ const Home = () => {
           </div>
         </section>
       </div>
-
-      <footer className="landing-footer bg-body footer-text">
-        <div className="footer-top position-relative overflow-hidden z-1">
-          <img
-            src="img/front-pages/backgrounds/footer-bg-light.png"
-            alt="footer bg"
-            className="footer-bg banner-bg-img z-n1"
-            data-app-light-img="front-pages/backgrounds/footer-bg-light.png"
-            data-app-dark-img="front-pages/backgrounds/footer-bg-dark.png"
-          />
-          <div className="container">
-            <div className="row gx-0 gy-6 g-lg-10">
-              <div className="col-lg-5">
-                <a href="landing-page.html" className="app-brand-link mb-6">
-                  <Logo />
-                </a>
-                <p className="footer-text footer-logo-description mb-6">
-                  Most developer friendly & highly customisable Admin Dashboard
-                  Template.
-                </p>
-              </div>
-              <div className="col-lg-2 col-md-4 col-sm-6">
-                <h6 className="footer-title mb-6">Demos</h6>
-                <ul className="list-unstyled">
-                  <li className="mb-4">
-                    <a
-                      href="../vertical-menu-template/"
-                      target="_blank"
-                      className="footer-link"
-                    >
-                      {t("WhoWeAre")}  
-                    </a>
-                  </li>
-                  <li className="mb-4">
-                    <a
-                      href="../horizontal-menu-template/"
-                      target="_blank"
-                      className="footer-link"
-                    >
-                      {t("Career")}  
-                    </a>
-                  </li>
-                  <li className="mb-4">
-                    <a
-                      href="../vertical-menu-template-bordered/"
-                      target="_blank"
-                      className="footer-link"
-                    >
-                      {t("NewsCenter")}
-                    </a>
-                  </li>
-                  <li className="mb-4">
-                    <a
-                      href="../vertical-menu-template-semi-dark/"
-                      target="_blank"
-                      className="footer-link"
-                    >
-                      {t("Prices")}  
-                    </a>
-                  </li>
-                  <li className="mb-4">
-                    <a
-                      href="../vertical-menu-template-dark/"
-                      target="_blank"
-                      className="footer-link"
-                    >
-                      {t("StudentRules")} 
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className="col-lg-2 col-md-4 col-sm-6">
-                <h6 className="footer-title mb-6">Pages</h6>
-                <ul className="list-unstyled">
-                  <li className="mb-4">
-                    <a href="pricing-page.html" className="footer-link">
-                    {t("Reviews")}
-                    </a>
-                  </li>
-                  <li className="mb-4">
-                    <a href="payment-page.html" className="footer-link">
-                    {t("CustomerService")}<span className="badge bg-primary ms-2">New</span>
-                    </a>
-                  </li>
-                  <li className="mb-4">
-                    <a href="checkout-page.html" className="footer-link">
-                    {t("FAQ")} 
-                    </a>
-                  </li>
-                  <li className="mb-4">
-                    <a href="help-center-landing.html" className="footer-link">
-                    {t("Contact")}
-                    </a>
-                  </li>
-                  <li className="mb-4">
-                    <a
-                      href="../vertical-menu-template/auth-login-cover.html"
-                      target="_blank"
-                      className="footer-link"
-                    >
-                      {t("freeLesson")} 
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="footer-bottom py-3 py-md-5">
-          <div className="container d-flex flex-wrap justify-content-between flex-md-row flex-column text-center text-md-start">
-            <div className="mb-2 mb-md-0"></div>
-            <div>
-              <a
-                href="https://github.com/pixinvent"
-                className="me-3"
-                target="_blank"
-              >
-                <img src="img/front-pages/icons/github.svg" alt="github icon" />
-              </a>
-              <a
-                href="https://www.facebook.com/pixinvents/"
-                className="me-3"
-                target="_blank"
-              >
-                <img
-                  src="img/front-pages/icons/facebook.svg"
-                  alt="facebook icon"
-                />
-              </a>
-              <a
-                href="https://twitter.com/pixinvents"
-                className="me-3"
-                target="_blank"
-              >
-                <img
-                  src="img/front-pages/icons/twitter.svg"
-                  alt="twitter icon"
-                />
-              </a>
-              <a href="https://www.instagram.com/pixinvents/" target="_blank">
-                <img
-                  src="img/front-pages/icons/instagram.svg"
-                  alt="google icon"
-                />
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 };

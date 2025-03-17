@@ -47,7 +47,7 @@ const menuItems = [
         roles: ["teacher"],
       },
       {
-        path: "/Calendar",
+        path: "/calendar",
         label: "Takvim Yönetimi",
         roles: ["teacher"],
       },

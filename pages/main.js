@@ -24,13 +24,13 @@ const Main = () => {
               <div className="card-body row p-0 pb-6 g-6">
                 <div className="col-12 col-lg-12">
                   <h5 className="mb-2">
-                    Hoş Geldin, {userData.role === "admin" && <>{"Admin"}</>}
-                    {userData.role === "parent" && <>{"Veli"}</>}
-                    {userData.role === "student" && <>{"Öğrenci"}</>}
-                    {userData.role === "teacher" && <>{"Öğretmen"}</>}{" "}
+                    Hoş Geldin, {userData?.role === "admin" && <>{"Admin"}</>}
+                    {userData?.role === "parent" && <>{"Veli"}</>}
+                    {userData?.role === "student" && <>{"Öğrenci"}</>}
+                    {userData?.role === "teacher" && <>{"Öğretmen"}</>}{" "}
                     <span className="h4">
                       {userData
-                        ? `${userData.name} ${userData.surname} 👋🏻`
+                        ? `${userData?.name} ${userData?.surname} 👋🏻`
                         : "Guest 👋🏻"}
                     </span>
                   </h5>

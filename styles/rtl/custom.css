@@ -249,7 +249,7 @@
   display: flex;
   align-items: center;
   color: #f6f6f6;
-  font-size: 1.20rem;
+  font-size: 1.2rem;
   gap: 12px;
 }
 
@@ -293,69 +293,12 @@
   -webkit-background-clip: text;
   background-clip: text; /* Standart özellik */
   color: transparent; /* Arka planın yazıya uygulanabilmesi için renk transparan olmalı */
-  }
-
-  .hero-content p {
-    color: rgb(251, 251, 251);
-    padding: 5px;    
-  }
-  .hero-content h1 {
-    font-size: 2.28rem; /* Bu değeri küçültün */
-  }
-/* Genel Ayarlar*/
-.statistics-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  border: 3px solid #6b21a8; 
-  border-radius: 10px;
-  margin-bottom: 20px;
-  margin-top: 20px; 
-  padding: 25px;
 }
 
-.statistics-item {
-  text-align: center;
-  color: #6b21a8; 
+.hero-content p {
+  color: rgb(251, 251, 251);
+  padding: 5px;
 }
-
-.statistics-value {
-  font-size: 2rem;
-  font-weight: 800;
+.hero-content h1 {
+  font-size: 2.28rem; /* Bu değeri küçültün */
 }
-
-.statistics-label {
-  color: #4b5563; 
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-.w-full {
-  margin-top: 100px; 
-
-}
-
-@media (max-width: 768px) {
-  .statistics-container {
-    flex-direction: column; 
-    align-items: center;
-    gap: 1.5rem; 
-  }
-
-  .statistics-item {
-    flex: 1 1 100%;
-  }
-}
-
-@media (max-width: 576px) {
-  .statistics-value {
-    font-size: 1.5rem; 
-  }
-
-  .statistics-label {
-    font-size: 0.875rem; 
-  }
-}
- 
