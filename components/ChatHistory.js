@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const ChatHistory = ({
   userData,
@@ -9,11 +9,23 @@ const ChatHistory = ({
   setInputMessage,
   sendMessage,
 }) => {
-  const chatEndRef = useRef(null);
+  const [isAtBottom, setIsAtBottom] = useState(true);
 
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    if (isAtBottom) {
+      // Scroll to bottom when new messages are added
+      const chatHistory = document.getElementById("chat-history-body");
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+    }
+  }, [messages, isAtBottom]);
+
+  const handleScroll = () => {
+    const chatHistory = document.getElementById("chat-history-body");
+    setIsAtBottom(
+      chatHistory.scrollHeight ===
+        chatHistory.scrollTop + chatHistory.clientHeight
+    );
+  };
 
   return (
     <div className="col app-chat-history">
@@ -60,7 +72,12 @@ const ChatHistory = ({
         </div>
 
         {/* Messages */}
-        <div className="chat-history-body" style={{ overflowY: "auto" }}>
+        <div
+          className="chat-history-body"
+          style={{ overflowY: "auto" }}
+          id="chat-history-body"
+          onScroll={handleScroll}
+        >
           <ul className="list-unstyled chat-history">
             {messages.map((msg, index) => (
               <li
@@ -122,7 +139,6 @@ const ChatHistory = ({
                 </div>
               </li>
             ))}
-            <div ref={chatEndRef} />
           </ul>
         </div>
 

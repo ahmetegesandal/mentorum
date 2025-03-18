@@ -3,8 +3,11 @@ import LayoutMenu from "../components/LayoutMenu";
 import Navbar from "../components/Navbar";
 import { UserContext } from "../contexts/UserContext";
 import Swal from "sweetalert2";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const MyStudents = () => {
+  const { t } = useTranslation("common");
   const [students, setStudents] = useState([]);
   const userData = useContext(UserContext);
   const [loading, setLoading] = useState(true);
@@ -247,5 +250,13 @@ const MyStudents = () => {
     </>
   );
 };
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}
 
 export default MyStudents;

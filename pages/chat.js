@@ -143,11 +143,10 @@ const Chat = () => {
     if (!timestamp) return "Just now";
 
     const date = new Date(timestamp);
-    return date.toLocaleTimeString("tr-TR", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    });
+    const hours = String(date.getHours()).padStart(2, "0"); // Saat
+    const minutes = String(date.getMinutes()).padStart(2, "0"); // Dakika
+
+    return `${hours}:${minutes}`;
   };
 
   const [onlineUsers, setOnlineUsers] = useState({});
@@ -200,7 +199,7 @@ const Chat = () => {
                   userData={userData}
                   messages={messages}
                   selectedUser={selectedUser}
-                  formatDate={(ts) => new Date(ts).toLocaleTimeString("tr-TR")}
+                  formatDate={formatDate}
                   inputMessage={inputMessage}
                   setInputMessage={setInputMessage}
                   sendMessage={sendMessage}
