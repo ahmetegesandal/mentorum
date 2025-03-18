@@ -55,7 +55,7 @@ const LessonDetails = ({ lesson }) => {
         <div className="content-wrapper">
           <div className="container-xxl flex-grow-1 container-p-y">
             <div className="row g-6">
-              <div className="col-lg-12">
+              <div className="col-lg-12 col-md-12 col-12">
                 <div className="card">
                   <div className="card-body">
                     <div className="d-flex justify-content-between align-items-center flex-wrap mb-6 gap-2">
@@ -74,17 +74,14 @@ const LessonDetails = ({ lesson }) => {
                         </span>
                       </div>
                     </div>
+
                     <div className="card academy-content shadow-none border">
                       <div className="p-2">
                         <img
-                          className=""
                           src={`${lesson.lesson_photo}`}
                           alt={lesson.title}
-                          width={"800"}
-                          height={"450"}
-                          style={{
-                            objectFit: "cover",
-                          }}
+                          className="img-fluid rounded"
+                          style={{ objectFit: "cover", maxHeight: "450px" }}
                         />
                       </div>
                       <div className="card-body pt-4">
@@ -95,16 +92,16 @@ const LessonDetails = ({ lesson }) => {
                             __html: lesson.description,
                           }}
                         />
-
                         <hr className="my-6" />
+
                         <h5>Fiyat</h5>
                         <p>{lesson.price} $</p>
                         <hr className="my-6" />
-                        <ReservationForm lesson={lesson} />
 
                         <h5>Dil</h5>
                         <p>{lesson.language}</p>
                         <hr className="my-6" />
+
                         <h5>Eğitmen</h5>
                         <div className="d-flex justify-content-start align-items-center user-name">
                           <div className="avatar-wrapper">
@@ -148,8 +145,26 @@ const LessonDetails = ({ lesson }) => {
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
 
-                    <CommentsSection lessonId={lesson.id} />
+              <div className="row g-6">
+                <div className="col-lg-12 col-md-12 col-12">
+                  <div className="card">
+                    <div className="card-body">
+                      <ReservationForm lesson={lesson} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="row g-6">
+                <div className="col-lg-12 col-md-12 col-12">
+                  <div className="card">
+                    <div className="card-body">
+                      <CommentsSection lessonId={lesson.id} />
+                    </div>
                   </div>
                 </div>
               </div>

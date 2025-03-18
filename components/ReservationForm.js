@@ -147,7 +147,7 @@ const ReservationForm = ({ lesson }) => {
   };
 
   return (
-    <div className="card p-4 mt-4">
+    <>
       <h5>Ders Rezervasyonu</h5>
 
       {userData?.role === "parent" && students.length > 0 && (
@@ -220,7 +220,7 @@ const ReservationForm = ({ lesson }) => {
       >
         📅 Rezervasyon Yap
       </button>
-    </div>
+    </>
   );
 };
 

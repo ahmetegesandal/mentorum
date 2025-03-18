@@ -12,6 +12,7 @@ const CommentsSection = ({ lessonId }) => {
   const [rating, setRating] = useState(5);
   const [isOnline, setIsOnline] = useState(false);
   const [onlineUsers, setOnlineUsers] = useState({});
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     fetchComments();
@@ -23,7 +24,6 @@ const CommentsSection = ({ lessonId }) => {
         `/api/lesson-comments?lesson_id=${lessonId}`
       );
       setComments(response.data);
-
       checkOnlineStatuses(response.data);
     } catch (error) {
       console.error("Yorumları çekerken hata oluştu:", error);
@@ -76,6 +76,7 @@ const CommentsSection = ({ lessonId }) => {
 
       setNewComment("");
       fetchComments();
+      setShowModal(false); // Close modal after comment is submitted
       Swal.fire("Başarılı!", "Yorumunuz eklendi!", "success");
     } catch (error) {
       console.error("Yorum ekleme hatası:", error);
@@ -91,47 +92,30 @@ const CommentsSection = ({ lessonId }) => {
     router.push(`/profile/${username}`);
   };
 
-  return (
-    <div className="mt-5">
-      <h5>Yorumlar</h5>
+  const handleShowModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
 
-      {/* Yorum Ekleme Formu */}
-      {userData?.role === "student" || userData?.role === "parent" ? (
-        <div className="card p-3 mb-4">
-          <h6>Yorum Yap</h6>
-          <form onSubmit={handleCommentSubmit}>
-            <div className="mb-3">
-              <textarea
-                className="form-control"
-                rows="3"
-                placeholder="Yorumunuzu yazın..."
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-                required
-              ></textarea>
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Puanınız</label>
-              <select
-                className="form-select"
-                value={rating}
-                onChange={(e) => setRating(e.target.value)}
-              >
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <option key={star} value={star}>
-                    {star} Yıldız
-                  </option>
-                ))}
-              </select>
-            </div>
-            <button type="submit" className="btn btn-primary">
-              Gönder
+  return (
+    <>
+      <div className="d-flex justify-content-between">
+        <h5>Yorumlar</h5>
+
+        {/* Yorum Yap Butonu */}
+        {userData?.role === "student" ||
+        userData?.role === "parent" ||
+        userData?.role === "admin" ? (
+          <div className="mb-4">
+            <button
+              className="btn btn-success"
+              onClick={() => setShowModal(true)}
+            >
+              Yorum Yap
             </button>
-          </form>
-        </div>
-      ) : (
-        <p className="text-muted">Yorum yapabilmek için giriş yapmalısınız.</p>
-      )}
+          </div>
+        ) : (
+          <p className="text-muted">Yorum yapamıyorsunuz.</p>
+        )}
+      </div>
 
       {/* Yorum Listesi */}
       <div className="list-group">
@@ -142,7 +126,7 @@ const CommentsSection = ({ lessonId }) => {
                 <a
                   target="__blank"
                   onClick={() => handleProfile(comment.user_username)}
-                  className=" cursor-pointer"
+                  className="cursor-pointer"
                 >
                   <div
                     className={`avatar ${
@@ -164,7 +148,9 @@ const CommentsSection = ({ lessonId }) => {
                     {comment.user_name} {comment.user_surname}
                     <span
                       className={`badge ms-2 ${
-                        comment.role === "parent" ? "bg-info" : "bg-primary"
+                        comment.role === "parent"
+                          ? "bg-label-info"
+                          : "bg-label-primary"
                       }`}
                     >
                       {comment.role === "parent" ? "Veli" : "Öğrenci"}
@@ -186,7 +172,67 @@ const CommentsSection = ({ lessonId }) => {
           <p className="text-muted">Henüz yorum yapılmamış.</p>
         )}
       </div>
-    </div>
+
+      {/* Modal for Commenting */}
+      {showModal && (
+        <div
+          className="modal fade show d-block"
+          id="commentModal"
+          tabIndex="-1"
+          style={{ background: "rgba(0,0,0,0.5)" }}
+          aria-labelledby="commentModalLabel"
+          aria-hidden={!showModal}
+        >
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="commentModalLabel">
+                  Yorum Yap
+                </h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  onClick={handleCloseModal}
+                ></button>
+              </div>
+              <div className="modal-body">
+                <form onSubmit={handleCommentSubmit}>
+                  <div className="mb-3">
+                    <textarea
+                      className="form-control"
+                      rows="3"
+                      placeholder="Yorumunuzu yazın..."
+                      value={newComment}
+                      onChange={(e) => setNewComment(e.target.value)}
+                      required
+                    ></textarea>
+                  </div>
+                  <div className="mb-3">
+                    <label className="form-label">Puanınız</label>
+                    <select
+                      className="form-select"
+                      value={rating}
+                      onChange={(e) => setRating(e.target.value)}
+                    >
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <option key={star} value={star}>
+                          {star} Yıldız
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <button type="submit" className="btn btn-primary">
+                    Gönder
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

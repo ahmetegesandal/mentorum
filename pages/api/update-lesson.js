@@ -44,10 +44,10 @@ export default async function handler(req, res) {
     }
 
     const db = await getConnection();
-    const { id, title, description, price, category_id } = req.body;
+    const { id, title, description, price, category_id, grade } = req.body;
     let newPhoto = req.file ? `/uploads/lessons/${req.file.filename}` : null;
 
-    if (!id || !title || !description || !price || !category_id) {
+    if (!id || !title || !description || !price || !category_id || !grade) {
       return res.status(400).json({ error: "Tüm alanlar zorunludur!" });
     }
 
@@ -67,7 +67,7 @@ export default async function handler(req, res) {
       // Güncelleme sorgusu
       const query = `
         UPDATE lessons 
-        SET title = ?, description = ?, price = ?, category_id = ?, lesson_photo = ?
+        SET title = ?, description = ?, price = ?, category_id = ?, lesson_photo = ?, grade = ?
         WHERE id = ?
       `;
 
@@ -77,6 +77,7 @@ export default async function handler(req, res) {
         price,
         category_id,
         lessonPhoto,
+        grade,
         id,
       ]);
 
