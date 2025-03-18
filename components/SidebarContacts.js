@@ -8,6 +8,7 @@ const SidebarContacts = ({
   searchTerm,
   setSearchTerm,
   onlineUsers,
+  lastMessages,
   formatDate,
 }) => {
   const filteredUsers = users.filter((user) =>
@@ -99,7 +100,9 @@ const SidebarContacts = ({
                       {user.name} {user.surname}
                     </h6>
                     <small className="text-muted">
-                      {formatDate(user.lastActive)}
+                      {lastMessages[user.id]
+                        ? formatDate(lastMessages[user.id])
+                        : "Yok"}
                     </small>
                   </div>
                   <small className="chat-contact-status text-truncate">

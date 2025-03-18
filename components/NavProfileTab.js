@@ -154,15 +154,15 @@ const NavProfileTab = () => {
                 <small className="text-muted">
                   {userData?.role ? (
                     <>
-                      {userData.role === "admin" && <>{"Admin"}</>}
-                      {userData.role === "parent" && <>{"Veli"}</>}
-                      {userData.role === "student" && <>{"Öğrenci"}</>}
-                      {userData.role === "teacher" && <>{"Öğretmen"}</>}
+                      {userData?.role === "admin" && <>{"Admin"}</>}
+                      {userData?.role === "parent" && <>{"Veli"}</>}
+                      {userData?.role === "student" && <>{"Öğrenci"}</>}
+                      {userData?.role === "teacher" && <>{"Öğretmen"}</>}
                       {!["admin", "parent", "student", "teacher"].includes(
-                        userData.role
+                        userData?.role
                       ) && (
                         <span className="text-warning">
-                          Bilinmeyen Rol: {userData.role}
+                          Bilinmeyen Rol: {userData?.role}
                         </span>
                       )}
                     </>

@@ -19,6 +19,7 @@ const Chat = () => {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const { t } = useTranslation("common");
+  const [lastMessages, setLastMessages] = useState({});
 
   const filteredUsers = users.filter((user) =>
     `${user.name} ${user.surname}`
@@ -82,6 +83,52 @@ const Chat = () => {
     };
   }, [userData.id, receiverId]);
 
+  useEffect(() => {
+    const fetchMessages = () => {
+      axios
+        .get(`/api/messages/all?user_id=${userData.id}`)
+        .then((res) => {
+          const lastMessageMap = {};
+          res.data.forEach((message) => {
+            const contactId =
+              message.sender_id === userData.id
+                ? message.receiver_id
+                : message.sender_id;
+            if (
+              !lastMessageMap[contactId] ||
+              new Date(message.created_at) > new Date(lastMessageMap[contactId])
+            ) {
+              lastMessageMap[contactId] = message.created_at;
+            }
+          });
+          setLastMessages(lastMessageMap);
+
+          // Kullanıcı listesini son mesaj zamanına göre sıralayalım
+          setUsers((prevUsers) =>
+            [...prevUsers].sort((a, b) => {
+              const timeA = lastMessageMap[a.id]
+                ? new Date(lastMessageMap[a.id])
+                : new Date(0);
+              const timeB = lastMessageMap[b.id]
+                ? new Date(lastMessageMap[b.id])
+                : new Date(0);
+              return timeB - timeA; // En son mesaj atanı en üste al
+            })
+          );
+        })
+        .catch((err) => console.error("Mesajları çekerken hata oluştu:", err));
+    };
+
+    // İlk çağrıyı hemen yap
+    fetchMessages();
+
+    // Her 5 saniyede bir API'yi çağır
+    const interval = setInterval(fetchMessages, 500);
+
+    // Cleanup (Bileşen unmount olursa interval'i temizle)
+    return () => clearInterval(interval);
+  }, [userData.id]);
+
   const sendMessage = async () => {
     if (inputMessage.trim() === "") return;
 
@@ -140,13 +187,13 @@ const Chat = () => {
   }, [receiverId, users]);
 
   const formatDate = (timestamp) => {
-    if (!timestamp) return "Just now";
+    if (!timestamp) return "Just now"; // Eğer veri yoksa, varsayılan değer olarak "Just now" göster.
 
     const date = new Date(timestamp);
-    const hours = String(date.getHours()).padStart(2, "0"); // Saat
-    const minutes = String(date.getMinutes()).padStart(2, "0"); // Dakika
-
-    return `${hours}:${minutes}`;
+    return `${date.getHours().toString().padStart(2, "0")}:${date
+      .getMinutes()
+      .toString()
+      .padStart(2, "0")}`;
   };
 
   const [onlineUsers, setOnlineUsers] = useState({});
@@ -186,12 +233,21 @@ const Chat = () => {
               <div className="row g-0">
                 <SidebarContacts
                   userData={userData}
-                  users={users}
+                  users={[...users].sort((a, b) => {
+                    const timeA = lastMessages[a.id]
+                      ? new Date(lastMessages[a.id])
+                      : new Date(0);
+                    const timeB = lastMessages[b.id]
+                      ? new Date(lastMessages[b.id])
+                      : new Date(0);
+                    return timeB - timeA; // En son mesaj atan en üstte olacak
+                  })}
                   receiverId={receiverId}
                   setReceiverId={setReceiverId}
                   searchTerm={searchTerm}
                   setSearchTerm={setSearchTerm}
                   onlineUsers={onlineUsers}
+                  lastMessages={lastMessages} // 🆕 Son mesaj saatlerini geçiriyoruz
                   formatDate={formatDate}
                 />
 

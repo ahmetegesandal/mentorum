@@ -80,8 +80,10 @@ const LessonDetails = ({ lesson }) => {
                         <img
                           src={`${lesson.lesson_photo}`}
                           alt={lesson.title}
-                          className="img-fluid rounded"
-                          style={{ objectFit: "cover", maxHeight: "450px" }}
+                          className="rounded"
+                          width={"800"}
+                          height={"450"}
+                          style={{ objectFit: "cover" }}
                         />
                       </div>
                       <div className="card-body pt-4">

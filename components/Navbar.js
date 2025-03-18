@@ -82,7 +82,7 @@ const Navbar = () => {
         id="navbar-collapse"
       >
         <ul className="navbar-nav flex-row align-items-center ms-auto">
-          <li className="nav-item me-1">{credit} ₺</li>
+          <li className="nav-item me-2">{credit} ₺</li>
 
           <li className="nav-item dropdown-language dropdown">
             <a

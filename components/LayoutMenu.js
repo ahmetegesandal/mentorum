@@ -64,6 +64,19 @@ const menuItems = [
     ],
   },
   {
+    key: "students",
+    label: "Öğrenci",
+    icon: "ti ti-users",
+    roles: ["student"],
+    subMenu: [
+      {
+        path: "/deneme",
+        label: "deneme",
+        roles: ["student"],
+      },
+    ],
+  },
+  {
     key: "parents",
     label: "Veli",
     icon: "ti ti-users",
