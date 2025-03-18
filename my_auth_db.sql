@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 08 Mar 2025, 22:52:59
+-- Üretim Zamanı: 18 Mar 2025, 17:10:33
 -- Sunucu sürümü: 10.4.32-MariaDB
 -- PHP Sürümü: 8.2.12
 
@@ -40,21 +40,8 @@ CREATE TABLE `calendar` (
 --
 
 INSERT INTO `calendar` (`id`, `teacher_id`, `date`, `time`, `is_available`) VALUES
-(20, 34, '2025-03-10', '09:00:00', 1),
-(21, 34, '2025-03-10', '10:00:00', 1),
-(22, 34, '2025-03-10', '11:00:00', 1),
-(23, 34, '2025-03-11', '14:00:00', 1),
-(24, 34, '2025-03-11', '15:00:00', 1),
-(25, 34, '2025-03-12', '09:00:00', 1),
-(26, 34, '2025-03-12', '10:00:00', 1),
-(27, 34, '2025-03-12', '11:00:00', 1),
-(28, 34, '2025-03-13', '13:00:00', 1),
-(29, 34, '2025-03-13', '14:00:00', 1),
-(30, 34, '2025-03-14', '08:00:00', 1),
-(31, 34, '2025-03-14', '09:00:00', 1),
-(32, 34, '2025-03-14', '10:00:00', 1),
-(33, 34, '2025-03-15', '11:00:00', 1),
-(34, 34, '2025-03-15', '12:00:00', 1);
+(51, 34, '2025-03-14', '10:00:00', 1),
+(52, 34, '2025-03-18', '20:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -96,15 +83,17 @@ CREATE TABLE `lessons` (
   `category_id` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `language` varchar(50) NOT NULL,
-  `lesson_photo` varchar(255) NOT NULL
+  `lesson_photo` varchar(255) NOT NULL,
+  `grade` enum('beginner','intermediate','advanced') NOT NULL DEFAULT 'beginner'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Tablo döküm verisi `lessons`
 --
 
-INSERT INTO `lessons` (`id`, `teacher_id`, `title`, `description`, `category_id`, `price`, `language`, `lesson_photo`) VALUES
-(38, 34, 'Logaritmayı Anlamak: Temelden İleri Seviyeye', '📝 Açıklama:\r\nBu ders, logaritma konusunu sıfırdan başlayarak ileri seviyeye kadar detaylı bir şekilde anlatır. Logaritmanın temel kavramlarını, üstel fonksiyonlarla olan ilişkisini ve günlük hayattaki kullanım alanlarını ele alacağız. Ders süresince şu konular işlenecektir:\r\n✔️ Üstel ve logaritmik fonksiyonların temelleri\r\n✔️ Logaritma kuralları ve dönüşümleri\r\n✔️ Logaritmik denklemler ve çözümleri\r\n✔️ Mühendislik, ekonomi ve doğa bilimlerinde logaritmanın rolü\r\n✔️ Pratik soru çözümleri ve uygul', 1, 150.00, 'Türkçe', '/uploads/lessons/1741380602178-logaritma_egitim_ilani.png');
+INSERT INTO `lessons` (`id`, `teacher_id`, `title`, `description`, `category_id`, `price`, `language`, `lesson_photo`, `grade`) VALUES
+(38, 34, 'Logaritmayı Anlamak: Temelden İleri Seviyeye', '<p>📝 Açıklama: Bu ders, logaritma konusunu sıfırdan başlayarak ileri seviyeye kadar detaylı bir şekilde anlatır. Logaritmanın temel kavramlarını, üstel fonksiyonlarla olan ilişkisini ve günlük hayattaki kullanım alanlarını ele alacağız.</p><p>Ders süresince şu konular işlenecektir:</p><p>✔️ Üstel ve logaritmik fonksiyonların temelleri</p><p>✔️ Logaritma kuralları ve dönüşümleri</p><p>✔️ Logaritmik denklemler ve çözümleri</p><p>✔️ Mühendislik, ekonomi ve doğa bilimlerinde logaritmanın rolü </p>', 1, 150.00, 'Türkçe', '/uploads/lessons/1741380602178-logaritma_egitim_ilani.png', 'advanced'),
+(41, 34, 'Geometriyi Anlamak: Temelden İleri Seviyeye', '<p>📝 Açıklama<strong>:</strong> Bu ders, temel geometri kavramlarını sıfırdan başlayarak ileri seviyeye kadar derinlemesine inceler. Geometrinin temel öğelerini, şekillerin özelliklerini ve geometriyi günlük hayatta nasıl kullanabileceğimizi keşfedeceğiz.</p><p>Ders süresince şu konular işlenecektir:</p><p>✔️ Noktalar, doğrular ve düzlemler</p><p>✔️ Üçgenler, dörtgenler ve çokgenler</p><p>✔️ Geometrik şekillerin alan ve hacim hesaplamaları</p><p>✔️ Geometri ve trigonometri arasındaki bağlantılar', 1, 400.00, 'Türkçe', '/uploads/lessons/1741882386150-ahmet1.jpg', 'beginner');
 
 -- --------------------------------------------------------
 
@@ -118,12 +107,19 @@ CREATE TABLE `live_classes` (
   `lesson_id` int(11) NOT NULL,
   `teacher_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
-  `start_time` datetime NOT NULL,
-  `end_time` datetime DEFAULT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
   `meeting_link` varchar(255) DEFAULT NULL,
   `status` enum('scheduled','ongoing','completed','canceled') DEFAULT 'scheduled',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Tablo döküm verisi `live_classes`
+--
+
+INSERT INTO `live_classes` (`id`, `reservation_id`, `lesson_id`, `teacher_id`, `student_id`, `date`, `time`, `meeting_link`, `status`, `created_at`) VALUES
+(14, 80, 38, 34, 32, '2025-03-14', '10:00:00', '/meeting/Lesson-14-34-8UGYXtcx', 'ongoing', '2025-03-13 21:14:12');
 
 -- --------------------------------------------------------
 
@@ -138,78 +134,6 @@ CREATE TABLE `messages` (
   `message` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Tablo döküm verisi `messages`
---
-
-INSERT INTO `messages` (`id`, `sender_id`, `receiver_id`, `message`, `created_at`) VALUES
-(122, 2, 2, 'naber lo', '2025-03-03 18:15:34'),
-(123, 2, 2, 'iyidir aga senden nasıl gidiyooooo', '2025-03-03 18:15:42'),
-(128, 2, 2, 'sa', '2025-03-03 18:37:36'),
-(151, 2, 2, 'dd', '2025-03-05 16:47:46'),
-(156, 2, 2, 'iyidir kanki senden', '2025-03-05 22:25:21'),
-(167, 2, 2, 'agaa', '2025-03-06 12:44:18'),
-(168, 36, 2, 'naber', '2025-03-06 16:40:14'),
-(169, 2, 36, 'iyi senden naber', '2025-03-06 16:40:19'),
-(170, 2, 2, 'dd', '2025-03-08 15:35:56'),
-(171, 2, 2, 'aloo', '2025-03-08 15:40:30'),
-(172, 2, 33, 'naber', '2025-03-08 15:41:20'),
-(173, 33, 2, 'iyidir senden', '2025-03-08 15:41:23'),
-(174, 34, 2, 'selam', '2025-03-08 18:06:25'),
-(175, 2, 34, 'naber', '2025-03-08 18:06:42'),
-(176, 34, 2, 'iyidir senden', '2025-03-08 18:06:48'),
-(177, 2, 34, 'iyi valle bende de', '2025-03-08 18:06:58'),
-(178, 2, 34, 'sıkıntı var mı', '2025-03-08 18:07:08'),
-(179, 2, 34, 'yokya', '2025-03-08 18:07:21'),
-(180, 2, 34, 'aloo', '2025-03-08 18:07:34'),
-(181, 34, 2, 'naber', '2025-03-08 18:09:03'),
-(182, 2, 34, 'iyidir senden', '2025-03-08 18:09:16'),
-(183, 34, 2, 'aloo', '2025-03-08 18:09:52'),
-(184, 34, 2, 'naptıns', '2025-03-08 18:10:03'),
-(185, 34, 15, 'ufuk', '2025-03-08 18:10:20'),
-(186, 34, 15, 'selams', '2025-03-08 18:10:22'),
-(187, 2, 34, 'helo', '2025-03-08 18:10:58'),
-(188, 34, 2, 'helo', '2025-03-08 18:11:01'),
-(189, 34, 2, 'naptın', '2025-03-08 18:11:03'),
-(190, 34, 2, 'takılıyom', '2025-03-08 18:11:06'),
-(191, 34, 2, 'aynenn', '2025-03-08 18:11:08'),
-(192, 34, 2, 's', '2025-03-08 18:11:16'),
-(193, 34, 2, 's', '2025-03-08 18:11:17'),
-(194, 34, 2, 's', '2025-03-08 18:11:17'),
-(195, 34, 2, 's', '2025-03-08 18:11:17'),
-(196, 34, 2, 's', '2025-03-08 18:11:18'),
-(197, 34, 2, 's', '2025-03-08 18:11:18'),
-(198, 34, 2, 's', '2025-03-08 18:11:18'),
-(199, 34, 2, 's', '2025-03-08 18:11:18'),
-(200, 34, 2, 's', '2025-03-08 18:11:19'),
-(201, 34, 2, 's', '2025-03-08 18:11:19'),
-(202, 34, 2, 's', '2025-03-08 18:11:19'),
-(203, 34, 2, 's', '2025-03-08 18:11:19'),
-(204, 34, 2, 's', '2025-03-08 18:11:19'),
-(205, 34, 2, 's', '2025-03-08 18:11:19'),
-(206, 34, 2, 's', '2025-03-08 18:11:20'),
-(207, 34, 2, 's', '2025-03-08 18:11:21'),
-(208, 34, 2, 's', '2025-03-08 18:11:21'),
-(209, 34, 2, 's', '2025-03-08 18:11:22'),
-(210, 34, 2, 's', '2025-03-08 18:11:24'),
-(211, 34, 2, 's', '2025-03-08 18:11:24'),
-(212, 34, 2, 's', '2025-03-08 18:11:25'),
-(213, 34, 2, 's', '2025-03-08 18:11:26'),
-(214, 34, 2, 's', '2025-03-08 18:11:27'),
-(215, 34, 2, 's', '2025-03-08 18:11:28'),
-(216, 34, 2, 'sus', '2025-03-08 18:11:32'),
-(217, 34, 2, 'la', '2025-03-08 18:11:33'),
-(218, 34, 2, 'atma', '2025-03-08 18:11:35'),
-(219, 34, 2, 'artık', '2025-03-08 18:11:36'),
-(220, 34, 2, 'aq', '2025-03-08 18:11:37'),
-(221, 34, 2, 'şükür', '2025-03-08 18:11:39'),
-(222, 34, 2, 'senle mi uğraşcam', '2025-03-08 18:11:42'),
-(223, 34, 2, 'göt', '2025-03-08 18:11:42'),
-(224, 2, 34, 'delerim lan', '2025-03-08 18:11:46'),
-(225, 2, 34, 'seni', '2025-03-08 18:11:47'),
-(226, 2, 34, 'lale', '2025-03-08 18:11:49'),
-(227, 34, 2, 'bebe', '2025-03-08 18:12:04');
 
 -- --------------------------------------------------------
 
@@ -261,6 +185,13 @@ CREATE TABLE `reservations` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Tablo döküm verisi `reservations`
+--
+
+INSERT INTO `reservations` (`id`, `student_id`, `lesson_id`, `teacher_id`, `date`, `time`, `status`, `created_at`) VALUES
+(80, 32, 38, 34, '2025-03-14', '10:00:00', 'confirmed', '2025-03-13 21:12:11');
+
 -- --------------------------------------------------------
 
 --
@@ -283,7 +214,8 @@ CREATE TABLE `reviews` (
 INSERT INTO `reviews` (`id`, `student_id`, `rating`, `comment`, `created_at`, `lesson_id`) VALUES
 (2, 36, 5, 'bence harika bir kurs arkadaşlar', '2025-03-08 00:37:06', 38),
 (3, 33, 5, 'bence hocamız çok bilgili bu konularda belli oluyor', '2025-03-08 02:16:14', 38),
-(4, 36, 5, 'ddd', '2025-03-08 02:17:17', 38);
+(4, 36, 5, 'ddd', '2025-03-08 02:17:17', 38),
+(5, 33, 5, 'denemedir', '2025-03-18 17:03:06', 38);
 
 -- --------------------------------------------------------
 
@@ -368,14 +300,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `name`, `surname`, `role`, `photo`, `is_online`, `email`, `created_at`, `credit`) VALUES
-(2, 'ege', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Ahmet Ege', 'Sandal', 'admin', 'ege.jpg', 0, 'ege@gmail.com', '2025-03-08 21:40:16', 0),
+(2, 'ege', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Ahmet Ege', 'Sandal', 'admin', 'ege.jpg', 0, 'ege@gmail.com', '2025-03-18 15:26:21', 0),
 (15, 'ufuk', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Muhammed Ufuk', 'Aslan', 'admin', 'ufuk.jpg', 0, 'ufuk@gmail.com', '2025-03-06 15:17:50', 0),
 (16, 'hatice', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Hatice Şerife', 'Aladağlı', 'admin', 'hatice.jpg', 0, 'hatice@gmail.com', '2025-03-06 15:19:53', 0),
 (17, 'furkan', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Furkan', 'Güven', 'admin', 'furkan.jpg', 0, 'furkan@gmail.om', '2025-03-06 15:19:59', 0),
-(32, 'doruk', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Doruk', 'Gür', 'student', '1741274369116.png', 0, 'doruk@gmail.com', '2025-03-08 21:34:42', 10),
-(33, 'senem', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Senem', 'Gür', 'parent', '4.png', 1, 'senem@gmail.com', '2025-03-08 21:51:13', 80),
-(34, 'sibel', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Sibel Birtane', 'Akar', 'teacher', '6.png', 0, 'sibel@gmail.com', '2025-03-08 21:52:32', 0),
-(36, 'yavuz', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Yavuz', 'Gür', 'student', '10.png', 0, 'yavuz@gmail.com', '2025-03-08 21:33:58', 80);
+(32, 'doruk', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Doruk', 'Gür', 'student', '1741274369116.png', 0, 'doruk@gmail.com', '2025-03-18 15:27:37', 250),
+(33, 'senem', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Senem', 'Gür', 'parent', '4.png', 1, 'senem@gmail.com', '2025-03-18 16:05:16', 1000),
+(34, 'sibel', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Sibel Birtane', 'Akar', 'teacher', '6.png', 0, 'sibel@gmail.com', '2025-03-18 16:07:42', 10),
+(36, 'yavuz', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Yavuz', 'Gür', 'student', '10.png', 0, 'yavuz@gmail.com', '2025-03-18 15:58:41', 2250),
+(42, 'sena', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Sena', 'Ağaçyetiştiren', 'admin', 'sena.jpg', 1, 'sena@gmail.com', '2025-03-18 16:09:47', 500);
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -488,7 +421,7 @@ ALTER TABLE `users`
 -- Tablo için AUTO_INCREMENT değeri `calendar`
 --
 ALTER TABLE `calendar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `categories`
@@ -500,19 +433,19 @@ ALTER TABLE `categories`
 -- Tablo için AUTO_INCREMENT değeri `lessons`
 --
 ALTER TABLE `lessons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `live_classes`
 --
 ALTER TABLE `live_classes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=228;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=296;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `notifications`
@@ -530,13 +463,13 @@ ALTER TABLE `parents`
 -- Tablo için AUTO_INCREMENT değeri `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `students`
@@ -554,7 +487,7 @@ ALTER TABLE `teachers`
 -- Tablo için AUTO_INCREMENT değeri `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- Dökümü yapılmış tablolar için kısıtlamalar
