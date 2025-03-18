@@ -22,6 +22,7 @@ export default async function handler(req, res) {
         lessons.price, 
         lessons.language,
         lessons.lesson_photo,
+        lessons.grade,
         COALESCE(AVG(reviews.rating), 0) AS average_rating, 
         COUNT(reviews.id) AS review_count
       FROM lessons
@@ -31,7 +32,7 @@ export default async function handler(req, res) {
       LEFT JOIN reviews ON lessons.id = reviews.lesson_id
       GROUP BY lessons.id, lessons.teacher_id, users.id, users.username, users.name, users.surname, users.email, 
                users.photo, lessons.title, lessons.description, 
-               lessons.category_id, categories.name, lessons.price, lessons.language,lessons.lesson_photo;
+               lessons.category_id, categories.name, lessons.price, lessons.language,lessons.lesson_photo,lessons.grade;
     `;
 
     const [rows] = await db.execute(query);

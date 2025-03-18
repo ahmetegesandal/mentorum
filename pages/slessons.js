@@ -17,6 +17,7 @@ const Slessons = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [onlineTeachers, setOnlineTeachers] = useState({}); // ✅ Tüm öğretmenlerin online bilgisini tutacak
+  const [selectedGrade, setSelectedGrade] = useState(""); // Yeni filtre için state
 
   // Fetch lessons
   useEffect(() => {
@@ -85,7 +86,8 @@ const Slessons = () => {
       (lesson.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         lesson.description.toLowerCase().includes(searchTerm.toLowerCase())) &&
       (selectedCategory === "" ||
-        lesson.category_id.toString() === selectedCategory)
+        lesson.category_id.toString() === selectedCategory) &&
+      (selectedGrade === "" || lesson.grade === selectedGrade) // Yeni filtre koşulu
   );
 
   // Pagination logic
@@ -180,6 +182,18 @@ const Slessons = () => {
                           {category.name}
                         </option>
                       ))}
+                    </select>
+
+                    {/* Yeni Grade (Seviye) Filtresi */}
+                    <select
+                      className="form-select"
+                      value={selectedGrade}
+                      onChange={(e) => setSelectedGrade(e.target.value)}
+                    >
+                      <option value="">Tüm Düzeyler</option>
+                      <option value="beginner">Başlangıç</option>
+                      <option value="intermediate">Orta</option>
+                      <option value="advanced">İleri</option>
                     </select>
                   </div>
                 </div>

@@ -3,8 +3,8 @@ import { EditorProvider, useCurrentEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
-import Color from "@tiptap/extension-color";
 import HardBreak from "@tiptap/extension-hard-break";
+import Underline from "@tiptap/extension-underline";
 
 const MenuBar = () => {
   const { editor } = useCurrentEditor();
@@ -17,42 +17,35 @@ const MenuBar = () => {
         onClick={() => editor.chain().focus().toggleBold().run()}
         className={editor.isActive("bold") ? "active" : ""}
       >
-        Bold
+        <i className="ti ti-bold"></i>
       </button>
       <button
         type="button"
         onClick={() => editor.chain().focus().toggleItalic().run()}
         className={editor.isActive("italic") ? "active" : ""}
       >
-        Italic
+        <i className="ti ti-italic"></i>
       </button>
       <button
         type="button"
         onClick={() => editor.chain().focus().toggleStrike().run()}
         className={editor.isActive("strike") ? "active" : ""}
       >
-        Strike
+        <i className="ti ti-strikethrough"></i>
       </button>
       <button
         type="button"
         onClick={() => editor.chain().focus().toggleUnderline().run()}
         className={editor.isActive("underline") ? "active" : ""}
       >
-        Underline
-      </button>
-      <button
-        type="button"
-        onClick={() => editor.chain().focus().setColor("#ff0000").run()}
-        className={editor.isActive("color") ? "active" : ""}
-      >
-        Color
+        <i className="ti ti-underline"></i>
       </button>
       <button
         type="button"
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
         className={editor.isActive("orderedList") ? "active" : ""}
       >
-        Ordered List
+        <i className="ti ti-list-numbers"></i>
       </button>
       <button
         type="button"
@@ -61,7 +54,7 @@ const MenuBar = () => {
           editor.chain().focus().insertContent("\n").run();
         }}
       >
-        New Line
+        <i className="ti ti-plus"></i>
       </button>
     </div>
   );
@@ -79,7 +72,7 @@ export default function RichTextEditor({ value, onChange }) {
       {isClient ? (
         <EditorProvider
           slotBefore={<MenuBar />}
-          extensions={[Color, TextStyle, ListItem, StarterKit, HardBreak]}
+          extensions={[Underline, TextStyle, ListItem, StarterKit, HardBreak]}
           content={value}
           onUpdate={({ editor }) => {
             const content = editor.getHTML();

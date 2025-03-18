@@ -58,6 +58,7 @@
   background: #f8f9fa;
   padding: 5px;
   border-radius: 5px;
+  flex-wrap: wrap;
 }
 
 /* Toolbar Butonları */

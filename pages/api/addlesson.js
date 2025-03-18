@@ -4,10 +4,9 @@ import path from "path";
 import fs from "fs";
 
 export const config = {
-  api: { bodyParser: false }, // Multer için bodyParser kapalı
+  api: { bodyParser: false },
 };
 
-// Klasör var mı kontrol et, yoksa oluştur
 const uploadPath = path.join(process.cwd(), "public/uploads/lessons");
 if (!fs.existsSync(uploadPath)) {
   fs.mkdirSync(uploadPath, { recursive: true });
@@ -20,7 +19,7 @@ const upload = multer({
       cb(null, `${Date.now()}-${file.originalname}`);
     },
   }),
-  limits: { fileSize: 2 * 1024 * 1024 }, // Max 2MB
+  limits: { fileSize: 2 * 1024 * 1024 },
 }).single("lesson_photo");
 
 export default async function handler(req, res) {
@@ -37,8 +36,15 @@ export default async function handler(req, res) {
       console.log("Gelen Body:", req.body);
       console.log("Yüklenen Dosya:", req.file);
 
-      const { teacher_id, category_id, title, description, price, language } =
-        JSON.parse(JSON.stringify(req.body));
+      const {
+        teacher_id,
+        category_id,
+        title,
+        description,
+        price,
+        language,
+        grade,
+      } = JSON.parse(JSON.stringify(req.body));
 
       if (
         !teacher_id ||
@@ -46,7 +52,8 @@ export default async function handler(req, res) {
         !title ||
         !description ||
         !price ||
-        !language
+        !language ||
+        !grade
       ) {
         return res.status(400).json({ error: "Tüm alanlar zorunludur." });
       }
@@ -61,8 +68,8 @@ export default async function handler(req, res) {
         console.log("✅ Veritabanına bağlandı!");
 
         const query = `
-          INSERT INTO lessons (teacher_id, category_id, title, description, price, language, lesson_photo)
-          VALUES (?, ?, ?, ?, ?, ?, ?)
+          INSERT INTO lessons (teacher_id, category_id, title, description, price, language, lesson_photo,grade)
+          VALUES (?, ?, ?, ?, ?, ?, ?,?)
         `;
 
         const result = await db.execute(query, [
@@ -73,6 +80,7 @@ export default async function handler(req, res) {
           price,
           language,
           lessonPhoto,
+          grade,
         ]);
 
         console.log("✅ Sorgu başarılı:", result);
