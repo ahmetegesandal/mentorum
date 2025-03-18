@@ -14,13 +14,13 @@ export default async function handler(req, res) {
   try {
     db = await getConnection();
 
-    // Önce fotoğrafı al
+    // Önce dersin fotoğraf yolunu al
     const [lesson] = await db.execute(
       "SELECT lesson_photo FROM lessons WHERE id = ?",
       [id]
     );
 
-    if (lesson.length === 0) {
+    if (!lesson.length) {
       return res.status(404).json({ error: "Ders bulunamadı." });
     }
 
@@ -29,19 +29,26 @@ export default async function handler(req, res) {
     // Ders kaydını veritabanından sil
     await db.execute("DELETE FROM lessons WHERE id = ?", [id]);
 
-    // Fotoğrafı sil
+    // Fotoğraf varsa sil
     if (lessonPhoto) {
-      const filePath = path.join(
-        process.cwd(),
-        "public/uploads/lessons",
-        lessonPhoto
-      );
-      fs.unlink(filePath, (err) => {
-        if (err) console.error("Fotoğraf silinemedi:", err);
-      });
+      // Fotoğrafın tam dosya yolunu oluştur
+      const filePath = path.join(process.cwd(), "public", lessonPhoto);
+
+      // Dosyanın var olup olmadığını kontrol et
+      if (fs.existsSync(filePath)) {
+        fs.unlink(filePath, (err) => {
+          if (err) {
+            console.error("Fotoğraf silinirken hata oluştu:", err);
+          } else {
+            console.log(`Fotoğraf başarıyla silindi: ${lessonPhoto}`);
+          }
+        });
+      } else {
+        console.warn(`Fotoğraf bulunamadı: ${filePath}`);
+      }
     }
 
-    res.status(200).json({ message: "Ders başarıyla silindi." });
+    res.status(200).json({ message: "Ders ve fotoğraf başarıyla silindi." });
   } catch (error) {
     console.error("Ders silme hatası:", error);
     res.status(500).json({ error: "Ders silinirken hata oluştu." });

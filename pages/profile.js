@@ -56,7 +56,7 @@ const Profile = () => {
                       <Image
                         src={
                           userData?.photo
-                            ? `/img/avatars/${userData.photo}`
+                            ? `/img/avatars/${userData?.photo}`
                             : "/img/avatars/default.png"
                         }
                         alt="User Image"
@@ -75,16 +75,16 @@ const Profile = () => {
                           <ul className="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-4 my-2">
                             <li className="list-inline-item d-flex gap-2 align-items-center">
                               <span className="fw-medium">
-                                {userData.role === "admin" && (
+                                {userData?.role === "admin" && (
                                   <span className="badge bg-label-danger">
                                     {"Admin"}
                                   </span>
                                 )}
-                                {userData.role === "parent" && <>{"Veli"}</>}
-                                {userData.role === "student" && (
+                                {userData?.role === "parent" && <>{"Veli"}</>}
+                                {userData?.role === "student" && (
                                   <>{"Öğrenci"}</>
                                 )}
-                                {userData.role === "teacher" && (
+                                {userData?.role === "teacher" && (
                                   <>{"Öğretmen"}</>
                                 )}
                               </span>
