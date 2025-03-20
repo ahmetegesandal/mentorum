@@ -9,42 +9,61 @@ import axios from "axios";
 
 const Navbar = () => {
   const { isMenuExpanded, toggleMenu } = useLayout();
-
-  // 🔥 `userData` doğrudan tanımlandı (destructuring YOK)
   const userData = useContext(UserContext);
-  const setUserData = userData?.setUserData; // `setUserData` varsa al, yoksa hata vermesin
+  const setUserData = userData?.setUserData;
 
-  const [credit, setCredit] = useState(userData?.credit || 0); // 🔥 Lokal state
-  const [isLoading, setIsLoading] = useState(true); // 🔥 Yüklenme durumu
+  const [credit, setCredit] = useState(userData?.credit || 0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isManagedByParent, setIsManagedByParent] = useState(false);
+  const [parentInfo, setParentInfo] = useState(null);
 
   useEffect(() => {
-    // 🔥 Eğer `userData` yüklenmemişse API çağrısı yapma
-    if (!userData || !userData.id) return;
+    if (!userData || !userData?.id) return;
 
-    const fetchCredit = async () => {
+    const fetchParentInfo = async () => {
       try {
+        console.log("📡 API İsteği: get-parent-info-credit", userData?.id);
         const response = await axios.get(
-          `/api/user-credit?user_id=${userData.id}`
+          `/api/get-parent-info-credit?user_id=${userData?.id}`
         );
-        if (response.data.credit !== undefined) {
-          setCredit(response.data.credit); // 🔥 Lokal state güncelle
-          if (setUserData) {
-            setUserData((prev) => ({ ...prev, credit: response.data.credit })); // 🔥 Context güncelle
-          }
-          setIsLoading(false); // ✅ Yüklenme tamamlandı
+        console.log("✅ API Yanıtı: get-parent-info-credit", response.data);
+
+        setIsManagedByParent(response.data.isManagedByParent);
+        if (response.data.isManagedByParent) {
+          setParentInfo({
+            id: response.data.parent_id,
+            name: response.data.parent_name,
+            surname: response.data.parent_surname,
+            credit: response.data.parent_credit,
+          });
+          setCredit(response.data.parent_credit);
+        } else {
+          console.log("📡 API İsteği: user-credit (Student)", userData?.id);
+          const userCreditResponse = await axios.get(
+            `/api/user-credit?user_id=${userData?.id}`
+          );
+          console.log(
+            "✅ API Yanıtı: user-credit (Student)",
+            userCreditResponse.data
+          );
+          setCredit(userCreditResponse.data.credit);
         }
       } catch (error) {
-        console.error("❌ Kullanıcı kredisi çekilemedi:", error);
+        console.error(
+          "❌ Veli kontrolü veya kredi bilgisi alınırken hata oluştu:",
+          error
+        );
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    fetchCredit();
-    const interval = setInterval(fetchCredit, 5000); // 🔥 Her 5 saniyede güncelle
+    fetchParentInfo();
+    const interval = setInterval(fetchParentInfo, 5000);
 
-    return () => clearInterval(interval); // 🔥 Bellek sızıntısını önlemek için temizle
-  }, [userData?.id, setUserData]); // 🔥 Hata almamak için `?.` kullanıldı
+    return () => clearInterval(interval);
+  }, [userData?.id]);
 
-  // 🔥 Eğer `userData` yüklenmemişse, geçici bir yükleniyor mesajı göster
   if (!userData || isLoading) {
     return (
       <nav className="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme">
@@ -82,7 +101,11 @@ const Navbar = () => {
         id="navbar-collapse"
       >
         <ul className="navbar-nav flex-row align-items-center ms-auto">
-          <li className="nav-item me-2">{credit} ₺</li>
+          <li className="nav-item me-2">
+            {isManagedByParent && parentInfo
+              ? `Veliniz: ${parentInfo.name} ${parentInfo.surname} - Kredi: ${credit} ₺`
+              : `${credit} ₺`}
+          </li>
 
           <li className="nav-item dropdown-language dropdown">
             <a
