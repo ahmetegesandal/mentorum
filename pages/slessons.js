@@ -16,8 +16,10 @@ const Slessons = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [onlineTeachers, setOnlineTeachers] = useState({}); // ✅ Tüm öğretmenlerin online bilgisini tutacak
-  const [selectedGrade, setSelectedGrade] = useState(""); // Yeni filtre için state
+  const [onlineTeachers, setOnlineTeachers] = useState({});
+  const [selectedGrade, setSelectedGrade] = useState("");
+  const [selectedRating, setSelectedRating] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState("");
 
   // Fetch lessons
   useEffect(() => {
@@ -26,7 +28,7 @@ const Slessons = () => {
       .then((data) => {
         if (Array.isArray(data)) {
           setLessons(data);
-          checkTeachersOnlineStatus(data); // ✅ Öğretmenlerin online durumunu kontrol et
+          checkTeachersOnlineStatus(data);
         }
       })
       .catch((err) => {
@@ -87,7 +89,10 @@ const Slessons = () => {
         lesson.description.toLowerCase().includes(searchTerm.toLowerCase())) &&
       (selectedCategory === "" ||
         lesson.category_id.toString() === selectedCategory) &&
-      (selectedGrade === "" || lesson.grade === selectedGrade) // Yeni filtre koşulu
+      (selectedGrade === "" || lesson.grade === selectedGrade) &&
+      (selectedRating === "" ||
+        Number(lesson.average_rating) >= Number(selectedRating)) &&
+      (selectedLanguage === "" || lesson.language === selectedLanguage) // ✅ Language filter added
   );
 
   // Pagination logic
@@ -194,6 +199,30 @@ const Slessons = () => {
                       <option value="beginner">Başlangıç</option>
                       <option value="intermediate">Orta</option>
                       <option value="advanced">İleri</option>
+                    </select>
+                    <select
+                      className="form-select"
+                      value={selectedRating}
+                      onChange={(e) => setSelectedRating(e.target.value)}
+                    >
+                      <option value="">Tüm Puanlar</option>
+                      <option value="1">1 Yıldız ve Üzeri</option>
+                      <option value="2">2 Yıldız ve Üzeri</option>
+                      <option value="3">3 Yıldız ve Üzeri</option>
+                      <option value="4">4 Yıldız ve Üzeri</option>
+                      <option value="5">5 Yıldız</option>
+                    </select>
+                    <select
+                      className="form-select"
+                      value={selectedLanguage}
+                      onChange={(e) => setSelectedLanguage(e.target.value)}
+                    >
+                      <option value="">Tüm Diller</option>
+                      <option value="Turkish">Türkçe</option>
+                      <option value="English">İngilizce</option>
+                      <option value="French">Fransızca</option>
+                      <option value="German">Almanca</option>
+                      <option value="Spanish">İspanyolca</option>
                     </select>
                   </div>
                 </div>

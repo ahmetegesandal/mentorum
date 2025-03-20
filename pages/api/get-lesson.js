@@ -22,6 +22,7 @@ export default async function handler(req, res) {
         lessons.category_id, 
         lessons.lesson_photo,
         lessons.grade,
+        lessons.language,
         categories.name AS category_name,
         users.id AS teacher_id,
         users.name AS teacher_name,

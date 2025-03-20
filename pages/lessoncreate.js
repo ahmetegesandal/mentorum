@@ -23,7 +23,8 @@ const AddLesson = ({ categories }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [language, setLanguage] = useState("");
+  const [language, setLanguage] = useState("Turkish"); // Varsayılan değer 'Turkish'
+
   const [lessonPhoto, setLessonPhoto] = useState(null);
   const [grade, setGrade] = useState("");
 
@@ -155,14 +156,19 @@ const AddLesson = ({ categories }) => {
                             <label htmlFor="language" className="form-label">
                               Dil
                             </label>
-                            <input
-                              type="text"
-                              className="form-control"
+                            <select
+                              className="form-select"
                               id="language"
                               value={language}
                               onChange={(e) => setLanguage(e.target.value)}
                               required
-                            />
+                            >
+                              <option value="Turkish">Türkçe</option>
+                              <option value="English">İngilizce</option>
+                              <option value="French">Fransızca</option>
+                              <option value="German">Almanca</option>
+                              <option value="Spanish">İspanyolca</option>
+                            </select>
                           </div>
                         </div>
                         <div className="col-md-6 col-lg-3">

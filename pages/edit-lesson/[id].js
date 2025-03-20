@@ -21,6 +21,7 @@ const EditLesson = () => {
   const [grade, setGrade] = useState("");
   const [lessonPhoto, setLessonPhoto] = useState(null);
   const [existingPhoto, setExistingPhoto] = useState("");
+  const [language, setLanguage] = useState("");
 
   useEffect(() => {
     if (!id || !userData) return;
@@ -35,6 +36,7 @@ const EditLesson = () => {
         setCategoryId(res.data.category_id);
         setExistingPhoto(res.data.lesson_photo);
         setGrade(res.data.grade);
+        setLanguage(res.data.language || "Turkish"); // Eğer dil mevcutsa onu set et
       })
       .catch((err) => console.error("Ders bilgisi alınamadı:", err));
 
@@ -61,6 +63,7 @@ const EditLesson = () => {
       formData.append("lesson_photo", lessonPhoto);
     }
     formData.append("grade", grade);
+    formData.append("language", language);
 
     try {
       await axios.post("/api/update-lesson", formData, {
@@ -172,6 +175,26 @@ const EditLesson = () => {
                           <option value="beginner">Başlangıç</option>
                           <option value="intermediate">Orta</option>
                           <option value="advanced">İleri</option>
+                        </select>
+                      </div>
+
+                      {/* Dil Seçimi */}
+                      <div className="mb-3">
+                        <label htmlFor="language" className="form-label">
+                          Dil
+                        </label>
+                        <select
+                          className="form-select"
+                          id="language"
+                          value={language}
+                          onChange={(e) => setLanguage(e.target.value)}
+                          required
+                        >
+                          <option value="Turkish">Türkçe</option>
+                          <option value="English">İngilizce</option>
+                          <option value="French">Fransızca</option>
+                          <option value="German">Almanca</option>
+                          <option value="Spanish">İspanyolca</option>
                         </select>
                       </div>
 
