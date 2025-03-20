@@ -42,12 +42,8 @@ const MainNavbar = () => {
             </button>
             <ul className="navbar-nav me-auto">
               <li className="nav-item">
-                <a
-                  className="nav-link fw-medium"
-                  aria-current="page"
-                  href="landing-page.html#landingHero"
-                >
-                  Home
+                <a className="nav-link fw-medium" aria-current="page" href="/">
+                  Anasayfa
                 </a>
               </li>
               <li className="nav-item dropdown">
@@ -59,7 +55,7 @@ const MainNavbar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Features
+                  Dropdown
                 </a>
                 <ul
                   className="dropdown-menu"
@@ -81,31 +77,8 @@ const MainNavbar = () => {
                     </a>
                   </li>
                 </ul>
-              </li>{" "}
-              <li className="nav-item">
-                <a
-                  className="nav-link fw-medium"
-                  href="landing-page.html#landingFeatures"
-                >
-                  Features
-                </a>
               </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link fw-medium"
-                  href="landing-page.html#landingTeam"
-                >
-                  Team
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link fw-medium"
-                  href="landing-page.html#landingFAQ"
-                >
-                  FAQ
-                </a>
-              </li>
+
               <li className="nav-item">
                 <a className="nav-link fw-medium" href="/contact">
                   İletişim
