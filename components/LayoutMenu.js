@@ -70,8 +70,13 @@ const menuItems = [
     roles: ["student"],
     subMenu: [
       {
-        path: "/deneme",
-        label: "deneme",
+        path: "/StudentReservations",
+        label: "Rezervasyonlar",
+        roles: ["student"],
+      },
+      {
+        path: "/StudentLiveClasses",
+        label: "Canlı Dersler",
         roles: ["student"],
       },
     ],
