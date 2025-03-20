@@ -2,6 +2,15 @@ import { useState, useContext } from "react";
 import Swal from "sweetalert2";
 import { UserContext } from "../contexts/UserContext";
 
+// Tarih kontrol fonksiyonu (bugünden önce olup olmadığını kontrol eder)
+const isDateInThePast = (dateString, timeString) => {
+  const selectedDate = new Date(dateString + "T" + timeString);
+  const currentDate = new Date();
+
+  // Eğer seçilen tarih ve saat şu anki tarih ve saatten önceyse
+  return selectedDate < currentDate;
+};
+
 const CalendarModal = ({ onUpdate }) => {
   const userData = useContext(UserContext);
   const [formData, setFormData] = useState({
@@ -18,6 +27,16 @@ const CalendarModal = ({ onUpdate }) => {
 
     if (!userData?.id) {
       Swal.fire("Hata!", "Kullanıcı ID bulunamadı!", "error");
+      return;
+    }
+
+    // Eğer tarih veya saat geçmişteyse
+    if (isDateInThePast(formData.date, formData.time)) {
+      Swal.fire(
+        "Hata!",
+        "Geçmiş tarih veya saat için kayıt ekleyemezsiniz!",
+        "error"
+      );
       return;
     }
 
