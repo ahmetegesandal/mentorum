@@ -166,6 +166,10 @@ const ReservationForm = ({ lesson }) => {
         <div className="alert alert-warning">
           📢 Rezervasyon işlemleri veliniz tarafından yönetilmektedir.
         </div>
+      ) : userData?.role === "teacher" ? (
+        <div className="alert alert-danger">
+          ❌ Öğretmen olarak rezervasyon yapamazsınız.
+        </div>
       ) : (
         <>
           {userData?.role === "parent" && students.length > 0 && (
