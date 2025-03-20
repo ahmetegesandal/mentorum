@@ -12,8 +12,10 @@ const ReservationForm = ({ lesson }) => {
   const [students, setStudents] = useState([]);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [disabledTimes, setDisabledTimes] = useState(new Set());
+  const [isManagedByParent, setIsManagedByParent] = useState(false);
 
   useEffect(() => {
+    checkParentManagement();
     fetchAvailableSlots();
     if (userData?.role === "parent") {
       fetchStudents();
@@ -25,6 +27,17 @@ const ReservationForm = ({ lesson }) => {
       fetchReservations();
     }
   }, [selectedDate]);
+
+  const checkParentManagement = async () => {
+    try {
+      const response = await axios.get(
+        `/api/check-parent-management?user_id=${userData.id}`
+      );
+      setIsManagedByParent(response.data.isManagedByParent);
+    } catch (error) {
+      console.error("❌ Veli yönetim kontrolü hatası:", error);
+    }
+  };
 
   const fetchAvailableSlots = async () => {
     try {
@@ -149,77 +162,88 @@ const ReservationForm = ({ lesson }) => {
   return (
     <>
       <h5>Ders Rezervasyonu</h5>
-
-      {userData?.role === "parent" && students.length > 0 && (
-        <div className="mb-3">
-          <label className="form-label">Rezervasyon Kimin Adına?</label>
-          <select
-            className="form-select"
-            value={selectedStudent}
-            onChange={(e) => setSelectedStudent(e.target.value)}
-          >
-            <option value="">Kendi Adıma</option>
-            {students.map((student) => (
-              <option key={student.user_id} value={student.user_id}>
-                {student.name} {student.surname}
-              </option>
-            ))}
-          </select>
+      {isManagedByParent ? (
+        <div className="alert alert-warning">
+          📢 Rezervasyon işlemleri veliniz tarafından yönetilmektedir.
         </div>
-      )}
-
-      <div className="mb-3">
-        <label className="form-label">Müsait Günler</label>
-        <select
-          className="form-select"
-          value={selectedDate}
-          onChange={(e) => setSelectedDate(e.target.value)}
-        >
-          <option value="">Gün Seçin</option>
-          {Object.keys(availableSlots).map((formattedDate) => (
-            <option key={formattedDate} value={formattedDate}>
-              {formattedDate}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="mb-3">
-        <label className="form-label">Saat Seçin</label>
-        <select
-          className="form-select"
-          value={selectedTime}
-          onChange={(e) => setSelectedTime(e.target.value)}
-          disabled={!selectedDate}
-        >
-          <option value="">Saat Seçin</option>
-          {selectedDate && availableSlots[selectedDate]?.length > 0 ? (
-            availableSlots[selectedDate].map((time) => {
-              const formattedTime = formatTime(time);
-              const endTime = calculateEndTime(formattedTime); // ✅ Fix: Show `endTime`
-              const isDisabled = disabledTimes.has(
-                `${selectedDate}_${formattedTime} - ${endTime}`
-              );
-
-              return (
-                <option key={time} value={formattedTime} disabled={isDisabled}>
-                  {formattedTime} - {endTime} {isDisabled ? "(Dolu)" : ""}
-                </option>
-              );
-            })
-          ) : (
-            <option disabled>Müsait saat yok</option>
+      ) : (
+        <>
+          {userData?.role === "parent" && students.length > 0 && (
+            <div className="mb-3">
+              <label className="form-label">Rezervasyon Kimin Adına?</label>
+              <select
+                className="form-select"
+                value={selectedStudent}
+                onChange={(e) => setSelectedStudent(e.target.value)}
+              >
+                <option value="">Kendi Adıma</option>
+                {students.map((student) => (
+                  <option key={student.user_id} value={student.user_id}>
+                    {student.name} {student.surname}
+                  </option>
+                ))}
+              </select>
+            </div>
           )}
-        </select>
-      </div>
 
-      <button
-        className="btn btn-success w-100"
-        onClick={handleReservation}
-        disabled={!selectedTime}
-      >
-        📅 Rezervasyon Yap
-      </button>
+          <div className="mb-3">
+            <label className="form-label">Müsait Günler</label>
+            <select
+              className="form-select"
+              value={selectedDate}
+              onChange={(e) => setSelectedDate(e.target.value)}
+            >
+              <option value="">Gün Seçin</option>
+              {Object.keys(availableSlots).map((formattedDate) => (
+                <option key={formattedDate} value={formattedDate}>
+                  {formattedDate}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Saat Seçin</label>
+            <select
+              className="form-select"
+              value={selectedTime}
+              onChange={(e) => setSelectedTime(e.target.value)}
+              disabled={!selectedDate}
+            >
+              <option value="">Saat Seçin</option>
+              {selectedDate && availableSlots[selectedDate]?.length > 0 ? (
+                availableSlots[selectedDate].map((time) => {
+                  const formattedTime = formatTime(time);
+                  const endTime = calculateEndTime(formattedTime); // ✅ Fix: Show `endTime`
+                  const isDisabled = disabledTimes.has(
+                    `${selectedDate}_${formattedTime} - ${endTime}`
+                  );
+
+                  return (
+                    <option
+                      key={time}
+                      value={formattedTime}
+                      disabled={isDisabled}
+                    >
+                      {formattedTime} - {endTime} {isDisabled ? "(Dolu)" : ""}
+                    </option>
+                  );
+                })
+              ) : (
+                <option disabled>Müsait saat yok</option>
+              )}
+            </select>
+          </div>
+
+          <button
+            className="btn btn-success w-100"
+            onClick={handleReservation}
+            disabled={!selectedTime}
+          >
+            📅 Rezervasyon Yap
+          </button>
+        </>
+      )}
     </>
   );
 };

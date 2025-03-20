@@ -14,6 +14,7 @@ const StudentReservations = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [isManagedByParent, setIsManagedByParent] = useState(false);
 
   if (!userData || userData.role !== "student") {
     return <p className="text-danger text-center mt-4">Erişim Yetkiniz Yok!</p>;
@@ -21,6 +22,7 @@ const StudentReservations = () => {
 
   useEffect(() => {
     if (userData?.role === "student") {
+      checkParentManagement();
       fetchReservations();
     }
 
@@ -28,6 +30,17 @@ const StudentReservations = () => {
 
     return () => clearInterval(interval);
   }, [userData]);
+
+  const checkParentManagement = async () => {
+    try {
+      const response = await axios.get(
+        `/api/check-parent-management?user_id=${userData.id}`
+      );
+      setIsManagedByParent(response.data.isManagedByParent);
+    } catch (error) {
+      console.error("Veli yönetimi kontrol edilirken hata oluştu:", error);
+    }
+  };
 
   const fetchReservations = async () => {
     try {
@@ -117,12 +130,19 @@ const StudentReservations = () => {
           <div className="container-xxl flex-grow-1 container-p-y">
             <h1 className="text-3xl font-bold mb-4">Rezervasyonlarım</h1>
 
+            {isManagedByParent && (
+              <div className="alert alert-warning">
+                📢 Veliniz tarafından rezervasyon işlemleri yönetilmektedir.
+              </div>
+            )}
+
             <input
               type="text"
               className="form-control mb-4"
               placeholder="Öğretmen adı veya rezervasyon durumu ara..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              disabled={isManagedByParent}
             />
 
             {loading ? (
@@ -150,14 +170,13 @@ const StudentReservations = () => {
                       <td>{res.time}</td>
                       <td>
                         <span
-                          className={`badge 
-                            ${
-                              res.status === "pending"
-                                ? "bg-warning"
-                                : res.status === "confirmed"
-                                ? "bg-success"
-                                : "bg-danger"
-                            }`}
+                          className={`badge ${
+                            res.status === "pending"
+                              ? "bg-warning"
+                              : res.status === "confirmed"
+                              ? "bg-success"
+                              : "bg-danger"
+                          }`}
                         >
                           {res.status === "pending"
                             ? "Bekliyor"
@@ -167,19 +186,13 @@ const StudentReservations = () => {
                         </span>
                       </td>
                       <td>
-                        {res.status === "pending" && (
+                        {!isManagedByParent && res.status === "pending" && (
                           <button
                             className="btn btn-danger btn-sm"
                             onClick={() => handleCancel(res.id)}
                           >
                             İptal Et
                           </button>
-                        )}
-                        {res.status === "confirmed" && (
-                          <span className="text-muted">Onaylandı</span>
-                        )}
-                        {res.status === "cancelled" && (
-                          <span className="text-muted">İptal Edildi</span>
                         )}
                       </td>
                     </tr>
