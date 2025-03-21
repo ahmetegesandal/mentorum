@@ -64,7 +64,15 @@
   "statisticlabel1": "Öğretmenler",
   "statisticlabel2": "Ders Alanları",
   "statisticlabel3": "4 ve 5 yıldızlı yorum",
-  "statisticlabel4": "Başarı oranı"
+  "statisticlabel4": "Başarı oranı",
+  "paymentTitle": "Ödeme",
+  "cardNumber": "Kart Numarası",
+  "expiryDate": "Son Kullanma Tarihi",
+  "cvv": "CVV",
+  "cardHolder": "Kart Sahibi",
+  "processing": "İşleniyor...",
+  "payNow": "Şimdi Öde",
+  "amount": "Miktar"
 
 
  

@@ -47,7 +47,16 @@
   "statisticlabel1": "Profesores",
   "statisticlabel2": "Materias",
   "statisticlabel3": "Reseñas de 4 y 5 estrellas",
-  "statisticlabel4": "Tasa de éxito"
+  "statisticlabel4": "Tasa de éxito",
+  "paymentTitle": "Pago",
+  "cardNumber": "Número de Tarjeta",
+  "expiryDate": "Fecha de Expiración",
+  "cvv": "CVV",
+  "cardHolder": "Nombre del Titular",
+  "processing": "Procesando...",
+  "payNow": "Pagar Ahora",
+  "amount": "Cantidad"
+
 
  
 }

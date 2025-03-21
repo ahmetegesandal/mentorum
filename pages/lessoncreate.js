@@ -23,7 +23,7 @@ const AddLesson = ({ categories }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [language, setLanguage] = useState("Turkish"); // Varsayılan değer 'Turkish'
+  const [language, setLanguage] = useState("Turkish");
 
   const [lessonPhoto, setLessonPhoto] = useState(null);
   const [grade, setGrade] = useState("");

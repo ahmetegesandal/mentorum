@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { UserContext } from "../contexts/UserContext";
 import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useContext } from "react";
 
 const Blank = () => {
   const { t } = useTranslation("common");

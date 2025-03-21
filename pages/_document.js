@@ -13,7 +13,7 @@ export default function Document() {
         <script src="https://meet.jit.si/external_api.js"></script>
 
         {/* Favicon */}
-        <link rel="icon" href="img/favicon/favicon.ico" />
+        <link rel="icon" href="img/odek.png" />
         {/* Google Fonts */}
         <link
           href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap"

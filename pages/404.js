@@ -9,7 +9,7 @@ const ErrorPage = () => {
   const router = useRouter();
 
   const handleRedirect = () => {
-    router.push("/main"); // Ana sayfaya yönlendir
+    router.push("/main");
   };
 
   return (
@@ -25,7 +25,6 @@ const ErrorPage = () => {
           <h4 className="mb-2 mx-2">{t("pagenotfound")} ⚠</h4>
           <p className="mb-6 mx-2">{t("pagenotfoundtwo")}</p>
 
-          {/* Link yerine button ile yönlendirme */}
           <button onClick={handleRedirect} className="btn btn-primary mb-10">
             {t("backtohome")}
           </button>

@@ -64,7 +64,17 @@
     "statisticlabel1": "Lehrer",
     "statisticlabel2": "Fächer",
     "statisticlabel3": "4-und 5-Sterne-Bewertungen",
-    "statisticlabel4": "Erfolgsquote"
+    "statisticlabel4": "Erfolgsquote",
+    "paymentTitle": "Zahlung",
+    "cardNumber": "Kartennummer",
+    "expiryDate": "Ablaufdatum",
+    "cvv": "CVV",
+    "cardHolder": "Karteninhaber",
+    "processing": "Wird verarbeitet...",
+    "payNow": "Jetzt Bezahlen",
+    "amount": "Betrag"
+
+    
   
   
    

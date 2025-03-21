@@ -101,6 +101,19 @@ const menuItems = [
     roles: ["admin"],
     subMenu: [{ path: "/users-list", label: "Kullanıcılar", roles: ["admin"] }],
   },
+  {
+    key: "credit",
+    label: "Kredi",
+    icon: "ti ti-credit-card",
+    roles: ["admin", "parent", "teacher", "student"],
+    subMenu: [
+      {
+        path: "/loadcredit",
+        label: "Bakiye Yükle",
+        roles: ["admin", "parent", "teacher", "student"],
+      },
+    ],
+  },
 ];
 
 const MenuItem = memo(

@@ -64,9 +64,16 @@
   "statisticlabel1": "Teachers",
   "statisticlabel2": "Subjects",
   "statisticlabel3": "4 and 5-star reviews",
-  "statisticlabel4": "Success rate"
+  "statisticlabel4": "Success rate",
+  "paymentTitle": "Payment",
+  "cardNumber": "Card Number",
+  "expiryDate": "Expiry Date",
+  "cvv": "CVV",
+  "cardHolder": "Card Holder Name",
+  "processing": "Processing...",
+  "payNow": "Pay Now",
+  "amount": "Amount"
 
-  
 
  
  

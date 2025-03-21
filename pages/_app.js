@@ -9,12 +9,9 @@ import { useRouter } from "next/router";
 import { UserProvider } from "../contexts/UserContext";
 import GlobalLogoutHandler from "../components/GlobalLogoutHandler";
 
-// Global CSS Dosyaları
-
 import "../styles/fonts/tabler-icons.css";
 import "../styles/demo.css";
 
-// Sayfa Bazlı CSS
 import "../styles/pages/page-auth.css";
 import "../styles/pages/page-profile.css";
 import "../styles/pages/page-misc.css";
@@ -36,13 +33,13 @@ function MyApp({ Component, pageProps }) {
           requestAnimationFrame(() => {
             Promise.all([
               document.fonts.ready,
-              new Promise((resolve) => setTimeout(resolve, 500)), // CSS yüklenmesini beklemek için ekstra süre
+              new Promise((resolve) => setTimeout(resolve, 500)),
             ]).then(() => {
               setLoading(false);
             });
           });
         }
-      }, 1000); // En az 1 saniye Preloader'ı göster
+      }, 1000);
     };
 
     if (document.readyState === "complete") {
@@ -71,7 +68,6 @@ function MyApp({ Component, pageProps }) {
     };
   }, [router]);
 
-  // Bootstrap JS'i yalnızca tarayıcı ortamında yükle
   useEffect(() => {
     if (typeof window !== "undefined") {
       import("bootstrap/dist/js/bootstrap.bundle.min.js").catch((err) =>
@@ -80,7 +76,6 @@ function MyApp({ Component, pageProps }) {
     }
   }, []);
 
-  // Dinamik CSS yükleme (Ana sayfa için özel CSS)
   useEffect(() => {
     if (router.pathname === "/" || router.pathname === "/contact") {
       import("../styles/pages/front-page.css");
