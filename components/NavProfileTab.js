@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Swal from "sweetalert2"; // npm install sweetalert2
+import Swal from "sweetalert2";
 import { useTranslation } from "next-i18next";
 import { useContext, useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
@@ -11,7 +11,6 @@ const NavProfileTab = () => {
   const router = useRouter();
   const [isOnline, setIsOnline] = useState(false);
 
-  // Kullanıcının online olup olmadığını kontrol et
   useEffect(() => {
     if (userData?.id) {
       const checkOnlineStatus = async () => {
@@ -19,7 +18,7 @@ const NavProfileTab = () => {
           const response = await fetch(`/api/users/${userData.id}/status`);
           if (response.ok) {
             const data = await response.json();
-            setIsOnline(data.is_online === 1); // is_online değeri 1 ise true yap
+            setIsOnline(data.is_online === 1);
           }
         } catch (error) {
           console.error("Online durumu alınamadı:", error);
@@ -27,9 +26,9 @@ const NavProfileTab = () => {
       };
 
       checkOnlineStatus();
-      const interval = setInterval(checkOnlineStatus, 5000); // Her 5 saniyede bir güncelle
+      const interval = setInterval(checkOnlineStatus, 5000);
 
-      return () => clearInterval(interval); // Bellek sızıntısını önlemek için temizle
+      return () => clearInterval(interval);
     }
   }, [userData]);
 
@@ -82,20 +81,15 @@ const NavProfileTab = () => {
   };
 
   const getRandomColorClass = () => {
-    const colors = [
-      "bg-label-warning",
-      "bg-label-danger",
-      "bg-label-info",
-      "bg-label-primary",
-    ];
-    return colors[Math.floor(Math.random() * colors.length)];
+    const colors = ["bg-label-info"];
+    return colors;
   };
 
   const [avatarColor, setAvatarColor] = useState("");
 
   useEffect(() => {
     setAvatarColor(getRandomColorClass());
-  }, []); // ✅ Sadece ilk render'da çalışır!
+  }, []);
 
   return (
     <li className="nav-item navbar-dropdown dropdown-user dropdown">

@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import MainNavbar from "../components/MainNavbar";
-import Footer from "../components/Footer"; // yeni footer kısmı
+import Footer from "../components/Footer";
 
 const Home = () => {
   const { t } = useTranslation("common");

@@ -73,6 +73,6 @@ export default async function handler(req, res) {
       .status(401)
       .json({ message: "Yetkisiz erişim. Token geçersiz veya SQL hatası." });
   } finally {
-    if (connection) connection.release(); // ✅ Bağlantıyı serbest bırak
+    if (connection) connection.release();
   }
 }
