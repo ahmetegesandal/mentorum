@@ -22,10 +22,10 @@ const SidebarContacts = ({
       className="col app-chat-contacts app-sidebar flex-grow-0 overflow-hidden border-end"
       id="app-chat-contacts"
     >
-      {/* ✅ Eksik Header Class Eklendi */}
       <div className="sidebar-header h-px-75 px-5 border-bottom d-flex align-items-center">
         <div className="d-flex align-items-center me-6 me-lg-0">
-          <div
+          {/* gereksiz bir alan şuanlık ilerde bakılır */}
+          {/*<div
             className="flex-shrink-0 avatar avatar-online me-4"
             data-bs-toggle="sidebar"
             data-overlay="app-overlay-ex"
@@ -40,7 +40,7 @@ const SidebarContacts = ({
               }
               alt="Avatar"
             />
-          </div>
+          </div>*/}
           <div className="flex-grow-1 input-group input-group-merge">
             <span className="input-group-text" id="basic-addon-search31">
               <i className="ti ti-search"></i>
@@ -98,6 +98,7 @@ const SidebarContacts = ({
                   <div className="d-flex justify-content-between align-items-center">
                     <h6 className="chat-contact-name text-truncate m-0 fw-normal">
                       {user.name} {user.surname}
+                      {user.id === userData?.id && " (Kendim)"}
                     </h6>
                     <small className="text-muted">
                       {lastMessages[user.id]

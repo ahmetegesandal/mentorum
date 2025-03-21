@@ -12,78 +12,74 @@ const Main = () => {
   const { t } = useTranslation("common");
   const userData = useContext(UserContext);
   const router = useRouter();
+
+  const roleBasedCards = {
+    student: [
+      { title: "Derslerim", icon: "ti ti-book", value: "12" },
+      { title: "Rezervasyonlarım", icon: "ti ti-calendar", value: "5" },
+      { title: "Eğitim Süresi", icon: "ti ti-clock", value: "48 Saat" },
+      { title: "Bildirimler", icon: "ti ti-bell", value: "2" },
+    ],
+    teacher: [
+      { title: "Öğrencilerim", icon: "ti ti-users", value: "30" },
+      { title: "Planlanan Dersler", icon: "ti ti-calendar", value: "8" },
+      { title: "Kazanç", icon: "ti ti-currency-dollar", value: "$1,200" },
+      { title: "Bildirimler", icon: "ti ti-bell", value: "3" },
+    ],
+    admin: [
+      { title: "Toplam Kullanıcı", icon: "ti ti-users", value: "2.5k" },
+      { title: "Toplam Dersler", icon: "ti ti-book", value: "350" },
+      { title: "Toplam Kazanç", icon: "ti ti-currency-dollar", value: "$25k" },
+      { title: "Sistem Bildirimleri", icon: "ti ti-bell", value: "5" },
+    ],
+    parent: [
+      { title: "Çocuklarım", icon: "ti ti-user", value: "2" },
+      { title: "Eğitim Süresi", icon: "ti ti-clock", value: "70 Saat" },
+      { title: "Öğretmenler", icon: "ti ti-user-check", value: "4" },
+      { title: "Bildirimler", icon: "ti ti-bell", value: "1" },
+    ],
+  };
+
+  // **Kullanıcının rolüne göre kartları belirle**
+  const userRole = userData?.role || "student";
+  const cardsToRender = roleBasedCards[userRole] || [];
+
   return (
     <>
       <LayoutMenu />
-
       <div className="layout-page">
         <Navbar />
         <div className="content-wrapper">
-          <div className="container-xxl flex-grow-1 container-p-y">
+          <div className="container-xxl flex-grow-1 container-py">
             <div className="card bg-transparent shadow-none my-6 border-0">
               <div className="card-body row p-0 pb-6 g-6">
-                <div className="col-12 col-lg-12">
+                <div className="col-12">
                   <h5 className="mb-2">
-                    Hoş Geldin, {userData?.role === "admin" && <>{"Admin"}</>}
-                    {userData?.role === "parent" && <>{"Veli"}</>}
-                    {userData?.role === "student" && <>{"Öğrenci"}</>}
-                    {userData?.role === "teacher" && <>{"Öğretmen"}</>}{" "}
+                    Hoş Geldin,{" "}
+                    {userData?.role === "admin" && <span>Admin</span>}
+                    {userData?.role === "parent" && <span>Veli</span>}
+                    {userData?.role === "student" && <span>Öğrenci</span>}
+                    {userData?.role === "teacher" && <span>Öğretmen</span>}{" "}
                     <span className="h4">
                       {userData
                         ? `${userData?.name} ${userData?.surname} 👋🏻`
                         : "Guest 👋🏻"}
                     </span>
                   </h5>
-                  <div className="col-12 col-lg-5">
+                  <div className="col-lg-5">
                     <p>{t("homepagecomment")}</p>
                   </div>
-                  <div className="d-flex justify-content-between flex-wrap gap-4 me-12">
-                    {[
-                      {
-                        title: "Hours Spent",
-                        value: "34h",
-                        color: "primary",
-                        icon: "/svg/icons/laptop.svg",
-                      },
-                      {
-                        title: "Test Results",
-                        value: "82%",
-                        color: "info",
-                        icon: "/svg/icons/lightbulb.svg",
-                      },
-                      {
-                        title: "Course Completed",
-                        value: "14",
-                        color: "warning",
-                        icon: "/svg/icons/check.svg",
-                      },
-                      {
-                        title: "Course Completed",
-                        value: "14",
-                        color: "warning",
-                        icon: "/svg/icons/check.svg",
-                      },
-                    ].map(({ title, value, color, icon }, index) => (
-                      <div
-                        className="d-flex align-items-center gap-4"
-                        key={index}
-                      >
-                        <div className="avatar avatar-lg">
-                          <div
-                            className={`avatar-initial bg-label-${color} rounded`}
-                          >
-                            <Image
-                              src={icon}
-                              alt={title}
-                              className="img-fluid"
-                              width={40}
-                              height={40}
-                            />
+                  <div className="row g-4">
+                    {cardsToRender.map((card, index) => (
+                      <div key={index} className="col-lg-3 col-md-6">
+                        <div className="card h-100 text-center">
+                          <div className="card-body">
+                            <div className="badge rounded p-2 bg-label-primary mb-2">
+                              <i className={card.icon + " ti-lg"}></i>
+                            </div>
+                            <h5 className="card-title mb-1">{card.value}</h5>
+                            <p className="mb-0">{card.title}</p>
                           </div>
-                        </div>
-                        <div className="content-right">
-                          <p className="mb-0 fw-medium">{title}</p>
-                          <h4 className={`text-${color} mb-0`}>{value}</h4>
                         </div>
                       </div>
                     ))}

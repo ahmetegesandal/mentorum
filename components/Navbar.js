@@ -102,9 +102,11 @@ const Navbar = () => {
       >
         <ul className="navbar-nav flex-row align-items-center ms-auto">
           <li className="nav-item me-2">
-            {isManagedByParent && parentInfo
-              ? `Veliniz: ${parentInfo.name} ${parentInfo.surname} - Kredi: ${credit} ₺`
-              : `${credit} ₺`}
+            <span class="badge rounded-pill bg-label-success">
+              {isManagedByParent && parentInfo
+                ? `Veliniz: ${parentInfo.name} ${parentInfo.surname} - Kredi: ${credit} ₺`
+                : `${credit} $`}
+            </span>
           </li>
 
           <li className="nav-item dropdown-language dropdown">

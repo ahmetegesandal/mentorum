@@ -4,9 +4,12 @@ import Navbar from "../components/Navbar";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { UserContext } from "../contexts/UserContext";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 const StudentLiveClasses = () => {
   const userData = useContext(UserContext);
+  const { t } = useTranslation("common");
   const [liveClasses, setLiveClasses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -127,5 +130,13 @@ const StudentLiveClasses = () => {
     </>
   );
 };
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}
 
 export default StudentLiveClasses;

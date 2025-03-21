@@ -62,6 +62,7 @@ const ChatHistory = ({
                 <h6 className="m-0 fw-normal">
                   {selectedUser?.name || "Select a user"}{" "}
                   {selectedUser?.surname || "Select a user"}
+                  {selectedUser?.id === userData?.id && " (Kendim)"}
                 </h6>
                 <small className="user-status text-body">
                   {selectedUser?.is_online ? "Çevrimiçi" : "Çevrimdışı"}
