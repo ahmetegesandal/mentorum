@@ -3,14 +3,16 @@ import Swal from "sweetalert2";
 import LayoutMenu from "../components/LayoutMenu";
 import Navbar from "../components/Navbar";
 import { withRouter } from "next/router";
+import { withTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 class UsersList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      users: [], // ✅ Kullanıcı listesi
-      onlineUsers: {}, // ✅ Online kullanıcı bilgileri
+      users: [],
+      onlineUsers: {},
       searchQuery: "",
       currentPage: 1,
       usersPerPage: 5,
@@ -20,14 +22,13 @@ class UsersList extends Component {
 
   componentDidMount() {
     this.fetchUsers();
-    this.fetchOnlineUsers(); // ✅ İlk çalıştırma
+    this.fetchOnlineUsers();
 
-    // ✅ Online kullanıcı durumlarını her 5 saniyede bir güncelle
     this.onlineCheckInterval = setInterval(this.fetchOnlineUsers, 5000);
   }
 
   componentWillUnmount() {
-    clearInterval(this.onlineCheckInterval); // ✅ Component kaldırıldığında temizle
+    clearInterval(this.onlineCheckInterval);
   }
 
   // 📌 Kullanıcıları API'den çek
@@ -268,4 +269,12 @@ class UsersList extends Component {
   }
 }
 
-export default withRouter(UsersList);
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}
+
+export default withRouter(withTranslation("common")(UsersList));

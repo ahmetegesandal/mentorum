@@ -36,7 +36,7 @@ const EditLesson = () => {
         setCategoryId(res.data.category_id);
         setExistingPhoto(res.data.lesson_photo);
         setGrade(res.data.grade);
-        setLanguage(res.data.language || "Turkish"); // Eğer dil mevcutsa onu set et
+        setLanguage(res.data.language || "Turkish");
       })
       .catch((err) => console.error("Ders bilgisi alınamadı:", err));
 

@@ -44,7 +44,7 @@ const Login = () => {
       }
 
       localStorage.setItem("token", data.token);
-      console.log("Giriş başarılı! Token:", data.token);
+      //console.log("Giriş başarılı! Token:", data.token);
 
       router.replace("/main");
     } catch (err) {

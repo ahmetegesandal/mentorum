@@ -1,3 +1,6 @@
+import path from "path";
+import fs from "fs";
+
 import { getConnection } from "../../utils/db";
 
 export default async function handler(req, res) {
@@ -147,6 +150,12 @@ export default async function handler(req, res) {
       console.log("🟢 Öğrenciye bağlı `reviews` verileri siliniyor...");
       await db.execute("DELETE FROM reviews WHERE student_id = ?", [id]);
 
+      console.log("🟢 Öğrenciye bağlı `reservations` verileri siliniyor...");
+      await db.execute("DELETE FROM reservations WHERE student_id = ?", [id]);
+
+      console.log("🟢 Öğrenciye bağlı `live_classes` verileri siliniyor...");
+      await db.execute("DELETE FROM live_classes WHERE student_id = ?", [id]);
+
       console.log("🟢 Öğrenciye bağlı `messages` verileri siliniyor...");
       await db.execute(
         "DELETE FROM messages WHERE sender_id = ? OR receiver_id = ?",
@@ -158,9 +167,31 @@ export default async function handler(req, res) {
 
       // **3️⃣ Önce `students` tablosundan kaydı kaldır**
       console.log("🟢 Öğrenci `students` tablosundan siliniyor...");
-      await db.execute("DELETE FROM students WHERE user_id = ?", [id]); // **Önemli düzeltme burada!**
+      await db.execute("DELETE FROM students WHERE user_id = ?", [id]);
 
-      // **4️⃣ En son `users` tablosundan öğrenciyi kaldır**
+      // **4️⃣ Öğrencinin fotoğrafını kontrol edip sil**
+      const [photoResult] = await db.execute(
+        "SELECT photo FROM users WHERE id = ?",
+        [id]
+      );
+      const photoFilename =
+        photoResult.length > 0 ? photoResult[0].photo : null;
+
+      if (photoFilename) {
+        const photoPath = path.join(
+          process.cwd(),
+          "public/img/avatars",
+          photoFilename
+        );
+        if (fs.existsSync(photoPath)) {
+          fs.unlinkSync(photoPath);
+          console.log(`🗑️ Fotoğraf silindi: ${photoPath}`);
+        } else {
+          console.log(`⚠️ Fotoğraf dosyası bulunamadı: ${photoPath}`);
+        }
+      }
+
+      // **5️⃣ En son `users` tablosundan öğrenciyi kaldır**
       console.log("🟢 Öğrenci `users` tablosundan siliniyor...");
       await db.execute("DELETE FROM users WHERE id = ?", [id]);
 
@@ -212,6 +243,6 @@ export default async function handler(req, res) {
     console.error("❌ [HATA] Kullanıcı silme hatası:", error.message);
     res.status(500).json({ error: `Silme işlemi başarısız: ${error.message}` });
   } finally {
-    db.end();
+    db.release();
   }
 }

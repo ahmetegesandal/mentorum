@@ -3,10 +3,10 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import SwiperComponent from "../components/SwiperComponent";
 import { useRouter } from "next/router";
-import HeroSection from "../components/HeroSection"; // HeroSection bileşenini içeri aktar
-import Statistics from "../components/Statistics"; // Statistics bileşenini ekliyoruz.
-import MainNavbar from "../components/MainNavbar"; // Yeni Navbar dosyasını dahil et
-import Footer from "../components/Footer"; // yeni footer kısmı
+import HeroSection from "../components/HeroSection";
+import Statistics from "../components/Statistics";
+import MainNavbar from "../components/MainNavbar";
+import Footer from "../components/Footer";
 
 const Home = () => {
   const { t } = useTranslation("common");
@@ -14,10 +14,10 @@ const Home = () => {
 
   return (
     <>
-      <MainNavbar /> {/* Yeni Navbar bileşeni burada kullanılıyor */}
-      {/* Hero Bölümünü Buraya Ekliyoruz */}
+      <MainNavbar />
+
       <HeroSection />
-      <Statistics /> {/* İstatistik bileşenini burada çağır */}
+      <Statistics />
       <div data-bs-spy="scroll" className="scrollspy-example">
         <section id="landingFeatures" className="section-py landing-features">
           <div className="container">

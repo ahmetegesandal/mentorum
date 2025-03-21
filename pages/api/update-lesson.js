@@ -3,7 +3,6 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 
-// Multer yapılandırması
 const upload = multer({
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
@@ -61,7 +60,6 @@ export default async function handler(req, res) {
     }
 
     try {
-      // Mevcut fotoğrafı kontrol et
       const [existingLesson] = await db.execute(
         "SELECT lesson_photo FROM lessons WHERE id = ?",
         [id]
@@ -70,10 +68,15 @@ export default async function handler(req, res) {
         ? existingLesson[0].lesson_photo
         : null;
 
-      // Eğer yeni fotoğraf yüklenmemişse eski fotoğrafı kullan
+      if (newPhoto && existingPhoto && existingPhoto !== newPhoto) {
+        const oldPath = path.join(process.cwd(), "public", existingPhoto);
+        if (fs.existsSync(oldPath)) {
+          fs.unlinkSync(oldPath);
+        }
+      }
+
       const lessonPhoto = newPhoto || existingPhoto;
 
-      // Güncelleme sorgusu
       const query = `
         UPDATE lessons 
         SET title = ?, description = ?, price = ?, category_id = ?, lesson_photo = ?, grade = ?, language = ?
