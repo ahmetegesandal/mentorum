@@ -7,7 +7,7 @@ const ThemeSwitcher = () => {
     <>
       <li>
         <a
-          className="dropdown-item"
+          className={`dropdown-item ${theme === "light" ? "active" : ""}`}
           href="#"
           data-theme="light"
           onClick={() => handleThemeChange("light")}
@@ -19,7 +19,7 @@ const ThemeSwitcher = () => {
       </li>
       <li>
         <a
-          className="dropdown-item"
+          className={`dropdown-item ${theme === "dark" ? "active" : ""}`}
           href="#"
           data-theme="dark"
           onClick={() => handleThemeChange("dark")}
@@ -31,7 +31,7 @@ const ThemeSwitcher = () => {
       </li>
       <li>
         <a
-          className="dropdown-item"
+          className={`dropdown-item ${theme === "system" ? "active" : ""}`}
           href="#"
           data-theme="system"
           onClick={() =>
