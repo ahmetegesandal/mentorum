@@ -12,6 +12,7 @@ const Login = () => {
   const [error, setError] = useState(null);
   const { t } = useTranslation("common");
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -102,7 +103,7 @@ const Login = () => {
                     </label>
                     <div className="input-group input-group-merge">
                       <input
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         id="password"
                         className="form-control"
                         name="password"
@@ -111,8 +112,15 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                       />
-                      <span className="input-group-text cursor-pointer">
-                        <i className="ti ti-eye-off"></i>
+                      <span
+                        className="input-group-text cursor-pointer"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                      >
+                        <i
+                          className={
+                            showPassword ? "ti ti-eye" : "ti ti-eye-off"
+                          }
+                        ></i>
                       </span>
                     </div>
                   </div>
