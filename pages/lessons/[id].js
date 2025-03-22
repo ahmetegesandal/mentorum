@@ -6,9 +6,9 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { UserContext } from "../../contexts/UserContext";
-import Swal from "sweetalert2";
 import ReservationForm from "../../components/ReservationForm";
 import CommentsSection from "../../components/CommentsSection";
+import UserAvatar from "../../components/UserAvatar";
 
 const LessonDetails = ({ lesson }) => {
   const { t } = useTranslation("common");
@@ -38,14 +38,6 @@ const LessonDetails = ({ lesson }) => {
       return () => clearInterval(interval);
     }
   }, [lesson?.teacher_user_id]);
-
-  const handleProfile = (username) => {
-    if (!username) {
-      console.error("Hata: teacher_username değeri tanımsız!");
-      return;
-    }
-    router.push(`/profile/${username}`);
-  };
 
   return (
     <>
@@ -108,30 +100,11 @@ const LessonDetails = ({ lesson }) => {
                         <div className="d-flex justify-content-start align-items-center user-name">
                           <div className="avatar-wrapper">
                             <div className="avatar me-4">
-                              <a
-                                target="__blank"
-                                onClick={() =>
-                                  handleProfile(lesson?.teacher_username)
-                                }
-                              >
-                                <div
-                                  className={`avatar ${
-                                    isTeacherOnline
-                                      ? "avatar-online"
-                                      : "avatar-offline"
-                                  }`}
-                                >
-                                  <img
-                                    src={
-                                      lesson?.teacher_photo
-                                        ? `/img/avatars/${lesson.teacher_photo}`
-                                        : "/img/avatars/default.png"
-                                    }
-                                    alt="Avatar"
-                                    className="rounded-circle"
-                                  />
-                                </div>
-                              </a>
+                              <UserAvatar
+                                username={lesson?.teacher_username}
+                                photo={lesson?.teacher_photo}
+                                isOnline={isTeacherOnline[lesson?.teacher_id]}
+                              />
                             </div>
                           </div>
                           <div className="d-flex flex-column">
