@@ -1,13 +1,13 @@
 import { useEffect, useRef, useContext } from "react";
 import { io } from "socket.io-client";
 import { UserContext } from "../contexts/UserContext";
-import { useRouter } from "next/router"; // useRouter'ı import et
+import { useRouter } from "next/router";
 
 const GlobalLogoutHandler = () => {
   const socketRef = useRef(null);
-  const userData = useContext(UserContext); // `useContext` her zaman çağrılmalı!
-  const userId = userData?.id; // Eğer `userData` boşsa hata almamak için `?.` operatörünü kullan
-  const router = useRouter(); // Geçerli sayfa yolunu almak için useRouter'ı kullanıyoruz
+  const userData = useContext(UserContext);
+  const userId = userData?.id;
+  const router = useRouter();
 
   // Eğer sayfa '/sign-in' ise, WebSocket bağlantısını kurma
   if (
@@ -15,7 +15,8 @@ const GlobalLogoutHandler = () => {
     router.pathname === "/" ||
     router.pathname === "/404" ||
     router.pathname === "/register" ||
-    router.pathname === "/contact"
+    router.pathname === "/contact" ||
+    router.pathname === "/forgot-password"
   ) {
     return null; // '/sign-in' sayfasında WebSocket bağlantısı yapılmayacak
   }
@@ -28,7 +29,7 @@ const GlobalLogoutHandler = () => {
       return; // **Early return, ama useEffect yine çağrıldı!**
     }
 
-    console.log(`🔗 WebSocket bağlantısı açılıyor... (userId: ${userId})`);
+    //console.log(`🔗 WebSocket bağlantısı açılıyor... (userId: ${userId})`);
 
     socketRef.current = io("http://localhost:3001", {
       query: {
@@ -37,16 +38,16 @@ const GlobalLogoutHandler = () => {
     });
 
     socketRef.current.on("connect", () => {
-      console.log("✅ WebSocket bağlantısı açıldı.");
+      //console.log("✅ WebSocket bağlantısı açıldı.");
     });
 
     socketRef.current.on("disconnect", () => {
-      console.log("❌ WebSocket bağlantısı kapandı.");
+      //console.log("❌ WebSocket bağlantısı kapandı.");
     });
 
     return () => {
       if (socketRef.current) {
-        console.log("🔌 WebSocket bağlantısı kapatılıyor...");
+        //console.log("🔌 WebSocket bağlantısı kapatılıyor...");
         socketRef.current.disconnect();
       }
     };

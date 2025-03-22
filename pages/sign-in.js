@@ -140,6 +140,12 @@ const Login = () => {
                   <span>{t("newusermessage")}</span>{" "}
                   <Link href="/register">{t("create_account_link")}</Link>
                 </p>
+                <p className="text-center">
+                  <span>{t("forgotpasswordmessage")}</span>{" "}
+                  <Link href="/forgot-password">
+                    {t("forgot_password_link")}
+                  </Link>
+                </p>
               </div>
             </div>
             {/* /Login Card */}

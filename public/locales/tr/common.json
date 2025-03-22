@@ -20,6 +20,8 @@
   "signpassword" : "Şifre", 
   "signinbutton" : "Giriş Yap",
   "newusermessage" : "Platformda yeni misiniz?",
+  "forgotpasswordmessage": "Şifrenizi mi unuttunuz?",
+  "forgot_password_link": "Şifremi sıfırlamak için buraya tıklayın",
   "create_account_link" : "Hesap oluştur",
   "vxy_what1": "Mentorum Nedir?",
   "vxy_what": "Mentorum, özel dersin geleceğini şekillendiren yenilikçi bir online öğrenme platformudur. Hayalimiz, öğrencilere özelleştirilmiş ve interaktif dersler sunarak, onların potansiyellerini en üst seviyeye çıkarmalarına yardımcı olmaktır.",

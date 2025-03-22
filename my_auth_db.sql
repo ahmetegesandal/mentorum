@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 18 Mar 2025, 17:10:33
+-- Üretim Zamanı: 23 Mar 2025, 00:15:32
 -- Sunucu sürümü: 10.4.32-MariaDB
 -- PHP Sürümü: 8.2.12
 
@@ -40,8 +40,10 @@ CREATE TABLE `calendar` (
 --
 
 INSERT INTO `calendar` (`id`, `teacher_id`, `date`, `time`, `is_available`) VALUES
-(51, 34, '2025-03-14', '10:00:00', 1),
-(52, 34, '2025-03-18', '20:00:00', 1);
+(53, 34, '2025-03-20', '20:00:00', 1),
+(54, 34, '2025-03-28', '18:15:00', 1),
+(57, 34, '2025-03-21', '16:00:00', 1),
+(58, 34, '2025-03-22', '19:50:00', 1);
 
 -- --------------------------------------------------------
 
@@ -82,7 +84,7 @@ CREATE TABLE `lessons` (
   `description` varchar(500) NOT NULL,
   `category_id` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `language` varchar(50) NOT NULL,
+  `language` enum('Turkish','English','French','German','Spanish') NOT NULL DEFAULT 'Turkish',
   `lesson_photo` varchar(255) NOT NULL,
   `grade` enum('beginner','intermediate','advanced') NOT NULL DEFAULT 'beginner'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -92,8 +94,9 @@ CREATE TABLE `lessons` (
 --
 
 INSERT INTO `lessons` (`id`, `teacher_id`, `title`, `description`, `category_id`, `price`, `language`, `lesson_photo`, `grade`) VALUES
-(38, 34, 'Logaritmayı Anlamak: Temelden İleri Seviyeye', '<p>📝 Açıklama: Bu ders, logaritma konusunu sıfırdan başlayarak ileri seviyeye kadar detaylı bir şekilde anlatır. Logaritmanın temel kavramlarını, üstel fonksiyonlarla olan ilişkisini ve günlük hayattaki kullanım alanlarını ele alacağız.</p><p>Ders süresince şu konular işlenecektir:</p><p>✔️ Üstel ve logaritmik fonksiyonların temelleri</p><p>✔️ Logaritma kuralları ve dönüşümleri</p><p>✔️ Logaritmik denklemler ve çözümleri</p><p>✔️ Mühendislik, ekonomi ve doğa bilimlerinde logaritmanın rolü </p>', 1, 150.00, 'Türkçe', '/uploads/lessons/1741380602178-logaritma_egitim_ilani.png', 'advanced'),
-(41, 34, 'Geometriyi Anlamak: Temelden İleri Seviyeye', '<p>📝 Açıklama<strong>:</strong> Bu ders, temel geometri kavramlarını sıfırdan başlayarak ileri seviyeye kadar derinlemesine inceler. Geometrinin temel öğelerini, şekillerin özelliklerini ve geometriyi günlük hayatta nasıl kullanabileceğimizi keşfedeceğiz.</p><p>Ders süresince şu konular işlenecektir:</p><p>✔️ Noktalar, doğrular ve düzlemler</p><p>✔️ Üçgenler, dörtgenler ve çokgenler</p><p>✔️ Geometrik şekillerin alan ve hacim hesaplamaları</p><p>✔️ Geometri ve trigonometri arasındaki bağlantılar', 1, 400.00, 'Türkçe', '/uploads/lessons/1741882386150-ahmet1.jpg', 'beginner');
+(38, 34, 'Logaritmayı Anlamak: Temelden İleri Seviyeye', '<p>📝 Açıklama: Bu ders, logaritma konusunu sıfırdan başlayarak ileri seviyeye kadar detaylı bir şekilde anlatır. Logaritmanın temel kavramlarını, üstel fonksiyonlarla olan ilişkisini ve günlük hayattaki kullanım alanlarını ele alacağız.</p><p>Ders süresince şu konular işlenecektir:</p><p>✔️ Üstel ve logaritmik fonksiyonların temelleri</p><p>✔️ Logaritma kuralları ve dönüşümleri</p><p>✔️ Logaritmik denklemler ve çözümleri</p><p>✔️ Mühendislik, ekonomi ve doğa bilimlerinde logaritmanın rolü </p>', 1, 150.00, 'Turkish', '/uploads/lessons/1741380602178-logaritma_egitim_ilani.png', 'advanced'),
+(41, 34, 'Geometriyi Anlamak', '<p>📝 Açıklama<strong>:</strong> Bu ders, temel geometri kavramlarını sıfırdan başlayarak ileri seviyeye kadar derinlemesine inceler. Geometrinin temel öğelerini, şekillerin özelliklerini ve geometriyi günlük hayatta nasıl kullanabileceğimizi keşfedeceğiz.</p><p>Ders süresince şu konular işlenecektir:</p><p>✔️ Noktalar, doğrular ve düzlemler</p><p>✔️ Üçgenler, dörtgenler ve çokgenler</p><p>✔️ Geometrik şekillerin alan ve hacim hesaplamaları</p><p>✔️ Geometri ve trigonometri arasındaki bağlantılar', 1, 400.00, 'Turkish', '/uploads/lessons/1742683599965-4284faf7-4c33-4ab7-b0c0-11c6959c27a5.webp', 'beginner'),
+(45, 45, 'Biyolojiyi Anlamak', '<p>📝 Açıklama: Bu ders, biyolojinin temel ilkelerini sıfırdan başlayarak ileri seviyeye kadar keşfetmenize yardımcı olacak. Canlıların yapılarını, işlevlerini ve ekosistemlerdeki rollerini derinlemesine inceleyecek, biyolojinin hayatımızdaki önemini keşfedeceğiz.</p><p>Ders süresince şu konular işlenecektir:</p><p>✔️ Hücre yapısı ve işlevleri<br>✔️ Genetik ve kalıtım<br>✔️ Ekosistemler ve biyolojik çeşitlilik<br>✔️ İnsan vücudu ve organ sistemleri<br>✔️ Evrim teorisi ve doğal seleksiyon</p>', 5, 500.00, 'Turkish', '/uploads/lessons/1742683872932-ce96e55e-5416-4d9b-90db-c9e9f0c2b4da.webp', 'beginner');
 
 -- --------------------------------------------------------
 
@@ -119,7 +122,8 @@ CREATE TABLE `live_classes` (
 --
 
 INSERT INTO `live_classes` (`id`, `reservation_id`, `lesson_id`, `teacher_id`, `student_id`, `date`, `time`, `meeting_link`, `status`, `created_at`) VALUES
-(14, 80, 38, 34, 32, '2025-03-14', '10:00:00', '/meeting/Lesson-14-34-8UGYXtcx', 'ongoing', '2025-03-13 21:14:12');
+(19, 91, 38, 34, 36, '2025-03-28', '18:15:00', NULL, 'scheduled', '2025-03-21 22:16:43'),
+(20, 92, 38, 34, 36, '2025-03-21', '16:00:00', '/meeting/Lesson-20-34-B0G8voeO', 'completed', '2025-03-22 15:46:35');
 
 -- --------------------------------------------------------
 
@@ -190,7 +194,9 @@ CREATE TABLE `reservations` (
 --
 
 INSERT INTO `reservations` (`id`, `student_id`, `lesson_id`, `teacher_id`, `date`, `time`, `status`, `created_at`) VALUES
-(80, 32, 38, 34, '2025-03-14', '10:00:00', 'confirmed', '2025-03-13 21:12:11');
+(90, 34, 38, 34, '2025-03-20', '20:00:00', 'cancelled', '2025-03-20 14:50:44'),
+(91, 36, 38, 34, '2025-03-28', '18:15:00', 'confirmed', '2025-03-21 22:15:55'),
+(92, 36, 38, 34, '2025-03-21', '16:00:00', 'confirmed', '2025-03-22 15:46:21');
 
 -- --------------------------------------------------------
 
@@ -213,9 +219,12 @@ CREATE TABLE `reviews` (
 
 INSERT INTO `reviews` (`id`, `student_id`, `rating`, `comment`, `created_at`, `lesson_id`) VALUES
 (2, 36, 5, 'bence harika bir kurs arkadaşlar', '2025-03-08 00:37:06', 38),
-(3, 33, 5, 'bence hocamız çok bilgili bu konularda belli oluyor', '2025-03-08 02:16:14', 38),
-(4, 36, 5, 'ddd', '2025-03-08 02:17:17', 38),
-(5, 33, 5, 'denemedir', '2025-03-18 17:03:06', 38);
+(3, 33, 4, 'bence hocamız çok bilgili bu konularda belli oluyor', '2025-03-08 02:16:14', 38),
+(4, 36, 4, 'akıcı', '2025-03-08 02:17:17', 38),
+(5, 33, 5, 'süperdi', '2025-03-18 17:03:06', 38),
+(6, 36, 1, 'bence kötü', '2025-03-20 17:24:03', 41),
+(7, 36, 3, 'meh daha iyi olabilir', '2025-03-20 17:24:25', 41),
+(8, 36, 2, 'hocanın anlatışını beğenmedim', '2025-03-22 18:48:21', 41);
 
 -- --------------------------------------------------------
 
@@ -234,8 +243,8 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `user_id`, `grade`) VALUES
-(7, 32, ''),
-(9, 36, 'ortaokul');
+(7, 32, 'Ortaokul'),
+(9, 36, 'Ortaokul');
 
 -- --------------------------------------------------------
 
@@ -273,7 +282,39 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`id`, `user_id`, `bio`, `expertise`) VALUES
-(4, 34, 'Sibel Birtane Akar, başarılı bir girişimci ve liderdir. Kendisinin iş dünyasında kazandığı tecrübe, özellikle teknoloji ve dijital pazarlama alanlarında derindir. Yenilikçi projelere imza atarak sektördeki birçok kişiye ilham vermektedir. Yaratıcı ve vizyoner yaklaşımıyla tanınır.\n\n\n\n\n\n\nSibel Birtane Akar, başarılı bir girişimci ve liderdir. Kendisinin iş dünyasında kazandığı tecrübe, özellikle teknoloji ve dijital pazarlama alanlarında derindir. Yenilikçi projelere imza atarak sektördeki birçok', 'pc');
+(4, 34, 'Sibel Birtane Akar, başarılı bir girişimci ve liderdir. Kendisinin iş dünyasında kazandığı tecrübe, özellikle teknoloji ve dijital pazarlama alanlarında derindir. Yenilikçi projelere imza atarak sektördeki birçok kişiye ilham vermektedir. Yaratıcı ve vizyoner yaklaşımıyla tanınır.\n\n\n\n\n\n\nSibel Birtane Akar, başarılı bir girişimci ve liderdir. Kendisinin iş dünyasında kazandığı tecrübe, özellikle teknoloji ve dijital pazarlama alanlarında derindir. Yenilikçi projelere imza atarak sektördeki birçok', 'pc'),
+(6, 45, NULL, 'yapay zeka');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `tickets`
+--
+
+CREATE TABLE `tickets` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `status` enum('open','closed','resolved') DEFAULT 'open',
+  `priority` enum('low','medium','high') DEFAULT 'medium',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `ticket_comments`
+--
+
+CREATE TABLE `ticket_comments` (
+  `id` int(11) NOT NULL,
+  `ticket_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -300,15 +341,17 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `name`, `surname`, `role`, `photo`, `is_online`, `email`, `created_at`, `credit`) VALUES
-(2, 'ege', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Ahmet Ege', 'Sandal', 'admin', 'ege.jpg', 0, 'ege@gmail.com', '2025-03-18 15:26:21', 0),
-(15, 'ufuk', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Muhammed Ufuk', 'Aslan', 'admin', 'ufuk.jpg', 0, 'ufuk@gmail.com', '2025-03-06 15:17:50', 0),
-(16, 'hatice', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Hatice Şerife', 'Aladağlı', 'admin', 'hatice.jpg', 0, 'hatice@gmail.com', '2025-03-06 15:19:53', 0),
-(17, 'furkan', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Furkan', 'Güven', 'admin', 'furkan.jpg', 0, 'furkan@gmail.om', '2025-03-06 15:19:59', 0),
-(32, 'doruk', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Doruk', 'Gür', 'student', '1741274369116.png', 0, 'doruk@gmail.com', '2025-03-18 15:27:37', 250),
-(33, 'senem', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Senem', 'Gür', 'parent', '4.png', 1, 'senem@gmail.com', '2025-03-18 16:05:16', 1000),
-(34, 'sibel', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Sibel Birtane', 'Akar', 'teacher', '6.png', 0, 'sibel@gmail.com', '2025-03-18 16:07:42', 10),
-(36, 'yavuz', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Yavuz', 'Gür', 'student', '10.png', 0, 'yavuz@gmail.com', '2025-03-18 15:58:41', 2250),
-(42, 'sena', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Sena', 'Ağaçyetiştiren', 'admin', 'sena.jpg', 1, 'sena@gmail.com', '2025-03-18 16:09:47', 500);
+(2, 'ege', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Ahmet Ege', 'Sandal', 'admin', 'ege.jpg', 0, 'ege@gmail.com', '2025-03-22 22:44:05', 1200),
+(15, 'ufuk', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Muhammed Ufuk', 'Aslan', 'admin', 'ufuk.jpg', 0, 'ufuk@gmail.com', '2025-03-22 22:41:52', 2000),
+(16, 'hatice', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Hatice Şerife', 'Aladağlı', 'admin', 'hatice.jpg', 0, 'hatice@gmail.com', '2025-03-22 22:41:48', 2000),
+(17, 'furkan', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Furkan', 'Güven', 'admin', 'furkan.jpg', 0, 'furkan@gmail.om', '2025-03-22 22:41:45', 2000),
+(32, 'doruk', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Doruk', 'Gür', 'student', '1742593154953.jpg', 0, 'doruk@gmail.com', '2025-03-22 15:52:23', 0),
+(33, 'senem', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Senem', 'Gür', 'parent', '4.png', 0, 'senem@gmail.com', '2025-03-22 15:53:00', 4850),
+(34, 'sibel', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Sibel Birtane', 'Akar', 'teacher', '6.png', 0, 'sibel@gmail.com', '2025-03-22 22:49:27', 10),
+(36, 'yavuz', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Yavuz', 'Gür', 'student', '10.png', 0, 'yavuz@gmail.com', '2025-03-22 15:51:40', 1900),
+(42, 'sena', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Sena', 'Ağaçyetiştiren', 'admin', 'sena.jpg', 0, 'sena@gmail.com', '2025-03-18 16:11:42', 500),
+(44, 'emir', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Niyazi Emir', 'Akdemir', 'student', 'emir.jpg', 0, 'emir@gmail.com', '2025-03-22 22:41:37', 2000),
+(45, 'asli', '$2b$10$lPBbGtW.lUmtgOrszKK4t.gPqq1WJgLZRbGkfNBQZPCfxx5PdBN.G', 'Aslıhan', 'Karataş', 'teacher', NULL, 0, 'asli@gmail.com', '2025-03-22 23:05:45', 0);
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -407,6 +450,21 @@ ALTER TABLE `teachers`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Tablo için indeksler `tickets`
+--
+ALTER TABLE `tickets`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Tablo için indeksler `ticket_comments`
+--
+ALTER TABLE `ticket_comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ticket_id` (`ticket_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Tablo için indeksler `users`
 --
 ALTER TABLE `users`
@@ -421,7 +479,7 @@ ALTER TABLE `users`
 -- Tablo için AUTO_INCREMENT değeri `calendar`
 --
 ALTER TABLE `calendar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `categories`
@@ -433,19 +491,19 @@ ALTER TABLE `categories`
 -- Tablo için AUTO_INCREMENT değeri `lessons`
 --
 ALTER TABLE `lessons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `live_classes`
 --
 ALTER TABLE `live_classes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=296;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=299;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `notifications`
@@ -463,31 +521,43 @@ ALTER TABLE `parents`
 -- Tablo için AUTO_INCREMENT değeri `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `tickets`
+--
+ALTER TABLE `tickets`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `ticket_comments`
+--
+ALTER TABLE `ticket_comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- Dökümü yapılmış tablolar için kısıtlamalar
@@ -566,6 +636,19 @@ ALTER TABLE `student_parents`
 --
 ALTER TABLE `teachers`
   ADD CONSTRAINT `teachers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Tablo kısıtlamaları `tickets`
+--
+ALTER TABLE `tickets`
+  ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Tablo kısıtlamaları `ticket_comments`
+--
+ALTER TABLE `ticket_comments`
+  ADD CONSTRAINT `ticket_comments_ibfk_1` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`id`),
+  ADD CONSTRAINT `ticket_comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

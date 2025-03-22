@@ -13,7 +13,13 @@ export const UserProvider = ({ children }) => {
     if (!router.isReady) return;
 
     // Public routes where authentication isn't required
-    const publicRoutes = ["/", "/register", "/404", "/contact"];
+    const publicRoutes = [
+      "/",
+      "/register",
+      "/404",
+      "/contact",
+      "/forgot-password",
+    ];
     if (publicRoutes.includes(router.pathname)) {
       setLoading(false);
       return;

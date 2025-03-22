@@ -20,6 +20,9 @@
     "signpassword" : "Passwort",
     "signinbutton" : "Anmelden",
     "newusermessage" :"Neu auf unserer Plattform?",
+    "forgotpasswordmessage": "Hast du dein Passwort vergessen?",
+"forgot_password_link": "Klicke hier, um dein Passwort zurückzusetzen",
+
     "create_account_link" :  "Ein Konto erstellen",
     "vxy_what1": "Was ist Mentorum?",
     "vxy_what": "Mentorum ist eine innovative Online-Lernplattform, die die Zukunft des privaten Unterrichts gestaltet. Unsere Vision ist es, den Schülern zu helfen, ihr volles Potenzial zu entfalten, indem wir personalisierte und interaktive Lektionen anbieten.",
