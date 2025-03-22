@@ -64,26 +64,13 @@ cd my-app
 npm install
 ```
 
-### **2.3 Çevresel Değişkenleri Tanımlama (.env Dosyası)**
-
-Projede bir **.env** dosyası gereklidir. **Ana dizinde** `.env` dosyası oluşturun ve aşağıdaki bilgileri ekleyin:
-
-```env
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=
-DB_NAME=my_auth_db
-PORT=3000
-```
-
 ### **2.4 Veritabanı Kurulumu**
 
 1. **MySQL’i açın (XAMPP üzerinden).**
 2. **phpMyAdmin** veya MySQL terminali ile yeni bir veritabanı oluşturun:
    ```sql
-   CREATE DATABASE my_database;
+   CREATE DATABASE my_auth_db;
    ```
-3. Gerekli tabloları oluşturmak için proje içinde varsa `db.sql` dosyasını çalıştırın.
 
 ### **2.5 Projeyi Çalıştırma**
 
@@ -96,31 +83,6 @@ node server.js  # Anlık sohbet uygulamasının çalışması için boş bir cmd
 
 ---
 
-## **3. Karşılaşılabilecek Sorunlar ve Çözümleri**
-
-### **Hata: `command not found: git`**
-
-**Çözüm:** Git’in yüklü olup olmadığını kontrol edin veya tekrar yükleyin.
-
-### **Hata: `npm install` sırasında eksik paket hatası**
-
-**Çözüm:**
-
-```bash
-npm cache clean --force
-npm install
-```
-
-### **Hata: `ER_ACCESS_DENIED_ERROR: Access denied for user 'root'@'localhost'`**
-
-**Çözüm:** .env dosyanızdaki **DB_USER, DB_PASSWORD** bilgilerini kontrol edin.
-
-### **Hata: Proje çalışıyor ama veritabanı hatası veriyor**
-
-**Çözüm:** XAMPP üzerinden **MySQL’in çalıştığını** doğrulayın.
-
----
-
 ## **4. Sonuç**
 
 Bu döküman, projeyi sorunsuz bir şekilde yerel ortamda çalıştırmanız için gerekli tüm adımları içermektedir. Eğer sorun yaşarsanız, ekip üyelerinizden veya proje sahibiyle iletişime geçerek destek alabilirsiniz. 🚀
@@ -129,14 +91,15 @@ Bu döküman, projeyi sorunsuz bir şekilde yerel ortamda çalıştırmanız iç
 
 Aşağıdaki kullanıcı hesaplarını test amaçlı kullanabilirsiniz:
 
-| Kullanıcı Adı | Şifre  | Yetki   |
-| ------------- | ------ | ------- |
-| ege           | ege123 | admin   |
-| sena          | ege123 | admin   |
-| emir          | ege123 | admin   |
-| ufuk          | ege123 | admin   |
-| hatice        | ege123 | admin   |
-| furkan        | ege123 | admin   |
-| sibel         | ege123 | teacher |
-| cicek         | ege123 | student |
-| akgun         | ege123 | parent  |
+| Kullanıcı Adı | Şifre  | Yetki                          |
+| ------------- | ------ | ------------------------------ |
+| ege           | ege123 | admin                          |
+| sena          | ege123 | admin                          |
+| emir          | ege123 | admin                          |
+| ufuk          | ege123 | admin                          |
+| hatice        | ege123 | admin                          |
+| furkan        | ege123 | admin                          |
+| sibel         | ege123 | teacher                        |
+| yavuz         | ege123 | student                        |
+| senem         | ege123 | parent                         |
+| doruk         | ege123 | student (seneme bağlı öğrenci) |
