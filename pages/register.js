@@ -7,6 +7,7 @@ import Link from "next/link";
 const Register = () => {
   const { t } = useTranslation("common");
   const [role, setRole] = useState("student");
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -17,6 +18,7 @@ const Register = () => {
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -168,16 +170,23 @@ const Register = () => {
                     </label>
                     <div className="input-group input-group-merge">
                       <input
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         id="password"
                         className="form-control"
                         name="password"
-                        placeholder="••••••••"
+                        placeholder="*******"
                         required
                         onChange={handleChange}
                       />
-                      <span className="input-group-text cursor-pointer">
-                        <i className="ti ti-eye-off"></i>
+                      <span
+                        className="input-group-text cursor-pointer"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                      >
+                        <i
+                          className={
+                            showPassword ? "ti ti-eye" : "ti ti-eye-off"
+                          }
+                        ></i>
                       </span>
                     </div>
                   </div>
