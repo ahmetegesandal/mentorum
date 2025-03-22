@@ -8,6 +8,8 @@ import { UserContext } from "../contexts/UserContext";
 import { useContext } from "react";
 import { useRouter } from "next/router";
 
+//furkan
+
 const Main = () => {
   const { t } = useTranslation("common");
   const userData = useContext(UserContext);
