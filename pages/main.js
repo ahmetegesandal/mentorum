@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 const Main = () => {
   const { t } = useTranslation("common");
   const userData = useContext(UserContext);
+  console.log(userData?.id);
   const router = useRouter();
 
   const roleBasedCards = {

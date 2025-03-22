@@ -124,6 +124,37 @@ const menuItems = [
       },
     ],
   },
+  {
+    key: "support",
+    label: "Destek",
+    icon: "ti ti-credit-card",
+    roles: ["admin", "parent", "teacher", "student"],
+    subMenu: [
+      {
+        path: "/tickets",
+        label: "Destek Talepleri",
+        roles: ["admin", "parent", "teacher", "student"],
+      },
+      {
+        path: "/ticket-add",
+        label: "Destek Talebi Oluştur",
+        roles: ["admin", "parent", "teacher", "student"],
+      },
+    ],
+  },
+  {
+    key: "boost",
+    label: "Boost",
+    icon: "ti ti-credit-card",
+    roles: ["teacher"],
+    subMenu: [
+      {
+        path: "/boosts",
+        label: "Boost İşlemleri",
+        roles: ["teacher"],
+      },
+    ],
+  },
 ];
 
 const MenuItem = memo(
