@@ -83,7 +83,21 @@ node server.js  # Anlık sohbet uygulamasının çalışması için boş bir cmd
 
 ---
 
-## **4. Sonuç**
+## **4. DB Güncel yapıldığında yapılması gerekenler**
+
+xammp'dan mysql kısmından admin'e tıklayın
+![alt text](image.png)
+
+Ardından açılan db ekranından hiçbir şeye dokunmadan direkt olarak sql sekmesine gelip buraya DROP DATABASE my_auth_db yazmanız gerek. Veritabanı bundan sonra düşecektir.
+![alt text](image-1.png)
+
+Güncel olan db yi kurmak için yeni kısmına tıklayın veritabanı adı yerine my_auth_db yazın ve oluştura tıklayın ardından
+![alt text](image-2.png)
+
+my_auth_db 'ye basarak içe aktar diyin dosya seç kısmına basıp proje dizinindeki my_auth_db' yi aktarın ve işlem bu kadar
+![alt text](image-3.png)
+
+## **5. Sonuç**
 
 Bu döküman, projeyi sorunsuz bir şekilde yerel ortamda çalıştırmanız için gerekli tüm adımları içermektedir. Eğer sorun yaşarsanız, ekip üyelerinizden veya proje sahibiyle iletişime geçerek destek alabilirsiniz. 🚀
 
