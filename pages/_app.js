@@ -1,14 +1,3 @@
-import { useEffect, useState } from "react";
-import { ThemeProvider } from "../contexts/ThemeContext";
-import Layout from "../components/Layout";
-import { LayoutProvider } from "../contexts/LayoutContext";
-import { appWithTranslation } from "next-i18next";
-import DatabaseStatus from "../components/DatabaseStatus";
-import Preloader from "../components/Preloader";
-import { useRouter } from "next/router";
-import { UserProvider } from "../contexts/UserContext";
-import GlobalLogoutHandler from "../components/GlobalLogoutHandler";
-
 import "../styles/fonts/tabler-icons.css";
 import "../styles/demo.css";
 
@@ -21,6 +10,17 @@ import "../styles/pages/app-chat.css";
 import "../styles/rtl/preloader.css";
 
 import "../styles/rtl/custom.css";
+
+import { useEffect, useState } from "react";
+import { ThemeProvider } from "../contexts/ThemeContext";
+import Layout from "../components/Layout";
+import { LayoutProvider } from "../contexts/LayoutContext";
+import { appWithTranslation } from "next-i18next";
+import DatabaseStatus from "../components/DatabaseStatus";
+import Preloader from "../components/Preloader";
+import { useRouter } from "next/router";
+import { UserProvider } from "../contexts/UserContext";
+import GlobalLogoutHandler from "../components/GlobalLogoutHandler";
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
