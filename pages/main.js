@@ -1,11 +1,9 @@
-import Head from "next/head";
-import Image from "next/image";
 import LayoutMenu from "../components/LayoutMenu";
 import Navbar from "../components/Navbar";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { UserContext } from "../contexts/UserContext";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 //furkan
@@ -14,6 +12,7 @@ const Main = () => {
   const { t } = useTranslation("common");
   const userData = useContext(UserContext);
   const router = useRouter();
+  const [upcomingItems, setUpcomingItems] = useState([]);
 
   const roleBasedCards = {
     student: [
@@ -41,6 +40,24 @@ const Main = () => {
       { title: "Bildirimler", icon: "ti ti-bell", value: "1" },
     ],
   };
+
+  useEffect(() => {
+    const fetchUpcomingItems = async () => {
+      if (!userData?.id || !userData?.role) return;
+
+      try {
+        const res = await fetch(
+          `/api/upcomingActivities?userId=${userData.id}&role=${userData.role}`
+        );
+        const data = await res.json();
+        setUpcomingItems(data.items || []);
+      } catch (err) {
+        console.error("Yaklaşan etkinlikler alınamadı:", err);
+      }
+    };
+
+    fetchUpcomingItems();
+  }, [userData]);
 
   // **Kullanıcının rolüne göre kartları belirle**
   const userRole = userData?.role || "student";
@@ -85,6 +102,38 @@ const Main = () => {
                         </div>
                       </div>
                     ))}
+                  </div>
+                </div>
+                <div className="col-12">
+                  <div className="card mt-4">
+                    <div className="card-header">
+                      <h5 className="mb-0">Yaklaşan Etkinlikler</h5>
+                    </div>
+                    <div className="card-body">
+                      <div className="row g-4">
+                        {upcomingItems.length === 0 ? (
+                          <p className="text-muted text-center">
+                            Yaklaşan etkinlik yok.
+                          </p>
+                        ) : (
+                          upcomingItems.map((item, i) => (
+                            <div className="col-md-4" key={i}>
+                              <div className="card h-100 border shadow-sm">
+                                <div className="card-body">
+                                  <h6 className="fw-bold mb-1">{item.title}</h6>
+                                  <p className="mb-1">
+                                    📅 {item.date} <br /> 🕓 {item.time}
+                                  </p>
+                                  <span className="badge bg-label-info">
+                                    {item.type}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          ))
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
