@@ -141,7 +141,7 @@ const menuItems = [
         roles: ["parent", "teacher", "student"],
       },
       {
-        path: "/ticket-admin",
+        path: "/tickets-admin",
         label: "Tüm Destek Talepleri",
         roles: ["admin"],
       },

@@ -22,8 +22,11 @@ export default async function handler(req, res) {
     }
 
     // Ticket yorumlarını al
-    const commentsQuery =
-      "SELECT * FROM ticket_comments WHERE ticket_id = ? ORDER BY created_at DESC";
+    const commentsQuery = `SELECT tc.*, u.name AS user_name, u.surname AS user_surname 
+                 FROM ticket_comments AS tc 
+                 JOIN users AS u ON tc.user_id = u.id 
+                 WHERE tc.ticket_id = ? 
+                 ORDER BY tc.created_at DESC`;
     const [commentRows] = await db.execute(commentsQuery, [id]);
 
     res.status(200).json({
