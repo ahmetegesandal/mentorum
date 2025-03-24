@@ -47,7 +47,7 @@ const ReservationForm = ({ lesson }) => {
 
       const formattedSlots = {};
       Object.keys(response.data.availableSlots).forEach((isoDate) => {
-        const dateObj = new Date(isoDate);
+        const dateObj = new Date(isoDate); // ISO formatındaki tarihi Date objesine dönüştür
         const formattedDate = dateObj.toLocaleDateString("tr-TR", {
           day: "2-digit",
           month: "long",
@@ -76,28 +76,36 @@ const ReservationForm = ({ lesson }) => {
 
   const fetchReservations = async () => {
     try {
+      console.log("📌 Rezervasyonlar alınıyor...");
       const response = await axios.get(
         `/api/get-reservations?teacher_id=${lesson.teacher_user_id}`
       );
 
       const disabledTimeSet = new Set();
+      console.log("📌 API yanıtı:", response.data);
 
       response.data.forEach((reservation) => {
         const reservationDate = new Date(reservation.date);
-        const localDate = reservationDate.toLocaleDateString("tr-TR");
-        const localTime = formatTime(reservation.time);
-
-        const endTime = calculateEndTime(reservation.time); // ✅ Fix: Restore `+1 hour` logic
+        const localDate = reservationDate.toLocaleDateString("tr-TR", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        });
+        const localTime = formatTime(reservation.time); // Zamanı formatla
+        const endTime = calculateEndTime(localTime); // End time'ı hesapla
 
         console.log(
           `📌 API'den gelen rezervasyon: ${localDate} ${localTime} - ${endTime}`
         );
 
+        // Burada fullTimeRange'i oluştururken tarih ve saatlerin formatlarının uyumlu olduğuna dikkat edin
+        const fullTimeRange = `${localDate}_${localTime} - ${endTime}`;
         if (
           reservation.status === "pending" ||
           reservation.status === "approved"
         ) {
-          disabledTimeSet.add(`${localDate}_${localTime} - ${endTime}`);
+          console.log(`📌 Engellenen zaman aralığı: ${fullTimeRange}`);
+          disabledTimeSet.add(fullTimeRange);
         }
       });
 
@@ -150,6 +158,9 @@ const ReservationForm = ({ lesson }) => {
 
       if (response.data.success) {
         Swal.fire("Başarılı!", "Rezervasyonunuz oluşturuldu!", "success");
+        setSelectedDate("");
+        setSelectedTime("");
+        setSelectedStudent(null);
       } else {
         Swal.fire("Hata!", response.data.error, "error");
       }
@@ -219,8 +230,20 @@ const ReservationForm = ({ lesson }) => {
                 availableSlots[selectedDate].map((time) => {
                   const formattedTime = formatTime(time);
                   const endTime = calculateEndTime(formattedTime); // ✅ Fix: Show `endTime`
-                  const isDisabled = disabledTimes.has(
-                    `${selectedDate}_${formattedTime} - ${endTime}`
+                  const fullTimeRange = `${selectedDate}_${formattedTime} - ${endTime}`;
+
+                  console.log(
+                    `📌 Seçilen zaman dilimi: ${formattedTime} - ${endTime}`
+                  );
+                  console.log(
+                    `📌 Engellenmiş saatler seti: ${[...disabledTimes]}`
+                  );
+
+                  const isDisabled = disabledTimes.has(fullTimeRange);
+                  console.log(
+                    `📌 Zaman dilimi ${fullTimeRange} ${
+                      isDisabled ? "dolu" : "boş"
+                    }`
                   );
 
                   return (
@@ -279,6 +302,7 @@ const parseDateString = (dateStr) => {
   return new Date(year, month, day);
 };
 
+// 📌 Helper Function: Format time (remove seconds)
 // 📌 Helper Function: Format time (remove seconds)
 const formatTime = (time) => time.split(":").slice(0, 2).join(":");
 

@@ -52,7 +52,7 @@ export default function LessonCard({ lesson, isOnline }) {
           </p>
 
           <p>
-            <strong>Fiyat:</strong> {lesson.price}₺
+            <strong>Fiyat:</strong> {lesson.price}$
           </p>
           <a
             className="w-100 btn btn-label-primary d-flex align-items-center"
