@@ -23,7 +23,7 @@ const TicketsCreate = () => {
       });
       Swal.fire("Başarılı", "Destek talebiniz oluşturuldu.", "success").then(
         () => {
-          router.push("/tickets-list");
+          router.push("/tickets");
         }
       );
     } catch (error) {

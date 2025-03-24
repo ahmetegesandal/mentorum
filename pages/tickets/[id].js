@@ -11,6 +11,28 @@ const LessonDetails = ({ tickets }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const userData = useContext(UserContext);
+  const [comment, setComment] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleBack = () => {
+    router.push("/tickets");
+  };
+
+  const handleCommentSubmit = async () => {
+    if (!comment.trim()) return;
+    setLoading(true);
+    try {
+      await axios.post(`/api/tickets/${tickets.ticket.id}/comments`, {
+        user_id: userData.id,
+        comment,
+      });
+      router.reload();
+    } catch (error) {
+      console.error("Yorum eklenirken hata oluştu:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -36,7 +58,7 @@ const LessonDetails = ({ tickets }) => {
                         <div key={comment.id} className="comment">
                           <p>{comment.comment}</p>
                           <small>
-                            Posted on{" "}
+                            Posted on {" "}
                             {new Date(comment.created_at).toLocaleString()}
                           </small>
                         </div>
@@ -44,6 +66,29 @@ const LessonDetails = ({ tickets }) => {
                     ) : (
                       <p>No comments available.</p>
                     )}
+
+                    {/* Add Comment Section */}
+                    <div className="mt-4">
+                      <h5>Yorum Ekle:</h5>
+                      <textarea
+                        className="form-control"
+                        rows="4"
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                      />
+                      <button
+                        onClick={handleCommentSubmit}
+                        className="btn btn-primary mt-3"
+                        disabled={loading}
+                      >
+                        {loading ? "Gönderiliyor..." : "Yorum Gönder"}
+                      </button>
+                    </div>
+
+                    {/* Back Button */}
+                    <button onClick={handleBack} className="btn btn-secondary mt-3">
+                      Geri Dön
+                    </button>
                   </div>
                 </div>
               </div>

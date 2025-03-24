@@ -1,4 +1,3 @@
-// /pages/tickets.js
 import { useState, useEffect, useContext } from "react";
 import LayoutMenu from "../components/LayoutMenu";
 import Navbar from "../components/Navbar";
@@ -8,6 +7,9 @@ import axios from "axios";
 const TicketsList = () => {
   const userData = useContext(UserContext);
   const [tickets, setTickets] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const ticketsPerPage = 9; // Maksimum gösterilecek talep sayısı
 
   useEffect(() => {
     if (!userData?.id) return;
@@ -17,7 +19,9 @@ const TicketsList = () => {
         const response = await axios.get("/api/tickets", {
           params: { user_id: userData.id },
         });
-        setTickets(response.data);
+        setTickets(
+          response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+        );
       } catch (error) {
         console.error(
           "Talepler alınamadı:",
@@ -33,6 +37,16 @@ const TicketsList = () => {
     window.location.href = `/tickets/${ticketId}`;
   };
 
+  // Arama sorgusuna göre filtreleme
+  const filteredTickets = tickets.filter(ticket =>
+    ticket.subject.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // Sayfalandırma için hesaplamalar
+  const totalPages = Math.ceil(filteredTickets.length / ticketsPerPage);
+  const startIndex = (currentPage - 1) * ticketsPerPage;
+  const currentTickets = filteredTickets.slice(startIndex, startIndex + ticketsPerPage);
+
   return (
     <>
       <LayoutMenu />
@@ -40,9 +54,17 @@ const TicketsList = () => {
         <Navbar />
         <div className="container py-4">
           <h3 className="mb-4">Destek Taleplerim</h3>
-          {tickets.length > 0 ? (
+          <input
+            type="text"
+            className="form-control mb-3"
+            placeholder="Talepler arasında arayın..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          
+          {currentTickets.length > 0 ? (
             <div className="row g-3">
-              {tickets.map((ticket) => (
+              {currentTickets.map((ticket) => (
                 <div key={ticket.id} className="col-12 col-md-6 col-lg-4">
                   <div className="card h-100">
                     <div className="card-body">
@@ -63,6 +85,37 @@ const TicketsList = () => {
             <p className="text-muted">
               Şu anda herhangi bir destek talebiniz bulunmamaktadır.
             </p>
+          )}
+
+          {/* Sayfalandırma Butonları */}
+          {totalPages > 1 && (
+            <div className="d-flex justify-content-center mt-4">
+              <button
+                className="btn btn-outline-primary me-2"
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage(currentPage - 1)}
+              >
+                ← Önceki
+              </button>
+
+              {Array.from({ length: totalPages }, (_, index) => (
+                <button
+                  key={index}
+                  className={`btn btn-outline-secondary mx-1 ${currentPage === index + 1 ? "active" : ""}`}
+                  onClick={() => setCurrentPage(index + 1)}
+                >
+                  {index + 1}
+                </button>
+              ))}
+
+              <button
+                className="btn btn-outline-primary ms-2"
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage(currentPage + 1)}
+              >
+                Sonraki →
+              </button>
+            </div>
           )}
         </div>
       </div>
