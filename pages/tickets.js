@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import LayoutMenu from "../components/LayoutMenu";
 import Navbar from "../components/Navbar";
 import { UserContext } from "../contexts/UserContext";
+import RichTextEditor from "../components/RichTextEditor";
 import axios from "axios";
 
 const TicketsList = () => {
@@ -46,6 +47,9 @@ const TicketsList = () => {
   const totalPages = Math.ceil(filteredTickets.length / ticketsPerPage);
   const startIndex = (currentPage - 1) * ticketsPerPage;
   const currentTickets = filteredTickets.slice(startIndex, startIndex + ticketsPerPage);
+  const truncateText = (text, maxLength = 30) => {
+    return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
+  };
 
   return (
     <>
@@ -68,8 +72,8 @@ const TicketsList = () => {
                 <div key={ticket.id} className="col-12 col-md-6 col-lg-4">
                   <div className="card h-100">
                     <div className="card-body">
-                      <h5 className="card-title">{ticket.subject}</h5>
-                      <p className="card-text">{ticket.description}</p>
+                    <h5 className="card-title">{truncateText(ticket.subject)}</h5>
+                    <p className="card-text">{truncateText(ticket.description)}</p>
                       <button
                         onClick={() => handleRedirect(ticket.id)}
                         className="btn btn-primary"
