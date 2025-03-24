@@ -229,7 +229,7 @@ const LayoutMenu = () => {
     >
       <div className="app-brand demo">
         <Link href="/main" className="app-brand-link">
-          <Logo />
+          <Logo w={56} h={56} />
         </Link>
         <a
           href="#"
