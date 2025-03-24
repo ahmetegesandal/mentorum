@@ -133,12 +133,17 @@ const menuItems = [
       {
         path: "/tickets",
         label: "Destek Talepleri",
-        roles: ["admin", "parent", "teacher", "student"],
+        roles: ["parent", "teacher", "student"],
       },
       {
         path: "/ticket-add",
         label: "Destek Talebi Oluştur",
-        roles: ["admin", "parent", "teacher", "student"],
+        roles: ["parent", "teacher", "student"],
+      },
+      {
+        path: "/ticket-admin",
+        label: "Tüm Destek Talepleri",
+        roles: ["admin"],
       },
     ],
   },

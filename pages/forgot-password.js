@@ -2,12 +2,31 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Logo from "../components/Logo";
+import Swal from "sweetalert2";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import axios from "axios";
 
-const Login = () => {
+const ForgotPassword = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
+
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("/api/request-password-reset", { email });
+      Swal.fire("Başarılı", "E-posta gönderildi (eğer kayıtlıysa)", "success");
+    } catch (error) {
+      console.error("🚨 API hata:", error.response?.data || error.message);
+      Swal.fire(
+        "Hata",
+        "Bir hata oluştu: " + (error.response?.data?.error || error.message),
+        "error"
+      );
+    }
+  };
 
   return (
     <>
@@ -30,23 +49,20 @@ const Login = () => {
                 <form
                   id="formAuthentication"
                   class="mb-6"
-                  action="auth-reset-password-basic.html"
-                  method="GET"
+                  onSubmit={handleSubmit}
                 >
                   <div class="mb-6">
                     <label for="email" class="form-label">
                       Email
                     </label>
                     <input
-                      type="text"
-                      class="form-control"
-                      id="email"
-                      name="email"
-                      placeholder="Enter your email"
-                      autofocus
+                      type="email"
+                      className="form-control"
+                      required
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
-                  <button class="btn btn-primary d-grid w-100">
+                  <button class="btn btn-primary d-grid w-100" type="submit">
                     Send Reset Link
                   </button>
                 </form>
@@ -72,4 +88,4 @@ export async function getStaticProps({ locale }) {
   };
 }
 
-export default Login;
+export default ForgotPassword;

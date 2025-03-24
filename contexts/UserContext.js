@@ -19,6 +19,7 @@ export const UserProvider = ({ children }) => {
       "/404",
       "/contact",
       "/forgot-password",
+      "/reset-password",
     ];
     if (publicRoutes.includes(router.pathname)) {
       setLoading(false);
