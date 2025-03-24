@@ -30,7 +30,11 @@ export default async function handler(req, res) {
 
         try {
             const [comments] = await connection.execute(
-                "SELECT * FROM ticket_comments WHERE ticket_id = ? ORDER BY created_at DESC",
+                `SELECT tc.*, u.name AS user_name, u.surname AS user_surname 
+         FROM ticket_comments AS tc 
+         JOIN users AS u ON tc.user_id = u.id 
+         WHERE tc.ticket_id = ? 
+         ORDER BY tc.created_at DESC;`,
                 [id]
             );
 

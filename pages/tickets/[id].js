@@ -15,6 +15,11 @@ const LessonDetails = ({ tickets }) => {
   const userData = useContext(UserContext);
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
+  
+
+
+  
+
 
   const handleBack = () => {
     router.push("/tickets");
@@ -81,9 +86,13 @@ return (
                   {/* Yorumlar Bölümü */}
                   <h4 className="fw-bold mt-4">💬 Yorumlar</h4>
                   <div className="comments-section mt-3">
+
                     {tickets.comments && tickets.comments.length > 0 ? (
                       tickets.comments.map((comment) => (
                         <div key={comment.id} className="p-3 mb-2 bg-white shadow-sm rounded-3">
+                          <p className="fw-bold mb-1">
+        👤 {comment.user_name} {comment.user_surname} {/* Kullanıcı adı ve soyadı */}
+      </p>
                           <p className="mb-1"
                           dangerouslySetInnerHTML={{
                             __html: comment.comment,
