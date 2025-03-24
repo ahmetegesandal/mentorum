@@ -123,7 +123,7 @@ const Slessons = () => {
               />
 
               <div className="card mb-6">
-                <div className="card-header d-flex flex-wrap justify-content-between gap-4">
+                <div className="card-header d-flex flex-column flex-wrap align-items-center gap-4">
                   <div className="card-title mb-0 me-1">
                     <h5 className="mb-0">Dersler</h5>
                   </div>

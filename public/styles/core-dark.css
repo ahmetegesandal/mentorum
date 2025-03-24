@@ -115,9 +115,9 @@
   --bs-form-invalid-color: #ff4c51;
   --bs-form-invalid-border-color: #ff4c51;
 
-  --primaryc: #6d28d2;
+  --primaryc: #ab71ff;
   --primarychv: #892de1;
-  --primaryfc: color-mix(in sRGB, #6d28d2 12%, transparent);
+  --primaryfc: color-mix(in sRGB, #ab71ff 12%, transparent);
 }
 
 *,
