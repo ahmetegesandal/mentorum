@@ -78,31 +78,25 @@ const SwiperComponent = () => {
                   <div className="swiper-slide">
                     <div className="card h-100">
                       <div className="card-body text-body d-flex flex-column justify-content-between h-100">
-                        <div className="mb-4">
-                          {/* Swiper Slide 1 
-                          <img
-                            src="img/front-pages/branding/logo-1.png"
-                            alt="client logo"
-                            className="client-logo img-fluid"
-                          />*/}
+                        <div className="mb-4">                 
                         </div>
                         <div className="d-flex align-items-center">
                           <div className="avatar me-3 avatar-sm">
                             <img
-                              src="/img/avatars/ege1.jpg"
+                              src="/img/avatars/aslihanKaratas.jpg"
                               alt="Avatar"
                               className="rounded-circle"
                             />
                           </div>
                           <div>
-                            <h6 className="mb-0">Ege</h6>
+                            <h6 className="mb-0">Aslıhan Karataş</h6>
                             <p className="small text-muted mb-0">
-                              Developer
+                              Öğretim Görevlisi
                             </p>
                           </div>
                         </div>
                         <br></br>
-                        <p>“çalışın boş oturmayın!!”</p>
+                        <p>“Dersler interaktif ve öğrenci odaklı. Katılımı teşvik eden harika bir ortam sağlanıyor.”</p>
                         <div className="text-warning mb-4">
                           <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
@@ -117,30 +111,55 @@ const SwiperComponent = () => {
                     <div className="card h-100">
                       <div className="card-body text-body d-flex flex-column justify-content-between h-100">
                         <div className="mb-4">
-                     {/* Swiper Slide 1 
-                          <img
-                            src="img/front-pages/branding/logo-1.png"
-                            alt="client logo"
-                            className="client-logo img-fluid"
-                          />*/}
                         </div>
                         <div className="d-flex align-items-center">
                           <div className="avatar me-3 avatar-sm">
                             <img
-                              src="/img/avatars/ufuk.jpeg"
+                              src="/img/avatars/SibelCaliskan.jpg"
                               alt="Avatar"
                               className="rounded-circle"
                             />
                           </div>
                           <div>
-                            <h6 className="mb-0">Ufuk</h6>
+                            <h6 className="mb-0">Sibel Birtane Akar</h6>
                             <p className="small text-muted mb-0">
-                              Developer
+                            Öğretim Görevlisi
                             </p>
                           </div>
                         </div>
                         <br></br>
-                        <p>“bu hocalar süpermiş”</p>
+                        <p>“Dersler çok etkili. Teknolojinin sunduğu olanaklarla daha verimli eğitim sunuyoruz.”</p>
+                        <div className="text-warning mb-4">
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                          <i className="ti ti-star-filled"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="swiper-slide">
+                    <div className="card h-100">
+                      <div className="card-body text-body d-flex flex-column justify-content-between h-100">
+                        <div className="mb-4">
+                        </div>
+                        <div className="d-flex align-items-center">
+                          <div className="avatar me-3 avatar-sm">
+                            <img
+                              src="/img/avatars/murat.jpg"
+                              alt="Avatar"
+                              className="rounded-circle"
+                            />
+                          </div>
+                          <div>
+                            <h6 className="mb-0">Murat Yıldız</h6>
+                            <p className="small text-muted mb-0">
+                            Öğretim Görevlisi
+                            </p>
+                          </div>
+                        </div>
+                        <br></br>
+                        <p>“Dersler genellikle çok iyi, öğrencilerle etkileşim harika.”</p>
                         <div className="text-warning mb-4">
                           <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
@@ -155,68 +174,24 @@ const SwiperComponent = () => {
                     <div className="card h-100">
                       <div className="card-body text-body d-flex flex-column justify-content-between h-100">
                         <div className="mb-4">
-                        {/* Swiper Slide 1 
-                          <img
-                            src="img/front-pages/branding/logo-1.png"
-                            alt="client logo"
-                            className="client-logo img-fluid"
-                          />*/}
                         </div>
                         <div className="d-flex align-items-center">
                           <div className="avatar me-3 avatar-sm">
                             <img
-                              src="/img/avatars/senak.jpeg"
+                              src="/img/avatars/burcinCelik.jpg"
                               alt="Avatar"
                               className="rounded-circle"
                             />
                           </div>
                           <div>
-                            <h6 className="mb-0">sena</h6>
+                            <h6 className="mb-0">Burçin Çelik</h6>
                             <p className="small text-muted mb-0">
-                              Developer
+                             Öğretim Görevlisi
                             </p>
                           </div>
                         </div>
                         <br></br>
-                        <p>“very very good!!”</p>
-                        <div className="text-warning mb-4">
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                          <i className="ti ti-star-filled"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="swiper-slide">
-                    <div className="card h-100">
-                      <div className="card-body text-body d-flex flex-column justify-content-between h-100">
-                        <div className="mb-4">
-                          {/* Swiper Slide 1 
-                          <img
-                            src="img/front-pages/branding/logo-1.png"
-                            alt="client logo"
-                            className="client-logo img-fluid"
-                          />*/}
-                        </div>
-                        <div className="d-flex align-items-center">
-                          <div className="avatar me-3 avatar-sm">
-                            <img
-                              src="/img/avatars/hatçe.jpeg"
-                              alt="Avatar"
-                              className="rounded-circle"
-                            />
-                          </div>
-                          <div>
-                            <h6 className="mb-0">Hatice</h6>
-                            <p className="small text-muted mb-0">
-                             Developer
-                            </p>
-                          </div>
-                        </div>
-                        <br></br>
-                        <p>“keyiflii”</p>
+                        <p>“Sistem çok kullanıcı dostu. Öğrencilerle daha yakın ilişkiler kurarak daha iyi ilerleyebiliyoruz.”</p>
                         <div className="text-warning mb-4">
                           <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
@@ -241,22 +216,21 @@ const SwiperComponent = () => {
                         <div className="d-flex align-items-center">
                           <div className="avatar me-3 avatar-sm">
                             <img
-                              src="/img/avatars/emr.jpeg"
+                              src="/img/avatars/ebrudman.jpg"
                               alt="Avatar"
                               className="rounded-circle"
                             />
                           </div>
                           <div>
-                            <h6 className="mb-0">Emir</h6>
+                            <h6 className="mb-0">Ebru İdman</h6>
                             <p className="small text-muted mb-0">
-                               Developer
+                               Öğretim Görevlisi
                             </p>
                           </div>
                         </div>
                         <br></br>
-                        <p>“çalışın ..”</p>
+                        <p>“Dersler verimli, ama daha fazla etkileşim olabilirdi.”</p>
                         <div className="text-warning mb-4">
-                          <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
                           <i className="ti ti-star-filled"></i>
@@ -265,7 +239,7 @@ const SwiperComponent = () => {
                       </div>
                     </div>
                   </div>
-                  {/* Diğer swiper slide'ları burada... */}
+
                 </div>
 
                 {/* Pagination ve Navigation */}

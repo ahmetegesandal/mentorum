@@ -376,3 +376,70 @@
 .hero-content h1 {
   font-size: 2.28rem; /* Bu değeri küçültün */
 }
+
+
+/*Dersler İconu özellikler*/
+/* Başlık ve açıklama stilini belirledik */
+.features-icon-box {
+  padding: 15px; /* Mobilde daha iyi görünmesi için padding eklendi */
+  display: inline-block; /* İçeriklerin kutuda hizalanmasını sağlar */
+  text-align: center; /* İçeriği ortalayın */
+}
+
+.features-icon-box img {
+  max-width: 100%; /* İkonu kapsayıcısına göre yüzdeyle sınırlayın */
+  height: auto; /* Oranları koruyarak boyutlandır */
+  display: block; /* Kenarlardan taşmayı önler */
+  margin: 0 auto; /* Ortalamayı sağlar */
+  box-sizing: border-box; /* Border dahil edilerek boyutlandırma yapılır */
+}
+
+.icon-size {
+  width: 60px; /* İkon için sabit genişlik, büyütülmüş */
+  height: 60px; /* İkon için sabit yükseklik */
+  display: block;
+  margin: 0 auto;
+  padding: 10px; /* İkon etrafında biraz boşluk ekleyin */
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); /* Gölgelendirme */
+  border-radius: 8px; /* Köşeleri yuvarla */
+  border: 2px solid #ddd; /* Kenarlık ekle */
+  background-color: #fff; /* Arkaplan rengini beyaz yap */
+}
+
+.icon-size:hover {
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.4); /* Hover durumunda geniş gölge */
+  transform: scale(1.15); /* Hover olduğunda biraz daha fazla büyüt */
+  border-color: #8800ff; /* Hover durumunda kenarlık rengini değiştir */
+}
+
+.features-icon-description {
+  color: #655e5e; /* Varsayılan açıklama rengi */
+  transition: color 0.3s ease;
+}
+
+.features-icon-box:hover .features-icon-description {
+  color: #ae3ce0; /* Hover durumunda açıklama rengini değiştir */
+}
+
+/* Responsive düzenlemeler - Bootstrap 5 uyumlu */
+@media (max-width: 992px) {
+  .icon-size {
+    width: 50px; /* Tablet için ikon boyutunu küçült */
+    height: 50px;
+  }
+}
+
+ @media (max-width: 768px) {
+  .icon-size {
+    width: 45px; /* Mobilde biraz daha küçük ikonlar */
+    height: 45px;
+  }
+}
+
+@media (max-width: 576px) {
+  .icon-size {
+    width: 40px; /* Küçük ekranlarda ikon boyutunu küçült */
+    height: 40px;
+  }
+}

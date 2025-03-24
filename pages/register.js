@@ -75,8 +75,9 @@ const Register = () => {
                   </Link>
                 </div>
 
-                <h4 className="mb-1">Adventure starts here 🚀</h4>
-                <p className="mb-3">Make your app management easy and fun!</p>
+                <h4 className="mb-1"> {t("registerStartMessage")}</h4>
+                <p className="mb-3">{ t("registerManagementMessg")} 
+                </p>
 
                 {error && <p className="alert alert-danger">{error}</p>}
                 {success && <p className="alert alert-success">{success}</p>}
@@ -88,7 +89,7 @@ const Register = () => {
                 >
                   <div className="mb-3">
                     <label htmlFor="role" className="form-label">
-                      Select Role
+                    { t("registerSelectRol") } 
                     </label>
                     <select
                       className="form-control"
@@ -97,22 +98,22 @@ const Register = () => {
                       value={role}
                       onChange={(e) => setRole(e.target.value)}
                     >
-                      <option value="student">Öğrenci</option>
-                      <option value="parent">Veli</option>
-                      <option value="teacher">Öğretmen</option>
+                      <option value="student">{t("registerRoleStudent")}</option>
+                      <option value="parent">{t("registerRolepParent")} </option>
+                      <option value="teacher">{t("registerRoleTeacher")}</option>
                     </select>
                   </div>
 
                   <div className="mb-3">
                     <label htmlFor="username" className="form-label">
-                      Username
+                    {t("registerUserName")  } 
                     </label>
                     <input
                       type="text"
                       className="form-control"
                       id="username"
                       name="username"
-                      placeholder="Enter your username"
+                      placeholder= {t("registeruserMessage")} 
                       autoFocus
                       required
                       onChange={handleChange}
@@ -121,14 +122,14 @@ const Register = () => {
 
                   <div className="mb-3">
                     <label htmlFor="name" className="form-label">
-                      Name
+                    {t("registerName")  } 
                     </label>
                     <input
                       type="text"
                       className="form-control"
                       id="name"
                       name="name"
-                      placeholder="Enter your name"
+                      placeholder= {t("registerNameMessage")} 
                       required
                       onChange={handleChange}
                     />
@@ -136,14 +137,14 @@ const Register = () => {
 
                   <div className="mb-3">
                     <label htmlFor="surname" className="form-label">
-                      Surname
+                    {t("registerSurname")}
                     </label>
                     <input
                       type="text"
                       className="form-control"
                       id="surname"
                       name="surname"
-                      placeholder="Enter your surname"
+                      placeholder= {t("registerSurnameMessg")} 
                       required
                       onChange={handleChange}
                     />
@@ -151,14 +152,14 @@ const Register = () => {
 
                   <div className="mb-3">
                     <label htmlFor="email" className="form-label">
-                      Email
+                    {t("registerEmail")}
                     </label>
                     <input
                       type="email"
                       className="form-control"
                       id="email"
                       name="email"
-                      placeholder="Enter your email"
+                      placeholder={t("registerEmailMessg")} 
                       required
                       onChange={handleChange}
                     />
@@ -166,7 +167,7 @@ const Register = () => {
 
                   <div className="mb-3 form-password-toggle">
                     <label className="form-label" htmlFor="password">
-                      Password
+                    {t("registerPassword")} 
                     </label>
                     <div className="input-group input-group-merge">
                       <input
@@ -194,14 +195,14 @@ const Register = () => {
                   {role === "teacher" && (
                     <div className="mb-3">
                       <label htmlFor="expertise" className="form-label">
-                        Expertise Area
+                      {t("registerExpertiseArea")} 
                       </label>
                       <input
                         type="text"
                         className="form-control"
                         id="expertise"
                         name="expertise"
-                        placeholder="Enter your expertise area"
+                        placeholder={t("registerExpertMessg") } 
                         onChange={handleChange}
                       />
                     </div>
@@ -211,14 +212,15 @@ const Register = () => {
                     type="submit"
                     className="btn btn-primary d-grid w-100"
                   >
-                    Sign up
+                    {t("registerSignMessg")}
                   </button>
                 </form>
 
                 <p className="text-center">
-                  <span>Already have an account?</span>
+                  <span>{t("registerAccountMessg") } </span>
                   <a href="/sign-in">
-                    <span>Sign in instead</span>
+                    <span> {t("registerAccountSignMessg") } 
+                    </span>
                   </a>
                 </p>
               </div>

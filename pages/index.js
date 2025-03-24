@@ -7,6 +7,7 @@ import HeroSection from "../components/HeroSection";
 import Statistics from "../components/Statistics";
 import MainNavbar from "../components/MainNavbar";
 import Footer from "../components/Footer";
+import Link from "next/link";
 
 const Home = () => {
   const { t } = useTranslation("common");
@@ -18,124 +19,97 @@ const Home = () => {
 
       <HeroSection />
       <Statistics />
+
       <div data-bs-spy="scroll" className="scrollspy-example">
         <section id="landingFeatures" className="section-py landing-features">
           <div className="container">
-            <div className="text-center mb-4">
-              <span className="badge bg-label-primary">Useful Features</span>
-            </div>
             <h4 className="text-center mb-1">
               <span className="position-relative fw-extrabold z-1">
-                Everything you need
-                <img
+              {t("indexExperteacherMessg")}
+              <img
                   src="img/front-pages/icons/section-title-icon.png"
                   alt="laptop charging"
                   className="section-title-img position-absolute object-fit-contain bottom-0 z-n1"
                 />
               </span>
-              to start your next project
             </h4>
-            <p className="text-center mb-12">
-              Not just a set of tools, the package includes ready-to-deploy
-              conceptual application.
+            <br></br>
+            <p className="text-center mb-12 fs-5">
+            {t("indexTeacherMessg2")}
             </p>
+
             <div className="features-icon-wrapper row gx-0 gy-6 g-sm-12">
-              <div className="col-lg-4 col-sm-6 text-center features-icon-box">
-                <div className="text-center mb-4">
-                  <img
-                    src="img/front-pages/icons/laptop.png"
-                    alt="laptop charging"
-                  />
-                </div>
-                <h5 className="mb-2">Quality Code</h5>
-                <p className="features-icon-description">
-                  Code structure that all developers will easily understand and
-                  fall in love with.
-                </p>
-              </div>
-              <div className="col-lg-4 col-sm-6 text-center features-icon-box">
-                <div className="text-center mb-4">
-                  <img
-                    src="img/front-pages/icons/rocket.png"
-                    alt="transition up"
-                  />
-                </div>
-                <h5 className="mb-2">Continuous Updates</h5>
-                <p className="features-icon-description">
-                  Free updates for the next 12 months, including new demos and
-                  features.
-                </p>
-              </div>
-              <div className="col-lg-4 col-sm-6 text-center features-icon-box">
-                <div className="text-center mb-4">
-                  <img src="img/front-pages/icons/paper.png" alt="edit" />
-                </div>
-                <h5 className="mb-2">Stater-Kit</h5>
-                <p className="features-icon-description">
-                  Start your project quickly without having to remove
-                  unnecessary features.
-                </p>
-              </div>
-              <div className="col-lg-4 col-sm-6 text-center features-icon-box">
-                <div className="text-center mb-4">
-                  <img
-                    src="img/front-pages/icons/check.png"
-                    alt="3d select solid"
-                  />
-                </div>
-                <h5 className="mb-2">API Ready</h5>
-                <p className="features-icon-description">
-                  Just change the endpoint and see your own data loaded within
-                  seconds.
-                </p>
-              </div>
-              <div className="col-lg-4 col-sm-6 text-center features-icon-box">
-                <div className="text-center mb-4">
-                  <img src="img/front-pages/icons/user.png" alt="lifebelt" />
-                </div>
-                <h5 className="mb-2">Excellent Support</h5>
-                <p className="features-icon-description">
-                  An easy-to-follow doc with lots of references and code
-                  examples.
-                </p>
-              </div>
-              <div className="col-lg-4 col-sm-6 text-center features-icon-box">
-                <div className="text-center mb-4">
-                  <img
-                    src="img/front-pages/icons/keyboard.png"
-                    alt="google docs"
-                  />
-                </div>
-                <h5 className="mb-2">Well Documented</h5>
-                <p className="features-icon-description">
-                  An easy-to-follow doc with lots of references and code
-                  examples.
-                </p>
-              </div>
-            </div>
+         {[{
+            img: "/img/backgrounds/math.svg",
+            alt: "laptop charging",
+            title: t("indexMathTitle"),
+            description: t("indexMathDesc"),
+            link: "/quality-code"
+            }, {
+             img: "/img/backgrounds/chem.svg",
+             alt: "transition up",
+             title:  t("indexChemTitle"),
+             description: t("indexChemDesc"),
+             link: "/continuous-updates"
+            }, {
+             img: "/img/backgrounds/geography.svg",
+             alt: "edit",
+             title: t("indexGeographyTitle"),
+             description: t("indexGeographyDesc"),
+             link: "/starter-kit"
+            }, {
+            img: "/img/backgrounds/biology.svg",
+            alt: "3d select solid",
+            title: t("indexBiologyTitle"),
+            description: t("indexBiologyDesc"),
+            link: "/api-ready"
+            }, {
+            img: "/img/backgrounds/physics.svg",
+            alt: "lifebelt",
+            title: t("indexPhysicsTitle"),
+            description: t("indexPhysicsDesc"),
+            link: "/excellent-support"
+            }, {
+            img: "/img/backgrounds/turkce.svg",
+            alt: "google docs",
+            title:t("indexTurcTitle"),
+            description: t("indexTurcDesc"),
+            link: "/well-documented"
+            }].map((feature, index) => (
+           <div key={index} className="col-lg-4 col-md-6 col-sm-12 text-center features-icon-box">
+              <Link href={feature.link} className="d-block text-decoration-none">
+                  <div className="text-center mb-3">
+                    <img src={feature.img} alt={feature.alt} className="img-fluid icon-size" />
+                  </div>
+                    <h5 className="mb-2">{feature.title}</h5>
+                    <p className="features-icon-description">{feature.description}</p>
+              </Link>
           </div>
-        </section>
+      ))}
+        </div>
+      </div>
+    </section>
 
         <SwiperComponent />
 
         <section id="landingTeam" className="section-py ">
           <div className="container">
             <div className="text-center mb-4">
-              <span className="badge bg-label-primary">Ekip</span>
+              <span className="badge bg-label-primary">{t("indexTeamDesc1")}</span>
             </div>
             <h4 className="text-center mb-1">
               <span className="position-relative fw-extrabold z-1">
-                Profesyonel
+              {t("indexTeamProf") } 
                 <img
                   src="img/front-pages/icons/section-title-icon.png"
                   alt="laptop charging"
                   className="section-title-img position-absolute object-fit-contain bottom-0 z-n1"
                 />
               </span>
-              <span className="ms-1">Ekibimiz</span>
+              <span className="ms-1">{t("indexTeamDesc2") } </span>
             </h4>
-            <p className="text-center mb-md-11 pb-0 pb-xl-12">
-              Alanında uzman, yetenekli ve yaratıcı ekibimizle tanışın!
+            <p className="text-center mb-md-11 pb-0 pb-xl-12 fs-5">
+              {t("indexTeamDesc3")}
             </p>
 
             {/* Ekip Üyeleri */}
@@ -540,6 +514,14 @@ const Home = () => {
 
         <section id="landingFunFacts" className="section-py landing-fun-facts">
           <div className="container">
+             <h4 className="text-center mb-1">
+              <span className="position-relative fw-extrabold z-1">
+              {t("indexSecureDesc2")}      
+              </span>
+              </h4>
+              <p className="text-center pb-2 mb-7">
+              {t("indexSecureLearn")}
+            </p>
             <div className="row gy-6">
               <div className="col-sm-6 col-lg-3">
                 <div className="card border border-primary shadow-none">
@@ -550,11 +532,9 @@ const Home = () => {
                       className="mb-4"
                     />
                     <h3 className="mb-0">7.1k+</h3>
-                    <p className="fw-medium mb-0">
-                      Support Tickets
-                      <br />
-                      Resolved
-                    </p>
+                  <p className="fw-medium mb-0">
+                  {t("indexSecurePayment")}
+                  </p>
                   </div>
                 </div>
               </div>
@@ -568,9 +548,7 @@ const Home = () => {
                     />
                     <h3 className="mb-0">50k+</h3>
                     <p className="fw-medium mb-0">
-                      Join creatives
-                      <br />
-                      community
+                    {t("indecNoExstra")}
                     </p>
                   </div>
                 </div>
@@ -585,9 +563,7 @@ const Home = () => {
                     />
                     <h3 className="mb-0">4.8/5</h3>
                     <p className="fw-medium mb-0">
-                      Highly Rated
-                      <br />
-                      Products
+                    {t("indexCarefullyDesc")}
                     </p>
                   </div>
                 </div>
@@ -602,9 +578,7 @@ const Home = () => {
                     />
                     <h3 className="mb-0">100%</h3>
                     <p className="fw-medium mb-0">
-                      Money Back
-                      <br />
-                      Guarantee
+                    {t("indexSecureOnlineDesc")}
                     </p>
                   </div>
                 </div>
