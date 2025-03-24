@@ -127,7 +127,7 @@ const menuItems = [
   {
     key: "support",
     label: "Destek",
-    icon: "ti ti-credit-card",
+    icon: "ti ti-ticket",
     roles: ["admin", "parent", "teacher", "student"],
     subMenu: [
       {
@@ -150,7 +150,7 @@ const menuItems = [
   {
     key: "boost",
     label: "Boost",
-    icon: "ti ti-credit-card",
+    icon: "ti ti-calendar-up",
     roles: ["teacher"],
     subMenu: [
       {
