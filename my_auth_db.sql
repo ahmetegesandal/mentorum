@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 23 Mar 2025, 00:15:32
+-- Üretim Zamanı: 24 Mar 2025, 17:34:10
 -- Sunucu sürümü: 10.4.32-MariaDB
 -- PHP Sürümü: 8.2.12
 
@@ -117,14 +117,6 @@ CREATE TABLE `live_classes` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Tablo döküm verisi `live_classes`
---
-
-INSERT INTO `live_classes` (`id`, `reservation_id`, `lesson_id`, `teacher_id`, `student_id`, `date`, `time`, `meeting_link`, `status`, `created_at`) VALUES
-(19, 91, 38, 34, 36, '2025-03-28', '18:15:00', NULL, 'scheduled', '2025-03-21 22:16:43'),
-(20, 92, 38, 34, 36, '2025-03-21', '16:00:00', '/meeting/Lesson-20-34-B0G8voeO', 'completed', '2025-03-22 15:46:35');
-
 -- --------------------------------------------------------
 
 --
@@ -175,6 +167,27 @@ INSERT INTO `parents` (`id`, `parent_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Tablo için tablo yapısı `password_reset_tokens`
+--
+
+CREATE TABLE `password_reset_tokens` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `expires_at` datetime NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Tablo döküm verisi `password_reset_tokens`
+--
+
+INSERT INTO `password_reset_tokens` (`id`, `user_id`, `token`, `expires_at`, `created_at`) VALUES
+(1, 2, 'e467949b-f52a-44cd-b0a2-51f0ace3d4fb', '2025-03-24 19:38:30', '2025-03-24 19:08:30');
+
+-- --------------------------------------------------------
+
+--
 -- Tablo için tablo yapısı `reservations`
 --
 
@@ -194,9 +207,7 @@ CREATE TABLE `reservations` (
 --
 
 INSERT INTO `reservations` (`id`, `student_id`, `lesson_id`, `teacher_id`, `date`, `time`, `status`, `created_at`) VALUES
-(90, 34, 38, 34, '2025-03-20', '20:00:00', 'cancelled', '2025-03-20 14:50:44'),
-(91, 36, 38, 34, '2025-03-28', '18:15:00', 'confirmed', '2025-03-21 22:15:55'),
-(92, 36, 38, 34, '2025-03-21', '16:00:00', 'confirmed', '2025-03-22 15:46:21');
+(101, 36, 41, 34, '2025-03-20', '20:00:00', 'cancelled', '2025-03-24 14:55:35');
 
 -- --------------------------------------------------------
 
@@ -302,6 +313,17 @@ CREATE TABLE `tickets` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Tablo döküm verisi `tickets`
+--
+
+INSERT INTO `tickets` (`id`, `user_id`, `subject`, `description`, `status`, `priority`, `created_at`, `updated_at`) VALUES
+(2, 34, 'Rezervasyon prob.', 'problem açıklaması burada yer alacak', 'open', 'medium', '2025-03-24 14:09:17', '2025-03-24 14:09:17'),
+(3, 36, 'merhaba ', 'aqqqqqqq', 'open', 'medium', '2025-03-24 15:01:00', '2025-03-24 15:01:00'),
+(4, 36, 'dsadasda', 'dsadsad', 'open', 'medium', '2025-03-24 15:01:23', '2025-03-24 15:01:23'),
+(5, 2, 'merhaba ', 'ODISANDAUDSAODISANDAUDSAODISANDAUDSAODISANDAUDSAODISANDAUDSAODISANDAUDSAODISANDAUDSA\n', 'open', 'medium', '2025-03-24 15:36:28', '2025-03-24 15:36:28'),
+(6, 34, 'sdadasda', '3131', 'open', 'medium', '2025-03-24 16:32:00', '2025-03-24 16:32:00');
+
 -- --------------------------------------------------------
 
 --
@@ -315,6 +337,18 @@ CREATE TABLE `ticket_comments` (
   `comment` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Tablo döküm verisi `ticket_comments`
+--
+
+INSERT INTO `ticket_comments` (`id`, `ticket_id`, `user_id`, `comment`, `created_at`) VALUES
+(2, 3, 36, 'hellüüüüüüüü', '2025-03-24 15:01:08'),
+(3, 4, 36, 'merhaba', '2025-03-24 15:01:46'),
+(4, 5, 2, '<p><strong>MERHABA </strong></p><p><strong><em><s>Dünya</s></em></strong><em><s> </s></em></p>', '2025-03-24 15:37:05'),
+(5, 5, 2, '<p>daspldsamıdoas</p>', '2025-03-24 16:31:35'),
+(6, 6, 34, '<p>yorum</p>', '2025-03-24 16:32:06'),
+(7, 6, 2, '<p>merhaba</p>', '2025-03-24 16:32:32');
 
 -- --------------------------------------------------------
 
@@ -341,16 +375,16 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `name`, `surname`, `role`, `photo`, `is_online`, `email`, `created_at`, `credit`) VALUES
-(2, 'ege', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Ahmet Ege', 'Sandal', 'admin', 'ege.jpg', 0, 'ege@gmail.com', '2025-03-22 22:44:05', 1200),
+(2, 'ege', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Ahmet Ege', 'Sandal', 'admin', 'ege.jpg', 1, 'ege@gmail.com', '2025-03-24 16:33:51', 1200),
 (15, 'ufuk', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Muhammed Ufuk', 'Aslan', 'admin', 'ufuk.jpg', 0, 'ufuk@gmail.com', '2025-03-22 22:41:52', 2000),
 (16, 'hatice', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Hatice Şerife', 'Aladağlı', 'admin', 'hatice.jpg', 0, 'hatice@gmail.com', '2025-03-22 22:41:48', 2000),
 (17, 'furkan', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Furkan', 'Güven', 'admin', 'furkan.jpg', 0, 'furkan@gmail.om', '2025-03-22 22:41:45', 2000),
 (32, 'doruk', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Doruk', 'Gür', 'student', '1742593154953.jpg', 0, 'doruk@gmail.com', '2025-03-22 15:52:23', 0),
-(33, 'senem', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Senem', 'Gür', 'parent', '4.png', 0, 'senem@gmail.com', '2025-03-22 15:53:00', 4850),
-(34, 'sibel', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Sibel Birtane', 'Akar', 'teacher', '6.png', 0, 'sibel@gmail.com', '2025-03-22 22:49:27', 10),
-(36, 'yavuz', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Yavuz', 'Gür', 'student', '10.png', 0, 'yavuz@gmail.com', '2025-03-22 15:51:40', 1900),
+(33, 'senem', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Senem', 'Gür', 'parent', '4.png', 0, 'senem@gmail.com', '2025-03-24 13:02:31', 4400),
+(34, 'sibel', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Sibel Birtane', 'Akar', 'teacher', '6.png', 0, 'sibel@gmail.com', '2025-03-24 16:32:15', 10),
+(36, 'yavuz', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Yavuz', 'Gür', 'student', '10.png', 0, 'yavuz@gmail.com', '2025-03-24 15:22:47', 1750),
 (42, 'sena', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Sena', 'Ağaçyetiştiren', 'admin', 'sena.jpg', 0, 'sena@gmail.com', '2025-03-18 16:11:42', 500),
-(44, 'emir', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Niyazi Emir', 'Akdemir', 'student', 'emir.jpg', 0, 'emir@gmail.com', '2025-03-22 22:41:37', 2000),
+(44, 'emir', '$2b$10$uHxbXM1PHDEWAHYTlobS0euWs8qzQ2kE92fhOTncEO5x1jK6VY25i', 'Niyazi Emir', 'Akdemir', 'student', 'emir.jpg', 0, 'akdemirniyaziemir@gmail.com', '2025-03-24 16:12:20', 2000),
 (45, 'asli', '$2b$10$lPBbGtW.lUmtgOrszKK4t.gPqq1WJgLZRbGkfNBQZPCfxx5PdBN.G', 'Aslıhan', 'Karataş', 'teacher', NULL, 0, 'asli@gmail.com', '2025-03-22 23:05:45', 0);
 
 --
@@ -410,6 +444,14 @@ ALTER TABLE `notifications`
 ALTER TABLE `parents`
   ADD PRIMARY KEY (`id`),
   ADD KEY `parent_id` (`parent_id`);
+
+--
+-- Tablo için indeksler `password_reset_tokens`
+--
+ALTER TABLE `password_reset_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `token` (`token`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Tablo için indeksler `reservations`
@@ -497,7 +539,7 @@ ALTER TABLE `lessons`
 -- Tablo için AUTO_INCREMENT değeri `live_classes`
 --
 ALTER TABLE `live_classes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `messages`
@@ -518,10 +560,16 @@ ALTER TABLE `parents`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- Tablo için AUTO_INCREMENT değeri `password_reset_tokens`
+--
+ALTER TABLE `password_reset_tokens`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- Tablo için AUTO_INCREMENT değeri `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `reviews`
@@ -545,13 +593,13 @@ ALTER TABLE `teachers`
 -- Tablo için AUTO_INCREMENT değeri `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `ticket_comments`
 --
 ALTER TABLE `ticket_comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `users`
@@ -603,6 +651,12 @@ ALTER TABLE `notifications`
 --
 ALTER TABLE `parents`
   ADD CONSTRAINT `parents_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Tablo kısıtlamaları `password_reset_tokens`
+--
+ALTER TABLE `password_reset_tokens`
+  ADD CONSTRAINT `password_reset_tokens_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Tablo kısıtlamaları `reservations`

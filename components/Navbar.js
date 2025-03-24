@@ -22,11 +22,11 @@ const Navbar = () => {
 
     const fetchParentInfo = async () => {
       try {
-        console.log("📡 API İsteği: get-parent-info-credit", userData?.id);
+        //console.log("📡 API İsteği: get-parent-info-credit", userData?.id);
         const response = await axios.get(
           `/api/get-parent-info-credit?user_id=${userData?.id}`
         );
-        console.log("✅ API Yanıtı: get-parent-info-credit", response.data);
+        //console.log("✅ API Yanıtı: get-parent-info-credit", response.data);
 
         setIsManagedByParent(response.data.isManagedByParent);
         if (response.data.isManagedByParent) {
@@ -38,14 +38,14 @@ const Navbar = () => {
           });
           setCredit(response.data.parent_credit);
         } else {
-          console.log("📡 API İsteği: user-credit (Student)", userData?.id);
+          //console.log("📡 API İsteği: user-credit (Student)", userData?.id);
           const userCreditResponse = await axios.get(
             `/api/user-credit?user_id=${userData?.id}`
           );
-          console.log(
+          /*console.log(
             "✅ API Yanıtı: user-credit (Student)",
             userCreditResponse.data
-          );
+          );*/
           setCredit(userCreditResponse.data.credit);
         }
       } catch (error) {
@@ -102,7 +102,7 @@ const Navbar = () => {
       >
         <ul className="navbar-nav flex-row align-items-center ms-auto">
           <li className="nav-item me-2">
-            <span class="badge rounded-pill bg-label-success">
+            <span className="badge rounded-pill bg-label-success">
               {isManagedByParent && parentInfo
                 ? `Veliniz: ${parentInfo.name} ${parentInfo.surname} - Kredi: ${credit} ₺`
                 : `${credit} $`}

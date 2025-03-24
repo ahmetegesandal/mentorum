@@ -10,8 +10,8 @@ export default function LessonFilters({
   setSelectedLanguage,
 }) {
   return (
-    <div className="card-header d-flex flex-wrap justify-content-between gap-4">
-      <div className="d-flex justify-content-md-end align-items-center column-gap-6">
+    <div className="card-header d-flex flex-wrap justify-content-start gap-4">
+      <div className="d-flex flex-column flex-md-row justify-content-start align-items-center column-gap-6 row-gap-3">
         <select
           className="form-select"
           value={selectedCategory}

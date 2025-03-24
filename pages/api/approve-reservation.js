@@ -10,9 +10,13 @@ export default async function handler(req, res) {
 
   try {
     db = await getConnection();
-    console.log("🔍 Checking reservation...");
+    console.log(
+      "🚀 Başlatıldı | Rezervasyon:",
+      reservation_id,
+      "Öğretmen:",
+      teacher_id
+    );
 
-    // 📌 Step 1: Check if reservation exists and belongs to teacher
     const [reservation] = await db.execute(
       `SELECT student_id, lesson_id, date, time, status 
        FROM reservations 
@@ -20,17 +24,15 @@ export default async function handler(req, res) {
       [reservation_id, teacher_id]
     );
 
-    console.log("📌 Reservation data:", reservation);
-
     if (!reservation.length) {
+      console.log("❌ Rezervasyon yok veya yetkisiz.");
       return res
         .status(404)
         .json({ error: "Rezervasyon bulunamadı veya öğretmene ait değil." });
     }
 
     const { student_id, lesson_id, date, time, status } = reservation[0];
-
-    console.log("✅ Extracted reservation details:", {
+    console.log("🔍 Rezervasyon Bilgisi:", {
       student_id,
       lesson_id,
       date,
@@ -38,78 +40,112 @@ export default async function handler(req, res) {
       status,
     });
 
-    // ❌ If already cancelled, return error
     if (status === "cancelled") {
       return res
         .status(400)
         .json({ error: "Bu rezervasyon zaten iptal edilmiş." });
     }
-
-    // ✅ If already confirmed, return error
     if (status === "confirmed") {
       return res.status(400).json({ error: "Rezervasyon zaten onaylanmış." });
     }
 
-    // 📌 Step 2: Get lesson price
     const [lesson] = await db.execute(
       "SELECT price FROM lessons WHERE id = ?",
       [lesson_id]
     );
-    console.log("📌 Lesson data:", lesson);
-
     if (!lesson.length) {
       return res.status(404).json({ error: "Ders bulunamadı!" });
     }
-
     const lessonPrice = lesson[0].price;
-    console.log("✅ Lesson price:", lessonPrice);
+    console.log("💰 Ders Ücreti:", lessonPrice);
 
-    // 📌 Step 3: Check student's available credit
-    const [student] = await db.execute(
-      "SELECT credit FROM users WHERE id = ?",
-      [student_id]
+    // Öğrenci user_id'sini al (users.id)
+    const studentUserId = student_id; // çünkü reservation.student_id zaten users tablosundaki id
+
+    // Veli kontrolü: öğrenci user_id'ye bağlı student.id bulunur → sonra veli ilişkisi aranır
+    const [studentRow] = await db.execute(
+      "SELECT id FROM students WHERE user_id = ?",
+      [studentUserId]
     );
-    console.log("📌 Student credit data:", student);
+    const studentTableId = studentRow.length ? studentRow[0].id : null;
 
-    if (!student.length) {
-      return res.status(404).json({ error: "Öğrenci bulunamadı!" });
+    console.log("📌 students.id (studentTableId):", studentTableId);
+
+    const [parentUser] = await db.execute(
+      `SELECT sp.student_id, sp.parent_id AS sp_parent_id, p.parent_id AS parent_user_id, u.id AS user_id, u.name, u.surname, u.credit
+       FROM student_parents sp
+       JOIN parents p ON sp.parent_id = p.id
+       JOIN users u ON p.parent_id = u.id
+       WHERE sp.student_id = ?
+       LIMIT 1`,
+      [studentTableId]
+    );
+
+    console.log("📦 Veli sorgu sonucu:", parentUser);
+
+    let payerUserId = studentUserId;
+    let payerRole = "student";
+
+    if (parentUser.length) {
+      payerUserId = parentUser[0].user_id;
+      payerRole = "parent";
+      console.log(
+        `👨‍👩‍👧 Veli bulundu | Veli user_id: ${payerUserId}, İsim: ${parentUser[0].name} ${parentUser[0].surname}, Kredi: ${parentUser[0].credit}`
+      );
+    } else {
+      console.log(
+        "ℹ️ Öğrenciye ait veli bulunamadı, kredi öğrenciden düşülecek."
+      );
     }
 
-    if (student[0].credit < lessonPrice) {
+    console.log(`💳 Tahsilat yapılacak kişi (${payerRole}):`, payerUserId);
+
+    const [payer] = await db.execute("SELECT credit FROM users WHERE id = ?", [
+      payerUserId,
+    ]);
+    if (!payer.length) {
+      return res
+        .status(404)
+        .json({
+          error: `${payerRole === "parent" ? "Veli" : "Öğrenci"} bulunamadı!`,
+        });
+    }
+
+    if (payer[0].credit < lessonPrice) {
       return res.status(400).json({
-        error: `Öğrencinin yeterli kredisi yok! (Gerekli: ${lessonPrice}, Mevcut: ${student[0].credit})`,
+        error: `${
+          payerRole === "parent" ? "Velinin" : "Öğrencinin"
+        } yeterli kredisi yok! (Gerekli: ${lessonPrice}, Mevcut: ${
+          payer[0].credit
+        })`,
       });
     }
 
-    // 📌 Step 4: Deduct student's credit
     await db.execute("UPDATE users SET credit = credit - ? WHERE id = ?", [
       lessonPrice,
-      student_id,
+      payerUserId,
     ]);
-    console.log("✅ Student credit updated.");
+    console.log("✅ Kredi düşüldü | Kullanıcı:", payerUserId);
 
-    // ✅ Step 5: Confirm the reservation
     await db.execute(
       "UPDATE reservations SET status = 'confirmed' WHERE id = ?",
       [reservation_id]
     );
-    console.log("✅ Reservation confirmed.");
+    console.log("✅ Rezervasyon onaylandı");
 
-    // 📌 Step 6: Insert into `live_classes`
     await db.execute(
       `INSERT INTO live_classes (lesson_id, teacher_id, student_id, date, time, status, reservation_id) 
-       VALUES (?, ?, ?, ?, ?, 'scheduled', ?);`,
-      [lesson_id, teacher_id, student_id, date, time, reservation_id]
+       VALUES (?, ?, ?, ?, ?, 'scheduled', ?)`,
+      [lesson_id, teacher_id, studentUserId, date, time, reservation_id]
     );
-    console.log("✅ Live class created with date & time:", { date, time });
+    console.log("✅ Canlı ders oluşturuldu");
 
-    // ✅ Success response
     res.status(200).json({
       success: true,
-      message: `Rezervasyon onaylandı ve canlı ders oluşturuldu! (Kesilen Kredi: ${lessonPrice})`,
+      message: `Rezervasyon onaylandı ve canlı ders oluşturuldu! (Kesilen Kredi: ${lessonPrice}, Tahsil Edilen: ${payerRole})`,
     });
   } catch (error) {
-    console.error("❌ Error:", error);
+    console.error("❌ HATA:", error);
     res.status(500).json({ error: "Rezervasyon onaylanırken hata oluştu." });
   } finally {
     if (db) db.release();
