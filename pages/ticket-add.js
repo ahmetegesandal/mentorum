@@ -1,4 +1,4 @@
-// tickets-create.js
+// ticket-add.js
 import { useState, useContext } from "react";
 import LayoutMenu from "../components/LayoutMenu";
 import Navbar from "../components/Navbar";
@@ -16,10 +16,16 @@ const TicketsCreate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/tickets", { subject, description, user_id: userData.id });
-      Swal.fire("Başarılı", "Destek talebiniz oluşturuldu.", "success").then(() => {
-        router.push("/tickets-list");
+      await axios.post("/api/tickets", {
+        subject,
+        description,
+        user_id: userData.id,
       });
+      Swal.fire("Başarılı", "Destek talebiniz oluşturuldu.", "success").then(
+        () => {
+          router.push("/tickets-list");
+        }
+      );
     } catch (error) {
       Swal.fire("Hata", "Talep oluşturulurken hata oluştu.", "error");
     }
@@ -36,12 +42,17 @@ const TicketsCreate = () => {
               <div className="col-lg-8 mx-auto">
                 <div className="card shadow-lg rounded-3">
                   <div className="card-body">
-                    <h3 className="mb-4 text-primary text-center">Destek Talebi Oluştur</h3>
+                    <h3 className="mb-4 text-primary text-center">
+                      Destek Talebi Oluştur
+                    </h3>
                     <form onSubmit={handleSubmit}>
                       <div className="row g-3">
                         {/* Konu Başlığı */}
                         <div className="col-md-12">
-                          <label htmlFor="subject" className="form-label fw-semibold">
+                          <label
+                            htmlFor="subject"
+                            className="form-label fw-semibold"
+                          >
                             Konu
                           </label>
                           <input
@@ -57,7 +68,10 @@ const TicketsCreate = () => {
 
                         {/* Açıklama */}
                         <div className="col-md-12">
-                          <label htmlFor="description" className="form-label fw-semibold">
+                          <label
+                            htmlFor="description"
+                            className="form-label fw-semibold"
+                          >
                             Açıklama
                           </label>
                           <textarea
@@ -74,10 +88,17 @@ const TicketsCreate = () => {
 
                       {/* Butonlar */}
                       <div className="d-flex justify-content-end mt-4">
-                        <button type="submit" className="btn btn-primary px-4 me-2">
+                        <button
+                          type="submit"
+                          className="btn btn-primary px-4 me-2"
+                        >
                           Gönder
                         </button>
-                        <button type="button" className="btn btn-outline-secondary px-4" onClick={() => router.push("/tickets-list")}>
+                        <button
+                          type="button"
+                          className="btn btn-outline-secondary px-4"
+                          onClick={() => router.push("/tickets-list")}
+                        >
                           İptal
                         </button>
                       </div>
@@ -87,7 +108,9 @@ const TicketsCreate = () => {
 
                 {/* Alt Bilgi */}
                 <p className="text-center mt-3 text-muted">
-                  Destek taleplerinizi <span className="fw-bold">hızlı</span> ve <span className="fw-bold">kolay</span> bir şekilde oluşturabilirsiniz.
+                  Destek taleplerinizi <span className="fw-bold">hızlı</span> ve{" "}
+                  <span className="fw-bold">kolay</span> bir şekilde
+                  oluşturabilirsiniz.
                 </p>
               </div>
             </div>

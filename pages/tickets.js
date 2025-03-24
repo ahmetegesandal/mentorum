@@ -1,4 +1,4 @@
-// /pages/tickets-list.js
+// /pages/tickets.js
 import { useState, useEffect, useContext } from "react";
 import LayoutMenu from "../components/LayoutMenu";
 import Navbar from "../components/Navbar";
@@ -19,7 +19,10 @@ const TicketsList = () => {
         });
         setTickets(response.data);
       } catch (error) {
-        console.error("Talepler alınamadı:", error.response?.data || error.message);
+        console.error(
+          "Talepler alınamadı:",
+          error.response?.data || error.message
+        );
       }
     };
 
@@ -57,7 +60,9 @@ const TicketsList = () => {
               ))}
             </div>
           ) : (
-            <p className="text-muted">Şu anda herhangi bir destek talebiniz bulunmamaktadır.</p>
+            <p className="text-muted">
+              Şu anda herhangi bir destek talebiniz bulunmamaktadır.
+            </p>
           )}
         </div>
       </div>
