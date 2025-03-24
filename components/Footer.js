@@ -17,14 +17,17 @@ const MainNavbar = () => {
           <div className="row gx-0 gy-6 g-lg-10">
             <div className="col-lg-5">
               <a href="landing-page.html" className="app-brand-link mb-6">
-                <Logo />
+                <Logo w={86} h={86} s={28} c={"text-dark"} />
               </a>
               <p className="footer-text footer-logo-description mb-6">
-              {t("footerDesc")}
-             </p>
+                {t("footerDesc")}
+              </p>
             </div>
             <div className="col-lg-2 col-md-4 col-sm-6">
-              <h6 className="footer-title mb-6 fs-5"> {t("footerMentorumAbaout")}</h6>
+              <h6 className="footer-title mb-6 fs-5">
+                {" "}
+                {t("footerMentorumAbaout")}
+              </h6>
               <ul className="list-unstyled">
                 <li className="mb-4">
                   <a

@@ -18,7 +18,6 @@ const Register = () => {
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -71,13 +70,12 @@ const Register = () => {
               <div className="card-body">
                 <div className="app-brand justify-content-center mb-3">
                   <Link href="/" className="app-brand-link">
-                    <Logo />
+                    <Logo w={64} h={64} s={24} />
                   </Link>
                 </div>
 
                 <h4 className="mb-1"> {t("registerStartMessage")}</h4>
-                <p className="mb-3">{ t("registerManagementMessg")} 
-                </p>
+                <p className="mb-3">{t("registerManagementMessg")}</p>
 
                 {error && <p className="alert alert-danger">{error}</p>}
                 {success && <p className="alert alert-success">{success}</p>}
@@ -89,7 +87,7 @@ const Register = () => {
                 >
                   <div className="mb-3">
                     <label htmlFor="role" className="form-label">
-                    { t("registerSelectRol") } 
+                      {t("registerSelectRol")}
                     </label>
                     <select
                       className="form-control"
@@ -98,22 +96,28 @@ const Register = () => {
                       value={role}
                       onChange={(e) => setRole(e.target.value)}
                     >
-                      <option value="student">{t("registerRoleStudent")}</option>
-                      <option value="parent">{t("registerRolepParent")} </option>
-                      <option value="teacher">{t("registerRoleTeacher")}</option>
+                      <option value="student">
+                        {t("registerRoleStudent")}
+                      </option>
+                      <option value="parent">
+                        {t("registerRolepParent")}{" "}
+                      </option>
+                      <option value="teacher">
+                        {t("registerRoleTeacher")}
+                      </option>
                     </select>
                   </div>
 
                   <div className="mb-3">
                     <label htmlFor="username" className="form-label">
-                    {t("registerUserName")  } 
+                      {t("registerUserName")}
                     </label>
                     <input
                       type="text"
                       className="form-control"
                       id="username"
                       name="username"
-                      placeholder= {t("registeruserMessage")} 
+                      placeholder={t("registeruserMessage")}
                       autoFocus
                       required
                       onChange={handleChange}
@@ -122,14 +126,14 @@ const Register = () => {
 
                   <div className="mb-3">
                     <label htmlFor="name" className="form-label">
-                    {t("registerName")  } 
+                      {t("registerName")}
                     </label>
                     <input
                       type="text"
                       className="form-control"
                       id="name"
                       name="name"
-                      placeholder= {t("registerNameMessage")} 
+                      placeholder={t("registerNameMessage")}
                       required
                       onChange={handleChange}
                     />
@@ -137,14 +141,14 @@ const Register = () => {
 
                   <div className="mb-3">
                     <label htmlFor="surname" className="form-label">
-                    {t("registerSurname")}
+                      {t("registerSurname")}
                     </label>
                     <input
                       type="text"
                       className="form-control"
                       id="surname"
                       name="surname"
-                      placeholder= {t("registerSurnameMessg")} 
+                      placeholder={t("registerSurnameMessg")}
                       required
                       onChange={handleChange}
                     />
@@ -152,14 +156,14 @@ const Register = () => {
 
                   <div className="mb-3">
                     <label htmlFor="email" className="form-label">
-                    {t("registerEmail")}
+                      {t("registerEmail")}
                     </label>
                     <input
                       type="email"
                       className="form-control"
                       id="email"
                       name="email"
-                      placeholder={t("registerEmailMessg")} 
+                      placeholder={t("registerEmailMessg")}
                       required
                       onChange={handleChange}
                     />
@@ -167,7 +171,7 @@ const Register = () => {
 
                   <div className="mb-3 form-password-toggle">
                     <label className="form-label" htmlFor="password">
-                    {t("registerPassword")} 
+                      {t("registerPassword")}
                     </label>
                     <div className="input-group input-group-merge">
                       <input
@@ -195,14 +199,14 @@ const Register = () => {
                   {role === "teacher" && (
                     <div className="mb-3">
                       <label htmlFor="expertise" className="form-label">
-                      {t("registerExpertiseArea")} 
+                        {t("registerExpertiseArea")}
                       </label>
                       <input
                         type="text"
                         className="form-control"
                         id="expertise"
                         name="expertise"
-                        placeholder={t("registerExpertMessg") } 
+                        placeholder={t("registerExpertMessg")}
                         onChange={handleChange}
                       />
                     </div>
@@ -217,10 +221,9 @@ const Register = () => {
                 </form>
 
                 <p className="text-center">
-                  <span>{t("registerAccountMessg") } </span>
+                  <span>{t("registerAccountMessg")} </span>
                   <a href="/sign-in">
-                    <span> {t("registerAccountSignMessg") } 
-                    </span>
+                    <span> {t("registerAccountSignMessg")}</span>
                   </a>
                 </p>
               </div>

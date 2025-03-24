@@ -37,7 +37,7 @@ const ForgotPassword = () => {
               <div class="card-body">
                 <div class="app-brand justify-content-center mb-6">
                   <Link href="/" className="app-brand-link">
-                    <Logo />
+                    <Logo w={64} h={64} s={24} />
                   </Link>
                 </div>
 

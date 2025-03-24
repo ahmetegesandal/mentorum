@@ -24,7 +24,7 @@ const MainNavbar = () => {
             </button>
 
             <a href="/" className="app-brand-link">
-              <Logo />
+              <Logo w={48} h={48} />
             </a>
           </div>
 
