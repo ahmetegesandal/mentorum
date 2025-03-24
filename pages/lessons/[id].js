@@ -103,7 +103,7 @@ const LessonDetails = ({ lesson }) => {
                               <UserAvatar
                                 username={lesson?.teacher_username}
                                 photo={lesson?.teacher_photo}
-                                isOnline={isTeacherOnline[lesson?.teacher_id]}
+                                isOnline={isTeacherOnline}
                               />
                             </div>
                           </div>
