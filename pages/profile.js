@@ -60,9 +60,10 @@ const Profile = () => {
                             : "/img/avatars/default.png"
                         }
                         alt="User Image"
-                        className="d-block h-auto ms-0 ms-sm-6 rounded user-profile-img"
-                        width={120}
-                        height={120}
+                        className="d-block ms-0 ms-sm-6 rounded user-profile-img"
+                        width={"120"}
+                        height={"120"}
+                        style={{ objectFit: "cover" }}
                       />
                     </div>
                     <div className="flex-grow-1 mt-3 mt-lg-5">

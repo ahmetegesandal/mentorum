@@ -12,7 +12,6 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     if (!router.isReady) return;
 
-    // Public routes where authentication isn't required
     const publicRoutes = [
       "/",
       "/register",
@@ -20,68 +19,62 @@ export const UserProvider = ({ children }) => {
       "/contact",
       "/forgot-password",
       "/reset-password",
+      "/verify-2fa",
     ];
+
     if (publicRoutes.includes(router.pathname)) {
       setLoading(false);
       return;
     }
 
     const token = localStorage.getItem("token");
-    if (!token) {
-      redirectToSignIn();
+    const verified =
+      typeof window !== "undefined"
+        ? sessionStorage.getItem("2fa-verified")
+        : null;
+
+    if (!token || verified !== "true") {
+      handleInvalidToken();
       return;
     }
 
     try {
       const decoded = jwt.decode(token);
-
-      // Ensure the decoded token contains a valid userId
       if (!decoded || !decoded.userId) {
         handleInvalidToken();
         return;
       }
 
-      const fetchUserData = async () => {
+      const fetchUser = async () => {
         try {
-          const response = await fetch(`/api/users/${decoded.userId}`, {
+          const res = await fetch(`/api/users/${decoded.userId}`, {
             headers: { Authorization: `Bearer ${token}` },
           });
 
-          if (!response.ok) {
-            throw new Error("Kullanıcı doğrulanamadı.");
-          }
+          if (!res.ok) throw new Error("Kullanıcı alınamadı.");
+          const data = await res.json();
 
-          const data = await response.json();
-
-          // Ensure user data contains an ID before setting it
-          if (!data || !data.id) {
-            throw new Error("Geçersiz kullanıcı verisi.");
-          }
+          if (!data?.id) throw new Error("Eksik kullanıcı.");
 
           setUserData(data);
           localStorage.setItem("userId", data.id);
-        } catch (error) {
+        } catch {
           handleInvalidToken();
         } finally {
           setLoading(false);
         }
       };
 
-      fetchUserData();
-    } catch (err) {
+      fetchUser();
+    } catch {
       handleInvalidToken();
     }
   }, [router.isReady, router.pathname]);
 
-  // Function to handle invalid token scenarios
   const handleInvalidToken = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
-    redirectToSignIn();
-  };
-
-  // Redirects to sign-in page securely
-  const redirectToSignIn = () => {
+    sessionStorage.removeItem("2fa-verified");
     router.replace("/sign-in");
     setLoading(false);
   };

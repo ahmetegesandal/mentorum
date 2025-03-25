@@ -16,7 +16,8 @@ const GlobalLogoutHandler = () => {
     router.pathname === "/404" ||
     router.pathname === "/register" ||
     router.pathname === "/contact" ||
-    router.pathname === "/forgot-password"
+    router.pathname === "/forgot-password" ||
+    router.pathname === "/verify-2fa"
   ) {
     return null; // '/sign-in' sayfasında WebSocket bağlantısı yapılmayacak
   }

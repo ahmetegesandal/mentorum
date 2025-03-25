@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { getConnection } from "../../utils/db";
-import sendMail from "../../lib/sendMail";
+import sendMailWithTemplate from "../../lib/sendMailWithTemplate";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).end();
@@ -34,10 +34,11 @@ export default async function handler(req, res) {
     const resetLink = `http://localhost:3000/reset-password?token=${token}`;
     console.log("🔗 Sıfırlama linki:", resetLink);
 
-    await sendMail({
+    await sendMailWithTemplate({
       to: email,
-      subject: "Şifre Sıfırlama",
-      html: `<p>Şifrenizi değiştirmek için <a href="${resetLink}">şu bağlantıya</a> tıklayın.</p>`,
+      subject: "Mentorum - Şifre Sıfırlama",
+      templateName: "reset-password",
+      variables: { resetLink },
     });
 
     console.log("📤 E-posta gönderimi başarılı:", email);

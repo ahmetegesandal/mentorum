@@ -57,16 +57,18 @@ const NavProfileTab = () => {
             throw new Error("Çıkış işlemi sırasında bir hata oluştu.");
           }
 
-          // LocalStorage'dan token'ı kaldır
+          // Token & session temizliği
           localStorage.removeItem("token");
           localStorage.removeItem("userId");
+          sessionStorage.removeItem("2fa-verified");
 
+          // WebSocket kapat
           if (socketRef.current) {
             console.log("🔌 WebSocket bağlantısı kapatılıyor...");
             socketRef.current.disconnect();
           }
 
-          // Çıkış yaptıktan sonra login sayfasına yönlendir
+          // Giriş sayfasına yönlendir
           router.push("/sign-in");
         } catch (error) {
           console.error("Logout error:", error);

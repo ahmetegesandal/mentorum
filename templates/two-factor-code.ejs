@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Giriş Doğrulama Kodu</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Helvetica Neue", sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+
+      .email-wrapper {
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .header {
+        background-color: #6d28d2;
+        padding: 32px 24px;
+        text-align: center;
+      }
+
+      .header img {
+        margin-bottom: 12px;
+      }
+
+      h1 {
+        color: #fff;
+      }
+      .header h2 {
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .content {
+        padding: 32px 24px;
+        font-size: 15px;
+        color: #333;
+      }
+
+      .content p {
+        margin-bottom: 16px;
+      }
+
+      .code-box {
+        display: inline-block;
+        padding: 14px 32px;
+        background-color: #6d28d2;
+        color: #ffffff;
+        font-size: 24px;
+        font-weight: bold;
+        letter-spacing: 4px;
+        border-radius: 6px;
+        margin-top: 16px;
+        text-align: center;
+      }
+
+      .footer {
+        padding: 24px;
+        font-size: 13px;
+        text-align: center;
+        color: #666;
+        background-color: #6d28d2;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-wrapper">
+      <div class="header">
+        <img
+          src="https://i.hizliresim.com/mkzt5xy.png"
+          alt="Logo"
+          width="150"
+        />
+        <h1>Mentorum</h1>
+        <h2>Giriş Doğrulama Kodu</h2>
+      </div>
+
+      <div class="content">
+        <p>Merhaba,</p>
+        <p>Hesabınıza giriş yapmak için aşağıdaki doğrulama kodunu kullanın:</p>
+
+        <div class="code-box"><%= code %></div>
+
+        <p style="margin-top: 24px; font-size: 14px; color: #555">
+          Eğer bu işlemi siz yapmadıysanız, lütfen bu e-postayı yok sayın.
+        </p>
+      </div>
+
+      <div class="footer">
+        &copy; <%= new Date().getFullYear() %> Mentorum - Tüm Hakları Saklıdır.
+      </div>
+    </div>
+  </body>
+</html>
