@@ -200,7 +200,7 @@
   color: #66c2ff; /* Açık mavi renkli bağlantılar */
 }
 
-/* Ek kısım */
+/*İndex sayfası slayt düzeltmleri */
 .hero-image-container {
   position: absolute;
   top: 0;
@@ -377,7 +377,6 @@
   font-size: 2.28rem; /* Bu değeri küçültün */
 }
 
-
 /*Dersler İconu özellikler*/
 /* Başlık ve açıklama stilini belirledik */
 .features-icon-box {
@@ -444,4 +443,15 @@
   }
 }
 
+/*öğretmen mi olmak istiyosunuz kısmındaki resim düzeltmesi*/
+@media (min-width: 992px) { /* Sadece büyük ekranlarda kaydırma */
+  .custom-img {
+    transform: translateX(-200px);
+  }
+}
 
+@media (max-width: 991px) { /* Küçük ekranlarda kaydırma sıfır */
+  .custom-img {
+    transform: translateX(0);
+  }
+}
