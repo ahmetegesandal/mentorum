@@ -1,14 +1,13 @@
 import LayoutMenu from "../components/LayoutMenu";
-import UpcomingEvents from "../components/UpcomingEvents";
 import Navbar from "../components/Navbar";
-
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { UserContext } from "../contexts/UserContext";
-import { useContext, useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+import { useContext } from "react";
 
-const Notifications = () => {
+const Blank = () => {
+  const { t } = useTranslation("common");
   const userData = useContext(UserContext);
-  const router = useRouter();
 
   return (
     <>
@@ -16,21 +15,19 @@ const Notifications = () => {
       <div className="layout-page">
         <Navbar />
         <div className="content-wrapper">
-          <div className="container-xxl flex-grow-1 container-py">
-            <div className="card bg-transparent shadow-none my-6 border-0">
-              <div className="card-body row p-0 pb-6 g-6">
-                <div className="col-12">
-                  <div className="row g-4">
-                    <div className="col-lg-8">fdsfsdd</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <h1 className="text-4xl font-bold mb-6">sa</h1>
         </div>
       </div>
     </>
   );
 };
 
-export default Notifications;
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}
+
+export default Blank;
