@@ -18,41 +18,49 @@ const Navbar = () => {
   const [parentInfo, setParentInfo] = useState(null);
 
   useEffect(() => {
-    if (!userData || !userData?.id) return;
+    if (!userData || !userData.id) return;
 
     const fetchParentInfo = async () => {
       try {
-        //console.log("📡 API İsteği: get-parent-info-credit", userData?.id);
         const response = await axios.get(
           `/api/get-parent-info-credit?user_id=${userData?.id}`
         );
-        //console.log("✅ API Yanıtı: get-parent-info-credit", response.data);
 
-        setIsManagedByParent(response.data.isManagedByParent);
-        if (response.data.isManagedByParent) {
+        const isManaged = response?.data?.isManagedByParent;
+        setIsManagedByParent(!!isManaged);
+
+        if (isManaged) {
           setParentInfo({
-            id: response.data.parent_id,
-            name: response.data.parent_name,
-            surname: response.data.parent_surname,
-            credit: response.data.parent_credit,
+            id: response?.data?.parent_id ?? null,
+            name: response?.data?.parent_name ?? "",
+            surname: response?.data?.parent_surname ?? "",
+            credit: response?.data?.parent_credit ?? 0,
           });
-          setCredit(response.data.parent_credit);
+          setCredit(response?.data?.parent_credit ?? 0);
         } else {
-          //console.log("📡 API İsteği: user-credit (Student)", userData?.id);
-          const userCreditResponse = await axios.get(
-            `/api/user-credit?user_id=${userData?.id}`
-          );
-          /*console.log(
-            "✅ API Yanıtı: user-credit (Student)",
-            userCreditResponse.data
-          );*/
-          setCredit(userCreditResponse.data.credit);
+          if (userData?.id != null) {
+            try {
+              const userCreditResponse = await axios.get(
+                `/api/user-credit?user_id=${userData?.id}`
+              );
+
+              const credit = userCreditResponse?.data?.credit;
+              setCredit(credit != null ? credit : 0);
+            } catch (creditError) {
+              console.error("❌ API Error: user-credit (Student)", creditError);
+              setCredit(0);
+            }
+          } else {
+            setCredit(0);
+          }
         }
       } catch (error) {
         console.error(
           "❌ Veli kontrolü veya kredi bilgisi alınırken hata oluştu:",
           error
         );
+        setCredit(0);
+        setIsManagedByParent(false);
       } finally {
         setIsLoading(false);
       }
@@ -104,7 +112,7 @@ const Navbar = () => {
           <li className="nav-item me-2">
             <span className="badge rounded-pill bg-label-success">
               {isManagedByParent && parentInfo
-                ? `Veliniz: ${parentInfo.name} ${parentInfo.surname} - Kredi: ${credit} ₺`
+                ? `Veliniz: ${parentInfo?.name} ${parentInfo?.surname} - Kredi: ${credit} ₺`
                 : `${credit} $`}
             </span>
           </li>

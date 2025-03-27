@@ -222,9 +222,10 @@ const Register = () => {
 
                 <p className="text-center">
                   <span>{t("registerAccountMessg")} </span>
-                  <a href="/sign-in">
+
+                  <Link href="/sign-in">
                     <span> {t("registerAccountSignMessg")}</span>
-                  </a>
+                  </Link>
                 </p>
               </div>
             </div>

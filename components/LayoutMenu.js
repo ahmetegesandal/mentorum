@@ -160,6 +160,19 @@ const menuItems = [
       },
     ],
   },
+  {
+    key: "notifications",
+    label: "Bildirim",
+    icon: "ti ti-calendar-up",
+    roles: ["admin", "parent", "teacher", "student"],
+    subMenu: [
+      {
+        path: "/notifications",
+        label: "Bildirimler",
+        roles: ["admin", "parent", "teacher", "student"],
+      },
+    ],
+  },
 ];
 
 const MenuItem = memo(

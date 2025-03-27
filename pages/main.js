@@ -1,12 +1,11 @@
 import LayoutMenu from "../components/LayoutMenu";
+import UpcomingEvents from "../components/UpcomingEvents";
 import Navbar from "../components/Navbar";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { UserContext } from "../contexts/UserContext";
 import { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
-
-//furkan
 
 const Main = () => {
   const { t } = useTranslation("common");
@@ -47,7 +46,7 @@ const Main = () => {
 
       try {
         const res = await fetch(
-          `/api/upcomingActivities?userId=${userData.id}&role=${userData.role}`
+          `/api/upcomingActivities?userId=${userData?.id}&role=${userData?.role}`
         );
         const data = await res.json();
         setUpcomingItems(data.items || []);
@@ -73,20 +72,33 @@ const Main = () => {
             <div className="card bg-transparent shadow-none my-6 border-0">
               <div className="card-body row p-0 pb-6 g-6">
                 <div className="col-12">
-                  <h5 className="mb-2">
-                    Hoş Geldin,{" "}
-                    {userData?.role === "admin" && <span>Admin</span>}
-                    {userData?.role === "parent" && <span>Veli</span>}
-                    {userData?.role === "student" && <span>Öğrenci</span>}
-                    {userData?.role === "teacher" && <span>Öğretmen</span>}{" "}
-                    <span className="h4">
-                      {userData
-                        ? `${userData?.name} ${userData?.surname} 👋🏻`
-                        : "Guest 👋🏻"}
-                    </span>
-                  </h5>
-                  <div className="col-lg-5">
-                    <p>{t("homepagecomment")}</p>
+                  <div className="row g-4">
+                    <div className="col-lg-8">
+                      <h5 className="mb-2">
+                        Hoş Geldin,{" "}
+                        {userData?.role === "admin" && <span>Admin</span>}
+                        {userData?.role === "parent" && <span>Veli</span>}
+                        {userData?.role === "student" && <span>Öğrenci</span>}
+                        {userData?.role === "teacher" && (
+                          <span>Öğretmen</span>
+                        )}{" "}
+                        <span className="h4">
+                          {userData
+                            ? `${userData?.name} ${userData?.surname} 👋🏻`
+                            : "Guest 👋🏻"}
+                        </span>
+                      </h5>
+                      <p>{t("homepagecomment")}</p>
+                    </div>
+                    <div className="col-lg-4 text-end">
+                      <img
+                        src="/img/odek3.png"
+                        width={"150"}
+                        style={{
+                          objectFit: "cover",
+                        }}
+                      />
+                    </div>
                   </div>
                   <div className="row g-4">
                     {cardsToRender.map((card, index) => (
@@ -104,38 +116,7 @@ const Main = () => {
                     ))}
                   </div>
                 </div>
-                <div className="col-12">
-                  <div className="card mt-4">
-                    <div className="card-header">
-                      <h5 className="mb-0">Yaklaşan Etkinlikler</h5>
-                    </div>
-                    <div className="card-body">
-                      <div className="row g-4">
-                        {upcomingItems.length === 0 ? (
-                          <p className="text-muted text-center">
-                            Yaklaşan etkinlik yok.
-                          </p>
-                        ) : (
-                          upcomingItems.map((item, i) => (
-                            <div className="col-md-4" key={i}>
-                              <div className="card h-100 border shadow-sm">
-                                <div className="card-body">
-                                  <h6 className="fw-bold mb-1">{item.title}</h6>
-                                  <p className="mb-1">
-                                    📅 {item.date} <br /> 🕓 {item.time}
-                                  </p>
-                                  <span className="badge bg-label-info">
-                                    {item.type}
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          ))
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <UpcomingEvents upcomingItems={upcomingItems} />
               </div>
             </div>
           </div>

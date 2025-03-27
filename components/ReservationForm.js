@@ -31,7 +31,7 @@ const ReservationForm = ({ lesson }) => {
   const checkParentManagement = async () => {
     try {
       const response = await axios.get(
-        `/api/check-parent-management?user_id=${userData.id}`
+        `/api/check-parent-management?user_id=${userData?.id}`
       );
       setIsManagedByParent(response.data.isManagedByParent);
     } catch (error) {
@@ -42,7 +42,7 @@ const ReservationForm = ({ lesson }) => {
   const fetchAvailableSlots = async () => {
     try {
       const response = await axios.get(
-        `/api/get-available-times?teacher_id=${lesson.teacher_user_id}`
+        `/api/get-available-times?teacher_id=${lesson?.teacher_user_id}`
       );
 
       const formattedSlots = {};
@@ -66,7 +66,7 @@ const ReservationForm = ({ lesson }) => {
   const fetchStudents = async () => {
     try {
       const response = await axios.get(
-        `/api/get-parent-students?parent_id=${userData.id}`
+        `/api/get-parent-students?parent_id=${userData?.id}`
       );
       setStudents(response.data);
     } catch (error) {
@@ -78,7 +78,7 @@ const ReservationForm = ({ lesson }) => {
     try {
       console.log("📌 Rezervasyonlar alınıyor...");
       const response = await axios.get(
-        `/api/get-reservations?teacher_id=${lesson.teacher_user_id}`
+        `/api/get-reservations?teacher_id=${lesson?.teacher_user_id}`
       );
 
       const disabledTimeSet = new Set();
