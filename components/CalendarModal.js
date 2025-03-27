@@ -2,25 +2,34 @@ import { useState, useContext } from "react";
 import Swal from "sweetalert2";
 import { UserContext } from "../contexts/UserContext";
 
-// Tarih kontrol fonksiyonu (bugünden önce olup olmadığını kontrol eder)
 const isDateInThePast = (dateString, timeString) => {
   const selectedDate = new Date(dateString + "T" + timeString);
   const currentDate = new Date();
-
-  // Eğer seçilen tarih ve saat şu anki tarih ve saatten önceyse
   return selectedDate < currentDate;
 };
 
 const CalendarModal = ({ onUpdate }) => {
   const userData = useContext(UserContext);
-  const [formData, setFormData] = useState({
-    date: "",
-    time: "",
-    is_available: 1,
-  });
+  const [entries, setEntries] = useState([
+    { date: "", time: "", is_available: 1 },
+  ]);
 
-  const handleChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (index, e) => {
+    const updated = [...entries];
+    updated[index][e.target.name] = e.target.value;
+    setEntries(updated);
+  };
+
+  const addEntry = () => {
+    setEntries([...entries, { date: "", time: "", is_available: 1 }]);
+  };
+
+  const removeEntry = (index) => {
+    if (entries.length === 1) return; // en az bir kayıt kalmalı
+    const updated = [...entries];
+    updated.splice(index, 1);
+    setEntries(updated);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,40 +39,35 @@ const CalendarModal = ({ onUpdate }) => {
       return;
     }
 
-    // Eğer tarih veya saat geçmişteyse
-    if (isDateInThePast(formData.date, formData.time)) {
-      Swal.fire(
-        "Hata!",
-        "Geçmiş tarih veya saat için kayıt ekleyemezsiniz!",
-        "error"
-      );
-      return;
+    for (let entry of entries) {
+      if (isDateInThePast(entry.date, entry.time)) {
+        Swal.fire(
+          "Hata!",
+          "Geçmiş tarih veya saat için kayıt ekleyemezsiniz!",
+          "error"
+        );
+        return;
+      }
     }
 
-    const dataToSend = {
-      teacher_id: userData.id, // Kullanıcı ID ekleniyor
-      date: formData.date,
-      time: formData.time,
-      is_available: formData.is_available,
-    };
+    const dataToSend = entries.map((entry) => ({
+      teacher_id: userData.id,
+      date: entry.date,
+      time: entry.time,
+      is_available: entry.is_available,
+    }));
 
     try {
-      const res = await fetch("/api/addCalendarEntry", {
+      const res = await fetch("/api/addCalendarEntryBulk", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dataToSend),
+        body: JSON.stringify({ entries: dataToSend }),
       });
 
       if (res.ok) {
-        Swal.fire("Başarılı!", "Takvim kaydı eklendi.", "success");
-
-        // Modalı kapat
+        Swal.fire("Başarılı!", "Takvim kayıtları eklendi.", "success");
         document.getElementById("closeModal").click();
-
-        // Formu temizle
-        setFormData({ date: "", time: "", is_available: 1 });
-
-        // Takvim listesini güncelle
+        setEntries([{ date: "", time: "", is_available: 1 }]);
         onUpdate();
       } else {
         Swal.fire("Hata!", "Kayıt eklenemedi.", "error");
@@ -87,7 +91,7 @@ const CalendarModal = ({ onUpdate }) => {
         <div className="modal-dialog">
           <div className="modal-content p-3">
             <div className="modal-header">
-              <h4 className="modal-title">Yeni Takvim Kaydı</h4>
+              <h4 className="modal-title">Yeni Takvim Kayıtları</h4>
               <button
                 type="button"
                 className="btn-close"
@@ -95,6 +99,7 @@ const CalendarModal = ({ onUpdate }) => {
                 aria-label="Close"
               ></button>
             </div>
+
             <div className="modal-header">
               <p>
                 Dikkat yeni takvim kaydı eklerken müsait olduğunuz bir saati
@@ -105,22 +110,50 @@ const CalendarModal = ({ onUpdate }) => {
 
             <form onSubmit={handleSubmit}>
               <div className="modal-body">
-                <input
-                  type="date"
-                  name="date"
-                  className="form-control mb-2"
-                  value={formData.date}
-                  onChange={handleChange}
-                  required
-                />
-                <input
-                  type="time"
-                  name="time"
-                  className="form-control mb-2"
-                  value={formData.time}
-                  onChange={handleChange}
-                  required
-                />
+                {entries.map((entry, index) => (
+                  <div key={index} className="mb-3 border rounded p-3">
+                    <div className="row g-2 align-items-end">
+                      <div className="col-md-5">
+                        <input
+                          type="date"
+                          name="date"
+                          className="form-control"
+                          value={entry.date}
+                          onChange={(e) => handleChange(index, e)}
+                          required
+                        />
+                      </div>
+                      <div className="col-md-5">
+                        <input
+                          type="time"
+                          name="time"
+                          className="form-control"
+                          value={entry.time}
+                          onChange={(e) => handleChange(index, e)}
+                          required
+                        />
+                      </div>
+                      <div className="col-md-2">
+                        {entries.length > 1 && (
+                          <button
+                            type="button"
+                            className="btn btn-outline-danger w-100"
+                            onClick={() => removeEntry(index)}
+                          >
+                            Sil
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary w-100"
+                  onClick={addEntry}
+                >
+                  + Yeni Satır Ekle
+                </button>
               </div>
 
               <div className="modal-footer">

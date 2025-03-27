@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import { UserContext } from "../contexts/UserContext";
 import { useTranslation } from "next-i18next";
 import CalendarModal from "../components/CalendarModal";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Calendar = () => {
   const { t } = useTranslation("common");
@@ -112,6 +113,36 @@ const Calendar = () => {
     });
   };
 
+  const handleDeleteOldWeeks = async () => {
+    Swal.fire({
+      title: "Önceki tüm haftalar silinsin mi?",
+      text: "Bu işlem geri alınamaz!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Evet, sil!",
+      cancelButtonText: "İptal",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await fetch("/api/deleteOldWeeks", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ teacherId: userData?.id }), // <-- DÜZELTME BURADA
+          });
+          const data = await res.json();
+          if (res.ok) {
+            Swal.fire("Silindi!", data.message, "success");
+            fetchCalendar();
+          } else {
+            Swal.fire("Hata!", data.message, "error");
+          }
+        } catch (error) {
+          Swal.fire("Hata!", "Sunucu hatası oluştu.", "error");
+        }
+      }
+    });
+  };
+
   const formatDate = (dateString) => {
     const dateObj = new Date(dateString);
     return new Intl.DateTimeFormat("tr-TR", {
@@ -167,6 +198,12 @@ const Calendar = () => {
                   Seçilenleri Sil ({selectedEntries.length})
                 </button>
               )}
+              <button
+                className="btn btn-warning"
+                onClick={handleDeleteOldWeeks}
+              >
+                Önceki Haftaları Sil
+              </button>
               <CalendarModal onUpdate={fetchCalendar} />
             </div>
           </div>
@@ -258,5 +295,13 @@ const Calendar = () => {
     </>
   );
 };
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}
 
 export default Calendar;

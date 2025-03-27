@@ -1,6 +1,3 @@
-import notificationsRoutes from "./routes/notifications.js";
-app.use("/api/notifications", notificationsRoutes);
-
 const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");

@@ -4,11 +4,14 @@ import Navbar from "../components/Navbar";
 import { UserContext } from "../contexts/UserContext";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const ITEMS_PER_PAGE = 5;
 
 const ManageLessons = () => {
   const userData = useContext(UserContext);
+  const { t } = useTranslation("common");
   const router = useRouter();
 
   const [lessons, setLessons] = useState([]);
@@ -187,5 +190,13 @@ const ManageLessons = () => {
     </>
   );
 };
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}
 
 export default ManageLessons;
