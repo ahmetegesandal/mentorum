@@ -9,6 +9,7 @@ import MainNavbar from "../components/MainNavbar";
 import Footer from "../components/Footer";
 import Link from "next/link";
 
+
 const Home = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
