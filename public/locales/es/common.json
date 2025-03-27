@@ -105,7 +105,10 @@
   "indexSecurePayment": "Sistema de pago seguro",
   "indecNoExstra": "Sin costos adicionales de intermediarios",
   "indexCarefullyDesc": "Profesores cuidadosamente seleccionados tras el proceso de aprobación",
-  "indexSecureLearn" :"Nunca comprometemos la seguridad para garantizar que nuestro entorno de aprendizaje siempre contribuya al éxito de los estudiantes."
+  "indexSecureLearn" :"Nunca comprometemos la seguridad para garantizar que nuestro entorno de aprendizaje siempre contribuya al éxito de los estudiantes.",
+  "indexTeacherWant" : "¿Quieres ser profesor?",
+  "indexTeacherSelection" : "Aprenda cómo seleccionamos a los profesores, qué cualificaciones son necesarias y cuánto puede ganar.",
+  "indexteacherRegister" : "Regístrese como profesor"
 
 
 

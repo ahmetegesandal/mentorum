@@ -121,7 +121,10 @@
   "indexSecurePayment": "Secure payment system",
   "indecNoExstra": "No extra intermediary costs",
   "indexCarefullyDesc": "Carefully selected teachers after the approval process",
-  "indexSecureLearn" :"We never compromise on security to ensure that our learning environment always contributes to student success."
+  "indexSecureLearn" :"We never compromise on security to ensure that our learning environment always contributes to student success.",
+  "indexTeacherWant" : "Do you want to be a teacher?",
+  "indexTeacherSelection" : "Learn how we select teachers, what qualifications are required, and how much you can earn.",
+  "indexteacherRegister" : "Register as a teacher"
 
 
 

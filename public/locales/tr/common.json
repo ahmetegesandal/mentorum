@@ -121,7 +121,10 @@
   "indexSecurePayment": "Güvenli ödeme sistemi",
   "indecNoExstra": "Ekstra aracı masrafı yok",
   "indexCarefullyDesc": "Onay süreci ardından özenle seçilen öğretmenler",
-  "indexSecureLearn" :"Öğrenim ortamımızın öğrencilere her zaman başarı katması için güvenlikten asla ödün vermiyoruz."
+  "indexSecureLearn" :"Öğrenim ortamımızın öğrencilere her zaman başarı katması için güvenlikten asla ödün vermiyoruz.",
+  "indexTeacherWant" : "Öğretmen mi olmak istiyorsunuz?",
+  "indexTeacherSelection" : "Öğretmenleri nasıl seçtiğimizi, hangi niteliklerin gerekli olduğunu ve ne kadar kazanabileceğinizi öğrenin.",
+  "indexteacherRegister" : "Öğretmen olarak kaydolun"
 
 
 

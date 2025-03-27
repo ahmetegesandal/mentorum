@@ -121,7 +121,10 @@
     "indexSecurePayment": "Sicheres Zahlungssystem",
     "indecNoExstra": "Keine zusätzlichen Vermittlungskosten",
     "indexCarefullyDesc": "Sorgfältig ausgewählte Lehrer nach dem Genehmigungsprozess",
-    "indexSecureLearn" :"Wir machen keine Kompromisse bei der Sicherheit, damit unsere Lernumgebung stets zum Erfolg der Schüler beiträgt."
+    "indexSecureLearn" :"Wir machen keine Kompromisse bei der Sicherheit, damit unsere Lernumgebung stets zum Erfolg der Schüler beiträgt.",
+    "indexTeacherWant" : "Möchten Sie Lehrer werden?",
+    "indexTeacherSelection" : "Erfahren Sie, wie wir Lehrer auswählen, welche Qualifikationen erforderlich sind und wie viel Sie verdienen können.",
+    "indexteacherRegister" : "Registrieren Sie sich als Lehrer"
 
 
 
