@@ -1,5 +1,46 @@
 import React from "react";
 
+const formatDateTR = (isoDateString) => {
+  try {
+    const dateObj = new Date(isoDateString);
+    return new Intl.DateTimeFormat("tr-TR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      timeZone: "Europe/Istanbul",
+    }).format(dateObj);
+  } catch (e) {
+    return isoDateString;
+  }
+};
+
+const formatTimeRange = (timeString) => {
+  try {
+    const [h, m] = timeString.split(":").map(Number);
+    const start = `${h.toString().padStart(2, "0")}:${m
+      .toString()
+      .padStart(2, "0")}`;
+    const endHour = ((h + 1) % 24).toString().padStart(2, "0");
+    const end = `${endHour}:${m.toString().padStart(2, "0")}`;
+    return `${start} - ${end}`;
+  } catch {
+    return timeString;
+  }
+};
+
+const badgeColor = (type) => {
+  switch (type) {
+    case "Canlı Ders":
+      return "bg-label-success";
+    case "Rezervasyon":
+      return "bg-label-warning";
+    case "Sınav":
+      return "bg-label-danger";
+    default:
+      return "bg-label-info";
+  }
+};
+
 const UpcomingEvents = ({ upcomingItems }) => {
   return (
     <div className="col-12">
@@ -18,9 +59,12 @@ const UpcomingEvents = ({ upcomingItems }) => {
                     <div className="card-body">
                       <h6 className="fw-bold mb-1">{item.title}</h6>
                       <p className="mb-1">
-                        📅 {item.date} <br /> 🕓 {item.time}
+                        📅 {formatDateTR(item.date)} <br /> 🕓{" "}
+                        {formatTimeRange(item.time)}
                       </p>
-                      <span className="badge bg-label-info">{item.type}</span>
+                      <span className={`badge ${badgeColor(item.type)}`}>
+                        {item.type}
+                      </span>
                     </div>
                   </div>
                 </div>
