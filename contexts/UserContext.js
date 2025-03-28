@@ -22,7 +22,7 @@ export const UserProvider = ({ children }) => {
       "/verify-2fa",
     ];
 
-    if (publicRoutes.includes(router.pathname)) {
+    if (publicRoutes.includes(router?.pathname)) {
       setLoading(false);
       return;
     }
@@ -47,7 +47,7 @@ export const UserProvider = ({ children }) => {
 
       const fetchUser = async () => {
         try {
-          const res = await fetch(`/api/users/${decoded.userId}`, {
+          const res = await fetch(`/api/users/${decoded?.userId}`, {
             headers: { Authorization: `Bearer ${token}` },
           });
 

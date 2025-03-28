@@ -21,6 +21,7 @@ import Preloader from "../components/Preloader";
 import { useRouter } from "next/router";
 import { UserProvider } from "../contexts/UserContext";
 import GlobalLogoutHandler from "../components/GlobalLogoutHandler";
+import ApprovalModal from "../components/ApprovalModal";
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
@@ -94,6 +95,7 @@ function MyApp({ Component, pageProps }) {
             <Layout>
               <DatabaseStatus />
               <GlobalLogoutHandler userId={pageProps.userId} />
+              <ApprovalModal /> {/* 🔐 Onay kontrol modali */}
               <Component {...pageProps} />
             </Layout>
           )}
