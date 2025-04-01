@@ -17,7 +17,6 @@ const Home = () => {
   return (
     <>
       <MainNavbar />
-
       <HeroSection />
       <Statistics />
 
@@ -349,7 +348,7 @@ const Home = () => {
                 src="img/backgrounds/kitap.png"
                 alt="cta dashboard"
                 className="img-fluid mt-lg-4 custom-img"
-                width="300"
+                width={"280"}
                 />
               </div>
             </div>
