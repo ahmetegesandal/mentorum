@@ -6,17 +6,32 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import MainNavbar from "../components/MainNavbar";
 import Footer from "../components/Footer";
+import Image from "next/image";
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Home = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 5000);
+    setFormData({ name: "", email: "", message: "" });
+  };
 
   return (
     <>
       <MainNavbar />
 
       <div data-bs-spy="scroll" className="scrollspy-example">
-        {/* bu kısımdan sonraki aşağı kısım değiştirilebilir */}
         <section id="landingFeatures" className="section-py landing-features">
           <div className="container">
             <div className="text-center mb-4">
@@ -24,96 +39,76 @@ const Home = () => {
             </div>
             <h4 className="text-center mb-1">
               <span className="position-relative fw-extrabold z-1">
-                Everything you need
+                Bizimle iletişime geçin
                 <img
                   src="img/front-pages/icons/section-title-icon.png"
                   alt="laptop charging"
                   className="section-title-img position-absolute object-fit-contain bottom-0 z-n1"
                 />
               </span>
-              to start your next project
             </h4>
             <p className="text-center mb-12">
-              Not just a set of tools, the package includes ready-to-deploy
-              conceptual application.
+              Sorularınızın yanıtları ve devam eden sorunlarla ilgili yardım için canlı sohbetimize erişin veya bizi arayın
             </p>
-            <div className="features-icon-wrapper row gx-0 gy-6 g-sm-12">
-              <div className="col-lg-4 col-sm-6 text-center features-icon-box">
-                <div className="text-center mb-4">
-                  <img
-                    src="img/front-pages/icons/laptop.png"
-                    alt="laptop charging"
+            
+            <div className="container mt-5">
+              <div className="row shadow-lg rounded">
+                {/* Sol Taraf - Metin */}
+                <div className="col-md-6 d-flex flex-column justify-content-center">
+                  <h2>Bizimle İletişime Geçin</h2>
+                  <p>
+                    Sorularınızı yanıtlamak ve size yardımcı olmak için buradayız.
+                    Bizimle iletişime geçmekten çekinmeyin!
+                  </p>
+                  <button className="btn btn-primary">Bize Ulaşın</button>
+                </div>
+
+                {/* Sağ Taraf - Resim */}
+                <div className="col-md-6 text-center">
+                  <Image
+                    src="/img/backgrounds/iletisimegec.jpg"
+                    alt="İletişim"
+                    width={400}
+                    height={300}
+                    className="img-fluid rounded"
                   />
                 </div>
-                <h5 className="mb-2">Quality Code</h5>
-                <p className="features-icon-description">
-                  Code structure that all developers will easily understand and
-                  fall in love with.
-                </p>
               </div>
-              <div className="col-lg-4 col-sm-6 text-center features-icon-box">
-                <div className="text-center mb-4">
-                  <img
-                    src="img/front-pages/icons/rocket.png"
-                    alt="transition up"
-                  />
+            </div>
+
+            {/* İletişim Formu */}
+            <div className="container mt-12">
+              <div className="row shadow-lg rounded">
+                <div className="card-body">
+                  <div style={{ maxWidth: "2000px", width: "100%" }}>
+                    <h2 className="mb-2 text-center">Bizimle İletişime Geçin</h2>
+                    {submitted && <div className="alert alert-success">Mesajınız başarıyla gönderildi!</div>}
+                    <form onSubmit={handleSubmit} className="px-4"> {/* Formun tamamına sağ-sol padding ekledik */}
+  <div className="mb-4 px-4"> {/* Her giriş alanına ekstra padding ekledik */}
+    <label className="form-label">Adınız</label>
+    <input type="text" name="name" className="form-control" value={formData.name} onChange={handleChange} required />
+  </div>
+  <div className="mb-4 px-4">
+    <label className="form-label">E-posta</label>
+    <input type="email" name="email" className="form-control" value={formData.email} onChange={handleChange} required />
+  </div>
+  <div className="mb-4 px-4">
+    <label className="form-label">Mesajınız</label>
+    <textarea name="message" className="form-control" rows="4" value={formData.message} onChange={handleChange} required></textarea>
+  </div>
+  <button type="submit" className="btn btn-primary w-100">Gönder</button>
+</form>
+
+                  
+                  </div>
                 </div>
-                <h5 className="mb-2">Continuous Updates</h5>
-                <p className="features-icon-description">
-                  Free updates for the next 12 months, including new demos and
-                  features.
-                </p>
-              </div>
-              <div className="col-lg-4 col-sm-6 text-center features-icon-box">
-                <div className="text-center mb-4">
-                  <img src="img/front-pages/icons/paper.png" alt="edit" />
-                </div>
-                <h5 className="mb-2">Stater-Kit</h5>
-                <p className="features-icon-description">
-                  Start your project quickly without having to remove
-                  unnecessary features.
-                </p>
-              </div>
-              <div className="col-lg-4 col-sm-6 text-center features-icon-box">
-                <div className="text-center mb-4">
-                  <img
-                    src="img/front-pages/icons/check.png"
-                    alt="3d select solid"
-                  />
-                </div>
-                <h5 className="mb-2">API Ready</h5>
-                <p className="features-icon-description">
-                  Just change the endpoint and see your own data loaded within
-                  seconds.
-                </p>
-              </div>
-              <div className="col-lg-4 col-sm-6 text-center features-icon-box">
-                <div className="text-center mb-4">
-                  <img src="img/front-pages/icons/user.png" alt="lifebelt" />
-                </div>
-                <h5 className="mb-2">Excellent Support</h5>
-                <p className="features-icon-description">
-                  An easy-to-follow doc with lots of references and code
-                  examples.
-                </p>
-              </div>
-              <div className="col-lg-4 col-sm-6 text-center features-icon-box">
-                <div className="text-center mb-4">
-                  <img
-                    src="img/front-pages/icons/keyboard.png"
-                    alt="google docs"
-                  />
-                </div>
-                <h5 className="mb-2">Well Documented</h5>
-                <p className="features-icon-description">
-                  An easy-to-follow doc with lots of references and code
-                  examples.
-                </p>
               </div>
             </div>
           </div>
         </section>
+
       </div>
+      
 
       <Footer />
     </>
