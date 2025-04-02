@@ -125,9 +125,16 @@
     "indexSecureLearn" :"Wir machen keine Kompromisse bei der Sicherheit, damit unsere Lernumgebung stets zum Erfolg der Schüler beiträgt.",
     "indexTeacherWant" : "Möchten Sie Lehrer werden?",
     "indexTeacherSelection" : "Erfahren Sie, wie wir Lehrer auswählen, welche Qualifikationen erforderlich sind und wie viel Sie verdienen können.",
-    "indexteacherRegister" : "Registrieren Sie sich als Lehrer"
-
-
+    "indexteacherRegister" : "Registrieren Sie sich als Lehrer",
+    "contactUsTitle" : "Kontaktieren Sie uns",
+    "contactSupport" : "Greifen Sie auf unseren Live-Chat zu oder rufen Sie uns an, um Antworten auf Ihre Fragen und Unterstützung bei laufenden Problemen zu erhalten.",
+    "contactHelp" : "Wir sind hier, um Ihre Fragen zu beantworten und Ihnen zu helfen. Zögern Sie nicht, uns zu kontaktieren!",
+    "contactReach" : "Kontaktieren Sie uns",
+    "contactMessage" : "Ihre Nachricht wurde erfolgreich gesendet!",
+    "contactName" : "Ihr Name",
+    "contactEmail" : "E-Mail",
+    "contactMsg" : "Deine Nachricht",
+    "contactSend" : "Senden"
 
     
   

@@ -109,11 +109,20 @@
     "indexSecureLearn" :"Nous ne faisons jamais de compromis sur la sécurité afin que notre environnement d'apprentissage contribue toujours à la réussite des élèves.",
     "indexTeacherWant" : "Voulez-vous devenir enseignant?",
     "indexTeacherSelection" : "Découvrez comment nous sélectionnons les enseignants, quelles qualifications sont requises et combien vous pouvez gagner.",
-    "indexteacherRegister" : "Inscrivez-vous en tant qu'enseignant"
+    "indexteacherRegister" : "Inscrivez-vous en tant qu'enseignant",
+    "contactUsTitle" : "Contactez-nous",
+    "contactSupport" : "Accédez à notre chat en direct ou appelez-nous pour obtenir des réponses à vos questions et une assistance pour les problèmes en cours.",
+    "contactHelp" : " Nous sommes ici pour répondre à vos questions et vous aider. N'hésitez pas à nous contacter !",
+    "contactReach" : "Contactez-nous",
+    "contactMessage" : "Votre message a été envoyé avec succès !",
+    "contactName" : "Votre nom",
+    "contactEmail" : "E-mail",
+    "contactMsg" : "Ton message",
+    "contactSend" : "Envoyer"
 
 
 
-  
+
 
   }
   

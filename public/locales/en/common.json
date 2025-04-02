@@ -125,12 +125,17 @@
   "indexSecureLearn" :"We never compromise on security to ensure that our learning environment always contributes to student success.",
   "indexTeacherWant" : "Do you want to be a teacher?",
   "indexTeacherSelection" : "Learn how we select teachers, what qualifications are required, and how much you can earn.",
-  "indexteacherRegister" : "Register as a teacher"
+  "indexteacherRegister" : "Register as a teacher",
+  "contactUsTitle" : "Contact us",
+  "contactSupport" : "Access our live chat or call us for answers to your questions and assistance with ongoing issues.",
+  "contactHelp" : "We are here to answer your questions and assist you. Don't hesitate to contact us!",
+  "contactReach" : "Reach us",
+  "contactMessage" : "Your message has been successfully sent!",
+  "contactName" : "Your name",
+  "contactEmail" : "Email",
+  "contactMsg" : "Your message",
+  "contactSend" : "Send"
 
 
-
- 
- 
- 
 
 }

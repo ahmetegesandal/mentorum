@@ -125,7 +125,19 @@
   "indexSecureLearn" :"Öğrenim ortamımızın öğrencilere her zaman başarı katması için güvenlikten asla ödün vermiyoruz.",
   "indexTeacherWant" : "Öğretmen mi olmak istiyorsunuz?",
   "indexTeacherSelection" : "Öğretmenleri nasıl seçtiğimizi, hangi niteliklerin gerekli olduğunu ve ne kadar kazanabileceğinizi öğrenin.",
-  "indexteacherRegister" : "Öğretmen olarak kaydolun"
+  "indexteacherRegister" : "Öğretmen olarak kaydolun",
+  "contactUsTitle" : "Bizimle iletişime geçin",
+  "contactSupport" : "Sorularınızın yanıtları ve devam eden sorunlarla ilgili yardım için canlı sohbetimize erişin veya bizi arayın.",
+  "contactHelp" : "Sorularınızı yanıtlamak ve size yardımcı olmak için buradayız. Bizimle iletişime geçmekten çekinmeyin!",
+  "contactReach" : "Bize Ulaşın",
+  "contactMessage" : "Mesajınız başarıyla gönderildi!",
+  "contactName" : "Adınız",
+  "contactEmail" : "E-posta",
+  "contactMsg" : "Mesajınız",
+  "contactSend" : "Gönder"
+
+
+
 
 
 
