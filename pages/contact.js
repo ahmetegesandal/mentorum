@@ -34,10 +34,9 @@ const Home = () => {
       <div data-bs-spy="scroll" className="scrollspy-example">
         <section id="landingFeatures" className="section-py landing-features">
           <div className="container">
-            <h4 className="text-center mb-4 mt-7">
+            <h4 className="text-center mb-5 mt-7">
               <span className="position-relative fw-extrabold z-1">
-              {t("contactUsTitle")} 
-              
+              {t("contactUsTitle")}               
               </span>
             </h4>
             <p className="text-center mb-12">

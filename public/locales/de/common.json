@@ -134,7 +134,25 @@
     "contactName" : "Ihr Name",
     "contactEmail" : "E-Mail",
     "contactMsg" : "Deine Nachricht",
-    "contactSend" : "Senden"
+    "contactSend" : "Senden",
+    "accountNewPhoto": "Neue Fotos hochladen",
+    "accountimg" : "Hochladen",
+    "allowedFormats" : "Erlaubte Formate: JPG, GIF oder PNG. Maximale Größe 800K",
+    "firstName" : "Vorname",
+    "lastName" : "Nachname",
+    "accounteMail" : "E-Mail",
+    "organization" : "Organisation",
+    "phoneNumber" : "Telefonnummer",
+    "address" : "Adresse",
+    "state" : "Bundesland",
+    "zipCode" : "Postleitzahl (PLZ)",
+    "country" : "Land",
+    "language" : "Sprache",
+    "timezone" : "Zeitzone",
+    "currency" : "Währung",
+    "saveChanges" : "Änderungen speichern",
+    "reset" : "Zurücksetzen"
+
 
     
   

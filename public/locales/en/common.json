@@ -134,7 +134,25 @@
   "contactName" : "Your name",
   "contactEmail" : "Email",
   "contactMsg" : "Your message",
-  "contactSend" : "Send"
+  "contactSend" : "Send",
+  "accountNewPhoto": "Upload new photo",
+  "accountimg" : "Upload",
+  "allowedFormats" : "Allowed JPG, GIF or PNG. Max size of 800K",
+  "firstName" : "First Name",
+  "lastName" : "Last Name",
+  "accounteMail" : "E-mail",
+  "organization" : "Organization",
+  "phoneNumber" : "Phone Number",
+  "address" : "Address",
+  "state" : "State",
+  "zipCode" : "Zip Code",
+  "country" : "Country",
+  "language" : "Language",
+  "timezone" : "Timezone",
+  "currency" : "Currency",
+  "saveChanges" : "Save Changes",
+  "reset" : "Reset"
+
 
 
 

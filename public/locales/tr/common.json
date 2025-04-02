@@ -134,7 +134,25 @@
   "contactName" : "Adınız",
   "contactEmail" : "E-posta",
   "contactMsg" : "Mesajınız",
-  "contactSend" : "Gönder"
+  "contactSend" : "Gönder",
+  "accountNewPhoto": "Yeni fotoğraf yükle",
+  "accountimg" : "Yükle",
+  "allowedFormats" : "İzin verilen JPG, GIF veya PNG. Maksimum boyut 800K",
+  "firstName" : "Ad",
+  "lastName" : "Soyad",
+  "accounteMail" : "E-posta",
+  "organization" : "Organizasyon",
+  "phoneNumber" : "Telefon Numarası",
+  "address" : "Adres",
+  "state" : "Eyalet / Bölge",
+  "zipCode" : "Posta Kodu",
+  "country" : "Ülke",
+  "language" : "Dil",
+  "timezone" : "Saat Dilimi",
+  "currency" : "Para Birimi",
+  "saveChanges" : "Değişiklikleri Kaydet",
+  "reset" : "Sıfırla"
+
 
 
 

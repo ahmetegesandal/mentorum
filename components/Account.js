@@ -86,8 +86,8 @@ const handleFileChange = (e) => {
         />
         <div className="button-wrapper">
           <label htmlFor="upload" className="btn btn-primary me-3 mb-4">
-            Upload new photo
-            <input
+          {t("accountNewPhoto") }  
+         <input
               type="file"
               id="upload"
               className="d-none"
@@ -100,9 +100,10 @@ const handleFileChange = (e) => {
             className="btn btn-outline-secondary mb-4"
             onClick={handleUploadClick}
           >
-            Upload
+            {t("accountimg") }
           </button>
-          <p className="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+          <p className="text-muted mb-0">{t("allowedFormats") }
+          </p>
         </div>
       </div>
 
@@ -110,7 +111,8 @@ const handleFileChange = (e) => {
                             <form id="formAccountSettings" onSubmit={handleSubmit}>
                               <div className="row">
                                 <div className="mb-4 col-md-6">
-                                  <label htmlFor="firstName" className="form-label">First Name</label>
+                                  <label htmlFor="firstName" className="form-label">{t("firstName") }
+                                  </label>
                                   <input
                                     className="form-control"
                                     type="text"
@@ -122,7 +124,8 @@ const handleFileChange = (e) => {
                                   />
                                 </div>
                                 <div className="mb-4 col-md-6">
-                                  <label htmlFor="lastName" className="form-label">Last Name</label>
+                                  <label htmlFor="lastName" className="form-label">{t("lastName") }
+                                  </label>
                                   <input
                                     className="form-control"
                                     type="text"
@@ -133,7 +136,8 @@ const handleFileChange = (e) => {
                                   />
                                 </div>
                                 <div className="mb-4 col-md-6">
-                                  <label htmlFor="email" className="form-label">E-mail</label>
+                                  <label htmlFor="email" className="form-label">{t("accounteMail") }
+                                  </label>
                                   <input
                                     className="form-control"
                                     type="email"
@@ -145,7 +149,8 @@ const handleFileChange = (e) => {
                                   />
                                 </div>
                                 <div className="mb-4 col-md-6">
-                                  <label htmlFor="organization" className="form-label">Organization</label>
+                                  <label htmlFor="organization" className="form-label">{t("organization") }
+                                  </label>
                                   <input
                                     type="text"
                                     className="form-control"
@@ -156,7 +161,8 @@ const handleFileChange = (e) => {
                                   />
                                 </div>
                                 <div className="mb-4 col-md-6">
-                                  <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
+                                  <label htmlFor="phoneNumber" className="form-label">{t("phoneNumber") }
+                                  </label>
                                   <div className="input-group input-group-merge">
                                     <span className="input-group-text">TR (+90)</span>
                                     <input
@@ -171,7 +177,8 @@ const handleFileChange = (e) => {
                                   </div>
                                 </div>
                                 <div className="mb-4 col-md-6">
-                                  <label htmlFor="address" className="form-label">Address</label>
+                                  <label htmlFor="address" className="form-label">{t("address") }
+                                  </label>
                                   <input
                                     type="text"
                                     className="form-control"
@@ -185,7 +192,8 @@ const handleFileChange = (e) => {
                               </div>
                               <div className="row">
                                 <div className="mb-4 col-md-6">
-                                  <label htmlFor="state" className="form-label">State</label>
+                                  <label htmlFor="state" className="form-label">{t("state") }
+                                  </label>
                                   <input
                                     type="text"
                                     className="form-control"
@@ -197,7 +205,8 @@ const handleFileChange = (e) => {
                                   />
                                 </div>
                                 <div className="mb-4 col-md-6">
-                                  <label htmlFor="zipCode" className="form-label">Zip Code</label>
+                                  <label htmlFor="zipCode" className="form-label">{t("zipCode") }
+                                  </label>
                                   <input
                                     type="text"
                                     className="form-control"
@@ -210,7 +219,8 @@ const handleFileChange = (e) => {
                                   />
                                 </div>
                                 <div className="mb-4 col-md-6">
-                                  <label htmlFor="country" className="form-label">Country</label>
+                                  <label htmlFor="country" className="form-label">{t("country") }
+                                  </label>
                                   <select
                                                                   id="country"
                                                                   name="country"
@@ -226,7 +236,8 @@ const handleFileChange = (e) => {
                                                                 </select>
                                                               </div>
                                                               <div className="mb-4 col-md-6">
-                                                                <label htmlFor="language" className="form-label">Language</label>
+                                                                <label htmlFor="language" className="form-label">{t("language") }
+                                                                </label>
                                                                 <select
                                                                   id="language"
                                                                   name="language"
@@ -242,7 +253,8 @@ const handleFileChange = (e) => {
                                                                 </select>
                                                               </div>
                                                               <div className="mb-4 col-md-6">
-                                                                <label htmlFor="timezone" className="form-label">Timezone</label>
+                                                                <label htmlFor="timezone" className="form-label">{t("timezone") }
+                                                                </label>
                                                                 <select
                                                                   id="timezone"
                                                                   name="timezone"
@@ -258,7 +270,8 @@ const handleFileChange = (e) => {
                                                                 </select>
                                                               </div>
                                                               <div className="mb-4 col-md-6">
-                                                                <label htmlFor="currency" className="form-label">Currency</label>
+                                                                <label htmlFor="currency" className="form-label">{t("currency") }
+                                                                </label>
                                                                 <select
                                                                   id="currency"
                                                                   name="currency"
@@ -274,13 +287,15 @@ const handleFileChange = (e) => {
                                                               </div>
                                                             </div>
                                                             <div className="d-flex justify-content-between">
-                                                              <button type="submit" className="btn btn-primary">Save Changes</button>
+                                                              <button type="submit" className="btn btn-primary">{t("saveChanges") }
+                                                              </button>
                                                               <button
                                                                type="button" 
                                                                className="btn btn-outline-secondary"
                                                                onClick={handleReset} 
                                                               >
-                                                                   Reset
+                                                                   {t("reset") }
+
                                                               </button>                                    
                                                            </div>
                                                           </form>

@@ -118,7 +118,24 @@
   "contactName" : "Su nombre",
   "contactEmail" : "Correo electrónico",
   "contactMsg" : "Tu mensaje",
-  "contactSend" : "Enviar"
+  "contactSend" : "Enviar",
+  "accountNewPhoto": "Cargar nueva foto",
+  "accountimg" : "Cargar",
+  "allowedFormats" : "Permitido JPG, GIF o PNG. Tamaño máximo de 800K",
+  "firstName" : "Nombre",
+  "lastName" : "Apellido",
+  "accounteMail" : "Correo electrónico",
+  "organization" : "Organización",
+  "phoneNumber" : "Número de Teléfono",
+  "address" : "Dirección",
+  "state" : "Estado",
+  "zipCode" : "Código Postal",
+  "country" : "País",
+  "language" : "Idioma",
+  "timezone" : "Zona Horaria",
+  "currency" : "Moneda",
+  "saveChanges" : "Guardar cambios",
+  "reset" : "Restablecer"
 
 
 
