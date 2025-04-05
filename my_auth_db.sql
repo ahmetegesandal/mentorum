@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 25 Mar 2025, 08:22:24
+-- Üretim Zamanı: 05 Nis 2025, 16:16:40
 -- Sunucu sürümü: 10.4.32-MariaDB
 -- PHP Sürümü: 8.2.12
 
@@ -41,8 +41,11 @@ CREATE TABLE `calendar` (
 
 INSERT INTO `calendar` (`id`, `teacher_id`, `date`, `time`, `is_available`) VALUES
 (60, 34, '2025-03-25', '09:00:00', 1),
-(61, 34, '2025-03-25', '14:00:00', 1),
-(62, 34, '2025-03-29', '01:29:00', 1);
+(62, 34, '2025-03-29', '01:29:00', 1),
+(63, 34, '2025-03-27', '15:06:00', 1),
+(64, 34, '2025-03-28', '15:38:00', 1),
+(65, 34, '2025-03-29', '14:40:00', 1),
+(66, 34, '2025-03-30', '18:40:00', 1);
 
 -- --------------------------------------------------------
 
@@ -116,6 +119,13 @@ CREATE TABLE `live_classes` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Tablo döküm verisi `live_classes`
+--
+
+INSERT INTO `live_classes` (`id`, `reservation_id`, `lesson_id`, `teacher_id`, `student_id`, `date`, `time`, `meeting_link`, `status`, `created_at`) VALUES
+(25, 105, 38, 34, 36, '2025-03-29', '01:29:00', '/meeting/Lesson-25-34-HFmrAJQv', 'completed', '2025-03-25 11:06:58');
+
 -- --------------------------------------------------------
 
 --
@@ -144,6 +154,13 @@ CREATE TABLE `notifications` (
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Tablo döküm verisi `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `user_id`, `message`, `is_read`, `created_at`, `updated_at`) VALUES
+(1, 2, 'naber lan', 0, '2025-03-27 16:03:24', '2025-03-27 16:03:24');
 
 -- --------------------------------------------------------
 
@@ -222,7 +239,7 @@ CREATE TABLE `reservations` (
 INSERT INTO `reservations` (`id`, `student_id`, `lesson_id`, `teacher_id`, `date`, `time`, `status`, `created_at`) VALUES
 (103, 33, 38, 34, '2025-03-25', '09:00:00', 'cancelled', '2025-03-24 20:22:40'),
 (104, 32, 38, 34, '2025-03-25', '14:00:00', 'pending', '2025-03-24 20:25:01'),
-(105, 36, 38, 34, '2025-03-29', '01:29:00', 'pending', '2025-03-24 22:30:15');
+(105, 36, 38, 34, '2025-03-29', '01:29:00', 'confirmed', '2025-03-24 22:30:15');
 
 -- --------------------------------------------------------
 
@@ -300,17 +317,18 @@ CREATE TABLE `teachers` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `bio` varchar(500) DEFAULT NULL,
-  `expertise` text DEFAULT NULL
+  `expertise` text DEFAULT NULL,
+  `is_approved` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Tablo döküm verisi `teachers`
 --
 
-INSERT INTO `teachers` (`id`, `user_id`, `bio`, `expertise`) VALUES
-(4, 34, 'Sibel Birtane Akar, başarılı bir girişimci ve liderdir. Kendisinin iş dünyasında kazandığı tecrübe, özellikle teknoloji ve dijital pazarlama alanlarında derindir. Yenilikçi projelere imza atarak sektördeki birçok kişiye ilham vermektedir. Yaratıcı ve vizyoner yaklaşımıyla tanınır.\n\n\n\n\n\n\nSibel Birtane Akar, başarılı bir girişimci ve liderdir. Kendisinin iş dünyasında kazandığı tecrübe, özellikle teknoloji ve dijital pazarlama alanlarında derindir. Yenilikçi projelere imza atarak sektördeki birçok', 'pc'),
-(6, 45, NULL, 'yapay zeka'),
-(7, 46, NULL, 'bilgisayar');
+INSERT INTO `teachers` (`id`, `user_id`, `bio`, `expertise`, `is_approved`) VALUES
+(4, 34, 'Sibel Birtane Akar, başarılı bir girişimci ve liderdir. Kendisinin iş dünyasında kazandığı tecrübe, özellikle teknoloji ve dijital pazarlama alanlarında derindir. Yenilikçi projelere imza atarak sektördeki birçok kişiye ilham vermektedir. Yaratıcı ve vizyoner yaklaşımıyla tanınır.\n\n\n\n\n\n\nSibel Birtane Akar, başarılı bir girişimci ve liderdir. Kendisinin iş dünyasında kazandığı tecrübe, özellikle teknoloji ve dijital pazarlama alanlarında derindir. Yenilikçi projelere imza atarak sektördeki birçok', 'pc', 1),
+(6, 45, 'asli ben', 'yapay zeka', 0),
+(7, 46, 'ebru ben', 'bilgisayar', 0);
 
 -- --------------------------------------------------------
 
@@ -338,7 +356,8 @@ INSERT INTO `tickets` (`id`, `user_id`, `subject`, `description`, `status`, `pri
 (3, 36, 'merhaba ', 'aqqqqqqq', 'open', 'medium', '2025-03-24 15:01:00', '2025-03-24 15:01:00'),
 (4, 36, 'dsadasda', 'dsadsad', 'open', 'medium', '2025-03-24 15:01:23', '2025-03-24 15:01:23'),
 (5, 2, 'merhaba ', 'ODISANDAUDSAODISANDAUDSAODISANDAUDSAODISANDAUDSAODISANDAUDSAODISANDAUDSAODISANDAUDSA\n', 'open', 'medium', '2025-03-24 15:36:28', '2025-03-24 15:36:28'),
-(6, 34, 'sdadasda', '3131', 'open', 'medium', '2025-03-24 16:32:00', '2025-03-24 16:32:00');
+(6, 34, 'sdadasda', '3131', 'open', 'medium', '2025-03-24 16:32:00', '2025-03-24 16:32:00'),
+(7, 34, 'Yeni bak bu', 'Aloooo', 'open', 'medium', '2025-03-31 22:15:52', '2025-03-31 22:15:52');
 
 -- --------------------------------------------------------
 
@@ -364,7 +383,8 @@ INSERT INTO `ticket_comments` (`id`, `ticket_id`, `user_id`, `comment`, `created
 (4, 5, 2, '<p><strong>MERHABA </strong></p><p><strong><em><s>Dünya</s></em></strong><em><s> </s></em></p>', '2025-03-24 15:37:05'),
 (5, 5, 2, '<p>daspldsamıdoas</p>', '2025-03-24 16:31:35'),
 (6, 6, 34, '<p>yorum</p>', '2025-03-24 16:32:06'),
-(7, 6, 2, '<p>merhaba</p>', '2025-03-24 16:32:32');
+(7, 6, 2, '<p>merhaba</p>', '2025-03-24 16:32:32'),
+(8, 2, 34, '<p>asdfghj</p>', '2025-03-25 11:09:15');
 
 -- --------------------------------------------------------
 
@@ -394,14 +414,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `name`, `surname`, `role`, `photo`, `is_online`, `email`, `created_at`, `credit`, `two_factor_enabled`, `two_factor_code`, `two_factor_expires_at`) VALUES
-(2, 'ege', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Ahmet Ege', 'Sandal', 'admin', 'ege.jpg', 0, 'ahmetegesandal94@gmail.com', '2025-03-25 07:04:17', 1200, 1, NULL, NULL),
+(2, 'ege', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Ahmet Ege', 'Sandal', 'admin', 'ege.jpg', 0, 'ahmetegesandal94@gmail.com', '2025-04-03 14:40:36', 1200, 0, NULL, NULL),
 (15, 'ufuk', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Muhammed Ufuk', 'Aslan', 'admin', 'ufuk.jpg', 0, 'ufuk@gmail.com', '2025-03-22 22:41:52', 2000, 0, NULL, NULL),
-(16, 'hatice', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Hatice Şerife', 'Aladağlı', 'admin', 'hatice.jpg', 0, 'hatice@gmail.com', '2025-03-22 22:41:48', 2000, 0, NULL, NULL),
+(16, 'hatice', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Hatice Şerife', 'Aladağlı', 'admin', 'hatice.jpg', 0, 'aladaglihatice5@gmail.com', '2025-03-27 12:04:18', 2000, 0, NULL, NULL),
 (17, 'furkan', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Furkan', 'Güven', 'admin', 'furkan.jpg', 0, 'furkan@gmail.om', '2025-03-22 22:41:45', 2000, 0, NULL, NULL),
-(32, 'doruk', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Doruk', 'Gür', 'student', NULL, 0, 'test@gmail.com', '2025-03-25 07:02:41', 0, 0, NULL, NULL),
-(33, 'senem', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Senem', 'Gür', 'parent', NULL, 0, 'test@gmail.com', '2025-03-25 07:02:38', 4400, 0, NULL, NULL),
-(34, 'sibel', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Sibel Birtane', 'Akar', 'teacher', 'SibelCaliskan.jpg', 0, 'test@gmail.com', '2025-03-25 07:02:36', 10, 0, NULL, NULL),
-(36, 'yavuz', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Yavuz', 'Gür', 'student', NULL, 0, 'test@gmail.com', '2025-03-25 07:02:34', 1750, 0, NULL, NULL),
+(32, 'doruk', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Doruk', 'Gür', 'student', NULL, 0, 'test@gmail.com', '2025-03-27 11:17:12', 0, 0, NULL, NULL),
+(33, 'senem', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Senem', 'Gür', 'parent', NULL, 0, 'test@gmail.com', '2025-03-27 11:13:16', 4400, 0, NULL, NULL),
+(34, 'sibel', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Sibel Birtane', 'Akar', 'teacher', 'SibelCaliskan.jpg', 0, 'test@gmail.com', '2025-04-03 14:36:44', 10, 0, NULL, NULL),
+(36, 'yavuz', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Yavuz', 'Gür', 'student', NULL, 0, 'test@gmail.com', '2025-03-27 11:09:59', 1600, 0, NULL, NULL),
 (42, 'sena', '$2a$10$Q.neNjq1HjmO5gA9cyS2T.HTyySJ6tp8pbCUiidyqZH.aKnleoqia', 'Sena', 'Ağaçyetiştiren', 'admin', 'sena.jpg', 0, 'senaagacyetistiren@gmail.com', '2025-03-25 07:03:41', 500, 0, NULL, NULL),
 (44, 'emir', '$2b$10$uHxbXM1PHDEWAHYTlobS0euWs8qzQ2kE92fhOTncEO5x1jK6VY25i', 'Niyazi Emir', 'Akdemir', 'student', 'emir.jpg', 0, 'akdemirniyaziemir@gmail.com', '2025-03-24 16:12:20', 2000, 0, NULL, NULL),
 (45, 'asli', '$2b$10$lPBbGtW.lUmtgOrszKK4t.gPqq1WJgLZRbGkfNBQZPCfxx5PdBN.G', 'Aslıhan', 'Karataş', 'teacher', 'aslihanKaratas.jpg', 0, 'test@gmail.com', '2025-03-25 07:02:31', 0, 0, NULL, NULL),
@@ -541,7 +561,7 @@ ALTER TABLE `users`
 -- Tablo için AUTO_INCREMENT değeri `calendar`
 --
 ALTER TABLE `calendar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `categories`
@@ -559,7 +579,7 @@ ALTER TABLE `lessons`
 -- Tablo için AUTO_INCREMENT değeri `live_classes`
 --
 ALTER TABLE `live_classes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `messages`
@@ -571,7 +591,7 @@ ALTER TABLE `messages`
 -- Tablo için AUTO_INCREMENT değeri `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `parents`
@@ -613,13 +633,13 @@ ALTER TABLE `teachers`
 -- Tablo için AUTO_INCREMENT değeri `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `ticket_comments`
 --
 ALTER TABLE `ticket_comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `users`
