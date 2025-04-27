@@ -70,7 +70,7 @@ return (
       <div className="content-wrapper">
         <div className="container-xxl flex-grow-1 container-p-y">
           <div className="row justify-content-center">
-            <div className="col-lg-10 col-md-12">
+            <div className="col-lg-12 col-md-12">
               <div className="card shadow-lg border-0 rounded-4">
                 <div className="card-body p-4">
                   

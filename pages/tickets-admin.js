@@ -82,6 +82,8 @@ const TicketsList = () => {
                     <div className="card-body">
                       <h5 className="card-title">{truncateText(ticket.subject)}</h5>
                       <p className="card-text">{truncateText(ticket.description)}</p>
+                      <p className="Gönderen">Gönderen Kişi:{ticket.username}</p>
+                      <p className="GönderenID">Gönderen ID:{ticket.user_id}</p>
                       <button
                         onClick={() => handleRedirect(ticket.id)}
                         className="btn btn-primary"

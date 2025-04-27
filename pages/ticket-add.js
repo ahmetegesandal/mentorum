@@ -93,14 +93,7 @@ const TicketsCreate = () => {
                           className="btn btn-primary px-4 me-2"
                         >
                           Gönder
-                        </button>
-                        <button
-                          type="button"
-                          className="btn btn-outline-secondary px-4"
-                          onClick={() => router.push("/tickets-list")}
-                        >
-                          İptal
-                        </button>
+                        </button>                    
                       </div>
                     </form>
                   </div>
