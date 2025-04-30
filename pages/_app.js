@@ -78,23 +78,20 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   useEffect(() => {
-    //console.log("Current asPath:", router.asPath);
-
-    if (
-      router.asPath.startsWith("/") ||
-      router.asPath.startsWith("/contact") ||
-      router.asPath.startsWith("/how-to-work") ||
-      router.asPath.startsWith("/mento-class") ||
-      router.asPath.startsWith("/course-summaries") ||
-      router.asPath.startsWith("/mlessons")
-    ) {
-      //console.log("Loading front page styles...");
+    const frontPages = [
+      "/",
+      "/contact",
+      "/how-to-work",
+      "/mento-class",
+      "/course-summaries",
+      "/mlessons",
+    ];
+  
+    if (frontPages.includes(router.pathname)) {
       require("../styles/pages/front-page.css");
       require("../styles/pages/front-page-landing.css");
-    } else {
-      //console.log("No front page styles loaded for:", router.asPath);
     }
-  }, [router.asPath]);
+  }, [router.pathname]);
 
   return (
     <UserProvider>
