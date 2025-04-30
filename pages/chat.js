@@ -135,6 +135,7 @@ const Chat = () => {
     const messageData = {
       sender_id: userData.id,
       receiver_id: receiverId,
+      sender_name: `${userData.name} ${userData.surname}`, // 👈 bunu ekle
       message: inputMessage,
     };
 
