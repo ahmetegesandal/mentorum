@@ -17,6 +17,10 @@ const ApprovalModal = () => {
       router?.pathname !== "/" &&
       router?.pathname !== "/contact" &&
       router?.pathname !== "/verify-2fa" &&
+      router?.pathname !== "/how-to-work" &&
+      router?.pathname !== "/mento-class" &&
+      router?.pathname !== "/course-summaries" &&
+      router?.pathname !== "/mlessons" &&
       userData?.role === "teacher" &&
       userData?.is_approved === 0
     ) {

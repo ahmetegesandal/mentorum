@@ -6,7 +6,17 @@ const Layout = ({ children }) => {
   const { isMenuExpanded } = useLayout();
   const router = useRouter();
 
-  const noLayoutPaths = ["/sign-in", "/register", "/404", "/", "/contact"];
+  const noLayoutPaths = [
+    "/sign-in",
+    "/register",
+    "/404",
+    "/",
+    "/contact",
+    "/how-to-work",
+    "/mento-class",
+    "/course-summaries",
+    "/mlessons",
+  ];
 
   if (noLayoutPaths.includes(router.pathname)) {
     return <>{children}</>;

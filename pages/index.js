@@ -9,7 +9,6 @@ import MainNavbar from "../components/MainNavbar";
 import Footer from "../components/Footer";
 import Link from "next/link";
 
-
 const Home = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
@@ -25,8 +24,8 @@ const Home = () => {
           <div className="container">
             <h4 className="text-center mb-1">
               <span className="position-relative fw-extrabold z-1">
-              {t("indexExperteacherMessg")}
-              <img
+                {t("indexExperteacherMessg")}
+                <img
                   src="img/front-pages/icons/section-title-icon.png"
                   alt="laptop charging"
                   className="section-title-img position-absolute object-fit-contain bottom-0 z-n1"
@@ -34,79 +33,98 @@ const Home = () => {
               </span>
             </h4>
             <br></br>
-            <p className="text-center mb-12 fs-5">
-            {t("indexTeacherMessg2")}
-            </p>
+            <p className="text-center mb-12 fs-5">{t("indexTeacherMessg2")}</p>
 
             <div className="features-icon-wrapper row gx-0 gy-6 g-sm-12">
-         {[{
-            img: "/img/backgrounds/math.svg",
-            alt: "laptop charging",
-            title: t("indexMathTitle"),
-            description: t("indexMathDesc"),
-            link: "/quality-code"
-            }, {
-             img: "/img/backgrounds/chem.svg",
-             alt: "transition up",
-             title:  t("indexChemTitle"),
-             description: t("indexChemDesc"),
-             link: "/continuous-updates"
-            }, {
-             img: "/img/backgrounds/geography.svg",
-             alt: "edit",
-             title: t("indexGeographyTitle"),
-             description: t("indexGeographyDesc"),
-             link: "/starter-kit"
-            }, {
-            img: "/img/backgrounds/biology.svg",
-            alt: "3d select solid",
-            title: t("indexBiologyTitle"),
-            description: t("indexBiologyDesc"),
-            link: "/api-ready"
-            }, {
-            img: "/img/backgrounds/physics.svg",
-            alt: "lifebelt",
-            title: t("indexPhysicsTitle"),
-            description: t("indexPhysicsDesc"),
-            link: "/excellent-support"
-            }, {
-            img: "/img/backgrounds/turkce.svg",
-            alt: "google docs",
-            title:t("indexTurcTitle"),
-            description: t("indexTurcDesc"),
-            link: "/well-documented"
-            }].map((feature, index) => (
-           <div key={index} className="col-lg-4 col-md-6 col-sm-12 text-center features-icon-box">
-              <Link href={feature.link} className="d-block text-decoration-none">
-                  <div className="text-center mb-3">
-                    <img src={feature.img} alt={feature.alt} className="img-fluid icon-size" />
-                  </div>
+              {[
+                {
+                  img: "/img/backgrounds/math.svg",
+                  alt: "laptop charging",
+                  title: t("indexMathTitle"),
+                  description: t("indexMathDesc"),
+                  link: "/quality-code",
+                },
+                {
+                  img: "/img/backgrounds/chem.svg",
+                  alt: "transition up",
+                  title: t("indexChemTitle"),
+                  description: t("indexChemDesc"),
+                  link: "/continuous-updates",
+                },
+                {
+                  img: "/img/backgrounds/geography.svg",
+                  alt: "edit",
+                  title: t("indexGeographyTitle"),
+                  description: t("indexGeographyDesc"),
+                  link: "/starter-kit",
+                },
+                {
+                  img: "/img/backgrounds/biology.svg",
+                  alt: "3d select solid",
+                  title: t("indexBiologyTitle"),
+                  description: t("indexBiologyDesc"),
+                  link: "/api-ready",
+                },
+                {
+                  img: "/img/backgrounds/physics.svg",
+                  alt: "lifebelt",
+                  title: t("indexPhysicsTitle"),
+                  description: t("indexPhysicsDesc"),
+                  link: "/excellent-support",
+                },
+                {
+                  img: "/img/backgrounds/turkce.svg",
+                  alt: "google docs",
+                  title: t("indexTurcTitle"),
+                  description: t("indexTurcDesc"),
+                  link: "/well-documented",
+                },
+              ].map((feature, index) => (
+                <div
+                  key={index}
+                  className="col-lg-4 col-md-6 col-sm-12 text-center features-icon-box"
+                >
+                  <Link
+                    href={feature.link}
+                    className="d-block text-decoration-none"
+                  >
+                    <div className="text-center mb-3">
+                      <img
+                        src={feature.img}
+                        alt={feature.alt}
+                        className="img-fluid icon-size"
+                      />
+                    </div>
                     <h5 className="mb-2">{feature.title}</h5>
-                    <p className="features-icon-description">{feature.description}</p>
-              </Link>
+                    <p className="features-icon-description">
+                      {feature.description}
+                    </p>
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
-      ))}
-        </div>
-      </div>
-    </section>
+        </section>
 
         <SwiperComponent />
 
         <section id="landingTeam" className="section-py ">
           <div className="container">
             <div className="text-center mb-4">
-              <span className="badge bg-label-primary">{t("indexTeamDesc1")}</span>
+              <span className="badge bg-label-primary">
+                {t("indexTeamDesc1")}
+              </span>
             </div>
             <h4 className="text-center mb-1">
               <span className="position-relative fw-extrabold z-1">
-              {t("indexTeamProf") } 
+                {t("indexTeamProf")}
                 <img
                   src="img/front-pages/icons/section-title-icon.png"
                   alt="laptop charging"
                   className="section-title-img position-absolute object-fit-contain bottom-0 z-n1"
                 />
               </span>
-              <span className="ms-1">{t("indexTeamDesc2") } </span>
+              <span className="ms-1">{t("indexTeamDesc2")} </span>
             </h4>
             <p className="text-center mb-md-11 pb-0 pb-xl-12 fs-5">
               {t("indexTeamDesc3")}
@@ -139,11 +157,6 @@ const Home = () => {
                   name: "Hatice Şerife Aladağlı",
                   role: "Developer",
                   image: "hatice.jpg",
-                },
-                {
-                  name: "Furkan Güven",
-                  role: "Developer",
-                  image: "furkan.jpg",
                 },
               ].map((member, index) => (
                 <div key={index} className="col-lg-4 col-md-6">
@@ -334,21 +347,19 @@ const Home = () => {
             <div className="row align-items-center gy-12">
               <div className="col-lg-6 text-start text-sm-center text-lg-start">
                 <h3 className="cta-title text-primary fw-bold mb-0">
-                {t("indexTeacherWant")}              
+                  {t("indexTeacherWant")}
                 </h3>
-                <h5 className="text-body mb-8">
-                {t("indexTeacherSelection")}        
-                </h5>
+                <h5 className="text-body mb-8">{t("indexTeacherSelection")}</h5>
                 <a href="payment-page.html" className="btn btn-lg btn-primary">
-                {t("indexteacherRegister")}
+                  {t("indexteacherRegister")}
                 </a>
               </div>
               <div className="col-lg-6 pt-lg-12 text-center text-lg-end">
                 <img
-                src="img/backgrounds/kitap.png"
-                alt="cta dashboard"
-                className="img-fluid mt-lg-4 custom-img"
-                width={"280"}
+                  src="img/backgrounds/kitap.png"
+                  alt="cta dashboard"
+                  className="img-fluid mt-lg-4 custom-img"
+                  width={"280"}
                 />
               </div>
             </div>

@@ -78,11 +78,23 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   useEffect(() => {
-    if (router.pathname === "/" || router.pathname === "/contact") {
-      import("../styles/pages/front-page.css");
-      import("../styles/pages/front-page-landing.css");
+    //console.log("Current asPath:", router.asPath);
+
+    if (
+      router.asPath.startsWith("/") ||
+      router.asPath.startsWith("/contact") ||
+      router.asPath.startsWith("/how-to-work") ||
+      router.asPath.startsWith("/mento-class") ||
+      router.asPath.startsWith("/course-summaries") ||
+      router.asPath.startsWith("/mlessons")
+    ) {
+      //console.log("Loading front page styles...");
+      require("../styles/pages/front-page.css");
+      require("../styles/pages/front-page-landing.css");
+    } else {
+      //console.log("No front page styles loaded for:", router.asPath);
     }
-  }, [router.pathname]);
+  }, [router.asPath]);
 
   return (
     <UserProvider>

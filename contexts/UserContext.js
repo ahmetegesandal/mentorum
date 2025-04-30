@@ -20,6 +20,10 @@ export const UserProvider = ({ children }) => {
       "/forgot-password",
       "/reset-password",
       "/verify-2fa",
+      "/how-to-work",
+      "/mento-class",
+      "/course-summaries",
+      "/mlessons",
     ];
 
     if (publicRoutes.includes(router?.pathname)) {
