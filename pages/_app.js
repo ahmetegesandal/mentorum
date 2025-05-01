@@ -17,6 +17,7 @@ import Layout from "../components/Layout";
 import { LayoutProvider } from "../contexts/LayoutContext";
 import { appWithTranslation } from "next-i18next";
 import DatabaseStatus from "../components/DatabaseStatus";
+import SocketStatus from "../components/SocketStatus";
 import Preloader from "../components/Preloader";
 import { useRouter } from "next/router";
 import { UserProvider } from "../contexts/UserContext";
@@ -103,6 +104,7 @@ function MyApp({ Component, pageProps }) {
           ) : (
             <Layout>
               <DatabaseStatus />
+              <SocketStatus />
               <GlobalLogoutHandler userId={pageProps.userId} />
               <ApprovalModal /> {/* 🔐 Onay kontrol modali */}
               <Component {...pageProps} />

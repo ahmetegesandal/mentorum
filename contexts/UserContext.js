@@ -24,7 +24,7 @@ export const UserProvider = ({ children }) => {
       "/mento-class",
       "/course-summaries",
       "/mlessons",
-      "/meeting"
+      "/meeting",
     ];
 
     const isPublic = publicRoutes.some((route) =>

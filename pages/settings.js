@@ -6,11 +6,14 @@ import { useState } from "react";
 import Security from "../components/Security";
 import Notifications from "../components/Notifications";
 import Account from "../components/Account";
+import { UserContext } from "../contexts/UserContext";
+import { useContext } from "react";
+
 
 const Settings = () => {
   const { t } = useTranslation("common");
   const [activeTab, setActiveTab] = useState("account");
-
+  const userData = useContext(UserContext);
   const [imagePreview, setImagePreview] = useState("/img/avatars/1.png");
   const [file, setFile] = useState(null);
 
@@ -50,15 +53,16 @@ const Settings = () => {
                   <div className="tab-content mt-4">
                     {activeTab === "account" && (
                       <div className="tab-pane fade show active" id="account">
-                        <div className="card mb-6">
+                        <div className="card shadow-none mb-6">
                           <div className="card-body">
-                            <Account 
-                              imagePreview={imagePreview} 
-                              setImagePreview={setImagePreview} 
-                              file={file} 
-                              setFile={setFile} 
-                              handleSubmit={handleSubmit}
-                            />
+                          <Account
+                            userData={userData}
+                            imagePreview={imagePreview}
+                            setImagePreview={setImagePreview}
+                            file={file}
+                            setFile={setFile}
+                          />
+
                           </div>
                         </div>
                       </div>

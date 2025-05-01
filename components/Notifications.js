@@ -11,7 +11,7 @@ const Notifications = () => {
   };
 
   return (
-    <div className="card">
+    <div className="card shadow-none">
       <div className="card-body">
         <h5 className="mb-0">Recent Devices</h5>
         <span>
