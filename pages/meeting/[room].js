@@ -81,6 +81,8 @@ const MeetingPage = () => {
           title: "Ders tamamlandı!",
           text: "Katılımcılara kapatıldı.",
         });
+        router.push("/TeacherLiveClasses"); // ← yönlendirme buraya
+
       } else {
         await Swal.fire({
           icon: "error",

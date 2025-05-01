@@ -24,7 +24,12 @@ export const UserProvider = ({ children }) => {
       "/mento-class",
       "/course-summaries",
       "/mlessons",
+      "/meeting"
     ];
+
+    const isPublic = publicRoutes.some((route) =>
+      router.pathname.startsWith(route)
+    );
 
     if (publicRoutes.includes(router?.pathname)) {
       setLoading(false);
