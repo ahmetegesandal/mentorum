@@ -7,8 +7,10 @@ import "../styles/pages/page-misc.css";
 import "../styles/pages/app-academy.css";
 import "../styles/pages/app-chat.css";
 
-import "../styles/rtl/preloader.css";
 
+import ChatbotWidget from '../components/ChatbotWidget';
+
+import "../styles/rtl/preloader.css";
 import "../styles/rtl/custom.css";
 
 import { useEffect, useState } from "react";
@@ -87,27 +89,29 @@ function MyApp({ Component, pageProps }) {
       "/course-summaries",
       "/mlessons",
     ];
-  
+
     if (frontPages.includes(router.pathname)) {
       require("../styles/pages/front-page.css");
       require("../styles/pages/front-page-landing.css");
     }
   }, [router.pathname]);
 
+  const shouldShowChatbot = !["/", "/sign-in"].includes(router.pathname);
+
   return (
     <UserProvider>
-      {/* Kullanıcı bilgisini her yerden erişilebilir hale getiriyoruz */}
       <ThemeProvider>
         <LayoutProvider>
           {loading ? (
-            <Preloader /> // Sayfa yüklenene kadar Preloader göster
+            <Preloader />
           ) : (
             <Layout>
               <DatabaseStatus />
               <SocketStatus />
               <GlobalLogoutHandler userId={pageProps.userId} />
-              <ApprovalModal /> {/* 🔐 Onay kontrol modali */}
+              <ApprovalModal />
               <Component {...pageProps} />
+              {shouldShowChatbot && <ChatbotWidget />} {}
             </Layout>
           )}
         </LayoutProvider>
