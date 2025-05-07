@@ -13,7 +13,12 @@ export default async function handler(req, res) {
 
     // Kullanıcıyı veritabanından getir
     const [user] = await db.execute(
-      "SELECT id, username, name, surname, email, role, photo, credit FROM users WHERE id = ?",
+      `SELECT 
+        u.id, u.username, u.name, u.surname, u.email, u.role, u.photo, u.credit,
+        t.is_approved
+      FROM users u
+      LEFT JOIN teachers t ON u.id = t.user_id
+      WHERE u.id = ?`,
       [id]
     );
 

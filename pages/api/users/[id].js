@@ -47,10 +47,13 @@ export default async function handler(req, res) {
       // 🏫 Kullanıcı öğretmense öğretmen bilgilerini ekle
       if (userData.role === "teacher") {
         const [teacherInfo] = await connection.execute(
-          `SELECT bio, expertise FROM teachers WHERE user_id = ?`,
+          `SELECT bio, expertise, is_approved FROM teachers WHERE user_id = ?`,
           [id]
         );
         userData.teacher_info = teacherInfo.length ? teacherInfo[0] : null;
+        userData.is_approved = teacherInfo.length
+          ? teacherInfo[0].is_approved
+          : null;
       }
 
       // 🎓 Kullanıcı öğrenciyse öğrenci bilgilerini ekle

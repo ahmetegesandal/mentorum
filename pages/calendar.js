@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import { UserContext } from "../contexts/UserContext";
 import { useTranslation } from "next-i18next";
 import CalendarModal from "../components/CalendarModal";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Calendar = () => {
   const { t } = useTranslation("common");
@@ -13,17 +14,23 @@ const Calendar = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedEntries, setSelectedEntries] = useState([]);
+
   const itemsPerPage = 10;
 
-  if (!userData || userData.role !== "teacher") {
+  if (!userData || userData?.role !== "teacher") {
     return <p className="text-danger text-center mt-4">Erişim Yetkiniz Yok!</p>;
   }
+
+  const toggleSelection = (id) => {
+    setSelectedEntries((prev) =>
+      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
+    );
+  };
 
   useEffect(() => {
     if (userData?.id) {
       fetchCalendar();
-
-      // API'yi her 30 saniyede bir güncelle
       const interval = setInterval(fetchCalendar, 30000);
       return () => clearInterval(interval);
     }
@@ -32,13 +39,10 @@ const Calendar = () => {
   const fetchCalendar = async () => {
     try {
       const response = await fetch(
-        `/api/getUserCalendar?userId=${userData.id}`
+        `/api/getUserCalendar?userId=${userData?.id}`
       );
       let data = await response.json();
-
-      // Tarihleri en yeni tarihten en eskiye sıralama
       data.sort((a, b) => new Date(b.date) - new Date(a.date));
-
       setCalendarEntries(data);
     } catch (error) {
       console.error("Takvim verisi alınırken hata oluştu:", error);
@@ -63,12 +67,10 @@ const Calendar = () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ id }),
           });
-
           const data = await res.json();
-
           if (res.ok) {
             Swal.fire("Silindi!", data.message, "success");
-            fetchCalendar(); // Listeyi güncelle
+            fetchCalendar();
           } else {
             Swal.fire("Hata!", data.message, "error");
           }
@@ -79,7 +81,68 @@ const Calendar = () => {
     });
   };
 
-  // Tarih formatını (YYYY-MM-DD → DD.MM.YYYY) çevirme
+  const handleBulkDelete = async () => {
+    if (selectedEntries.length === 0) return;
+    Swal.fire({
+      title: "Seçilen kayıtlar silinsin mi?",
+      text: "Bu işlem geri alınamaz!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Evet, sil!",
+      cancelButtonText: "İptal",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await fetch("/api/deleteCalendarEntries", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ids: selectedEntries }),
+          });
+          const data = await res.json();
+          if (res.ok) {
+            Swal.fire("Silindi!", data.message, "success");
+            setSelectedEntries([]);
+            fetchCalendar();
+          } else {
+            Swal.fire("Hata!", data.message, "error");
+          }
+        } catch (error) {
+          Swal.fire("Hata!", "Sunucu hatası oluştu.", "error");
+        }
+      }
+    });
+  };
+
+  const handleDeleteOldWeeks = async () => {
+    Swal.fire({
+      title: "Önceki tüm haftalar silinsin mi?",
+      text: "Bu işlem geri alınamaz!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Evet, sil!",
+      cancelButtonText: "İptal",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await fetch("/api/deleteOldWeeks", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ teacherId: userData?.id }), // <-- DÜZELTME BURADA
+          });
+          const data = await res.json();
+          if (res.ok) {
+            Swal.fire("Silindi!", data.message, "success");
+            fetchCalendar();
+          } else {
+            Swal.fire("Hata!", data.message, "error");
+          }
+        } catch (error) {
+          Swal.fire("Hata!", "Sunucu hatası oluştu.", "error");
+        }
+      }
+    });
+  };
+
   const formatDate = (dateString) => {
     const dateObj = new Date(dateString);
     return new Intl.DateTimeFormat("tr-TR", {
@@ -89,20 +152,21 @@ const Calendar = () => {
     }).format(dateObj);
   };
 
-  // Saat formatını (HH:mm → HH:mm - HH+1:mm) çevirme
   const formatTime = (timeString) => {
     const [hours, minutes] = timeString.split(":").map(Number);
-    const nextHour = hours + 1; // Tam 1 saat ekliyoruz
-    return `${hours.toString().padStart(2, "0")}:${minutes
-      .toString()
-      .padStart(2, "0")} - ${nextHour.toString().padStart(2, "0")}:${minutes
-      .toString()
-      .padStart(2, "0")}`;
+    const nextHour = hours + 1;
+    return (
+      `${hours.toString().padStart(2, "0")}:${minutes
+        .toString()
+        .padStart(2, "0")}` +
+      ` - ${nextHour.toString().padStart(2, "0")}:${minutes
+        .toString()
+        .padStart(2, "0")}`
+    );
   };
 
-  // Arama ve sayfalama için filtreleme
   const filteredEntries = calendarEntries.filter((entry) => {
-    const formattedDate = formatDate(entry.date); // Tarihi "DD.MM.YYYY" formatına çevir
+    const formattedDate = formatDate(entry.date);
     return formattedDate.includes(searchTerm);
   });
 
@@ -121,14 +185,27 @@ const Calendar = () => {
         <div className="container mt-5">
           <h2 className="text-center mb-4">{t("Takvim Kayıtlarım")}</h2>
 
-          <div className="d-flex justify-content-between mb-3">
+          <div className="d-flex justify-content-between mb-3 align-items-center">
             <input
               type="text"
               className="form-control w-50"
               placeholder="Tarih ara (DD.MM.YYYY)..."
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <CalendarModal onUpdate={fetchCalendar} />
+            <div className="d-flex gap-2">
+              {selectedEntries.length > 0 && (
+                <button className="btn btn-danger" onClick={handleBulkDelete}>
+                  Seçilenleri Sil ({selectedEntries.length})
+                </button>
+              )}
+              <button
+                className="btn btn-warning"
+                onClick={handleDeleteOldWeeks}
+              >
+                Önceki Haftaları Sil
+              </button>
+              <CalendarModal onUpdate={fetchCalendar} />
+            </div>
           </div>
 
           {loading ? (
@@ -138,38 +215,70 @@ const Calendar = () => {
               Henüz takvim kaydınız yok!
             </p>
           ) : (
-            <table className="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Tarih</th>
-                  <th>Saat</th>
-                  <th>İşlem</th>
-                </tr>
-              </thead>
-              <tbody>
-                {currentEntries.map((entry) => (
-                  <tr key={entry.id}>
-                    <td>{formatDate(entry.date)}</td>
-                    <td>{formatTime(entry.time)}</td>
-                    <td>
-                      <button
-                        className="btn btn-danger btn-sm"
-                        onClick={() => handleDelete(entry.id)}
-                      >
-                        Sil
-                      </button>
-                    </td>
+            <div className="table-responsive">
+              <table className="table table-bordered">
+                <thead className="table-light">
+                  <tr>
+                    <th style={{ width: "40px" }}>
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        checked={
+                          selectedEntries.length === currentEntries.length &&
+                          currentEntries.length > 0
+                        }
+                        onChange={(e) =>
+                          setSelectedEntries(
+                            e.target.checked
+                              ? currentEntries.map((entry) => entry.id)
+                              : []
+                          )
+                        }
+                      />
+                    </th>
+                    <th>Tarih</th>
+                    <th>Saat</th>
+                    <th>İşlem</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {currentEntries.map((entry) => (
+                    <tr key={entry.id}>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={selectedEntries.includes(entry.id)}
+                          onChange={() => toggleSelection(entry.id)}
+                          className="form-check-input"
+                        />
+                      </td>
+                      <td>{formatDate(entry.date)}</td>
+                      <td>{formatTime(entry.time)}</td>
+                      <td>
+                        <button
+                          className="btn btn-danger btn-sm"
+                          onClick={() => handleDelete(entry.id)}
+                        >
+                          Sil
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
 
           <nav>
-            <ul className="pagination">
+            <ul className="pagination justify-content-center">
               {[...Array(Math.ceil(filteredEntries.length / itemsPerPage))].map(
                 (_, i) => (
-                  <li key={i} className="page-item">
+                  <li
+                    key={i}
+                    className={`page-item ${
+                      currentPage === i + 1 ? "active" : ""
+                    }`}
+                  >
                     <button
                       className="page-link"
                       onClick={() => setCurrentPage(i + 1)}
@@ -186,5 +295,13 @@ const Calendar = () => {
     </>
   );
 };
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}
 
 export default Calendar;

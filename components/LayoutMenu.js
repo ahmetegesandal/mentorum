@@ -127,7 +127,7 @@ const menuItems = [
   {
     key: "support",
     label: "Destek",
-    icon: "ti ti-credit-card",
+    icon: "ti ti-ticket",
     roles: ["admin", "parent", "teacher", "student"],
     subMenu: [
       {
@@ -150,13 +150,26 @@ const menuItems = [
   {
     key: "boost",
     label: "Boost",
-    icon: "ti ti-credit-card",
+    icon: "ti ti-calendar-up",
     roles: ["teacher"],
     subMenu: [
       {
         path: "/boosts",
         label: "Boost İşlemleri",
         roles: ["teacher"],
+      },
+    ],
+  },
+  {
+    key: "notifications",
+    label: "Bildirim",
+    icon: "ti ti-calendar-up",
+    roles: ["admin", "parent", "teacher", "student"],
+    subMenu: [
+      {
+        path: "/notifications",
+        label: "Bildirimler",
+        roles: ["admin", "parent", "teacher", "student"],
       },
     ],
   },
@@ -229,7 +242,7 @@ const LayoutMenu = () => {
     >
       <div className="app-brand demo">
         <Link href="/main" className="app-brand-link">
-          <Logo />
+          <Logo w={56} h={56} />
         </Link>
         <a
           href="#"

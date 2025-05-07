@@ -15,7 +15,7 @@ const Profile = () => {
     if (userData?.id) {
       const checkOnlineStatus = async () => {
         try {
-          const response = await fetch(`/api/users/${userData.id}/status`);
+          const response = await fetch(`/api/users/${userData?.id}/status`);
           if (response.ok) {
             const data = await response.json();
             setIsOnline(data.is_online === 1);
@@ -60,9 +60,10 @@ const Profile = () => {
                             : "/img/avatars/default.png"
                         }
                         alt="User Image"
-                        className="d-block h-auto ms-0 ms-sm-6 rounded user-profile-img"
-                        width={120}
-                        height={120}
+                        className="d-block ms-0 ms-sm-6 rounded user-profile-img"
+                        width={"120"}
+                        height={"120"}
+                        style={{ objectFit: "cover" }}
                       />
                     </div>
                     <div className="flex-grow-1 mt-3 mt-lg-5">
@@ -142,40 +143,40 @@ const Profile = () => {
                     <small className="card-text text-uppercase text-muted small">
                       Hakkında
                     </small>
-                    {userData.role === "teacher" && (
+                    {userData?.role === "teacher" && (
                       <div>
                         <p>{userData.teacher_info?.bio}</p>
                       </div>
                     )}
-                    {userData.role === "student" && (
+                    {userData?.role === "student" && (
                       <div>
-                        <p>Sınıf: {userData.student_info?.grade}</p>
+                        <p>Sınıf: {userData?.student_info?.grade}</p>
                       </div>
                     )}
                     <ul className="list-unstyled my-3 py-1">
                       <li className="d-flex align-items-center mb-4">
                         <i className="ti ti-user ti-lg"></i>
                         <span className="fw-medium mx-2">Username:</span>
-                        <span>{userData.username}</span>
+                        <span>{userData?.username}</span>
                       </li>
                       <li className="d-flex align-items-center mb-4">
                         <i className="ti ti-user ti-lg"></i>
                         <span className="fw-medium mx-2">Full Name:</span>
                         <span>
-                          {userData.name} {userData.surname}
+                          {userData?.name} {userData?.surname}
                         </span>
                       </li>
 
                       <li className="d-flex align-items-center mb-4">
                         <i className="ti ti-crown ti-lg"></i>
                         <span className="fw-medium mx-2">Role:</span>
-                        <span>{userData.role}</span>
+                        <span>{userData?.role}</span>
                       </li>
 
                       <li className="d-flex align-items-center mb-4">
                         <i className="ti ti-crown ti-lg"></i>
                         <span className="fw-medium mx-2">Mail:</span>
-                        <span>{userData.email}</span>
+                        <span>{userData?.email}</span>
                       </li>
 
                       <li className="d-flex align-items-center mb-2">

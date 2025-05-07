@@ -1,8 +1,11 @@
 import Logo from "../components/Logo";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import ThemeSwitcher from "../components/ThemeSwitcher";
+import { useTranslation } from "next-i18next";
 
 const MainNavbar = () => {
+  const { t } = useTranslation();
+
   return (
     <nav className="layout-navbar shadow-none py-0 navbar-active">
       <div className="container">
@@ -21,7 +24,7 @@ const MainNavbar = () => {
             </button>
 
             <a href="/" className="app-brand-link">
-              <Logo />
+              <Logo w={48} h={48} />
             </a>
           </div>
 
@@ -164,7 +167,7 @@ const MainNavbar = () => {
             <li>
               <a href="/sign-in" className="btn btn-primary" target="_blank">
                 <span className="tf-icons ti ti-login scaleX-n1-rtl me-md-1"></span>
-                <span className="d-none d-md-block">Login/Register</span>
+                <span className="d-none d-md-block">{t("MainNavLogin")} </span>
               </a>
             </li>
           </ul>

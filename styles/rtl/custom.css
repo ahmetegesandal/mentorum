@@ -195,12 +195,11 @@
   text-decoration: underline;
 }
 
-/* Koyu tema desteği */
 .dark-style .richtext-editor .ProseMirror a {
-  color: #66c2ff; /* Açık mavi renkli bağlantılar */
+  color: #66c2ff; 
 }
 
-/* Ek kısım */
+/*İndex sayfası slayt düzeltmeleri */
 .hero-image-container {
   position: absolute;
   top: 0;
@@ -208,7 +207,7 @@
   transform: translateX(-50%);
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Bu özellik, resmin ekrana tam uyum sağlamasını sağlar. */
+  object-fit: cover; 
   max-width: 100%;
   max-height: 100%;
 }
@@ -221,12 +220,12 @@
   width: 70%;
   max-width: 560px;
   font-size: 3rem;
-  z-index: 10; /* İçeriğin resmin önünde olmasını sağlar */
+  z-index: 10; 
 }
 
 @media (max-width: 1200px) {
   .hero-content h1 {
-    font-size: 2.2rem; /* 1200px ve altı ekranlarda başlık boyutunu küçültür */
+    font-size: 2.2rem; 
   }
 
   .hero-content p {
@@ -240,7 +239,7 @@
 
 @media (max-width: 992px) {
   .hero-content h1 {
-    font-size: 1.8rem; /* 992px ve altı ekranlarda başlık boyutunu küçültür */
+    font-size: 1.8rem; 
   }
 
   .hero-content p {
@@ -254,7 +253,7 @@
 
 @media (max-width: 768px) {
   .hero-content h1 {
-    font-size: 1.5rem; /* 768px ve altı ekranlarda başlık boyutunu küçültür */
+    font-size: 1.5rem;
   }
 
   .hero-content p {
@@ -272,7 +271,7 @@
 
 @media (max-width: 576px) {
   .hero-content h1 {
-    font-size: 1.25rem; /* 576px ve altı ekranlarda başlık boyutunu küçültür */
+    font-size: 1.25rem; 
   }
 
   .hero-content p {
@@ -290,7 +289,7 @@
 
 @media (max-width: 480px) {
   .hero-content h1 {
-    font-size: 1rem; /* 480px ve altı ekranlarda başlık boyutunu küçültür */
+    font-size: 1rem; 
   }
 
   .hero-content p {
@@ -365,8 +364,8 @@
 .hero-content p {
   background: linear-gradient(90deg, rgb(230, 236, 191), hwb(66 37% 4%));
   -webkit-background-clip: text;
-  background-clip: text; /* Standart özellik */
-  color: transparent; /* Arka planın yazıya uygulanabilmesi için renk transparan olmalı */
+  background-clip: text; 
+  color: transparent; 
 }
 
 .hero-content p {
@@ -374,5 +373,176 @@
   padding: 5px;
 }
 .hero-content h1 {
-  font-size: 2.28rem; /* Bu değeri küçültün */
+  font-size: 2.28rem; 
 }
+
+
+/*Dersler İconu özellikler*/
+
+.features-icon-box {
+  padding: 15px; 
+  display: inline-block;
+  text-align: center; 
+}
+
+.features-icon-box img {
+  max-width: 100%; 
+  height: auto; 
+  display: block;
+  margin: 0 auto; 
+  box-sizing: border-box; 
+}
+
+.icon-size {
+  width: 60px; 
+  height: 60px; 
+  display: block;
+  margin: 0 auto;
+  padding: 10px; 
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); 
+  border-radius: 8px; 
+  border: 2px solid #ddd; 
+  background-color: #fff; 
+}
+
+.icon-size:hover {
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.4); 
+  transform: scale(1.15);
+  border-color: #8800ff; 
+}
+
+.features-icon-description {
+  color: #655e5e; 
+  transition: color 0.3s ease;
+}
+
+.features-icon-box:hover .features-icon-description {
+  color: #ae3ce0;
+}
+
+@media (max-width: 992px) {
+  .icon-size {
+    width: 50px; 
+    height: 50px;
+  }
+}
+
+ @media (max-width: 768px) {
+  .icon-size {
+    width: 45px; 
+    height: 45px;
+  }
+}
+
+@media (max-width: 576px) {
+  .icon-size {
+    width: 40px; 
+    height: 40px;
+  }
+}
+
+/*İndex.js öğretmen mi olmak istiyosunuz kısmındaki resim düzeltmesi*/
+
+@media (min-width: 992px) { /* Sadece büyük ekranlarda kaydırma */
+  .custom-img {
+    transform: translateX(-200px);
+  }
+}
+
+@media (max-width: 991px) { /* Küçük ekranlarda kaydırma sıfır */
+  .custom-img {
+    transform: translateX(0);
+  }
+}
+
+
+/* -->settings.js iconlar mesafe <-- */
+.nav-link i {
+  margin-right: 8px; 
+}
+
+
+
+/* Security change password alanı düzenleme */
+.security-form .input-group-security {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.security-form .password-input-security {
+  width: 100%; 
+  max-width: 300px; 
+  padding: 10px;
+  margin-right: 10px; 
+}
+
+.security-form .input-group-text {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.security-form .error-message {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 5px;
+}
+
+.security-form .form-label {
+  font-weight: 600;
+}
+
+.security-form .card-header {
+  font-size: 1.25rem; 
+}
+
+.security-form .card-body h5 {
+  font-size: 1.125rem; 
+}
+
+.security-form .button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+.security-form .btn {
+  width: auto; 
+}
+
+@media (max-width: 768px) {
+  .security-form .password-input-security {
+    width: 100%; 
+    max-width: none; 
+  }
+
+  .security-form .button-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .security-form .btn {
+    width: 100%; 
+  }
+
+  .security-form .card-body {
+    padding: 1rem;
+  }
+
+  .security-form .table-responsive {
+    overflow-x: auto; 
+  }
+}
+
+@media (max-width: 480px) {
+  .security-form .card-header {
+    font-size: 1.2rem; 
+  }
+
+  .security-form .card-body h5 {
+    font-size: 1rem;
+  }
+}
+
+

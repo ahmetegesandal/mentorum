@@ -15,10 +15,10 @@ const NavProfileTab = () => {
     if (userData?.id) {
       const checkOnlineStatus = async () => {
         try {
-          const response = await fetch(`/api/users/${userData.id}/status`);
+          const response = await fetch(`/api/users/${userData?.id}/status`);
           if (response.ok) {
             const data = await response.json();
-            setIsOnline(data.is_online === 1);
+            setIsOnline(data?.is_online === 1);
           }
         } catch (error) {
           console.error("Online durumu alınamadı:", error);
@@ -57,16 +57,18 @@ const NavProfileTab = () => {
             throw new Error("Çıkış işlemi sırasında bir hata oluştu.");
           }
 
-          // LocalStorage'dan token'ı kaldır
+          // Token & session temizliği
           localStorage.removeItem("token");
           localStorage.removeItem("userId");
+          sessionStorage.removeItem("2fa-verified");
 
+          // WebSocket kapat
           if (socketRef.current) {
             console.log("🔌 WebSocket bağlantısı kapatılıyor...");
             socketRef.current.disconnect();
           }
 
-          // Çıkış yaptıktan sonra login sayfasına yönlendir
+          // Giriş sayfasına yönlendir
           router.push("/sign-in");
         } catch (error) {
           console.error("Logout error:", error);
@@ -103,7 +105,7 @@ const NavProfileTab = () => {
         >
           {userData?.photo ? (
             <img
-              src={`/img/avatars/${userData.photo}`}
+              src={`/img/avatars/${userData?.photo}`}
               alt="Avatar"
               className="rounded-circle"
             />
@@ -127,7 +129,7 @@ const NavProfileTab = () => {
                 >
                   {userData?.photo ? (
                     <img
-                      src={`/img/avatars/${userData.photo}`}
+                      src={`/img/avatars/${userData?.photo}`}
                       alt="Avatar"
                       className="rounded-circle"
                     />

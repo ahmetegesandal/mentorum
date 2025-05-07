@@ -64,7 +64,10 @@ const NavNotificationsTab = () => {
           </li>
           <li className="border-top">
             <div className="d-grid p-4">
-              <a className="btn btn-primary btn-sm d-flex" href="">
+              <a
+                className="btn btn-primary btn-sm d-flex"
+                href="/notifications"
+              >
                 <small className="align-middle">View all notifications</small>
               </a>
             </div>

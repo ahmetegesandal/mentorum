@@ -8,7 +8,7 @@ const HeroSection = () => {
 
   const slides = [
     {
-      image: "/img/backgrounds/ogr4.jpg",
+      image: "/img/backgrounds/ogr2.jpg",
       title: t("imgTitle2"),
       description: [
         t("TitleDes1"),
@@ -34,7 +34,7 @@ const HeroSection = () => {
       alignLeft: true,
     },
     {
-      image: "/img/backgrounds/ogr5.jpg",
+      image: "/img/backgrounds/ogrSlayt2.jpg",
       title: t("imgTitle4"),
       description: <span className="img-desc-4">{t("imgDesc4")}</span>,
       buttonText: t("imgButton3"),

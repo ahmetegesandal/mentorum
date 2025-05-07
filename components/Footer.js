@@ -1,5 +1,4 @@
 import Logo from "../components/Logo";
-
 import { useTranslation } from "next-i18next";
 
 const MainNavbar = () => {
@@ -18,15 +17,17 @@ const MainNavbar = () => {
           <div className="row gx-0 gy-6 g-lg-10">
             <div className="col-lg-5">
               <a href="landing-page.html" className="app-brand-link mb-6">
-                <Logo />
+                <Logo w={86} h={86} s={28} c={"text-dark"} />
               </a>
               <p className="footer-text footer-logo-description mb-6">
-                Most developer friendly & highly customisable Admin Dashboard
-                Template.
+                {t("footerDesc")}
               </p>
             </div>
             <div className="col-lg-2 col-md-4 col-sm-6">
-              <h6 className="footer-title mb-6">Demos</h6>
+              <h6 className="footer-title mb-6 fs-5">
+                {" "}
+                {t("footerMentorumAbaout")}
+              </h6>
               <ul className="list-unstyled">
                 <li className="mb-4">
                   <a
@@ -48,47 +49,55 @@ const MainNavbar = () => {
                 </li>
                 <li className="mb-4">
                   <a
+                    href="../vertical-menu-template-dark/"
+                    target="_blank"
+                    className="footer-link"
+                  >
+                    {t("Reviews")}
+                  </a>
+                </li>
+                <li className="mb-4">
+                  <a
                     href="../vertical-menu-template-bordered/"
                     target="_blank"
                     className="footer-link"
                   >
                     {t("NewsCenter")}
                   </a>
-                </li>
-                <li className="mb-4">
-                  <a
-                    href="../vertical-menu-template-semi-dark/"
-                    target="_blank"
-                    className="footer-link"
-                  >
-                    {t("Prices")}
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a
-                    href="../vertical-menu-template-dark/"
-                    target="_blank"
-                    className="footer-link"
-                  >
-                    {t("StudentRules")}
-                  </a>
-                </li>
+                </li>          
               </ul>
             </div>
             <div className="col-lg-2 col-md-4 col-sm-6">
-              <h6 className="footer-title mb-6">Pages</h6>
+              <h6 className="footer-title mb-6 fs-5">{t("indexBrowse")}</h6>
               <ul className="list-unstyled">
                 <li className="mb-4">
-                  <a href="pricing-page.html" className="footer-link">
-                    {t("Reviews")}
+                  <a href="payment-page.html" className="footer-link">
+                  {t("StudentRules")}
+                    <span className="badge bg-primary ms-2"></span>
                   </a>
                 </li>
                 <li className="mb-4">
-                  <a href="payment-page.html" className="footer-link">
-                    {t("CustomerService")}
-                    <span className="badge bg-primary ms-2">New</span>
+                  <a href="checkout-page.html" className="footer-link">
+                  {t("Prices")}
                   </a>
                 </li>
+                <li className="mb-4">
+                  <a href="help-center-landing.html" className="footer-link">
+                  {t("freeLesson")}
+                  </a>
+                </li>
+            
+              </ul>
+            </div>
+            <div className="col-lg-2 col-md-4 col-sm-6">
+              <h6 className="footer-title mb-6 fs-5">Müşteri Hizmetleri</h6>
+              <ul className="list-unstyled">
+               {/* <li className="mb-4">
+                  <a href="payment-page.html" className="footer-link">
+                    {t("CustomerService")}
+                    <span className="badge bg-primary ms-2"></span>
+                  </a>
+                </li>*/}
                 <li className="mb-4">
                   <a href="checkout-page.html" className="footer-link">
                     {t("FAQ")}
@@ -96,18 +105,10 @@ const MainNavbar = () => {
                 </li>
                 <li className="mb-4">
                   <a href="help-center-landing.html" className="footer-link">
-                    {t("Contact")}
+                    {t("contact")}
                   </a>
                 </li>
-                <li className="mb-4">
-                  <a
-                    href="../vertical-menu-template/auth-login-cover.html"
-                    target="_blank"
-                    className="footer-link"
-                  >
-                    {t("freeLesson")}
-                  </a>
-                </li>
+            
               </ul>
             </div>
           </div>

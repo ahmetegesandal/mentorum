@@ -3,7 +3,6 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 
-// Multer ile dosya yükleme yapılandırması
 const upload = multer({
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
@@ -27,7 +26,6 @@ const upload = multer({
   },
 });
 
-// API fonksiyonunu multer ile sarmallama
 export const config = {
   api: {
     bodyParser: false,
@@ -45,7 +43,8 @@ export default async function handler(req, res) {
     }
 
     const db = await getConnection();
-    const { id, username, name, surname, email, credit } = req.body;
+    const { id, username, name, surname, email, credit, is_approved } =
+      req.body;
     let photo = req.file ? req.file.filename : null;
 
     if (!id || !username || !name || !surname || !email || !credit) {
@@ -53,7 +52,6 @@ export default async function handler(req, res) {
     }
 
     try {
-      // Önce kullanıcıyı çekiyoruz ki eski fotoğraf varsa silebilelim
       const [existingUser] = await db.execute(
         "SELECT photo FROM users WHERE id = ?",
         [id]
@@ -63,7 +61,6 @@ export default async function handler(req, res) {
         return res.status(404).json({ error: "Kullanıcı bulunamadı!" });
       }
 
-      // Yeni fotoğraf varsa eskisini siliyoruz
       if (photo && existingUser[0].photo) {
         const oldPhotoPath = path.join(
           process.cwd(),
@@ -74,29 +71,24 @@ export default async function handler(req, res) {
           fs.unlinkSync(oldPhotoPath);
         }
       } else {
-        // Fotoğraf yüklenmediyse eski fotoğrafı koru
         photo = existingUser[0].photo;
       }
 
-      // Kullanıcıyı güncelleme sorgusu
-      const query = `
-        UPDATE users 
-        SET username = ?, name = ?, surname = ?, email = ?, photo = ?, credit = ?
-        WHERE id = ?
-      `;
+      await db.execute(
+        `UPDATE users SET username = ?, name = ?, surname = ?, email = ?, photo = ?, credit = ? WHERE id = ?`,
+        [username, name, surname, email, photo, credit, id]
+      );
 
-      const [result] = await db.execute(query, [
-        username,
-        name,
-        surname,
-        email,
-        photo,
-        credit,
-        id,
-      ]);
+      const [checkTeacher] = await db.execute(
+        `SELECT user_id FROM teachers WHERE user_id = ?`,
+        [id]
+      );
 
-      if (result.affectedRows === 0) {
-        return res.status(404).json({ error: "Kullanıcı bulunamadı!" });
+      if (checkTeacher.length && is_approved !== undefined) {
+        await db.execute(
+          `UPDATE teachers SET is_approved = ? WHERE user_id = ?`,
+          [parseInt(is_approved), id]
+        );
       }
 
       res

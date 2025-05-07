@@ -15,6 +15,7 @@ const EditUser = () => {
     email: "",
     photo: "",
     credit: "",
+    is_approved: "", // 🔹 eklenecek alan
   });
 
   const [selectedFile, setSelectedFile] = useState(null);
@@ -62,6 +63,7 @@ const EditUser = () => {
       formData.append("photo", selectedFile);
     }
     formData.append("credit", user.credit);
+    formData.append("is_approved", user.is_approved);
 
     try {
       const response = await fetch("/api/updateUser", {
@@ -164,6 +166,24 @@ const EditUser = () => {
                     onChange={handleFileChange}
                   />
                 </div>
+
+                {user?.role === "teacher" && (
+                  <div className="mb-3">
+                    <label className="form-label">Onay Durumu</label>
+                    <select
+                      name="is_approved"
+                      className="form-select"
+                      value={user.is_approved ?? ""}
+                      onChange={handleChange}
+                    >
+                      <option value="">Seçiniz</option>
+                      <option value="0">Bekliyor</option>
+                      <option value="1">Onaylı</option>
+                      <option value="-1">Reddedildi</option>
+                    </select>
+                  </div>
+                )}
+
                 <button type="submit" className="btn btn-primary">
                   Güncelle
                 </button>
