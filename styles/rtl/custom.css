@@ -545,4 +545,50 @@
   }
 }
 
+/* mlessons teacher img düzeltme */
+.profile-photo {
+  width: 100%;
+  max-width: 150px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  display: block;
+  margin: 0 auto;
+}
+
+
+/*mlessons içerik ksımları renklendirme */
+
+
+.teacher-info-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 1rem;
+}
+
+.teacher-info-box {
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 0.875rem;
+  display: inline-block;
+  width: fit-content;
+}
+
+.teacher-info-box.lesson-count {
+  background-color: #d0ebff;
+  color: #084298;
+}
+
+.teacher-info-box.rating {
+  background-color: #fff3cd;
+  color: #664d03;
+}
+
+.teacher-info-box.price {
+  background-color: #d3f9d8;
+  color: #2b8a3e;
+}
+
 

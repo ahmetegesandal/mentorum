@@ -17,7 +17,11 @@ const GlobalLogoutHandler = () => {
     router.pathname === "/register" ||
     router.pathname === "/contact" ||
     router.pathname === "/forgot-password" ||
-    router.pathname === "/verify-2fa"
+    router.pathname === "/verify-2fa" ||
+    router.pathname === "/how-to-work" ||
+    router.pathname === "/mento-class" ||
+    router.pathname === "/course-summaries" ||
+    router.pathname === "/mlessons"
   ) {
     return null; // '/sign-in' sayfasında WebSocket bağlantısı yapılmayacak
   }

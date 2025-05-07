@@ -20,7 +20,16 @@ export const UserProvider = ({ children }) => {
       "/forgot-password",
       "/reset-password",
       "/verify-2fa",
+      "/how-to-work",
+      "/mento-class",
+      "/course-summaries",
+      "/mlessons",
+      "/meeting",
     ];
+
+    const isPublic = publicRoutes.some((route) =>
+      router.pathname.startsWith(route)
+    );
 
     if (publicRoutes.includes(router?.pathname)) {
       setLoading(false);

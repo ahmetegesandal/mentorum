@@ -88,12 +88,12 @@ const menuItems = [
     roles: ["parent"],
     subMenu: [
       {
-        path: "/StudentReservations",
+        path: "/ParentReservations",
         label: "Rezervasyonlar",
         roles: ["parent"],
       },
       {
-        path: "/StudentLiveClasses",
+        path: "/ParentLiveClasses",
         label: "Canlı Dersler",
         roles: ["parent"],
       },

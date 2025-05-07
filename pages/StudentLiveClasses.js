@@ -104,7 +104,7 @@ const StudentLiveClasses = () => {
                           {cls.meeting_link ? (
                             <a
                               href={cls.meeting_link}
-                              target="_blank"
+                             
                               rel="noopener noreferrer"
                               className="btn btn-primary btn-sm"
                             >

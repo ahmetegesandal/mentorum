@@ -192,7 +192,7 @@ const TeacherLiveClasses = () => {
                             {cls.status === "ongoing" && cls.meeting_link && (
                               <a
                                 href={cls.meeting_link}
-                                target="_blank"
+                                
                                 className="btn btn-primary btn-sm"
                                 rel="noopener noreferrer"
                               >

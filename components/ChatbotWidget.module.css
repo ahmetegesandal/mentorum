@@ -1,0 +1,38 @@
+.container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .toggleBtn {
+    background-color: #0084ff;
+    color: rgb(155, 105, 105);
+    border: none;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .chatBox {
+    background: white;
+    border: 1px solid #8a6868;
+    border-radius: 10px;
+    padding: 12px;
+    width: 260px;
+    margin-top: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  .chatBox button {
+    margin-top: 6px;
+    width: 100%;
+    background: #9c7272;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  

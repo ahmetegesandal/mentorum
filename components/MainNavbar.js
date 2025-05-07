@@ -58,33 +58,39 @@ const MainNavbar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Dropdown
+                  Nasıl Çalışır?
                 </a>
                 <ul
                   className="dropdown-menu"
                   aria-labelledby="featuresDropdown"
                 >
                   <li>
-                    <a className="dropdown-item" href="#feature1">
-                      Feature 1
+                    <a className="dropdown-item" href="/how-to-work">
+                      Nasıl Çalışır
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#feature2">
-                      Feature 2
+                    <a className="dropdown-item" href="/mento-class">
+                      MentoClass
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#feature3">
-                      Feature 3
+                    <a className="dropdown-item" href="/course-summaries">
+                      Ders Özetleri
                     </a>
                   </li>
                 </ul>
               </li>
 
               <li className="nav-item">
+                <a className="nav-link fw-medium" href="/mlessons">
+                  Derslerimiz
+                </a>
+              </li>
+
+              <li className="nav-item">
                 <a className="nav-link fw-medium" href="/contact">
-                  İletişim
+                  İletişime Geç
                 </a>
               </li>
             </ul>
@@ -92,51 +98,7 @@ const MainNavbar = () => {
           <div className="landing-menu-overlay d-lg-none"></div>
 
           <ul className="navbar-nav flex-row align-items-center ms-auto">
-            <li className="nav-item dropdown-style-switcher dropdown me-2 me-xl-1">
-              <a
-                className="nav-link dropdown-toggle hide-arrow"
-                href="javascript:void(0);"
-                data-bs-toggle="dropdown"
-              >
-                <i className="ti ti-lg"></i>
-              </a>
-              <ul className="dropdown-menu dropdown-menu-end dropdown-styles">
-                <li>
-                  <a
-                    className="dropdown-item"
-                    href="javascript:void(0);"
-                    data-theme="light"
-                  >
-                    <span className="align-middle">
-                      <i className="ti ti-sun me-3"></i>Light
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="dropdown-item"
-                    href="javascript:void(0);"
-                    data-theme="dark"
-                  >
-                    <span className="align-middle">
-                      <i className="ti ti-moon-stars me-3"></i>Dark
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="dropdown-item"
-                    href="javascript:void(0);"
-                    data-theme="system"
-                  >
-                    <span className="align-middle">
-                      <i className="ti ti-device-desktop-analytics me-3"></i>
-                      System
-                    </span>
-                  </a>
-                </li>
-              </ul>
-            </li>
+            
 
             <li className="nav-item dropdown-language dropdown">
               <a

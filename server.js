@@ -80,11 +80,54 @@ io.on("connection", (socket) => {
   });
 
   // Mesaj gönderme
-  socket.on("sendMessage", (data) => {
+  socket.on("sendMessage", async (data) => {
     const roomName = getRoomName(data.sender_id, data.receiver_id);
-    console.log(`📤 Mesaj ${roomName} odasına gönderildi.`);
     io.to(roomName).emit("receiveMessage", data);
+  
+    try {
+      console.log("📨 Gelen mesaj verisi:", JSON.stringify(data, null, 2));
+      const db = await getConnection();
+  
+      let senderName = data.sender_name;
+  
+      // Eğer sender_name boşsa, veritabanından al
+      if (!senderName) {
+        console.log("🔎 Veritabanından kullanıcı adı sorgulanıyor...");
+        const [senderRows] = await db.execute(
+          "SELECT name, surname FROM users WHERE id = ?",
+          [data.sender_id]
+        );
+        senderName =
+          senderRows.length && senderRows[0].name && senderRows[0].surname
+            ? `${senderRows[0].name} ${senderRows[0].surname}`
+            : `Bilinmeyen (${data.sender_id})`;
+      }
+  
+      console.log("📛 Bildirime yazılacak isim:", senderName);
+  
+      const title = "Yeni Mesaj";
+      const message = `📨 ${senderName} size mesaj gönderdi.`;
+  
+      const [insertRes] = await db.execute(
+        "INSERT INTO notifications (user_id, title, message, is_read) VALUES (?, ?, ?, 0)",
+        [data.receiver_id, title, message]
+      );
+  
+      console.log("🆕 Bildirim eklendi, insertId:", insertRes.insertId);
+  
+      io.to(data.receiver_id.toString()).emit("newNotification", {
+        id: insertRes.insertId,
+        user_id: data.receiver_id,
+        title,
+        message,
+        is_read: 0,
+        created_at: new Date().toISOString(),
+      });
+    } catch (err) {
+      console.error("🔴 Bildirim gönderilirken hata:", err);
+    }
   });
+  
 
   // Kullanıcı çıkış yaptığında offline yap
   socket.on("disconnect", () => {
