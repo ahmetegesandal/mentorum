@@ -135,7 +135,105 @@
     "timezone" : "Fuseau Horaire",
     "currency" : "Devise",
     "saveChanges" : "Enregistrer les modifications",
-    "reset" : "Réinitialiser"
+    "reset" : "Réinitialiser",
+    "Password" : "Mot de passe actuel",
+    "hottoworkStudentTitle" :"96 % des élèves progressent grâce à nos cours particuliers.",
+    "hottoworkMatchmsg" : "Nous trouvons l enseignant le plus adapté pour vous",
+    "hottoworkpersonalized" :"Les cours sont personnalisés en fonction des besoins d'apprentissage de chaque élève",
+    "hottoworkflexible" : "Programmes flexibles ! Apprenez quand vous voulez, où vous voulez !",
+    "hottoworkinteractiveclass" : "Notre classe interactive rend l'apprentissage amusant",
+    "hottoworkbooktrial" : "Réservez un cours d’essai gratuit",
+    "hottoworkeasystart" : "Démarrage sans effort en 3 étapes",
+    "hottoworkawardwinning" : "L’enseignement privé primé est à seulement 3 étapes",
+    "hottoworkstep1" : "1. Réservez un cours d’essai",
+    "hottoworkshareneeds" : "Partagez vos besoins d’apprentissage avec nous, et nous vous mettrons en relation avec l’enseignant idéal selon le caractère, le niveau et les objectifs de votre élève.",
+    "hottoworkstep2" : "2. Essayez gratuitement",
+    "hottoworktrialexperience" : "Découvrez par vous-même la différence de l’enseignement personnalisé grâce à votre cours d’essai gratuit et sans engagement.",
+    "hottoworknocommitment" : "Aucune carte bancaire ni engagement requis.",
+    "hottoworkstep3" : "3. Commencez à apprendre",
+    "hottoworkbookpackage" : "Réservez votre forfait de cours personnalisé et obtenez de meilleures notes et plus de confiance grâce à un plan d’apprentissage sur mesure.",
+   "hottoworkbooktrial" : "Réservez un cours d’essai gratuit",
+   "hottoworksuccessmethods" : "Nos méthodes pour mener les élèves vers la réussite",
+   "hottoworkfocuscustomization" : "Nous nous concentrons sur la création d’une expérience entièrement personnalisée afin que les élèves puissent se concentrer sur l’amélioration de leurs notes.",
+   "hottoworkexpertteachers" : "Des enseignants experts qui tiennent compte de vos besoins",
+   "hottoworkselectionrate" : "Seuls 8 % des nouveaux candidats enseignants réussissent notre processus de sélection rigoureux.",
+   "hottoworkadaptiveteaching" : "Nous nous assurons de collaborer avec des enseignants qui adaptent leur méthode à la personnalité et au style d’apprentissage uniques de chaque élève.",
+   "hottoworkproveneffectiveness" : "Grâce à une éducation personnalisée et éprouvée, 93 % des élèves réalisent des progrès significatifs.",
+   "hottoworkgoclassheading" : "Notre salle de classe virtuelle interactive : GoClass",
+   "hottoworkgoclassdescription" : "Grâce au design unique de GoClass, des cours captivants jusqu’à la dernière minute vous attendent, favorisant une collaboration harmonieuse entre enseignant et élève.",
+   "hottoworkgoclassfeatures" : "Les sujets abordés en cours prennent une dimension visuelle grâce au tableau numérique, et le partage de fichiers permet de créer des exercices interactifs.",
+   "hottoworkequationeditor" : "L’éditeur d’équations aide à résoudre des problèmes mathématiques complexes.",
+   "hottoworklessonsummarytitle" : "Suivez les progrès grâce aux résumés de cours",
+   "hottoworklessonsummarydesc" : "Vous pouvez apprendre beaucoup en 50 minutes de cours particulier personnalisé ! Les résumés de cours tiennent les élèves, les parents et les enseignants informés.",
+   "hottoworkautosummaryfeedback" : "Les résumés générés automatiquement fournissent un retour immédiat en résumant les sujets clés abordés, en suivant la progression du cours et en rappelant aux élèves les prochaines étapes.",
+   "hottoworkbooktrial" : "Réservez un cours d’essai gratuit",
+   "hottoworkmentorumbynumberstitle" : "Mentorum en chiffres",
+   "hottoworksupportingfamilies" : "nous soutenons les familles",
+   "hottoworklessonsubjectstitle" : "Matières proposées",
+   "hottoworkstarreviews" : "Avis 4 et 5 étoiles",
+   "hottoworksuccessrate" : "taux de réussite",
+   "hottoworkgoalhighgrades" : "Notre objectif est toujours des notes élevées",
+   "hottoworkparentssay" : "Découvrez ce que les parents disent de GoStudent",
+   "hottoworktestimonial1" : "Notre enseignant était très attentionné, et mon enfant a commencé à apprendre avec plaisir pendant les cours. Nous ne nous attendions pas à des progrès aussi rapides !",
+   "hottoworktestimonialmentorum" : "Grâce à Mentorum, la motivation de mon enfant a augmenté. Les rapports hebdomadaires et les résumés de cours sont très utiles.",
+   "hottoworktestimonialmentorumquality" : "La qualité de l'enseignement est excellente. Le système de cours en direct, l'attention individuelle et les enseignants experts offrent une expérience exceptionnelle !",
+   "hottoworkflexiblelearning" : "Apprenez où vous voulez, quand vous voulez",
+   "hottoworkflexiblepackages" : "Nos forfaits de cours flexibles s’adaptent à vos objectifs d’apprentissage et à votre budget",
+   "hottoworkfamilyflexibility" : "Une flexibilité qui s’adapte aux besoins de votre famille",
+   "hottoworklessonsharing" : "Choisissez plusieurs matières et enseignants pour un seul élève ou partagez vos crédits de cours avec votre famille. Si vos plans changent, vous pouvez aussi ajuster votre emploi du temps.",
+   "hottoworkaffordablecustomlessons" : "Des cours personnalisés pour tous les budgets",
+   "hottoworkcustompackage" : "Personnalisez votre forfait d’apprentissage en choisissant une durée et un tarif adaptés à vos besoins. Plus vous suivez de cours, plus les tarifs sont avantageux et plus vos progrès sont rapides !",
+    "hottoworkexplorepricing" : "Découvrez nos formules et tarifs",
+    "hottoworksecureonlineeducation" : "Enseignement en ligne sécurisé",
+    "hottoworksafetycommitment" : "Nous ne faisons jamais de compromis sur la sécurité pour que notre environnement d’apprentissage favorise toujours la réussite des élèves",
+    "hottoworksecurepayment" : "Système de paiement sécurisé",
+    "hottoworknoextrafees" : "Aucun frais intermédiaire supplémentaire",
+    "hottoworkafterapproval" : "Après le processus d’approbation",
+    "hottoworkcarefullyselectedteachers" : "Enseignants soigneusement sélectionnés",
+    "hottoworksafeonline" : "Sécurisé en ligne",
+    "hottoworklearningplatform" : "Plateforme d'apprentissage",
+    "hottoworknoextrafees" : "Aucun frais intermédiaire supplémentaire",
+    "hottoworknohiddenfees" : "Aucun frais caché pendant les cours",
+    "hottoworkfaqsectiontitle" : "Foire aux questions (FAQ)",
+    "hottoworkmembershipguide" : "Découvrez comment créer votre adhésion Mentorum, trouver un enseignant et commencer à réserver des cours pour votre enfant",
+    "hottoworkfaqsectiontitle" : "Foire aux questions (FAQ)",
+"hottoworkwhatismentorumtitle" : "Qu'est-ce que Mentorum ?",
+"hottoworkaboutmentorum" :"Mentorum est une plateforme d'apprentissage en ligne innovante qui façonne l'avenir des cours particuliers.
+Notre ambition est d'aider les élèves à atteindre leur plein potentiel grâce à des leçons personnalisées et interactives.",
+"hottoworkwhoisthisofferfortitle" : "À qui s'adresse cette offre ?",
+"hottoworkofferapplicability" : "Cette offre s'adresse aux élèves de tous âges et niveaux ayant besoin de soutien dans leur parcours d'apprentissage ou souhaitant exploiter pleinement leur potentiel.",
+"hottoworkeducationalsupportservicestitle" : "Nos services de soutien éducatif",
+"hottoworkeducationalsupportdescription" : "Nous offrons un soutien éducatif dans un large éventail de matières, principalement en mathématiques, turc et anglais. Nous annoncerons bientôt de nouvelles offres pour les cours universitaires.",
+"hottoworkonlinelessonadvantagestitle" : "Quels sont les avantages des cours en vidéo en ligne ?",
+ "hottoworkonlinelessonadvantages" : "Les cours en vidéo en ligne vous permettent d’économiser du temps et des frais de déplacement. Grâce à la fonction d’enregistrement, vous pouvez revoir les leçons à tout moment. De plus, notre large réseau d’enseignants vous permet de prendre rendez-vous rapidement et de changer de professeur selon vos besoins.",
+ "hottoworkhowtobookteachertitle" :  "Comment puis-je réserver un cours avec un professeur ?",
+"hottoworkhowtobookteacher" : "Pour réserver un cours avec un enseignant, inscrivez-vous sur Mentorum avec votre numéro de téléphone ou votre adresse e-mail. Ensuite, cliquez sur la section « Choix de l’Enseignant » dans le menu. Sélectionnez l’enseignant de votre choix dans la liste affichée, puis choisissez la date et l’heure qui vous conviennent.",
+"hottoworkregisterasteacher" : "Inscrivez-vous en tant qu’enseignant !",
+"hottoworkteachersignupbenefits" : "Développez vos compétences en travaillant avec des élèves et contribuez à leur parcours éducatif. Être enseignant sur la plateforme Mentorum vous offre des horaires flexibles et un environnement d’apprentissage efficace.",
+"hottoworkregisterasteacher1" : "Inscrivez-vous comme enseignant"
+
+
+
+   
+   
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

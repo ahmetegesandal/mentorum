@@ -151,7 +151,23 @@
   "timezone" : "Timezone",
   "currency" : "Currency",
   "saveChanges" : "Save Changes",
-  "reset" : "Reset"
+  "reset" : "Reset",
+  "hottoworkStudentTitle" :"96 % of students make progress thanks to our one-on-one lessons.",
+  "hottoworkMatchmsg" : "We are finding the best teacher match for you",
+  "hottoworkpersonalized" : "Lessons are personalized according to each student's learning needs",
+  "hottoworkflexible" : "Flexible schedules! Learn anytime, anywhere!",
+  "hottoworkinteractiveclass" : "Our interactive classroom makes learning fun",
+  "hottoworkbooktrial" : "Book a Free Trial Lesson",
+  "hottoworkeasystart" : " Effortless Start in 3 Steps",
+  "hottoworkawardwinning" : "Award-winning private education is just 3 steps away",
+  "hottoworkstep1" : "1. Book a trial lesson",
+  "hottoworkshareneeds" : "Share your learning needs with us, and we’ll match you with the ideal teacher based on your student's character, learning level, and goals.",
+  "hottoworkstep2" : "2. Try it for free",
+  "hottoworktrialexperience" : "Experience the difference of private education firsthand by using your free, no-obligation trial lesson.",
+  "hottoworknocommitment" : "No credit card or commitment required.",
+  "hottoworkstep3" : "3. Start learning",
+  "hottoworkbookpackage" : "Book your personalized lesson package and achieve better grades and greater confidence with a customized learning plan.",
+ "hottoworkbooktrial" : "Book a Free Trial Lesson"
 
 
 

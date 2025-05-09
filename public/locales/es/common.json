@@ -135,7 +135,24 @@
   "timezone" : "Zona Horaria",
   "currency" : "Moneda",
   "saveChanges" : "Guardar cambios",
-  "reset" : "Restablecer"
+  "reset" : "Restablecer",
+  "Password" : "Contraseña actual",
+  "hottoworkStudentTitle" :"El 96 % de los estudiantes progresa gracias a nuestras clases individuales.",
+  "hottoworkMatchmsg" : "Estamos encontrando la mejor coincidencia de profesor para ti",
+  "hottoworkpersonalized" : "Las clases se personalizan según las necesidades de aprendizaje de cada estudiante",
+  "hottoworkflexible" : "¡Horarios flexibles! ¡Aprende en cualquier momento y desde cualquier lugar!",
+  "hottoworkinteractiveclass" : "Nuestro aula interactiva hace que aprender sea divertido",
+  "hottoworkbooktrial" : "Reserva una clase de prueba gratuita",
+  "hottoworkeasystart" : "Comienzo sin esfuerzo en 3 pasos",
+  "hottoworkawardwinning" : "La educación privada galardonada está a solo 3 pasos",
+  "hottoworkstep1" : "1. Reserva una clase de prueba",
+  "hottoworkshareneeds" : "Comparta con nosotros sus necesidades de aprendizaje y lo emparejaremos con el profesor ideal según el carácter, el nivel educativo y los objetivos de su estudiante.",
+  "hottoworkstep2" : "2. Pruébalo gratis",
+  "hottoworktrialexperience" : "Experimente personalmente la diferencia de la educación personalizada utilizando su clase de prueba gratuita y sin compromiso.",
+  "hottoworknocommitment" : "No se requiere tarjeta de crédito ni compromiso.",
+  "hottoworkstep3" : "3. Comienza a aprender",
+  "hottoworkbookpackage" : "Reserva tu paquete de clases personalizadas y logra mejores calificaciones y mayor confianza con un plan de aprendizaje adaptado.",
+ "hottoworkbooktrial" : "Reserva una clase de prueba gratuita"
 
 
 
