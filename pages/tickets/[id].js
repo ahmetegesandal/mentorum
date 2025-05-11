@@ -22,8 +22,13 @@ const LessonDetails = ({ tickets }) => {
 
 
   const handleBack = () => {
-    router.push("/tickets");
+    if (userData?.role === "admin") {
+      router.push("/tickets-admin");
+    } else {
+      router.push("/tickets");
+    }
   };
+  
 
   const handleCommentSubmit = async () => {
   if (!comment.trim()) {

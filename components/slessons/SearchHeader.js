@@ -4,7 +4,7 @@ export default function SearchHeader({ searchTerm, setSearchTerm }) {
       <div className="card-body d-flex flex-column flex-md-row justify-content-between p-0 pt-6">
         <div className="app-academy-md-25 card-body py-0 pt-6 ps-12">
           <img
-            src="img/illustrations/bulb-light.png"
+            src="/img/illustrations/bulb-light.png"
             className="img-fluid app-academy-img-height scaleX-n1-rtl"
             alt="Bulb in hand"
             height="90"
@@ -37,7 +37,7 @@ export default function SearchHeader({ searchTerm, setSearchTerm }) {
         </div>
         <div className="app-academy-md-25 d-flex align-items-end justify-content-end">
           <img
-            src="img/illustrations/pencil-rocket.png"
+            src="/img/illustrations/pencil-rocket.png"
             alt="pencil rocket"
             height="188"
             className="scaleX-n1-rtl"

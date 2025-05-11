@@ -1,4 +1,3 @@
-// pages/payment.js
 import LayoutMenu from "../components/LayoutMenu";
 import Navbar from "../components/Navbar";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -80,6 +79,7 @@ const PaymentPage = () => {
         <Navbar />
         <div className="container my-5">
           <h1 className="text-center mb-4">{t("paymentTitle")}</h1>
+          <p>Yüklediniz miktar kadar platform içi 1 birimi denk gelmektedir. (Örnek: 100 tl yüklediniz 100 Mentorum kredisine eşittir.)</p>
           {isManagedByParent ? (
             <div className="alert alert-warning">
               📢 Veliniz tarafından kredi işlemleri yönetilmektedir.

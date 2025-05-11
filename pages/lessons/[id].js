@@ -9,6 +9,8 @@ import { UserContext } from "../../contexts/UserContext";
 import ReservationForm from "../../components/ReservationForm";
 import CommentsSection from "../../components/CommentsSection";
 import UserAvatar from "../../components/UserAvatar";
+import Image from "next/image";
+
 
 const LessonDetails = ({ lesson }) => {
   const { t } = useTranslation("common");
@@ -89,8 +91,18 @@ const LessonDetails = ({ lesson }) => {
                         <hr className="my-6" />
 
                         <h5>Fiyat</h5>
-                        <p>{lesson.price} $</p>
-                        <hr className="my-6" />
+          <p className="d-flex align-items-center gap-2">
+            <span className="fw-semibold d-flex align-items-center gap-1">
+              {lesson.price}
+              <Image
+                src="/img/credit.png"
+                alt="Kredi"
+                width={32}
+                height={32}
+              />
+            </span>
+          </p>
+          <hr className="my-6" />
 
                         <h5>Dil</h5>
                         <p>{lesson.language}</p>

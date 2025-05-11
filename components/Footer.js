@@ -7,11 +7,11 @@ const MainNavbar = () => {
     <footer className="landing-footer bg-body footer-text">
       <div className="footer-top position-relative overflow-hidden z-1">
         <img
-          src="img/front-pages/backgrounds/footer-bg-light.png"
+          src="/img/front-pages/backgrounds/footer-bg-light.png"
           alt="footer bg"
           className="footer-bg banner-bg-img z-n1"
-          data-app-light-img="front-pages/backgrounds/footer-bg-light.png"
-          data-app-dark-img="front-pages/backgrounds/footer-bg-dark.png"
+          data-app-light-img="/front-pages/backgrounds/footer-bg-light.png"
+          data-app-dark-img="/front-pages/backgrounds/footer-bg-dark.png"
         />
         <div className="container">
           <div className="row gx-0 gy-6 g-lg-10">
@@ -123,7 +123,7 @@ const MainNavbar = () => {
               className="me-3"
               target="_blank"
             >
-              <img src="img/front-pages/icons/github.svg" alt="github icon" />
+              <img src="/img/front-pages/icons/github.svg" alt="github icon" />
             </a>
             <a
               href="https://www.facebook.com/pixinvents/"
@@ -131,7 +131,7 @@ const MainNavbar = () => {
               target="_blank"
             >
               <img
-                src="img/front-pages/icons/facebook.svg"
+                src="/img/front-pages/icons/facebook.svg"
                 alt="facebook icon"
               />
             </a>
@@ -140,11 +140,11 @@ const MainNavbar = () => {
               className="me-3"
               target="_blank"
             >
-              <img src="img/front-pages/icons/twitter.svg" alt="twitter icon" />
+              <img src="/img/front-pages/icons/twitter.svg" alt="twitter icon" />
             </a>
             <a href="https://www.instagram.com/pixinvents/" target="_blank">
               <img
-                src="img/front-pages/icons/instagram.svg"
+                src="/img/front-pages/icons/instagram.svg"
                 alt="google icon"
               />
             </a>

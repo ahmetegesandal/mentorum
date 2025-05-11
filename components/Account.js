@@ -92,9 +92,6 @@ const Account = ({ imagePreview, setImagePreview, file, setFile, userData, loadi
       </div>
 
       <div className="card-body pt-4">
-        <p className="mb-4 text-muted">
-          <strong>{t("userId")}</strong>: {userData?.id} | <strong>{t("role")}</strong>: {userData?.role}
-        </p>
         <form id="formAccountSettings" onSubmit={handleSubmit}>
           <div className="row">
             <div className="mb-4 col-md-6">

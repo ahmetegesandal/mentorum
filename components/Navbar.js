@@ -6,6 +6,8 @@ import NavNotificationsTab from "./NavNotificationsTab";
 import { UserContext } from "../contexts/UserContext";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import Image from "next/image";
+
 
 const Navbar = () => {
   const { isMenuExpanded, toggleMenu } = useLayout();
@@ -109,11 +111,21 @@ const Navbar = () => {
         id="navbar-collapse"
       >
         <ul className="navbar-nav flex-row align-items-center ms-auto">
-          <li className="nav-item me-2">
-            <span className="badge rounded-pill bg-label-success">
-              {isManagedByParent && parentInfo
-                ? `Veliniz: ${parentInfo?.name} ${parentInfo?.surname} - Kredi: ${credit} ₺`
-                : `${credit} $`}
+        <li className="nav-item me-2">
+            <span className="badge rounded-pill d-flex align-items-center gap-2 px-3 py-2">
+              <span className="fw-semibold text-dark fs-6">
+                {isManagedByParent && parentInfo
+                  ? `Veliniz: ${parentInfo?.name} ${parentInfo?.surname} - Kredi: ${credit}`
+                  : `${credit}`}
+              </span>
+              <div className="d-flex align-items-center text-center">
+                <Image
+                  src="/img/credit.png"
+                  alt="Kredi"
+                  width={32}
+                  height={32}
+                />
+              </div>
             </span>
           </li>
 

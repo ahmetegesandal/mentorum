@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "next-i18next";
+import axios from "axios";
 
 const Security = () => {
   const { t } = useTranslation("common");
@@ -21,198 +22,117 @@ const Security = () => {
     const newPassword = e.target.newPassword.value;
     const confirmPassword = e.target.confirmPassword.value;
 
-    // Reset error states
-    setErrors({
-      currentPassword: '',
-      newPassword: '',
-      confirmPassword: ''
-    });
+    setErrors({ currentPassword: '', newPassword: '', confirmPassword: '' });
 
     let hasError = false;
 
-    // Validate password length
     if (newPassword.length < 8) {
       setErrors((prev) => ({ ...prev, newPassword: '*Password must be at least 8 characters long!' }));
       hasError = true;
     }
 
-    // Validate if passwords match
     if (newPassword !== confirmPassword) {
       setErrors((prev) => ({ ...prev, confirmPassword: '*Passwords do not match!' }));
       hasError = true;
     }
 
-    if (hasError) {
-      return; 
-    }
+    if (hasError) return;
 
     try {
-      const response = await fetch("/api/change-password", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ currentPassword, newPassword }),
-      });
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        "/api/change-password",
+        { currentPassword, newPassword },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
-      if (response.ok) {
-        alert("Password changed successfully!");
-      } else {
-        alert("Error changing password!");
-      }
+      alert(response.status === 200 ? "Password changed successfully!" : "Error changing password!");
     } catch (error) {
       console.error("Error:", error);
       alert("An error occurred while changing the password.");
     }
   };
 
-  const handleTwoFactorToggle = () => {
-    setTwoFactorEnabled(!twoFactorEnabled);
-    alert(twoFactorEnabled ? "Two-factor authentication disabled." : "Two-factor authentication enabled.");
+  const handleTwoFactorToggle = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await axios.post(
+        "/api/two-factor",
+        { enable: !twoFactorEnabled },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      if (res.status === 200) {
+        setTwoFactorEnabled(!twoFactorEnabled);
+        alert(!twoFactorEnabled ? "Two-factor authentication enabled." : "Two-factor authentication disabled.");
+      }
+    } catch (error) {
+      alert("Failed to toggle two-factor authentication.");
+    }
   };
 
   return (
-    <div className="container">
-      {/* Change Password Section */}
-      <div className="card mb-4">
-        <h5 className="card-header">{t("Change Password")}</h5>
-        <div className="card-body">
-          <form id="formAccountSettings" onSubmit={handleSubmit} className="security-form">
-            <div className="mb-3">
-              <label className="form-label" htmlFor="currentPassword">{t("Current Password")}</label>
-              <div className="input-group-security">
-                <input
-                  className="password-input-security"
-                  type={showCurrentPassword ? "text" : "password"}
-                  name="currentPassword"
-                  id="currentPassword"
-                />
-                <span
-                  className="input-group-text"
-                  onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                  role="button"
-                  aria-label={showCurrentPassword ? t("Hide password") : t("Show password")}
-                >
-                  <i className={showCurrentPassword ? "ti ti-eye" : "ti ti-eye-off"}></i>
-                </span>
-              </div>
-            </div>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-12 col-lg-8">
 
-            <div className="mb-3">
-              <label className="form-label" htmlFor="newPassword">{t("New Password")}</label>
-              <div className="input-group-security">
-                <input
-                  className="password-input-security"
-                  type={showNewPassword ? "text" : "password"}
-                  name="newPassword"
-                  id="newPassword"
-                />
-                <span
-                  className="input-group-text"
-                  onClick={() => setShowNewPassword(!showNewPassword)}
-                  role="button"
-                  aria-label={showNewPassword ? t("Hide password") : t("Show password")}
-                >
-                  <i className={showNewPassword ? "ti ti-eye" : "ti ti-eye-off"}></i>
-                </span>
-              </div>
-              {errors.newPassword && <div className="error-message">{errors.newPassword}</div>}
-            </div>
+          {/* Change Password Section */}
+          <div className="card mb-4">
+            <div className="card-header fw-bold">{t("Change Password")}</div>
+            <div className="card-body">
+              <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                  <label htmlFor="currentPassword" className="form-label">{t("Current Password")}</label>
+                  <div className="input-group">
+                    <input type={showCurrentPassword ? "text" : "password"} className="form-control" name="currentPassword" id="currentPassword" />
+                    <button type="button" className="btn btn-outline-secondary" onClick={() => setShowCurrentPassword(!showCurrentPassword)}>
+                      <i className={showCurrentPassword ? "ti ti-eye" : "ti ti-eye-off"}></i>
+                    </button>
+                  </div>
+                </div>
 
-            <div className="mb-3">
-              <label className="form-label" htmlFor="confirmPassword">{t("Confirm New Password")}</label>
-              <div className="input-group-security">
-                <input
-                  className="password-input-security"
-                  type={showConfirmPassword ? "text" : "password"}
-                  name="confirmPassword"
-                  id="confirmPassword"
-                />
-                <span
-                  className="input-group-text"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  role="button"
-                  aria-label={showConfirmPassword ? t("Hide password") : t("Show password")}
-                >
-                  <i className={showConfirmPassword ? "ti ti-eye" : "ti ti-eye-off"}></i>
-                </span>
-              </div>
-              {errors.confirmPassword && <div className="error-message">{errors.confirmPassword}</div>}
-            </div>
+                <div className="mb-3">
+                  <label htmlFor="newPassword" className="form-label">{t("New Password")}</label>
+                  <div className="input-group">
+                    <input type={showNewPassword ? "text" : "password"} className="form-control" name="newPassword" id="newPassword" />
+                    <button type="button" className="btn btn-outline-secondary" onClick={() => setShowNewPassword(!showNewPassword)}>
+                      <i className={showNewPassword ? "ti ti-eye" : "ti ti-eye-off"}></i>
+                    </button>
+                  </div>
+                  {errors.newPassword && <div className="form-text text-danger">{errors.newPassword}</div>}
+                </div>
 
-            {/* Button Container with flexbox */}
-            <div className="button-container">
-              <button type="submit" className="btn btn-primary">{t("Save changes")}</button>
-              <button type="reset" className="btn btn-secondary">{t("Reset")}</button>
+                <div className="mb-3">
+                  <label htmlFor="confirmPassword" className="form-label">{t("Confirm New Password")}</label>
+                  <div className="input-group">
+                    <input type={showConfirmPassword ? "text" : "password"} className="form-control" name="confirmPassword" id="confirmPassword" />
+                    <button type="button" className="btn btn-outline-secondary" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                      <i className={showConfirmPassword ? "ti ti-eye" : "ti ti-eye-off"}></i>
+                    </button>
+                  </div>
+                  {errors.confirmPassword && <div className="form-text text-danger">{errors.confirmPassword}</div>}
+                </div>
+
+                <div className="d-flex gap-2">
+                  <button type="submit" className="btn btn-primary">{t("Save changes")}</button>
+                  <button type="reset" className="btn btn-secondary">{t("Reset")}</button>
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
+
+          {/* Two-Factor Section */}
+          <div className="card">
+            <div className="card-header fw-bold">Two-Factor Authentication</div>
+            <div className="card-body">
+              <p>{twoFactorEnabled ? "Two-factor authentication is enabled." : "Two-factor authentication is not enabled yet."}</p>
+              <button className="btn btn-outline-primary" onClick={handleTwoFactorToggle}>
+                {twoFactorEnabled ? "Disable" : "Enable"} Two-Factor Authentication
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
-
-      {/* Two-Factor Authentication Section */}
-      <div className="card mb-4">
-        <h5 className="card-header">Two-Steps Verification</h5>
-        <div className="card-body">
-          <p>{twoFactorEnabled ? "Two-factor authentication is enabled." : "Two-factor authentication is not enabled yet."}</p>
-          <button className="btn btn-primary" onClick={handleTwoFactorToggle}>
-            {twoFactorEnabled ? "Disable" : "Enable"} Two-Factor Authentication
-          </button>
-        </div>
-      </div>
-
-      {/* Recent Devices Section */}
-      <div className="card mb-4">
-        <h5 className="card-header">Recent Devices</h5>
-        <div className="table-responsive">
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Browser</th>
-                <th>Device</th>
-                <th>Location</th>
-                <th>Recent Activities</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><i className="ti ti-brand-windows me-2 text-info"></i>Chrome on Windows</td>
-                <td>HP Spectre 360</td>
-                <td>Switzerland</td>
-                <td>10, July 2021 20:07</td>
-              </tr>
-              <tr>
-                <td><i className="ti ti-device-mobile me-2 text-success"></i>Chrome on iPhone</td>
-                <td>iPhone 12x</td>
-                <td>Australia</td>
-                <td>13, July 2021 10:10</td>
-              </tr>
-              <tr>
-                <td><i className="ti ti-brand-android me-2 text-success"></i>Chrome on Android</td>
-                <td>Oneplus 9 Pro</td>
-                <td>Dubai</td>
-                <td>14, July 2021 15:15</td>
-              </tr>
-              <tr>
-                <td><i className="ti ti-brand-apple me-2"></i>Chrome on MacOS</td>
-                <td>Apple iMac</td>
-                <td>India</td>
-                <td>16, July 2021 16:17</td>
-              </tr>
-              <tr>
-                <td><i className="ti ti-brand-windows me-2 text-warning"></i>Chrome on Windows</td>
-                <td>HP Spectre 360</td>
-                <td>Switzerland</td>
-                <td>20, July 2021 21:01</td>
-              </tr>
-              <tr>
-                <td><i className="ti ti-brand-android me-2 text-success"></i>Chrome on Android</td>
-                <td>Oneplus 9 Pro</td>
-                <td>Dubai</td>
-                <td>21, July 2021 12:22</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
     </div>
   );
 };

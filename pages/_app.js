@@ -87,16 +87,32 @@ function MyApp({ Component, pageProps }) {
       "/how-to-work",
       "/mento-class",
       "/course-summaries",
-      "/mlessons",
+      "/mlessons"
     ];
 
-    if (frontPages.includes(router.pathname)) {
+    const frontPrefixes = ["/blog"];
+
+    const isFrontPage =
+      frontPages.includes(router.pathname) ||
+      frontPrefixes.some((prefix) => router.pathname.startsWith(prefix));
+
+    if (isFrontPage) {
       require("../styles/pages/front-page.css");
       require("../styles/pages/front-page-landing.css");
     }
   }, [router.pathname]);
 
-  const shouldShowChatbot = !["/", "/sign-in"].includes(router.pathname);
+  const excludedPaths = [
+    "/", "/sign-in", "/register", "/forgot-password",
+    "/verify-2fa", "/how-to-work", "/mento-class", "/course-summaries"
+  ];
+  
+  const excludedPrefixes = ["/blog"];
+  
+  const shouldShowChatbot =
+    !excludedPaths.includes(router.pathname) &&
+    !excludedPrefixes.some((prefix) => router.pathname.startsWith(prefix));
+  
 
   return (
     <UserProvider>

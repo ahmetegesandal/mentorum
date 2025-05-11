@@ -109,7 +109,8 @@ const menuItems = [
     label: "Admin",
     icon: "ti ti-users",
     roles: ["admin"],
-    subMenu: [{ path: "/users-list", label: "Kullanıcılar", roles: ["admin"] }],
+    subMenu: [{ path: "/users-list", label: "Kullanıcılar", roles: ["admin"] },
+    { path: "/blogs", label: "Blog İşlemleri", roles: ["admin"] }],
   },
   {
     key: "credit",
