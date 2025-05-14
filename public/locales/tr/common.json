@@ -227,10 +227,43 @@ Hayalimiz, öğrencilere özelleştirilmiş ve interaktif dersler sunarak, onlar
 "hottoworkregisterasteacher" : "Öğretmen Olarak Kaydolun!",
 "hottoworkteachersignupbenefits" : "Öğrencilerle çalışarak becerilerinizi geliştirin ve onların eğitim yolculuklarına katkıda bulunun. Mentorum platformunda öğretmen olarak yer almak, size esnek çalışma saatleri ve öğrencilerle etkili bir öğrenme ortamı sunar.",
 "hottoworkregisterasteacher1" : "Öğretmen Olarak Kaydol",
+"mentoclassinteractivelearningtitle" : "En etkileşimli öğrenme ortamı: MentoClass",
+"mentoclasspersonalizedvirtualclass" : "Mentorum'un sanal sınıfında yapılan kişiye uyarlı dersler hem etkili hem de eğlencelidir!",
+"mentoclassremoteprivatelessons" : "Yüz yüze dersler gibi etki eden, dilediğiniz yerden erişebileceğiniz özel dersler",
+"mentoclassdigitalwhiteboardcollaboration" : "Ortak çalışma imkanı sunan dijital tahta",
+"mentoclassinteractivetoolsforreview" : "Dersleri pekiştirmeyi sağlayan etkileşimli araçlar",
+"mentoclasslearningresourcesfeatures" : "Kaynakları kaydetme, ödev, notlar ve terimce özellikleri",
+"mentoclassbooktrial" : "Ücretsiz Deneme Dersi Ayırt",
+"mentoclassaseffectiveasinperson" : "Yüz Yüze Dersler Kadar Etkili",
+"mentoclassmentorumfocus" : "Mentorum öğrencilerin derse odaklanmasını sağlar",
+"mentoclassmentorumlessonstyle" : "Mentorum'da kişiye özel dersler ortak çalışmaya dayalı, etkileşimli ve ilgi çekicidir.",
+"mentoclassinteractivewhiteboard" : "Etkileşimli dijital tahta",
+"mentoclasscollaborativelearning" : "Öğretmenler ve öğrenciler birlikte çalışabilir, konseptleri görselleştirebilir veya zorlu problemleri birlikte çözebilir.",
+"mentoclasssharematerials" : "Videoları ve öğrenim materyallerini paylaşın",
+"mentoclassvisualsupport" : "Videolar, görsel yolla öğrenen çocuklara destek olur. Kullanımı kolay denklem düzenleyici ise karmaşık matematik problemlerini çözmeye yardımcı olur.",
+"mentoclasshomeworkupload" : "Öğretmenler, derste yapılacak alıştırmaları yükleyebilir veya ev ödevi olarak verebilir.",
+"mentoclassnoteglossary" : "Not alın ve terimce oluşturun",
+"mentoclassnotesglossaryfeature" : "Öğrenciler Notlar bölümüne bir şeyler not edebilir ve yeni kavramları Terimceye ekleyebilir.Öğrenciler dilediği zaman bu özellikleri kullanarak dersleri daha iyi pekiştirebilir.",
+"mentoclassprogresssummary" : "İlerleme takibi için ders özetleri alın",
+"mentoclasslessonsummarytracking" : "Öğrenciler ve öğretmenler, Mentorum'da yapılan derslerin özetini alarak ilerleme takibi yapabilir veya derste işlenen konular ve alıştırmaları inceleyebilir.",
+"mentoclassfocusinsight" : "Çocuğunuzun derse ne kadar odaklandığına göz atın veya dikkat edilmesi gereken noktaları keşfedin.",
+"mentoclassbooktrial" : "Ücretsiz Deneme Dersi Ayırt",
+"mentoclassfaqsectiontitle" : "Sıkça Sorulan Sorular",
+"mentoclassfaqaccessmentorum" : "Mentorum'a nasıl erişebilirim?"
+"mentoclassfaqaccessmentorumanswer" : "Planlanmış bir dersiniz olduğunda Mentorum'a erişebilirsiniz. Ders rezervasyonu bağlantısını, Pano'daki "Ders Rezervasyonlarım" seçeneğinin altında bulabilirsiniz. Ders saatinde bağlantıya tıklayıp çevrimiçi sınıfa yönlendirilirsiniz.",
+"mentoclassfaqneedmiccam" : "Mikrofon veya kamera gerekiyor mu?",
+"mentoclassfaqmiccamrequired" : "Tüm dersler etkileşimlidir. Hem öğrencilerin hem de öğretmenlerin dikkatini derse verdiğinden emin olmak için ders boyunca kamera açık kalır. Kameranızın ve mikrofonunuzun çalışması gerekir.En iyi deneyim için Mentorum'a dizüstü veya masaüstü bilgisayardan erişim sağlayabilirsiniz.",
+"mentoclassfaqfocusstrategy" : "Öğretmenler öğrencinin dikkatini derse vermesini nasıl sağlar?",
+"mentoclassfaqteacherfocusstrategyanswer" : "Mentorum, öğrencilerin 50 dakikalık, kişiye özel bire bir derslerden en iyi şekilde faydalanması için ortak çalışmaya dayalı olarak tasarlanmıştır. Bu sayede öğrenciler, derse aktif bir şekilde katılıp alıştırmaları yaparak daha iyi öğrenebilirler.Öğretmenler, öğrencilerin önemli noktalara odaklanmasını sağlamak için özellikleri kontrol edebilirler.",
+"mentoclasstry1on1now" : "Hemen bire bir dersleri deneyin",
+"mentoclasstrustedteachers" : "Güvenilir öğretmen kadromuz, çocuğunuzun öğrenim yolculuğunu en iyi şekilde desteklemek için özenle seçilmiştir.",
+"mentoclassbookfreetrial" : "Ücretsiz deneme dersi ayırt"
 
 
 
 
 
- 
+
+
+
 }

@@ -198,8 +198,7 @@
     "hottoworkmembershipguide" : "Découvrez comment créer votre adhésion Mentorum, trouver un enseignant et commencer à réserver des cours pour votre enfant",
     "hottoworkfaqsectiontitle" : "Foire aux questions (FAQ)",
 "hottoworkwhatismentorumtitle" : "Qu'est-ce que Mentorum ?",
-"hottoworkaboutmentorum" :"Mentorum est une plateforme d'apprentissage en ligne innovante qui façonne l'avenir des cours particuliers.
-Notre ambition est d'aider les élèves à atteindre leur plein potentiel grâce à des leçons personnalisées et interactives.",
+"hottoworkaboutmentorum" :"Mentorum est une plateforme d'apprentissage en ligne innovante qui façonne l'avenir des cours particuliers.Notre ambition est d'aider les élèves à atteindre leur plein potentiel grâce à des leçons personnalisées et interactives.",
 "hottoworkwhoisthisofferfortitle" : "À qui s'adresse cette offre ?",
 "hottoworkofferapplicability" : "Cette offre s'adresse aux élèves de tous âges et niveaux ayant besoin de soutien dans leur parcours d'apprentissage ou souhaitant exploiter pleinement leur potentiel.",
 "hottoworkeducationalsupportservicestitle" : "Nos services de soutien éducatif",
@@ -210,7 +209,39 @@ Notre ambition est d'aider les élèves à atteindre leur plein potentiel grâce
 "hottoworkhowtobookteacher" : "Pour réserver un cours avec un enseignant, inscrivez-vous sur Mentorum avec votre numéro de téléphone ou votre adresse e-mail. Ensuite, cliquez sur la section « Choix de l’Enseignant » dans le menu. Sélectionnez l’enseignant de votre choix dans la liste affichée, puis choisissez la date et l’heure qui vous conviennent.",
 "hottoworkregisterasteacher" : "Inscrivez-vous en tant qu’enseignant !",
 "hottoworkteachersignupbenefits" : "Développez vos compétences en travaillant avec des élèves et contribuez à leur parcours éducatif. Être enseignant sur la plateforme Mentorum vous offre des horaires flexibles et un environnement d’apprentissage efficace.",
-"hottoworkregisterasteacher1" : "Inscrivez-vous comme enseignant"
+"hottoworkregisterasteacher1" : "Inscrivez-vous comme enseignant",
+"mentoclassinteractivelearningtitle" : "L’environnement d’apprentissage le plus interactif : MentoClass",
+"mentoclasspersonalizedvirtualclass" : "Les cours personnalisés dans la classe virtuelle de Mentorum sont à la fois efficaces et amusants !",
+"mentoclassremoteprivatelessons" : "Des cours particuliers aussi efficaces que les cours en présentiel, accessibles de partout",
+"mentoclassdigitalwhiteboardcollaboration" : "Tableau numérique offrant des possibilités de travail collaboratif",
+"mentoclassinteractivetoolsforreview" : "Outils interactifs qui permettent de renforcer les cours",
+"mentoclasslearningresourcesfeatures" : "Fonctionnalités pour enregistrer des ressources, des devoirs, des notes et un glossaire",
+"mentoclassbooktrial" : "Réservez un cours d’essai gratuit",
+"mentoclassaseffectiveasinperson" : "Aussi efficaces que les cours en présentiel",
+"mentoclassmentorumfocus" : "Mentorum aide les élèves à rester concentrés pendant les cours",
+"mentoclassmentorumlessonstyle" : "Chez Mentorum, les cours personnalisés sont collaboratifs, interactifs et captivants.",
+"mentoclassinteractivewhiteboard" : "Tableau blanc numérique interactif"
+"mentoclasscollaborativelearning" : "Les enseignants et les élèves peuvent collaborer, visualiser des concepts ou résoudre ensemble des problèmes complexes.",
+"mentoclasssharematerials" : "Partagez des vidéos et des supports d'apprentissage",
+"mentoclassvisualsupport" : "Les vidéos soutiennent les enfants qui apprennent visuellement, tandis que l'éditeur d'équations facile à utiliser aide à résoudre des problèmes mathématiques complexes.",
+"mentoclasshomeworkupload" : "Les enseignants peuvent télécharger des exercices à faire en classe ou les donner comme devoirs.",
+"mentoclassnoteglossary" : "Prenez des notes et créez votre glossaire",
+"mentoclassnotesglossaryfeature" : "Les élèves peuvent noter des informations dans la section Notes et ajouter de nouveaux concepts au Glossaire.Ils peuvent utiliser ces fonctionnalités à tout moment pour mieux consolider leurs apprentissages.",
+"mentoclassprogresssummary" : "Recevez des résumés de cours pour suivre vos progrès",
+"mentoclasslessonsummarytracking" : "Les élèves et les enseignants peuvent recevoir des résumés de cours sur Mentorum pour suivre les progrès ou consulter les sujets et exercices abordés.",
+"mentoclassfocusinsight" : "Découvrez dans quelle mesure votre enfant est concentré en cours ou identifiez les points nécessitant une attention particulière.",
+"mentoclassbooktrial" : "Réservez un cours d’essai gratuit",
+"mentoclassfaqsectiontitle" : "Questions Fréquemment Posées",
+"mentoclassfaqaccessmentorum" : "Comment puis-je accéder à Mentorum ?",
+"mentoclassfaqaccessmentorumanswer" : "Vous pouvez accéder à Mentorum lorsque vous avez un cours programmé. Le lien de réservation du cours se trouve sous "Mes réservations de cours" dans le tableau de bord. À l'heure prévue, cliquez sur le lien pour être dirigé vers la classe en ligne.",
+"mentoclassfaqneedmiccam" : "Ai-je besoin d'un microphone ou d'une caméra ?",
+"mentoclassfaqmiccamrequired" : "Tous les cours sont interactifs. Pour garantir que les élèves et les enseignants restent concentrés, la caméra reste allumée pendant toute la durée du cours. Votre caméra et votre microphone doivent être fonctionnels.Pour une expérience optimale, il est recommandé d'accéder à Mentorum depuis un ordinateur portable ou de bureau.",
+"mentoclassfaqfocusstrategy" : "Comment les enseignants s'assurent-ils que les élèves restent concentrés pendant le cours?",
+"mentoclassfaqteacherfocusstrategyanswer" : "Mentorum est conçu pour que les étudiants tirent le meilleur parti de leurs leçons personnalisées de 50 minutes grâce au travail collaboratif. Ainsi, les étudiants peuvent participer activement à la leçon et travailler sur des exercices pour apprendre plus efficacement.Les enseignants peuvent contrôler les fonctionnalités pour aider les étudiants à se concentrer sur les points clés.",
+"mentoclasstry1on1now" : "Essayez les cours particuliers dès maintenant",
+"mentoclasstrustedteachers" : "Notre équipe d'enseignants de confiance a été soigneusement sélectionnée pour accompagner au mieux le parcours d'apprentissage de votre enfant.",
+"mentoclassbookfreetrial" : "Réservez un cours d'essai gratuit"
+
 
 
 

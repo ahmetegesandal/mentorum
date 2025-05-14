@@ -61,7 +61,7 @@ const Home = () => {
       {/* Sağ: Görsel */}
       <div className="col-md-6 text-center mt-4 mt-md-0">
         <img
-          src="/images/ders-ozetleri.png" // kendi görsel yoluna göre düzenle
+          src="/img/backgrounds/dersozetlerı1.png"
           alt="Ders Özetleri Görseli"
           style={{ maxWidth: "100%", borderRadius: "12px" }}
         />
@@ -106,7 +106,7 @@ const Home = () => {
       {/* Sol: Görsel */}
       <div className="col-md-6 text-center mb-4 mb-md-0">
         <img
-          src="/images/ders-ozeti.png" // görsel yolunu kendi public klasörüne göre ayarla
+          src="/img/backgrounds/dersozetlerı2.jpg"
           alt="Ders Özeti Görseli"
           style={{ maxWidth: "100%", borderRadius: "12px" }}
         />
@@ -192,7 +192,7 @@ const Home = () => {
       {/* Sağ: Görsel */}
       <div className="col-md-6 text-center mt-4 mt-md-0">
         <img
-          src="/images/ders-kontrol.png" // kendi görseline göre ayarla
+          src="/img/backgrounds/dersozetlerı3.jpg"
           alt="Ders Kontrol Görseli"
           style={{ maxWidth: "100%", borderRadius: "12px" }}
         />
@@ -225,7 +225,7 @@ const Home = () => {
       {/* Sol: Görsel */}
       <div className="col-md-6 text-center mb-4 mb-md-0">
         <img
-          src="/images/kaynak-takip.png" // kendi görselini buraya koy
+          src="/img/backgrounds/dersozetlerı4.jpg"
           alt="Kaynak Takip Görseli"
           style={{ maxWidth: "100%", borderRadius: "12px" }}
         />
@@ -468,86 +468,6 @@ Herkes Ders Özeti alır mı?
     </button>
   </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

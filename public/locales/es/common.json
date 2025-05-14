@@ -152,7 +152,112 @@
   "hottoworknocommitment" : "No se requiere tarjeta de crédito ni compromiso.",
   "hottoworkstep3" : "3. Comienza a aprender",
   "hottoworkbookpackage" : "Reserva tu paquete de clases personalizadas y logra mejores calificaciones y mayor confianza con un plan de aprendizaje adaptado.",
- "hottoworkbooktrial" : "Reserva una clase de prueba gratuita"
+ "hottoworkbooktrial" : "Reserva una clase de prueba gratuita",
+ "hottoworksuccessmethods" : "Nuestros métodos para llevar a los estudiantes al éxito",
+ "hottoworkfocuscustomization" : "Nos enfocamos en crear una experiencia completamente personalizada para que los estudiantes puedan concentrarse en mejorar sus calificaciones.",
+ "hottoworkexpertteachers" : "Profesores expertos que tienen en cuenta tus necesidades",
+ "hottoworkselectionrate" : "Solo el 8 % de los nuevos solicitantes de profesor supera con éxito nuestro riguroso proceso de selección.",
+"hottoworkadaptiveteaching" : "Nos aseguramos de trabajar con profesores que adaptan su enseñanza al carácter único y estilo de aprendizaje de cada estudiante.",
+"hottoworkproveneffectiveness" : "Gracias a una educación personalizada y comprobada, el 93 % de los estudiantes logra un progreso significativo.",
+"hottoworkgoclassheading" : "Nuestro aula virtual interactiva: GoClass",
+"hottoworkgoclassdescription" : "Con el diseño único de GoClass, lecciones cautivadoras que mantienen el interés hasta el último minuto y permiten una colaboración fluida entre profesor y estudiante le esperan.",
+"hottoworkgoclassfeatures" : "Los temas tratados en clase adquieren una dimensión visual con la pizarra digital, y el intercambio de archivos permite crear ejercicios interactivos.",
+"hottoworkequationeditor" : "El editor de ecuaciones ayuda a resolver problemas matemáticos difíciles.",
+"hottoworklessonsummarytitle" : "Haz un seguimiento del progreso con los resúmenes de clase",
+"hottoworklessonsummarydesc" : "¡Puedes aprender mucho en una clase personalizada de 50 minutos! Los resúmenes de clase mantienen informados a estudiantes, padres y profesores.",
+"hottoworkautosummaryfeedback" : "Los resúmenes generados automáticamente brindan retroalimentación inmediata al resumir los temas clave tratados, seguir el progreso de la clase y recordar a los estudiantes sus próximos pasos.",
+"hottoworkbooktrial" : "Reserva una clase de prueba gratuita",
+"hottoworkmentorumbynumberstitle" : "Mentorum en cifras",
+"hottoworksupportingfamilies" : "apoyamos a las familias",
+"hottoworklessonsubjectstitle" : "Áreas de estudio",
+"hottoworkstarreviews" : "Reseñas de 4 y 5 estrellas",
+"hottoworksuccessrate" : "tasa de éxito",
+"hottoworkgoalhighgrades" : "Nuestro objetivo siempre son altas calificaciones",
+"hottoworkparentssay" : "Echa un vistazo a lo que los padres dicen sobre GoStudent",
+"hottoworktestimonial1" : "Nuestro profesor fue muy atento y mi hijo empezó a aprender con entusiasmo en las clases. ¡No esperábamos un progreso tan rápido!",
+"hottoworktestimonialmentorum" : "Gracias a Mentorum, la motivación de mi hijo ha aumentado. Los informes semanales y los resúmenes de clase son muy útiles.",
+"hottoworktestimonialmentorumquality" : "La calidad educativa es excelente. El sistema de clases en vivo, la atención personalizada y los profesores expertos hacen que sea una experiencia maravillosa.",
+"hottoworkflexiblelearning" : "Aprende cuando quieras, donde quieras",
+"hottoworkflexiblepackages" : "Nuestros paquetes de clases flexibles se adaptan a tus objetivos de aprendizaje y a tu presupuesto",
+"hottoworkfamilyflexibility" : "Flexibilidad que se adapta a las necesidades de tu familia",
+"hottoworklessonsharing" : "Elige varias materias y profesores para un solo estudiante o comparte los créditos de clase con tu familia. Si cambian tus planes, también puedes modificar tu horario.",
+"hottoworkaffordablecustomlessons" : "Clases personalizadas para todos los presupuestos",
+"hottoworkcustompackage" : "Personaliza tu paquete de aprendizaje eligiendo la duración y el precio que se adapten a tus necesidades. Cuantas más clases tomes, mejores serán las tarifas y mayor será tu progreso.",
+  "hottoworkexplorepricing" : "Descubre membresías y precios",
+  "hottoworksecureonlineeducation" : "Educación en línea segura",
+  "hottoworksafetycommitment" : "Nunca comprometemos la seguridad para garantizar que nuestro entorno de aprendizaje contribuya siempre al éxito de los estudiantes",
+  "hottoworksecurepayment" : "Sistema de pago seguro",
+  "hottoworknoextrafees" : "Sin cargos adicionales por intermediarios",
+  "hottoworkafterapproval" : "Tras el proceso de aprobación",
+  "hottoworkcarefullyselectedteachers" : "Profesores cuidadosamente seleccionados",
+  "hottoworksafeonline" : "Seguro en línea",
+  "hottoworklearningplatform" : "Plataforma de aprendizaje",
+  "hottoworknoextrafees" : "Sin cargos adicionales por intermediarios",
+  "hottoworknohiddenfees" : "No hay cargos ocultos durante las clases",
+  "hottoworkfaqsectiontitle" : "Preguntas frecuentes (FAQ)",
+  "hottoworkmembershipguide" : "Aprende cómo crear tu membresía en Mentorum, encuentra a tu profesor y comienza a reservar clases para tu hijo",
+  "hottoworkfaqsectiontitle" : "Preguntas frecuentes (FAQ)",
+"hottoworkwhatismentorumtitle" : "¿Qué es Mentorum?",
+"hottoworkaboutmentorum" :"Mentorum es una plataforma de aprendizaje en línea innovadora que está moldeando el futuro de las clases particulares.
+Nuestro sueño es ayudar a los estudiantes a alcanzar su máximo potencial mediante lecciones personalizadas e interactivas.",
+"hottoworkwhoisthisofferfortitle" : "¿A quién va dirigida esta oferta?",
+"hottoworkofferapplicability" : "Esta oferta es válida para estudiantes de todas las edades y niveles que necesiten apoyo en su proceso de aprendizaje o que busquen ayuda para desarrollar todo su potencial.",
+"hottoworkeducationalsupportservicestitle" : "Nuestros servicios de apoyo educativo",
+"hottoworkeducationalsupportdescription" : "Ofrecemos apoyo educativo en una amplia gama de materias, principalmente en matemáticas, turco e inglés. Pronto anunciaremos nuevas ofertas para cursos universitarios.",
+"hottoworkonlinelessonadvantagestitle" : "¿Cuáles son las ventajas de las clases en video en línea?",
+ "hottoworkonlinelessonadvantages" : "Las clases en video en línea te permiten ahorrar tiempo y costos de transporte. Gracias a la función de grabación, puedes ver las clases nuevamente cuando quieras. Además, nuestra amplia red de profesores permite agendar rápidamente y cambiar de docente según tus necesidades.",
+ "hottoworkhowtobookteachertitle" :  "¿Cómo puedo reservar una clase con un profesor?",
+"hottoworkhowtobookteacher" : "Para reservar una clase con un profesor, regístrate en Mentorum con tu número de teléfono o dirección de correo electrónico. Luego haz clic en la sección “Selección de Profesor” en el menú. Elige el profesor que prefieras de la lista y selecciona la fecha y hora que mejor te convengan.",
+"hottoworkregisterasteacher" : "¡Regístrate como profesor!",
+"hottoworkteachersignupbenefits" : "Mejora tus habilidades trabajando con estudiantes y contribuye a su camino educativo. Ser profesor en la plataforma Mentorum te ofrece horarios flexibles y un entorno de aprendizaje efectivo con los alumnos.",
+"hottoworkregisterasteacher1" : "Regístrate como profesor",
+"mentoclassinteractivelearningtitle" : "El entorno de aprendizaje más interactivo: MentoClass",
+"mentoclasspersonalizedvirtualclass" : "¡Las clases personalizadas en el aula virtual de Mentorum son efectivas y divertidas!",
+"mentoclassremoteprivatelessons" : "Clases particulares tan efectivas como las presenciales, accesibles desde cualquier lugar",
+"mentoclassdigitalwhiteboardcollaboration" : "Pizarra digital que ofrece oportunidades de trabajo colaborativo",
+"mentoclassinteractivetoolsforreview" : "Herramientas interactivas que ayudan a reforzar las lecciones",
+"mentoclasslearningresourcesfeatures" : "Funciones para guardar recursos, tareas, notas y glosario",
+"mentoclassbooktrial" : "Reserva una clase de prueba gratuita",
+"mentoclassaseffectiveasinperson" : "Tan efectivas como las clases presenciales",
+"mentoclassmentorumfocus" : "Mentorum ayuda a los estudiantes a concentrarse durante las clases",
+"mentoclassmentorumlessonstyle" : "En Mentorum, las clases personalizadas son colaborativas, interactivas y atractivas.",
+"mentoclassinteractivewhiteboard" : "Pizarra digital interactiva",
+"mentoclasscollaborativelearning" : "Los profesores y los estudiantes pueden colaborar, visualizar conceptos o resolver problemas difíciles juntos.",
+"mentoclasssharematerials" : "Comparte videos y materiales de aprendizaje",
+"mentoclassvisualsupport" : "Los videos apoyan a los niños que aprenden visualmente, y el editor de ecuaciones fácil de usar ayuda a resolver problemas matemáticos complejos.",
+"mentoclasshomeworkupload" : "Los profesores pueden subir ejercicios para hacer en clase o asignarlos como tarea.",
+"mentoclassnoteglossary" : "Toma notas y crea tu glosario",
+"mentoclassnotesglossaryfeature" : "Los estudiantes pueden escribir notas en la sección de Notas y agregar nuevos conceptos al Glosario.Pueden usar estas funciones en cualquier momento para reforzar mejor lo aprendido.",
+"mentoclassprogresssummary" : "Obtén resúmenes de clase para hacer un seguimiento del progreso",
+"mentoclasslessonsummarytracking" : "Los estudiantes y profesores pueden recibir resúmenes de las clases en Mentorum para hacer un seguimiento del progreso o revisar los temas y ejercicios tratados.",
+"mentoclassfocusinsight" : "Observa cuánto se concentra tu hijo en clase o identifica los puntos clave que requieren atención.",
+"mentoclassbooktrial" : "Reserva una clase de prueba gratuita",
+"mentoclassfaqsectiontitle" : "Preguntas Frecuentes",
+"mentoclassfaqaccessmentorum" : "¿Cómo puedo acceder a Mentorum?",
+"mentoclassfaqaccessmentorumanswer" : "Puedes acceder a Mentorum cuando tengas una clase programada. El enlace de reserva de clase se encuentra en "Mis Reservas de Clases" en el Panel. A la hora programada, haz clic en el enlace para ingresar al aula en línea.",
+"mentoclassfaqneedmiccam" : "¿Necesito un micrófono o una cámara?",
+"mentoclassfaqmiccamrequired" : "Todas las clases son interactivas. Para asegurar que tanto los estudiantes como los profesores estén concentrados, la cámara permanece encendida durante toda la clase. Su cámara y micrófono deben estar funcionando.Para una mejor experiencia, se recomienda acceder a Mentorum desde un ordenador portátil o de escritorio.",
+"mentoclassfaqfocusstrategy" : "¿Cómo logran los profesores que los estudiantes mantengan la atención en clase?",
+"mentoclassfaqteacherfocusstrategyanswer" : "Mentorum está diseñado para que los estudiantes aprovechen al máximo sus lecciones personalizadas de 50 minutos, basadas en el trabajo colaborativo. De esta forma, los estudiantes pueden participar activamente en la lección y trabajar en ejercicios para aprender de manera más efectiva.Los profesores pueden controlar las características para ayudar a los estudiantes a concentrarse en los puntos clave.",
+"mentoclasstry1on1now" : "Prueba clases individuales ahora",
+"mentoclasstrustedteachers" : "Nuestro equipo docente de confianza ha sido seleccionado cuidadosamente para apoyar de la mejor manera el proceso de aprendizaje de su hijo.",
+"mentoclassbookfreetrial" : "Reserva una clase de prueba gratuita"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
