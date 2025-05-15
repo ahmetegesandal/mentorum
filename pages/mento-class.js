@@ -495,11 +495,6 @@ const Home = () => {
 
 
 
-      <div data-bs-spy="scroll" className="scrollspy-example">
-        <section id="landingFeatures" className="section-py landing-features">
-          <div className="container">dosandıuasd</div>
-        </section>
-      </div>
       <Footer />
     </>
   );

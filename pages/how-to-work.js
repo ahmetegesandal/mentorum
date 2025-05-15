@@ -25,7 +25,7 @@ const Home = () => {
         <section
           id="howItWorks"
           className="section-py"
-          style={{ backgroundColor: "grey", padding: "80px 0", marginTop: "80px" }}
+          style={{  padding: "80px 0", marginTop: "80px" }}
         >
           <div className="container">
             <div className="row align-items-center">
@@ -891,10 +891,6 @@ const Home = () => {
 
 
 
-        {/* Örnek başka bölüm */}
-        <section id="landingFeatures" className="section-py landing-features">
-          <div className="container"></div>
-        </section>
       </div>
 
       <Footer />

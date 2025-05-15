@@ -104,7 +104,7 @@ function MyApp({ Component, pageProps }) {
 
   const excludedPaths = [
     "/", "/sign-in", "/register", "/forgot-password",
-    "/verify-2fa", "/how-to-work", "/mento-class", "/course-summaries"
+    "/verify-2fa", "/how-to-work", "/mento-class", "/course-summaries", "/mlessons", "/contact"
   ];
   
   const excludedPrefixes = ["/blog"];

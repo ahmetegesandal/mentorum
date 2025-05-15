@@ -51,7 +51,7 @@ const Home = () => {
   return (
     <>
       <MainNavbar />
-      <section className="bg-light py-5 text-center" style={{ marginTop: "150px" }}> 
+      <section className=" py-5 text-center" style={{ marginTop: "150px" }}> 
     <div className="container">
     <h1 className="display-5 fw-bold">1'e 1 online dersler için ideal öğretmeni bulun</h1>
     <p className="lead mt-3">
@@ -155,7 +155,7 @@ const Home = () => {
               </div>
 
               <div className="mt-auto">
-              <Link href={`/teacher/${teacher.teacher_id}`} legacyBehavior>
+              <Link href={`/sign-in`} legacyBehavior>
   <a className="btn btn-primary">Deneme Dersi Ayırt</a>
 </Link>
               </div>
