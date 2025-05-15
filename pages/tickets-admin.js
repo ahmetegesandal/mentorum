@@ -4,6 +4,8 @@ import LayoutMenu from "../components/LayoutMenu";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import { UserContext } from "../contexts/UserContext";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const TicketsList = () => {
   const userData = useContext(UserContext);
@@ -12,6 +14,7 @@ const TicketsList = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const ticketsPerPage = 9;
+  const { t } = useTranslation("common");
 
   useEffect(() => {
     // Eğer kullanıcı bilgisi yüklenmemişse bekle
@@ -135,5 +138,13 @@ const TicketsList = () => {
     </>
   );
 };
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}
 
 export default TicketsList;

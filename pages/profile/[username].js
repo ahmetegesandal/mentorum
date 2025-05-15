@@ -1,14 +1,32 @@
-import { useContext } from "react";
+import { useState, useEffect } from "react";
 import LayoutMenu from "../../components/LayoutMenu";
 import Navbar from "../../components/Navbar";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import { UserContext } from "../../contexts/UserContext";
-import { getAllUsers, getUserByUsername } from "../../utils/api"; // API fonksiyonlarını içe aktar
+import { getAllUsers, getUserByUsername } from "../../utils/api";
 
 const Profile = ({ userData }) => {
   const { t } = useTranslation("common");
+  const [badges, setBadges] = useState([]);
+  const [activeTab, setActiveTab] = useState("profile");
+
+  useEffect(() => {
+    if (userData?.id) {
+      fetch(`/api/users/${userData?.id}/badges`)
+        .then((res) => res.json())
+        .then(setBadges)
+        .catch(console.error);
+    }
+  }, [userData]);
+
+  const formatDate = (isoDate) => {
+    if (!isoDate) return "Tarih bilgisi yok";
+    const date = new Date(isoDate);
+    return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} tarihinde katıldı`;
+  };
+
+
 
   return (
     <>
@@ -17,21 +35,13 @@ const Profile = ({ userData }) => {
         <Navbar />
         <div className="content-wrapper">
           <div className="container-xxl flex-grow-1 container-p-y">
+
+            {/* Kullanıcı Kartı */}
             <div className="row">
               <div className="col-12">
                 <div className="card mb-6">
-                  <div className="user-profile-header-banner">
-                    <Image
-                      src="/img/pages/profile-banner.png"
-                      alt="Profile Banner"
-                      className="rounded-top"
-                      layout="responsive"
-                      width={1200}
-                      height={300}
-                    />
-                  </div>
-                  <div className="user-profile-header d-flex flex-column flex-lg-row text-sm-start text-center mb-5">
-                    <div className="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
+                  <div className="user-profile-header d-flex flex-column flex-lg-row text-sm-start text-center mb-5 p-4 align-items-center">
+                    <div className="flex-shrink-0 mx-sm-0 mx-auto">
                       <Image
                         src={
                           userData?.photo
@@ -39,158 +49,123 @@ const Profile = ({ userData }) => {
                             : "/img/avatars/default.png"
                         }
                         alt="User Image"
-                        className="d-block h-auto ms-0 ms-sm-6 rounded user-profile-img"
+                        className="d-block rounded user-profile-img"
                         width={120}
                         height={120}
+                        style={{ objectFit: "cover" }}
                       />
                     </div>
-                    <div className="flex-grow-1 mt-3 mt-lg-5">
-                      <div className="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-5 flex-md-row flex-column gap-4">
-                        <div className="user-profile-info">
-                          <h4 className="mb-2 mt-lg-6">
-                            {userData?.name + " " + userData?.surname ||
-                              "Misafir"}
-                          </h4>
-                          <ul className="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-4 my-2">
-                            <li className="list-inline-item d-flex gap-2 align-items-center">
-                              <i className="ti ti-palette ti-lg"></i>
-                              <span className="fw-medium">UX Designer</span>
-                            </li>
-                            <li className="list-inline-item d-flex gap-2 align-items-center">
-                              <i className="ti ti-map-pin ti-lg"></i>
-                              <span className="fw-medium">Vatican City</span>
-                            </li>
-                            <li className="list-inline-item d-flex gap-2 align-items-center">
-                              <i className="ti ti-calendar ti-lg"></i>
-                              <span className="fw-medium">
-                                Joined April 2021
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
+                    <div className="flex-grow-1 mt-3 mt-lg-0 ms-lg-4">
+                      <h4 className="mb-2">
+                        {userData?.name + " " + userData?.surname || "Misafir"}
+                      </h4>
+                      <ul className="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-3 mt-2">
+                        <li className="list-inline-item d-flex gap-2 align-items-center">
+                          <span className="fw-medium">
+                            {userData?.role === "admin" && (
+                              <span className="badge bg-label-danger">Admin</span>
+                            )}
+                            {userData?.role === "parent" && "Veli"}
+                            {userData?.role === "student" && "Öğrenci"}
+                            {userData?.role === "teacher" && "Öğretmen"}
+                          </span>
+                        </li>
+                        <li className="list-inline-item d-flex gap-2 align-items-center">
+                          <i className="ti ti-calendar ti-lg"></i>
+                          <span className="fw-medium">
+                            {formatDate(userData?.created_at)}
+                          </span>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
+            {/* Sekmeler */}
             <div className="row">
               <div className="col-md-12">
                 <div className="nav-align-top">
                   <ul className="nav nav-pills flex-column flex-sm-row mb-6 gap-2 gap-lg-0">
                     <li className="nav-item">
-                      <a className="nav-link active" href="javascript:void(0);">
-                        <i className="ti-sm ti ti-user-check me-1_5"></i>{" "}
-                        Profile
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="pages-profile-teams.html">
-                        <i className="ti-sm ti ti-users me-1_5"></i> Teams
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a
-                        className="nav-link"
-                        href="pages-profile-projects.html"
+                      <button
+                        className={`nav-link ${activeTab === "profile" ? "active" : ""}`}
+                        onClick={() => setActiveTab("profile")}
                       >
-                        <i className="ti-sm ti ti-layout-grid me-1_5"></i>{" "}
-                        Projects
-                      </a>
+                        <i className="ti-sm ti ti-user-check me-1_5"></i> Profil
+                      </button>
                     </li>
                     <li className="nav-item">
-                      <a
-                        className="nav-link"
-                        href="pages-profile-connections.html"
+                      <button
+                        className={`nav-link ${activeTab === "badges" ? "active" : ""}`}
+                        onClick={() => setActiveTab("badges")}
                       >
-                        <i className="ti-sm ti ti-link me-1_5"></i> Connections
-                      </a>
+                        <i className="ti-sm ti ti-award me-1_5"></i> Rozetler
+                      </button>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            <div className="row">
-              <div className="col-xl-4 col-lg-5 col-md-5">
-                <div className="card mb-6">
-                  <div className="card-body">
-                    <small className="card-text text-uppercase text-muted small">
-                      About
-                    </small>
-                    <ul className="list-unstyled my-3 py-1">
-                      <li className="d-flex align-items-center mb-4">
-                        <i className="ti ti-user ti-lg"></i>
-                        <span className="fw-medium mx-2">Full Name:</span>
-                        <span>{userData?.name || "N/A"}</span>
-                      </li>
-                      <li className="d-flex align-items-center mb-4">
-                        <i className="ti ti-check ti-lg"></i>
-                        <span className="fw-medium mx-2">Status:</span>
-                        <span>{userData?.status || "N/A"}</span>
-                      </li>
-                      <li className="d-flex align-items-center mb-4">
-                        <i className="ti ti-crown ti-lg"></i>
-                        <span className="fw-medium mx-2">Role:</span>
-                        <span>{userData?.role || "N/A"}</span>
-                      </li>
-                      <li className="d-flex align-items-center mb-4">
-                        <i className="ti ti-flag ti-lg"></i>
-                        <span className="fw-medium mx-2">Country:</span>
-                        <span>{userData?.country || "N/A"}</span>
-                      </li>
-                      <li className="d-flex align-items-center mb-2">
-                        <i className="ti ti-language ti-lg"></i>
-                        <span className="fw-medium mx-2">Languages:</span>
-                        <span>{userData?.languages || "N/A"}</span>
-                      </li>
-                    </ul>
+            {/* Profil Sekmesi */}
+            {activeTab === "profile" && (
+              <div className="row">
+                <div className="col-xl-12 col-lg-12 col-md-12">
+                  <div className="card mb-6">
+                    <div className="card-body">
+                      <h5>Hakkında</h5>
+                      {userData?.role === "teacher" && (
+                        <p>{userData.teacher_info?.bio}</p>
+                      )}
+                      {userData?.role === "student" && (
+                        <p>Sınıf: {userData.student_info?.grade}</p>
+                      )}
+                      <ul className="list-unstyled my-3 py-1">
+                        <li className="d-flex align-items-center mb-4">
+                          <i className="ti ti-user ti-lg"></i>
+                          <span className="fw-medium mx-2">Tam Ad:</span>
+                          <span>{userData?.name} {userData?.surname}</span>
+                        </li>
+                        <li className="d-flex align-items-center mb-4">
+                          <i className="ti ti-crown ti-lg"></i>
+                          <span className="fw-medium mx-2">Mail:</span>
+                          <span>{userData?.email}</span>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="col-xl-8 col-lg-7 col-md-7">
-                <div className="card card-action mb-6">
-                  <div className="card-header align-items-center">
-                    <h5 className="card-action-title mb-0">
-                      <i className="ti ti-chart-bar ti-lg text-body me-4"></i>
-                      Activity Timeline
-                    </h5>
-                  </div>
-                  <div className="card-body pt-3">
-                    <ul className="timeline mb-0">
-                      <li className="timeline-item timeline-item-transparent">
-                        <span className="timeline-point timeline-point-primary"></span>
-                        <div className="timeline-event">
-                          <div className="timeline-header mb-3">
-                            <h6 className="mb-0">12 Invoices have been paid</h6>
-                            <small className="text-muted">12 min ago</small>
+            )}
+
+            {/* Rozetler Sekmesi */}
+            {activeTab === "badges" && badges.length > 0 && (
+              <div className="row">
+                <div className="col-xl-12 col-lg-12 col-md-12">
+                  <div className="card mb-6">
+                    <div className="card-body">
+                      <h5>Rozetler</h5>
+                      <div className="d-flex flex-wrap gap-3">
+                        {badges.map((badge) => (
+                          <div key={badge.id} className="text-center">
+                            <Image
+                              src={`/img/badges/${badge.icon_path}`}
+                              alt={badge.name}
+                              width={100}
+                              height={100}
+                            />
+                            <div className="small mt-2">{badge.name}</div>
                           </div>
-                          <p className="mb-2">
-                            Invoices have been paid to the company
-                          </p>
-                          <div className="d-flex align-items-center mb-2">
-                            <div className="badge bg-lighter rounded d-flex align-items-center">
-                              <Image
-                                src="/img/icons/misc/pdf.png"
-                                alt="PDF Icon"
-                                width={15}
-                                height={15}
-                                className="me-2"
-                              />
-                              <span className="h6 mb-0 text-body">
-                                invoices.pdf
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      {/* Add more timeline events here */}
-                    </ul>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
+
           </div>
         </div>
       </div>
@@ -199,21 +174,17 @@ const Profile = ({ userData }) => {
 };
 
 export async function getStaticPaths() {
-  // Tüm kullanıcı adlarını al
-  const users = await getAllUsers(); // Tüm kullanıcıları almak için bir API fonksiyonu
+  const users = await getAllUsers();
   const paths = users.map((user) => ({
     params: { username: user.username },
   }));
-
   return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params, locale }) {
-  const userData = await getUserByUsername(params.username); // Kullanıcı verilerini almak için bir API fonksiyonu
-
-  // created_at alanını serileştirilebilir hale getirin
-  if (userData && userData.created_at) {
-    userData.created_at = userData.created_at.toISOString();
+  const userData = await getUserByUsername(params.username);
+  if (userData?.created_at) {
+    userData.created_at = new Date(userData.created_at).toISOString();
   }
 
   return {
