@@ -37,13 +37,26 @@ const Home = () => {
       {/* Sol: Yazı */}
       <div className="col-md-6">
         <h4 style={{ fontWeight: "bold", marginBottom: "20px" }}>
-          Ders Özetleri ile ilerlemeyi takip edin
+        {t(  "coursesummariestrackprogresswith") }
+
         </h4>
         <ul style={{ fontSize: "16px", paddingLeft: "20px", marginBottom: "30px" }}>
-          <li>Derslerin nasıl geçtiğini kolayca görün</li>
-          <li>İlerlemeyi takip edin ve başarıları kutlayın</li>
-          <li>Ödevlerinizi yapmayı unutmayın</li>
-          <li>Dersleri tekrar dinleyerek hafızanızı tazeleyin</li>
+          <li>
+          {t(  "coursesummariesseelessonprogress") }
+
+          </li>
+          <li>
+          {t(  "coursesummariestrackandcelebratesuccess") }
+
+          </li>
+          <li>
+          {t(  "coursesummariesdontforgethomework") }
+
+          </li>
+          <li>
+          {t(  "coursesummariesrefreshmemory") }
+
+          </li>
         </ul>
         <button
           className="btn btn-dark"
@@ -54,7 +67,8 @@ const Home = () => {
           }}
           onClick={() => window.location.href = "/trial"} // yönlendirilecek sayfa
         >
-          Ücretsiz deneme dersi ayırt
+{t(  "coursesummariesbookfreetrial") }
+
         </button>
       </div>
 
@@ -72,24 +86,14 @@ const Home = () => {
 
 
 
-
-
-
-
 <div className="container" style={{ textAlign: "center", padding: "60px 0" }}>
   <h4 style={{ fontWeight: "bold" }}>
 
-  Hedeflerinize odaklanın ve hiçbir ödevi kaçırmayın
+  {t(  "coursesummariesstayfocused") }
 
   </h4>
   
 </div>
-
-
-
-
-
-
 
 <section style={{ padding: "60px 0", backgroundColor: "#f8f9fa" }}>
   <div
@@ -115,28 +119,24 @@ const Home = () => {
       {/* Sağ: Yazı */}
       <div className="col-md-6">
         <h4 style={{ fontWeight: "bold", marginBottom: "20px" }}>
-          Güncel kalmak için Ders Özetlerini kullanın
+        {t(  "coursesummariesusesummaries") }
+
         </h4>
         <p style={{ fontSize: "16px", marginBottom: "15px" }}>
-          50 dakikalık kişiselleştirilmiş bir özel derste çok şey öğrenebilirsiniz! Ders Özetleri öğrencileri, 
-          ebeveynleri ve öğretmenleri olaylardan güncel tutar.
+         
+        {t(  "coursesummarieslessonsummarybenefit") }
+
         </p>
         <p style={{ fontSize: "16px" }}>
-          Otomatik olarak oluşturulan özetler, işlenen önemli konuları özetleyerek, ders ilerlemesini izleyerek 
-          ve öğrencilere sonraki adımlarını hatırlatarak anında geri bildirim sağlar.
+          
+        {t(  "coursesummariesautosummariesinfo") }
+
+
         </p>
       </div>
     </div>
   </div>
 </section>
-
-
-
-
-
-
-
-
 
 
 
@@ -164,11 +164,14 @@ const Home = () => {
           }}
         >
           <h5 style={{ fontWeight: "bold", marginBottom: "10px" }}>
-            Dersleri kolayca gözden geçirin
+
+          {t(  "coursesummariesreviewlessons") }
+
           </h5>
           <p style={{ margin: 0 }}>
-            Dersin amacını ve işlenen ana konuların yanı sıra ders geri bildirimini,
-            bir sonucu ve sonraki adımları görün.
+
+          {t(  "coursesummarieslessonfeedbackinfo") }
+
           </p>
         </div>
 
@@ -180,11 +183,14 @@ const Home = () => {
           }}
         >
           <h5 style={{ fontWeight: "bold", marginBottom: "10px" }}>
-            Hedeflere yönelik ilerlemeyi ölçün
+
+          {t(  "coursesummariesmeasureprogress") }
+
           </h5>
           <p style={{ margin: 0 }}>
-            Öğrenme zaman içinde pekişir. Hedefler ve ilerleme takibi, her dersin olumlu
-            etkisinin açıkça görülmesini sağlar.
+
+          {t(  "coursesummarieslearningprogression") }
+
           </p>
         </div>
       </div>
@@ -243,10 +249,14 @@ const Home = () => {
           }}
         >
           <h5 style={{ fontWeight: "bold", marginBottom: "10px" }}>
-            Kaynakları ve görevleri takip edin
+
+          {t(  "coursesummariestrackresourcestasks") }
+
           </h5>
           <p style={{ margin: 0 }}>
-            Tüm ders kaynakları ve alıştırmaların yanı sıra ödevler ve dosyalar da mevcuttur.
+
+          {t(  "coursesummariesallmaterialsavailable") }
+
           </p>
         </div>
 
@@ -260,11 +270,15 @@ const Home = () => {
           }}
         >
           <h5 style={{ fontWeight: "bold", marginBottom: "10px" }}>
-            Hatırlatma ister misiniz? Tekrar dinleyin
+
+          {t(  "coursesummariesreminderoption") }
+
+
           </h5>
           <p style={{ margin: 0 }}>
-            Zor bir matematik problemini nasıl çözeceğinizi ya da tekerlemeyi nasıl telaffuz
-            edeceğinizi hatırlayamıyor musunuz? Ders Sesi ile Öğretmeninizin ne dediğini tekrar dinleyin.
+
+          {t(  "coursesummarieslessonaudiodescription") }
+
           </p>
         </div>
 
@@ -279,7 +293,10 @@ const Home = () => {
             fontWeight: "bold",
           }}
         >
-          Ücretsiz deneme dersi ayır
+
+{t(  "coursesummariesbookfreetrial") }
+
+
         </button>
       </div>
     </div>

@@ -214,7 +214,7 @@
  "hottoworkmembershipguide" : "Mentorum üyeliğinizi nasıl oluşturacağınızı öğrenin, öğretmeninizi bulun ve çocuğunuz için ders ayırtmaya başlayın",
  "hottoworkfaqsectiontitle" : "Sıkça sorulan sorular",
 "hottoworkwhatismentorumtitle" : "Mentorum Nedir?",
-"hottoworkaboutmentorum" :"Mentorum, özel dersin geleceğini şekillendiren yenilikçi bir online öğrenme platformudur.
+"hottoworkaboutmentorum" : "Mentorum, özel dersin geleceğini şekillendiren yenilikçi bir online öğrenme platformudur.
 Hayalimiz, öğrencilere özelleştirilmiş ve interaktif dersler sunarak, onların potansiyellerini en üst seviyeye çıkarmalarına yardımcı olmaktır.",
 "hottoworkwhoisthisofferfortitle" : "Bu Teklif Kimlere Yöneliktir?",
 "hottoworkofferapplicability" : "Bu teklif, öğrenim sürecinde desteğe ihtiyaç duyan veya potansiyelini tam olarak ortaya koyabilmek için yardım isteyen her yaş ve seviyedeki öğrenci için geçerlidir.",
@@ -257,7 +257,22 @@ Hayalimiz, öğrencilere özelleştirilmiş ve interaktif dersler sunarak, onlar
 "mentoclassfaqteacherfocusstrategyanswer" : "Mentorum, öğrencilerin 50 dakikalık, kişiye özel bire bir derslerden en iyi şekilde faydalanması için ortak çalışmaya dayalı olarak tasarlanmıştır. Bu sayede öğrenciler, derse aktif bir şekilde katılıp alıştırmaları yaparak daha iyi öğrenebilirler.Öğretmenler, öğrencilerin önemli noktalara odaklanmasını sağlamak için özellikleri kontrol edebilirler.",
 "mentoclasstry1on1now" : "Hemen bire bir dersleri deneyin",
 "mentoclasstrustedteachers" : "Güvenilir öğretmen kadromuz, çocuğunuzun öğrenim yolculuğunu en iyi şekilde desteklemek için özenle seçilmiştir.",
-"mentoclassbookfreetrial" : "Ücretsiz deneme dersi ayırt"
+"mentoclassbookfreetrial" : "Ücretsiz deneme dersi ayırt",
+"coursesummariestrackprogresswith" : "Ders Özetleri ile ilerlemeyi takip edin",
+"coursesummariesseelessonprogress" : "Derslerin nasıl geçtiğini kolayca görün",
+"coursesummariestrackandcelebratesuccess" : "İlerlemeyi takip edin ve başarıları kutlayın",
+"coursesummariesdontforgethomework" : "Ödevlerinizi yapmayı unutmayın",
+"coursesummariesrefreshmemory" : "Dersleri tekrar dinleyerek hafızanızı tazeleyin",
+"coursesummariesbookfreetrial" : "Ücretsiz deneme dersi ayırt",
+"coursesummariesstayfocused" : "Hedeflerinize odaklanın ve hiçbir ödevi kaçırmayın",
+"coursesummariesusesummaries" : "Güncel kalmak için Ders Özetlerini kullanın",
+"coursesummarieslessonsummarybenefit" : "50 dakikalık kişiselleştirilmiş bir özel derste çok şey öğrenebilirsiniz! Ders Özetleri öğrencileri, ebeveynleri ve öğretmenleri olaylardan güncel tutar.",
+"coursesummariesautosummariesinfo" : "Otomatik olarak oluşturulan özetler, işlenen önemli konuları özetleyerek, ders ilerlemesini izleyerek ve öğrencilere sonraki adımlarını hatırlatarak anında geri bildirim sağlar.",
+"coursesummariesreviewlessons" : "Dersleri kolayca gözden geçirin",
+"coursesummarieslessonfeedbackinfo" : "Dersin amacını ve işlenen ana konuların yanı sıra ders geri bildirimini, bir sonucu ve sonraki adımları görün.",
+"coursesummariesmeasureprogress" : "Hedeflere yönelik ilerlemeyi ölçün",
+"coursesummarieslearningprogression" : "Öğrenme zaman içinde pekişir. Hedefler ve ilerleme takibi, her dersin olumlu etkisinin açıkça görülmesini sağlar.",
+"coursesummaries" : "hatice"
 
 
 
