@@ -37,12 +37,12 @@ export default function NotificationsPage() {
       const data = await res.json();
 
       if (!data || !Array.isArray(data.notifications)) {
-        throw new Error("Invalid response format");
+        throw new Error("Geçersiz yanıt formatı");
       }
 
       const notifsWithTitle = data.notifications.map((n) => ({
         ...n,
-        title: n.title || t("Notification"),
+        title: n.title || t("Bildirim"),
       }));
 
       setNotifications(notifsWithTitle);
@@ -50,7 +50,7 @@ export default function NotificationsPage() {
       setError(null);
     } catch (err) {
       console.error("❌ Notification fetch error:", err);
-      setError(t("An error occurred while fetching notifications."));
+      setError(t("Bildirimler alınırken bir hata oluştu."));
     }
   };
 
@@ -75,8 +75,8 @@ export default function NotificationsPage() {
         )
       );
     } catch (err) {
-      console.error("❌ Failed to mark as read:", err);
-      setError(t("Failed to mark notification as read."));
+      console.error("❌ Okundu olarak işaretleme hatası:", err);
+      setError(t("Bildirim okundu olarak işaretlenemedi."));
     }
   };
 
@@ -117,13 +117,13 @@ export default function NotificationsPage() {
         <div className="container py-4">
           <div className="card shadow-sm border-0">
             <div className="card-header bg-transparent border-bottom d-flex justify-content-between align-items-center">
-              <h4 className="mb-0">{t("Your Notifications")}</h4>
+              <h4 className="mb-0">{t("Bildirimleriniz")}</h4>
               <div>
                 <button className="btn btn-sm btn-outline-primary me-2" onClick={markSelectedAsRead} disabled={selected.size === 0}>
-                  {t("Mark Selected as Read")}
+                  {t("Seçili Olanları Okundu Olarak İşaretle")}
                 </button>
                 <button className="btn btn-sm btn-outline-success" onClick={markAllAsRead}>
-                  {t("Mark All as Read")}
+                  {t("Tümünü Okundu Olarak İşaretle")}
                 </button>
               </div>
             </div>
@@ -136,18 +136,18 @@ export default function NotificationsPage() {
                     <tr>
                       <th></th>
                       <th>#</th>
-                      <th>{t("Title")}</th>
-                      <th>{t("Message")}</th>
-                      <th>{t("Status")}</th>
-                      <th>{t("Date")}</th>
-                      <th className="text-end">{t("Action")}</th>
+                      <th>{t("Başlık")}</th>
+                      <th>{t("Mesaj")}</th>
+                      <th>{t("Durum")}</th>
+                      <th>{t("Tarih")}</th>
+                      <th className="text-end">{t("İşlem")}</th>
                     </tr>
                   </thead>
                   <tbody>
                     {notifications.length === 0 ? (
                       <tr>
                         <td colSpan="7" className="text-center text-muted py-4">
-                          {t("No notifications available.")}
+                          {t("Hiç bildirim yok.")}
                         </td>
                       </tr>
                     ) : (
@@ -168,9 +168,9 @@ export default function NotificationsPage() {
                           <td className="text-muted small">{notif.message}</td>
                           <td>
                             {notif.is_read ? (
-                              <span className="badge bg-secondary">{t("Read")}</span>
+                              <span className="badge bg-secondary">{t("Okundu")}</span>
                             ) : (
-                              <span className="badge bg-primary">{t("Unread")}</span>
+                              <span className="badge bg-primary">{t("Okunmadı")}</span>
                             )}
                           </td>
                           <td>
@@ -190,7 +190,7 @@ export default function NotificationsPage() {
                               onClick={() => markAsRead(notif.id)}
                               disabled={notif.is_read}
                             >
-                              {t("Mark as Read")}
+                              {t("Okundu olarak işaretle")}
                             </button>
                           </td>
                         </tr>
@@ -206,17 +206,17 @@ export default function NotificationsPage() {
                   disabled={page === 1}
                   className="btn btn-outline-secondary btn-sm"
                 >
-                  {t("Previous")}
+                  {t("Önceki")}
                 </button>
                 <span className="text-muted small">
-                  {t("Page")} {page} / {totalPages}
+                  {t("Sayfa")} {page} / {totalPages}
                 </span>
                 <button
                   onClick={handleNextPage}
                   disabled={page === totalPages}
                   className="btn btn-outline-secondary btn-sm"
                 >
-                  {t("Next")}
+                  {t("Sonraki")}
                 </button>
               </div>
             </div>
