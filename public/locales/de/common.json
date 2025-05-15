@@ -136,162 +136,6 @@
     "contactMsg": "Deine Nachricht",
     "contactSend": "Senden",
     "accountNewPhoto": "Neue Fotos hochladen",
-<<<<<<< HEAD
-    "accountimg" : "Hochladen",
-    "allowedFormats" : "Erlaubte Formate: JPG, GIF oder PNG. Maximale Größe 800K",
-    "firstName" : "Vorname",
-    "lastName" : "Nachname",
-    "accounteMail" : "E-Mail",
-    "organization" : "Organisation",
-    "phoneNumber" : "Telefonnummer",
-    "address" : "Adresse",
-    "state" : "Bundesland",
-    "zipCode" : "Postleitzahl (PLZ)",
-    "country" : "Land",
-    "language" : "Sprache",
-    "timezone" : "Zeitzone",
-    "currency" : "Währung",
-    "saveChanges" : "Änderungen speichern",
-    "reset" : "Zurücksetzen",
-    "hottoworkStudentTitle" :"96% der Schüler machen dank unseres Einzelunterrichts Fortschritte.",
-    "hottoworkMatchmsg" : "Wir finden die passendste Lehrkraft für Sie",
-    "hottoworkpersonalized" : "Der Unterricht wird an die Lernbedürfnisse jedes einzelnen Schülers angepasst",
-    "hottoworkflexible" : "Flexible Zeitpläne! Lernen Sie jederzeit und überall!",
-    "hottoworkinteractiveclass" : "Unser interaktives Klassenzimmer macht das Lernen unterhaltsam",
-    "hottoworkbooktrial" : "Kostenlose Probestunde buchen",
-    "hottoworkeasystart" : "Müheloser Start in 3 Schritten",
-    "hottoworkawardwinning" : "Preisgekrönter Einzelunterricht ist nur 3 Schritte entfernt",
-    "hottoworkstep1" : "1. Buchen Sie eine Probestunde",
-    "hottoworkshareneeds" : "Teilen Sie uns Ihre Lernbedürfnisse mit, und wir bringen Sie basierend auf dem Charakter, dem Lernniveau und den Zielen Ihres Schülers mit dem idealen Lehrer zusammen.",
-    "hottoworkstep2" : "2. Kostenlos ausprobieren",
-    "hottoworktrialexperience" : "Erleben Sie den Unterschied des Einzelunterrichts selbst, indem Sie Ihre kostenlose und unverbindliche Probestunde nutzen.",
-    "hottoworknocommitment" : "Keine Kreditkarte oder Verpflichtung erforderlich.",
-    "hottoworkstep3" : "3. Beginnen Sie mit dem Lernen",
-    "hottoworkbookpackage" : "Buchen Sie Ihr persönliches Unterrichtspaket und erzielen Sie bessere Noten und mehr Selbstvertrauen mit einem individuellen Lernplan.",
-    "hottoworkbooktrial" : "Kostenlose Probestunde buchen",
-    "hottoworksuccessmethods" : "Unsere Methoden, um Schüler zum Erfolg zu führen",
-    "hottoworkfocuscustomization" : "Wir konzentrieren uns darauf, ein vollständig personalisiertes Erlebnis zu schaffen, damit sich die Schüler auf die Verbesserung ihrer Noten konzentrieren können.",
-    "hottoworkexpertteachers" : "Fachkundige Lehrkräfte, die Ihre Bedürfnisse berücksichtigen",
-    "hottoworkselectionrate" : "Nur 8 % der neuen Lehreranwärter bestehen erfolgreich unseren strengen Auswahlprozess.",
-    "hottoworkadaptiveteaching" : "Wir stellen sicher, dass wir mit Lehrkräften zusammenarbeiten, die ihren Unterricht an den einzigartigen Charakter und Lernstil jedes Schülers anpassen.",
-    "hottoworkproveneffectiveness" : "Durch bewährten, personalisierten Unterricht machen 93 % der Schüler deutliche Fortschritte.",
-    "hottoworkgoclassheading" : "Unser interaktives virtuelles Klassenzimmer: GoClass",
-    "hottoworkgoclassdescription" : "Mit dem einzigartigen Design von GoClass erwarten Sie spannende Unterrichtsstunden, die bis zur letzten Minute fesseln und eine reibungslose Zusammenarbeit zwischen Lehrkraft und Schüler ermöglichen.",
-    "hottoworkgoclassfeatures" : "Durch das digitale Whiteboard erhalten die Unterrichtsthemen eine visuelle Dimension, und dank Dateifreigabe können interaktive Übungen erstellt werden.",
-    "hottoworkequationeditor" : "Der Gleichungseditor hilft dabei, schwierige Mathematikaufgaben zu lösen.",
-    "hottoworklessonsummarytitle" : "Fortschritte mit Unterrichtszusammenfassungen verfolgen",
-    "hottoworklessonsummarydesc" : "In einer 50-minütigen personalisierten Einzelstunde können Sie viel lernen! Unterrichtszusammenfassungen halten Schüler, Eltern und Lehrer auf dem Laufenden.",
-    "hottoworkautosummaryfeedback" : "Automatisch erstellte Zusammenfassungen bieten sofortiges Feedback, indem sie wichtige behandelte Themen zusammenfassen, den Unterrichtsfortschritt verfolgen und Schüler an ihre nächsten Schritte erinnern.",
-    "hottoworkbooktrial" : "Kostenlose Probestunde buchen",
-    "hottoworkmentorumbynumberstitle" : "Mentorum in Zahlen",
-    "hottoworksupportingfamilies" : "wir unterstützen Familien",
-    "hottoworklessonsubjectstitle" : "Unterrichtsfächer",
-    "hottoworkstarreviews" : "4- und 5-Sterne-Bewertungen",
-    "hottoworksuccessrate" : "Erfolgsquote",
-    "hottoworkgoalhighgrades" : "Unser Ziel sind immer hohe Noten",
-    "hottoworkparentssay" : "Schauen Sie sich an, was Eltern über GoStudent sagen",
-    "hottoworktestimonial1" : "Unsere Lehrkraft war sehr engagiert und mein Kind begann mit Freude zu lernen. So schnelle Fortschritte hatten wir nicht erwartet!",
-    "hottoworktestimonialmentorum" : "Dank Mentorum ist die Motivation meines Kindes gestiegen. Die wöchentlichen Berichte und Unterrichtszusammenfassungen sind sehr hilfreich.",
-    "hottoworktestimonialmentorumquality" : "Die Bildungsqualität ist hervorragend. Das Live-Unterrichtssystem, die individuelle Betreuung und die fachkundigen Lehrkräfte sorgen für ein großartiges Erlebnis!",
-    "hottoworkflexiblelearning" : "Lernen Sie jederzeit und überall",
-    "hottoworkflexiblepackages" : "Unsere flexiblen Unterrichtspakete richten sich nach Ihren Lernzielen und Ihrem Budget",
-    "hottoworkfamilyflexibility" : "Flexibilität, die sich an die Bedürfnisse Ihrer Familie anpasst",
-    "hottoworklessonsharing" : "Wählen Sie mehrere Fächer und Lehrkräfte für ein einzelnes Kind oder teilen Sie Ihre Unterrichtsguthaben mit der Familie. Wenn sich Ihre Pläne ändern, können Sie auch den Stundenplan anpassen.",
-    "hottoworkaffordablecustomlessons" : "Individueller Unterricht für jedes Budget",
-    "hottoworkcustompackage" : "Passen Sie Ihr Lernpaket individuell an, indem Sie eine Laufzeit und einen Preis wählen, die Ihren Bedürfnissen entsprechen. Je mehr Unterrichtseinheiten Sie buchen, desto günstiger wird es – und desto mehr Fortschritte erzielen Sie!",
-    "hottoworkexplorepricing" : "Entdecken Sie Mitgliedschaften und Preise",
-    "hottoworksecureonlineeducation" : "Sicheres Online-Lernen",
-    "hottoworksafetycommitment" : "Wir machen niemals Kompromisse bei der Sicherheit, damit unsere Lernumgebung den Schülern stets zum Erfolg verhilft",
-    "hottoworksecurepayment" : "Sicheres Zahlungssystem",
-    "hottoworknoextrafees" : "Keine zusätzlichen Vermittlungsgebühren",
-    "hottoworkafterapproval" : "Nach dem Genehmigungsprozess",
-    "hottoworkcarefullyselectedteachers" : "Sorgfältig ausgewählte Lehrkräfte",
-    "hottoworksafeonline" : "Sicher online",
-    "hottoworklearningplatform" : "Lernplattform",
-    "hottoworknoextrafees" : "Keine zusätzlichen Vermittlungsgebühren",
-    "hottoworknohiddenfees" : "Keine versteckten Gebühren während der Lektionen",
-    "hottoworkfaqsectiontitle" : "Häufig gestellte Fragen (FAQ)",
-    "hottoworkmembershipguide" : "Erfahren Sie, wie Sie Ihre Mentorum-Mitgliedschaft erstellen, Ihren Lehrer finden und Unterricht für Ihr Kind buchen können",
-    "hottoworkfaqsectiontitle" : "Häufig gestellte Fragen (FAQ)",
-"hottoworkwhatismentorumtitle" : "Was ist Mentorum?",
-"hottoworkaboutmentorum" :"Mentorum ist eine innovative Online-Lernplattform, die die Zukunft des Privatunterrichts gestaltet.
-Unser Ziel ist es, Schülern durch personalisierte und interaktive Unterrichtseinheiten zu helfen, ihr volles Potenzial auszuschöpfen.",
-"hottoworkwhoisthisofferfortitle" : "Für wen ist dieses Angebot?",
-"hottoworkofferapplicability" : "Dieses Angebot gilt für Schülerinnen und Schüler jeden Alters und jeder Stufe, die Unterstützung beim Lernen benötigen oder Hilfe suchen, um ihr volles Potenzial auszuschöpfen.",
-"hottoworkeducationalsupportservicestitle" : "Unsere Bildungsunterstützungsdienste",
-"hottoworkeducationalsupportdescription" : "Wir bieten Bildungsunterstützung in einem breiten Fächerspektrum, insbesondere in Mathematik, Türkisch und Englisch. Demnächst werden wir auch neue Angebote für Universitätskurse bekannt geben.",
-"hottoworkonlinelessonadvantagestitle" : "Was sind die Vorteile von Online-Videounterricht?",
- "hottoworkonlinelessonadvantages" : "Online-Videounterricht spart Zeit und Fahrtkosten. Dank der Aufzeichnungsfunktion können Sie die Lektionen jederzeit erneut ansehen. Außerdem ermöglicht unser breites Lehrernetzwerk eine schnelle Terminvereinbarung und einen flexiblen Lehrerwechsel je nach Bedarf.",
- "hottoworkhowtobookteachertitle" :  "Wie kann ich einen Termin bei einem Lehrer buchen?",
-"hottoworkhowtobookteacher" : "Um einen Termin mit einem Lehrer zu buchen, registrieren Sie sich bei Mentorum mit Ihrer Telefonnummer oder E-Mail-Adresse. Klicken Sie anschließend im Menü auf den Bereich „Lehrerauswahl“. Wählen Sie aus der angezeigten Lehrerliste den gewünschten Lehrer und legen Sie ein passendes Datum und eine Uhrzeit fest.",
-"hottoworkregisterasteacher" : "Als Lehrer registrieren!",
-"hottoworkteachersignupbenefits" : "Entwickeln Sie Ihre Fähigkeiten weiter, indem Sie mit Schülern arbeiten, und tragen Sie zu ihrer Bildungsreise bei. Als Lehrer auf der Mentorum-Plattform profitieren Sie von flexiblen Arbeitszeiten und einer effektiven Lernumgebung.",
-"hottoworkregisterasteacher1" : "Als Lehrer registrieren",
-"mentoclassinteractivelearningtitle" : "Die interaktivste Lernumgebung: MentoClass",
-"mentoclasspersonalizedvirtualclass" : "Personalisierte Unterrichtsstunden im virtuellen Klassenzimmer von Mentorum sind sowohl effektiv als auch unterhaltsam!",
-"mentoclassremoteprivatelessons" : "Privatunterricht, der so effektiv ist wie Präsenzunterricht – überall erreichbar",
-"mentoclassdigitalwhiteboardcollaboration" : "Digitale Tafel, die die Möglichkeit zur gemeinsamen Arbeit bietet",
-"mentoclassinteractivetoolsforreview" : "Interaktive Werkzeuge, die helfen, den Unterricht zu festigen",
-"mentoclasslearningresourcesfeatures" : "Funktionen zum Speichern von Ressourcen, Aufgaben, Notizen und Glossar",
-"mentoclassbooktrial" : "Kostenlose Probestunde buchen",
-"mentoclassaseffectiveasinperson" : "So effektiv wie Präsenzunterricht",
-"mentoclassmentorumfocus" : "Mentorum hilft Schülern, sich während des Unterrichts zu konzentrieren",
-"mentoclassmentorumlessonstyle" : "Bei Mentorum sind personalisierte Unterrichtsstunden kollaborativ, interaktiv und spannend.",
-"mentoclassinteractivewhiteboard" : "Interaktives digitales Whiteboard",
-"mentoclasscollaborativelearning" : "Les enseignants et les élèves peuvent collaborer, visualiser des concepts ou résoudre ensemble des problèmes complexes.",
-"mentoclasssharematerials" : "Teilen Sie Videos und Lernmaterialien",
-"mentoclassvisualsupport" : "Videos unterstützen Kinder, die visuell lernen, und der benutzerfreundliche Gleichungseditor hilft, komplexe Mathematikprobleme zu lösen.",
-"mentoclasshomeworkupload" : "Lehrkräfte können Übungen für den Unterricht hochladen oder als Hausaufgabe aufgeben.",
-"mentoclassnoteglossary" : "Machen Sie Notizen und erstellen Sie ein Glossar",
-"mentoclassnotesglossaryfeature" : "Schüler können im Abschnitt „Notizen“ etwas aufschreiben und neue Begriffe dem Glossar hinzufügen.Sie können diese Funktionen jederzeit nutzen, um den Unterrichtsstoff besser zu festigen.",
-"mentoclassprogresssummary" : "Erhalten Sie Unterrichtszusammenfassungen zur Fortschrittsverfolgung",
-"mentoclasslessonsummarytracking" : "Schüler und Lehrkräfte können auf Mentorum Zusammenfassungen der Unterrichtsstunden erhalten, um den Fortschritt zu verfolgen oder behandelte Themen und Übungen einzusehen.",
-"mentoclassfocusinsight" : "Sehen Sie, wie konzentriert Ihr Kind im Unterricht ist, oder entdecken Sie wichtige Punkte, die beachtet werden sollten.",
-"mentoclassbooktrial" : "Kostenlose Probestunde buchen",
-"mentoclassfaqsectiontitle" : "Häufig gestellte Fragen",
-"mentoclassfaqaccessmentorum" : "Wie kann ich auf Mentorum zugreifen?",
-"mentoclassfaqaccessmentorumanswer" : "Sie können auf Mentorum zugreifen, wenn Sie eine geplante Unterrichtsstunde haben. Den Link zur Unterrichtsreservierung finden Sie unter „Meine Unterrichtsreservierungen“ im Dashboard. Klicken Sie zur vereinbarten Zeit auf den Link, um zum Online-Klassenraum weitergeleitet zu werden.",
-"mentoclassfaqneedmiccam" : "Brauche ich ein Mikrofon oder eine Kamera?",
-"mentoclassfaqmiccamrequired" : "Alle Unterrichtseinheiten sind interaktiv. Um sicherzustellen, dass sowohl Schüler als auch Lehrer aufmerksam bleiben, bleibt die Kamera während des gesamten Unterrichts eingeschaltet. Ihre Kamera und Ihr Mikrofon müssen funktionieren.Für das beste Erlebnis empfehlen wir den Zugriff auf Mentorum über einen Laptop oder Desktop-Computer.",
-"mentoclassfaqfocusstrategy" : "Wie sorgen Lehrer dafür, dass sich Schüler im Unterricht konzentrieren?",
-"mentoclassfaqteacherfocusstrategyanswer" : "Mentorum ist so konzipiert, dass Schüler das Beste aus ihren 50-minütigen, personalisierten Einzelunterrichtsstunden durch gemeinsame Arbeit herausholen. Auf diese Weise können Schüler aktiv am Unterricht teilnehmen und Übungen machen, um besser zu lernen.Lehrer können die Funktionen steuern, um den Schülern zu helfen, sich auf wichtige Punkte zu konzentrieren.",
-"mentoclasstry1on1now" : "Probieren Sie jetzt Einzelunterricht aus",
-"mentoclasstrustedteachers" : "Unser vertrauenswürdiges Lehrerteam wurde sorgfältig ausgewählt, um die Lernreise Ihres Kindes bestmöglich zu unterstützen.",
-"mentoclassbookfreetrial" : "Kostenlose Probestunde buchen"
-
-
-
-
-   
-   
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-  
-  
-   
-=======
     "accountimg": "Hochladen",
     "allowedFormats": "Erlaubte Formate: JPG, GIF oder PNG. Maximale Größe 800K",
     "firstName": "Vorname",
@@ -313,7 +157,6 @@ Unser Ziel ist es, Schülern durch personalisierte und interaktive Unterrichtsei
     "hottoworkpersonalized": "Der Unterricht wird an die Lernbedürfnisse jedes einzelnen Schülers angepasst",
     "hottoworkflexible": "Flexible Zeitpläne! Lernen Sie jederzeit und überall!",
     "hottoworkinteractiveclass": "Unser interaktives Klassenzimmer macht das Lernen unterhaltsam",
-    "hottoworkbooktrial": "Kostenlose Probestunde buchen",
     "hottoworkeasystart": "Müheloser Start in 3 Schritten",
     "hottoworkawardwinning": "Preisgekrönter Einzelunterricht ist nur 3 Schritte entfernt",
     "hottoworkstep1": "1. Buchen Sie eine Probestunde",
@@ -323,7 +166,6 @@ Unser Ziel ist es, Schülern durch personalisierte und interaktive Unterrichtsei
     "hottoworknocommitment": "Keine Kreditkarte oder Verpflichtung erforderlich.",
     "hottoworkstep3": "3. Beginnen Sie mit dem Lernen",
     "hottoworkbookpackage": "Buchen Sie Ihr persönliches Unterrichtspaket und erzielen Sie bessere Noten und mehr Selbstvertrauen mit einem individuellen Lernplan.",
-    "hottoworkbooktrial": "Kostenlose Probestunde buchen",
     "hottoworksuccessmethods": "Unsere Methoden, um Schüler zum Erfolg zu führen",
     "hottoworkfocuscustomization": "Wir konzentrieren uns darauf, ein vollständig personalisiertes Erlebnis zu schaffen, damit sich die Schüler auf die Verbesserung ihrer Noten konzentrieren können.",
     "hottoworkexpertteachers": "Fachkundige Lehrkräfte, die Ihre Bedürfnisse berücksichtigen",
@@ -379,5 +221,4 @@ Unser Ziel ist es, Schülern durch personalisierte und interaktive Unterrichtsei
     "hottoworkregisterasteacher": "Als Lehrer registrieren!",
     "hottoworkteachersignupbenefits": "Entwickeln Sie Ihre Fähigkeiten weiter, indem Sie mit Schülern arbeiten, und tragen Sie zu ihrer Bildungsreise bei. Als Lehrer auf der Mentorum-Plattform profitieren Sie von flexiblen Arbeitszeiten und einer effektiven Lernumgebung.",
     "hottoworkregisterasteacher1": "Als Lehrer registrieren"
->>>>>>> 1697bcecaea96d481479ae6688ee646779feb38a
 }
