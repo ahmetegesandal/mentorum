@@ -6,7 +6,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import ReCAPTCHA from "react-google-recaptcha";
 
-const RECAPTCHA_ENABLED = false;
+const RECAPTCHA_ENABLED = true;
 
 const Login = () => {
   const [email, setEmail] = useState("");

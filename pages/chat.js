@@ -69,8 +69,9 @@ const Chat = () => {
       ) {
         setMessages((prev) => {
           if (!prev.some((msg) => msg.id === message.id)) {
-            messageSound.current.play();
-
+            messageSound.current.play().catch(err => {
+              console.error("Ses çalarken hata oluştu:", err);
+            });
             return [...prev, message];
           }
           return prev;
@@ -129,32 +130,31 @@ const Chat = () => {
     return () => clearInterval(interval);
   }, [userData.id]);
 
-  const sendMessage = async () => {
-    if (inputMessage.trim() === "") return;
-
+  const sendMessage = async (messageOverride) => {
+    const messageToSend = messageOverride ?? inputMessage;
+    console.log("🚀 sendMessage çağrıldı:", messageToSend);
+  
+    if (messageToSend.trim() === "") return;
+  
     const messageData = {
       sender_id: userData.id,
       receiver_id: receiverId,
-      sender_name: `${userData.name} ${userData.surname}`, // 👈 bunu ekle
-      message: inputMessage,
+      sender_name: `${userData.name} ${userData.surname}`,
+      message: messageToSend,
     };
-
+  
     try {
       const response = await axios.post("/api/messages", messageData);
+      console.log("✅ Mesaj veritabanına kaydedildi:", response.data);
       socket.emit("sendMessage", response.data);
       setMessages((prev) => [...prev, response.data]);
       setInputMessage("");
     } catch (error) {
-      console.error(
-        "Error sending message:",
-        error.response?.data || error.message
-      );
-      alert(
-        "Failed to send message: " +
-          (error.response?.data?.error || error.message)
-      );
+      console.error("❌ sendMessage error:", error.response?.data || error.message);
     }
   };
+  
+  
 
   const [selectedUser, setSelectedUser] = useState(null);
 
@@ -260,6 +260,8 @@ const Chat = () => {
                   inputMessage={inputMessage}
                   setInputMessage={setInputMessage}
                   sendMessage={sendMessage}
+                  chatEndRef={chatEndRef}
+
                 />
 
                 <div className="app-overlay"></div>

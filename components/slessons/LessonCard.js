@@ -1,4 +1,5 @@
 import UserAvatar from "../UserAvatar";
+import Image from "next/image";
 
 export default function LessonCard({ lesson, isOnline }) {
   return (
@@ -51,9 +52,18 @@ export default function LessonCard({ lesson, isOnline }) {
             ...
           </p>
 
-          <p>
-            <strong>Fiyat:</strong> {lesson.price}$
-          </p>
+          <div className="d-flex align-items-center gap-2 mt-2 mb-3">
+            <strong>Fiyat:</strong>
+            <span className="fw-semibold d-flex align-items-center gap-1">
+              {lesson.price}
+              <Image
+                src="/img/credit.png"
+                alt="Kredi"
+                width={32}
+                height={32}
+              />
+            </span>
+          </div>
           <a
             className="w-100 btn btn-label-primary d-flex align-items-center"
             href={`/lessons/${lesson.id}`}

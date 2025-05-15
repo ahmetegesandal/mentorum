@@ -9,29 +9,37 @@ export const UserProvider = ({ children }) => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const publicRoutes = [
+    "/",
+    "/register",
+    "/404",
+    "/contact",
+    "/forgot-password",
+    "/reset-password",
+    "/verify-2fa",
+    "/how-to-work",
+    "/mento-class",
+    "/course-summaries",
+    "/mlessons",
+    "/meeting"
+  ];
+
+  const publicRoutePrefixes = [
+    "/blog"
+  ];
+
+  const isPublicRoute = (pathname) => {
+    return (
+      publicRoutes.includes(pathname) ||
+      publicRoutePrefixes.some((prefix) => pathname.startsWith(prefix))
+    );
+  };
+
   useEffect(() => {
     if (!router.isReady) return;
 
-    const publicRoutes = [
-      "/",
-      "/register",
-      "/404",
-      "/contact",
-      "/forgot-password",
-      "/reset-password",
-      "/verify-2fa",
-      "/how-to-work",
-      "/mento-class",
-      "/course-summaries",
-      "/mlessons",
-      "/meeting",
-    ];
-
-    const isPublic = publicRoutes.some((route) =>
-      router.pathname.startsWith(route)
-    );
-
-    if (publicRoutes.includes(router?.pathname)) {
+    const pathname = router.pathname;
+    if (isPublicRoute(pathname)) {
       setLoading(false);
       return;
     }
@@ -56,7 +64,7 @@ export const UserProvider = ({ children }) => {
 
       const fetchUser = async () => {
         try {
-          const res = await fetch(`/api/users/${decoded?.userId}`, {
+          const res = await fetch(`/api/users/${decoded.userId}`, {
             headers: { Authorization: `Bearer ${token}` },
           });
 

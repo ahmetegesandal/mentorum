@@ -10,6 +10,8 @@ const Profile = () => {
   const { t } = useTranslation("common");
   const userData = useContext(UserContext);
   const [isOnline, setIsOnline] = useState(false);
+  const [badges, setBadges] = useState([]);
+  const [activeTab, setActiveTab] = useState("profile");
 
   useEffect(() => {
     if (userData?.id) {
@@ -32,12 +34,19 @@ const Profile = () => {
     }
   }, [userData]);
 
+  useEffect(() => {
+    if (userData?.id) {
+      fetch(`/api/users/${userData?.id}/badges`)
+        .then(res => res.json())
+        .then(setBadges)
+        .catch(console.error);
+    }
+  }, [userData]);
+
   const formatDate = (isoDate) => {
     if (!isoDate) return "Tarih bilgisi yok";
     const date = new Date(isoDate);
-    return `${date.getDate()}.${
-      date.getMonth() + 1
-    }.${date.getFullYear()} tarihinde katıldı`;
+    return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} tarihinde katıldı`;
   };
 
   return (
@@ -70,24 +79,17 @@ const Profile = () => {
                       <div className="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-5 flex-md-row flex-column gap-4">
                         <div className="user-profile-info">
                           <h4 className="mb-2 mt-lg-6">
-                            {userData?.name + " " + userData?.surname ||
-                              "Misafir"}
+                            {userData?.name + " " + userData?.surname || "Misafir"}
                           </h4>
                           <ul className="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-4 my-2">
                             <li className="list-inline-item d-flex gap-2 align-items-center">
                               <span className="fw-medium">
                                 {userData?.role === "admin" && (
-                                  <span className="badge bg-label-danger">
-                                    {"Admin"}
-                                  </span>
+                                  <span className="badge bg-label-danger">{"Admin"}</span>
                                 )}
                                 {userData?.role === "parent" && <>{"Veli"}</>}
-                                {userData?.role === "student" && (
-                                  <>{"Öğrenci"}</>
-                                )}
-                                {userData?.role === "teacher" && (
-                                  <>{"Öğretmen"}</>
-                                )}
+                                {userData?.role === "student" && <>{"Öğrenci"}</>}
+                                {userData?.role === "teacher" && <>{"Öğretmen"}</>}
                               </span>
                             </li>
                             <li className="list-inline-item d-flex gap-2 align-items-center">
@@ -110,85 +112,87 @@ const Profile = () => {
                 <div className="nav-align-top">
                   <ul className="nav nav-pills flex-column flex-sm-row mb-6 gap-2 gap-lg-0">
                     <li className="nav-item">
-                      <a className="nav-link active" href="">
+                      <button
+                        className={`nav-link ${activeTab === "profile" ? "active" : ""}`}
+                        onClick={() => setActiveTab("profile")}
+                      >
                         <i className="ti-sm ti ti-user-check me-1_5"></i> Profil
-                      </a>
+                      </button>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="">
-                        <i className="ti-sm ti ti-users me-1_5"></i> Ders
-                        İlanları
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="">
-                        <i className="ti-sm ti ti-layout-grid me-1_5"></i>{" "}
-                        Projects
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="">
-                        <i className="ti-sm ti ti-link me-1_5"></i> Connections
-                      </a>
+                      <button
+                        className={`nav-link ${activeTab === "badges" ? "active" : ""}`}
+                        onClick={() => setActiveTab("badges")}
+                      >
+                        <i className="ti-sm ti ti-award me-1_5"></i> Rozetler
+                      </button>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            <div className="row">
-              <div className="col-xl-12 col-lg-12 col-md-12">
-                <div className="card mb-6">
-                  <div className="card-body">
-                    <small className="card-text text-uppercase text-muted small">
-                      Hakkında
-                    </small>
-                    {userData?.role === "teacher" && (
-                      <div>
-                        <p>{userData.teacher_info?.bio}</p>
-                      </div>
-                    )}
-                    {userData?.role === "student" && (
-                      <div>
-                        <p>Sınıf: {userData?.student_info?.grade}</p>
-                      </div>
-                    )}
-                    <ul className="list-unstyled my-3 py-1">
-                      <li className="d-flex align-items-center mb-4">
-                        <i className="ti ti-user ti-lg"></i>
-                        <span className="fw-medium mx-2">Username:</span>
-                        <span>{userData?.username}</span>
-                      </li>
-                      <li className="d-flex align-items-center mb-4">
-                        <i className="ti ti-user ti-lg"></i>
-                        <span className="fw-medium mx-2">Full Name:</span>
-                        <span>
-                          {userData?.name} {userData?.surname}
-                        </span>
-                      </li>
-
-                      <li className="d-flex align-items-center mb-4">
-                        <i className="ti ti-crown ti-lg"></i>
-                        <span className="fw-medium mx-2">Role:</span>
-                        <span>{userData?.role}</span>
-                      </li>
-
-                      <li className="d-flex align-items-center mb-4">
-                        <i className="ti ti-crown ti-lg"></i>
-                        <span className="fw-medium mx-2">Mail:</span>
-                        <span>{userData?.email}</span>
-                      </li>
-
-                      <li className="d-flex align-items-center mb-2">
-                        <i className="ti ti-language ti-lg"></i>
-                        <span className="fw-medium mx-2">Languages:</span>
-                        <span>English</span>
-                      </li>
-                    </ul>
+            {activeTab === "profile" && (
+              <div className="row">
+                <div className="col-xl-12 col-lg-12 col-md-12">
+                  <div className="card mb-6">
+                    <div className="card-body">
+                      <h5>Hakkında</h5>
+                      {userData?.role === "teacher" && (
+                        <div>
+                          <p>{userData.teacher_info?.bio}</p>
+                        </div>
+                      )}
+                      {userData?.role === "student" && (
+                        <div>
+                          <p>Sınıf: {userData?.student_info?.grade}</p>
+                        </div>
+                      )}
+                      <ul className="list-unstyled my-3 py-1">
+                        
+                        <li className="d-flex align-items-center mb-4">
+                          <i className="ti ti-user ti-lg"></i>
+                          <span className="fw-medium mx-2">Tam Ad:</span>
+                          <span>{userData?.name} {userData?.surname}</span>
+                        </li>
+                        <li className="d-flex align-items-center mb-4">
+                          <i className="ti ti-crown ti-lg"></i>
+                          <span className="fw-medium mx-2">Mail:</span>
+                          <span>{userData?.email}</span>
+                        </li>
+                        
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
+
+            {activeTab === "badges" && badges.length > 0 && (
+              <div className="row">
+                <div className="col-xl-12 col-lg-12 col-md-12">
+                  <div className="card mb-6">
+                    <div className="card-body">
+                      <h5>Rozetler</h5>
+                      <div className="d-flex flex-wrap gap-2">
+                        {badges.map((badge) => (
+                          <div key={badge.id} className="badge-item text-center">
+                            <Image
+                              src={`/img/badges/${badge.icon_path}`}
+                              alt={badge.name}
+                              width={120}
+                              height={120}
+                            />
+                            <div className="small">{badge.name}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
           </div>
         </div>
       </div>

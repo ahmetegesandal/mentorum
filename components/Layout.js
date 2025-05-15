@@ -15,10 +15,18 @@ const Layout = ({ children }) => {
     "/how-to-work",
     "/mento-class",
     "/course-summaries",
-    "/mlessons",
+    "/mlessons"
   ];
 
-  if (noLayoutPaths.includes(router.pathname)) {
+  const noLayoutPrefixes = [
+    "/blog"
+  ];
+
+  const isNoLayout =
+    noLayoutPaths.includes(router.pathname) ||
+    noLayoutPrefixes.some((prefix) => router.pathname.startsWith(prefix));
+
+  if (isNoLayout) {
     return <>{children}</>;
   }
 

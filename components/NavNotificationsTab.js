@@ -76,7 +76,7 @@ const NavNotificationsTab = () => {
       <ul className="dropdown-menu dropdown-menu-end p-0 overflow-auto">
         <li className="dropdown-menu-header border-bottom">
           <div className="dropdown-header d-flex align-items-center py-3">
-            <h6 className="mb-0 me-auto">Notification</h6>
+            <h6 className="mb-0 me-auto">Bildirimler</h6>
             {hasUnread && <span className="badge bg-label-primary me-2">New</span>}
           </div>
         </li>
@@ -117,7 +117,7 @@ const NavNotificationsTab = () => {
         <li className="border-top">
           <div className="d-grid p-3">
             <Link href="/notifications" className="btn btn-primary btn-sm">
-              View all notifications
+              Bildirimleri Görüntüle
             </Link>
           </div>
         </li>

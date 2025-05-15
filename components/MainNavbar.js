@@ -89,6 +89,12 @@ const MainNavbar = () => {
               </li>
 
               <li className="nav-item">
+                <a className="nav-link fw-medium" href="/blog">
+                  Blog
+                </a>
+              </li>
+
+              <li className="nav-item">
                 <a className="nav-link fw-medium" href="/contact">
                   İletişime Geç
                 </a>
