@@ -1,119 +1,78 @@
-**Proje Kurulum Rehberi**
+# 🧠 Mentorum
 
-Bu rehber, `https://github.com/ahmetegesandal/my-app` projesini yerel ortamda çalıştırmak için gerekli adımları içermektedir.
+Welcome to **Mentorum** – a modern and modular web application built with clean architecture and scalability in mind.  
+This project aims to demonstrate professional-grade software structure, suitable for real-world applications and collaborative development.
 
----
+## 🚀 Features
 
-## **1. Gerekli Uygulamalar**
+- ✅ Modular file structure  
+- ⚙️ Easy configuration and environment setup  
+- 🧪 Integrated unit testing  
+- 📦 Dependency management with `npm` / `yarn`  
+- 🧩 Ready for API integration  
+- 🔒 Security best practices  
 
-Projeyi çalıştırabilmek için aşağıdaki uygulamaların sisteminize kurulu olması gerekmektedir:
-
-### **1.1 Node.js ve npm**
-
-- Proje bir **Node.js** uygulaması olduğu için, en az **Node.js 16.x** veya üzeri bir sürüm yüklenmelidir.
-- **Yüklemek için:**
-  - [Node.js Resmi Sitesi](https://nodejs.org/) üzerinden **LTS sürümünü** indirin ve yükleyin.
-  - Yüklemeyi doğrulamak için terminal veya komut satırında aşağıdaki komutları çalıştırın:
-    ```bash
-    node -v  # Node.js sürümünü gösterir
-    npm -v   # npm sürümünü gösterir
-    ```
-
-### **1.2 Git**
-
-- Projeyi GitHub üzerinden klonlamak için **Git** gereklidir.
-- **Yüklemek için:**
-  - [Git Resmi Sitesi](https://git-scm.com/) üzerinden işletim sisteminize uygun versiyonu indirin ve yükleyin.
-  - Windows kullanıcıları **Git Bash** seçeneğini de kurmalıdır.
-  - Yüklemeyi doğrulamak için terminal veya komut satırında aşağıdaki komutu çalıştırın:
-    ```bash
-    git --version  # Git sürümünü gösterir
-    ```
-
-### **1.3 XAMPP (MySQL İçin)**
-
-- Eğer proje **MySQL** veritabanı kullanıyorsa, yerel MySQL sunucusu çalıştırmak için **XAMPP** yüklenmelidir.
-- **Yüklemek için:**
-  - [XAMPP Resmi Sitesi](https://www.apachefriends.org/) üzerinden işletim sisteminize uygun versiyonu indirin ve yükleyin.
-  - **XAMPP Kontrol Paneli** üzerinden **MySQL servisini başlatın.**
-
-### **1.4 Bir Kod Editörü (Önerilen: VS Code)**
-
-- Kod yazmak ve düzenlemek için **Visual Studio Code (VS Code)** önerilir.
-- **Yüklemek için:**
-  - [VS Code Resmi Sitesi](https://code.visualstudio.com/) üzerinden indirin ve yükleyin.
-
----
-
-## **2. Projeyi Kurma ve Çalıştırma**
-
-Aşağıdaki adımları takip ederek projeyi yerel ortamda çalıştırabilirsiniz.
-
-### **2.1 Projeyi Klonlama**
-
-Terminal veya komut satırında aşağıdaki komutu çalıştırın:
+## 🛠️ Installation
 
 ```bash
-git clone https://github.com/ahmetegesandal/my-app.git
-cd my-app
-```
+# 1. Clone the repository
+git clone https://github.com/ahmetegesandal/mentorum.git
+cd mentorum
 
-### **2.2 Bağımlılıkları Yükleme**
-
-```bash
+# 2. Install dependencies
 npm install
+# or
+yarn install
+
+# 3. Start the development server
+npm run dev
+# or
+yarn dev
 ```
 
-### **2.4 Veritabanı Kurulumu**
+Once started, open your browser and go to:  
+`http://localhost:3000`
 
-1. **MySQL’i açın (XAMPP üzerinden).**
-2. **phpMyAdmin** veya MySQL terminali ile yeni bir veritabanı oluşturun:
-   ```sql
-   CREATE DATABASE my_auth_db;
-   ```
+## 📁 Folder Structure
 
-### **2.5 Projeyi Çalıştırma**
+```
+mentorum/
+├── public/             # Static assets
+├── src/
+│   ├── components/     # Reusable UI components
+│   ├── pages/          # Application routes/pages
+│   ├── utils/          # Utility functions
+│   ├── styles/         # Global and modular CSS
+│   └── ...             # Other core features
+├── .env.example        # Environment variables template
+├── package.json
+└── README.md
+```
+
+## 🧪 Scripts
 
 ```bash
-npm run dev  # Geliştirme modunda çalıştırır
-node server.js  # Anlık sohbet uygulamasının çalışması için boş bir cmd de başlatmak gerekli.
+npm run dev       # Start development server
+npm run build     # Create production build
+npm run start     # Start the app in production mode
+npm run test      # Run unit tests
 ```
 
-- Sunucu başarılı şekilde başlarsa, **http://localhost:3000/** adresinden erişebilirsiniz.
+## 🙋 Contributing
 
----
+Contributions, issues and feature requests are welcome!
 
-## **4. DB Güncel yapıldığında yapılması gerekenler**
+1. Fork the repository  
+2. Create a new branch (`git checkout -b feature-name`)  
+3. Commit your changes (`git commit -m 'Add new feature'`)  
+4. Push to the branch (`git push origin feature-name`)  
+5. Open a Pull Request  
 
-xammp'dan mysql kısmından admin'e tıklayın
-![alt text](image.png)
+## 🔐 License
 
-Ardından açılan db ekranından hiçbir şeye dokunmadan direkt olarak sql sekmesine gelip buraya DROP DATABASE my_auth_db yazmanız gerek. Veritabanı bundan sonra düşecektir.
-![alt text](image-1.png)
+This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
 
-Güncel olan db yi kurmak için yeni kısmına tıklayın veritabanı adı yerine my_auth_db yazın ve oluştura tıklayın ardından
-![alt text](image-2.png)
+## 📞 Contact
 
-my_auth_db 'ye basarak içe aktar diyin dosya seç kısmına basıp proje dizinindeki my_auth_db' yi aktarın ve işlem bu kadar
-![alt text](image-3.png)
-
-## **5. Sonuç**
-
-Bu döküman, projeyi sorunsuz bir şekilde yerel ortamda çalıştırmanız için gerekli tüm adımları içermektedir. Eğer sorun yaşarsanız, ekip üyelerinizden veya proje sahibiyle iletişime geçerek destek alabilirsiniz. 🚀
-
-## Kullanıcı Hesapları
-
-Aşağıdaki kullanıcı hesaplarını test amaçlı kullanabilirsiniz:
-
-| Kullanıcı Adı | Şifre  | Yetki                          |
-| ------------- | ------ | ------------------------------ |
-| ege           | ege123 | admin                          |
-| sena          | ege123 | admin                          |
-| emir          | ege123 | admin                          |
-| ufuk          | ege123 | admin                          |
-| hatice        | ege123 | admin                          |
-| furkan        | ege123 | admin                          |
-| sibel         | ege123 | teacher                        |
-| yavuz         | ege123 | student                        |
-| senem         | ege123 | parent                         |
-| doruk         | ege123 | student (seneme bağlı öğrenci) |
+Project maintained by [Ahmet Ege Sandal](https://github.com/ahmetegesandal)  
+For support or collaboration, feel free to open an issue or reach out directly.
